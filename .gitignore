@@ -1,0 +1,15 @@
+# 大文件与镜像固件
+firmware/
+transcode/
+*.img
+*.tmp*
+*.tmp
+*.log
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 操作系统文件
+.DS_Store
+Thumbs.db

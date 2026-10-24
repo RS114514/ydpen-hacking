@@ -1,0 +1,7 @@
+{
+  "pages": {
+    "index": "pages/index/index.js",
+    "player": "pages/player/player.js"
+  },
+  "options": { "style": { "lessPaths": ["pages"] } }
+}

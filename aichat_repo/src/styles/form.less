@@ -1,0 +1,295 @@
+// 模型 / 参数 / 自检 三页共用（骨架与导航来自 base.less）
+@import "base.less";
+
+/* ================= 模型卡片（列表） ================= */
+.mrow {
+  width: 600px;
+  height: 52px;
+  margin-left: 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 10px;
+  border-radius: 12px;
+  background-color: @surface;
+}
+
+/* 当前使用的模型：蓝色弱强调 + 描边 */
+.mrow-on {
+  background-color: @accent-soft;
+  border-color: @accent-line;
+}
+
+.mavatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background-color: @surface-2;
+  justify-content: center;
+  align-items: center;
+}
+
+.mavatar-on {
+  background-color: @accent-str;
+}
+
+.mavatar-text {
+  width: 30px;
+  font-size: 11px;
+  color: @text-2;
+  text-align: center;
+  lines: 1;
+}
+
+.mavatar-text-on {
+  color: #ffffff;
+}
+
+.minfo {
+  flex: 1;
+  margin-left: 10px;
+  flex-direction: column;
+}
+
+.mname {
+  font-size: 13px;
+  color: @text;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.mname-on {
+  color: @text;
+}
+
+.msub {
+  width: 300px;
+  margin-top: 2px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.msub-on {
+  color: @dim;
+}
+
+/* 卡片右侧的圆形状态点（当前模型为蓝色实心） */
+.mdot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: @line;
+}
+
+.mdot-on {
+  background-color: @accent;
+}
+
+/* ================= 小按钮（卡片内 / 行内） ================= */
+.mini {
+  height: 26px;
+  min-width: 46px;
+  margin-left: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 13px;
+  background-color: @surface-2;
+  justify-content: center;
+  align-items: center;
+}
+
+.mini:active {
+  opacity: 0.6;
+}
+
+.mini-on {
+  background-color: @accent-soft;
+}
+
+.mini-text {
+  font-size: 11px;
+  color: @text-2;
+  text-align: center;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.mini-text-on {
+  color: @accent;
+}
+
+/* ================= 预设行 / 模型名行 ================= */
+.prow {
+  width: 600px;
+  height: 48px;
+  margin-left: 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 10px;
+  border-radius: 12px;
+  background-color: @surface;
+}
+
+.prow:active {
+  opacity: 0.75;
+}
+
+.pname {
+  font-size: 13px;
+  color: @text;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.psub {
+  width: 420px;
+  margin-top: 2px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 2;
+  text-overflow: ellipsis;
+}
+
+/* ================= 分段选择 ================= */
+.seg {
+  flex-direction: row;
+  align-items: center;
+}
+
+.seg-item {
+  height: 26px;
+  min-width: 46px;
+  margin-left: 5px;
+  padding-left: 9px;
+  padding-right: 9px;
+  border-radius: 13px;
+  background-color: @surface-2;
+  justify-content: center;
+  align-items: center;
+}
+
+.seg-item:active {
+  opacity: 0.6;
+}
+
+.seg-on {
+  background-color: @accent-str;
+}
+
+.seg-text {
+  font-size: 11px;
+  color: @dim;
+  text-align: center;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.seg-text-on {
+  color: #ffffff;
+}
+
+/* ================= 只读长文本块 ================= */
+.readonly {
+  width: 600px;
+  margin-left: 14px;
+  margin-top: 4px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background-color: @surface;
+}
+
+.readonly:active {
+  opacity: 0.75;
+}
+
+.readonly-title {
+  width: 576px;
+  font-size: 11px;
+  color: @accent;
+  lines: 1;
+}
+
+.readonly-text {
+  width: 576px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: @text-2;
+  lines: 5;
+  text-overflow: ellipsis;
+}
+
+/* ================= 自检：状态卡片 ================= */
+.dcard {
+  width: 600px;
+  height: 40px;
+  margin-left: 14px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+  background-color: @surface;
+}
+
+.dcard-text {
+  width: 380px;
+  font-size: 12px;
+  color: @text;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.dcard-sub {
+  width: 380px;
+  margin-top: 1px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.dcard-state {
+  width: 60px;
+  font-size: 11px;
+  color: @dim-2;
+  text-align: right;
+  lines: 1;
+}
+
+.dcard-state-ok {
+  color: @ok;
+}
+
+.dcard-state-err {
+  color: @danger;
+}
+
+/* 小状态点 */
+.sdot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: @line;
+}
+
+.sdot-ok {
+  background-color: @ok;
+}
+
+.sdot-err {
+  background-color: @danger;
+}
+
+.sdot-run {
+  background-color: @accent;
+}
+

@@ -1,0 +1,35 @@
+{
+  "name": "better-video-player",
+  "appName": "更好的视频",
+  "appid": "8001876543210988",
+  "version": "1.0.0",
+  "description": "有道词典笔视频播放器：本地视频扫描、进度条、倍速、音量、播放历史、高分辨率自动降画质",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "single-js-bundle": false,
+  "scripts": {
+    "build": "aiot-cli -p",
+    "package": "aiot-cli -c -q -p"
+  },
+  "keywords": [
+    "youdao",
+    "dictpen",
+    "falcon",
+    "video",
+    "player"
+  ],
+  "dependencies": {
+    "falcon-ui": "^2.0.2"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.5.27",
+    "aiot-vue-cli": "link:../aiot-vue-cli",
+    "vue": "^3.5.27"
+  },
+  "packageManager": "pnpm@10.12.4",
+  "license": "GPL-3.0-or-later",
+  "type": "module"
+}

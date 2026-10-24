@@ -1,0 +1,10 @@
+{
+  "name": "better-video-player-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "test": "node --test test/",
+    "build": "pnpm -C ui package"
+  }
+}

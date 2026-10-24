@@ -1,0 +1,5 @@
+#!/bin/sh
+# 手动开启投屏服务（8088）
+/sbin/start-stop-daemon -K -q -x /userdisk/bin/ydpen_screensrv 2>/dev/null
+/sbin/start-stop-daemon -S -b -x /userdisk/bin/ydpen_screensrv -- -p 8088
+echo "投屏已开启: http://$(ip -4 addr show wlan0 | grep -o 'inet [0-9.]*' | awk '{print $2}' | head -n1):8088"

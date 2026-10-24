@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "index": "pages/index/index.js",
+    "panel": "pages/panel/panel.js"
+  },
+  "options": {
+    "style": {
+      "lessPaths": ["styles"]
+    },
+    "alias": {}
+  }
+}

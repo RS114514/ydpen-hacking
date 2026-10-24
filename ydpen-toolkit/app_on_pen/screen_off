@@ -1,0 +1,5 @@
+#!/bin/sh
+# 手动关闭投屏服务
+/sbin/start-stop-daemon -K -q -x /userdisk/bin/ydpen_screensrv 2>/dev/null
+pkill -f "ffmpeg.*kmsgrab" 2>/dev/null
+echo "投屏已关闭"

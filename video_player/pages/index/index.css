@@ -1,0 +1,120 @@
+/* 视频媒体库（列表页）样式 —— 逻辑视口 800×220，所有高度不得超过 220px
+ * 构建时由 build.py 转成 Styles.js；单位一律 px。
+ * 纵向预算：header 34 + scroller 186 = 220 */
+
+.list-root {
+  position: relative;
+  width: 800px;
+  height: 220px;
+  overflow: hidden;
+  background-color: #0d1117;
+}
+
+.lib-header {
+  width: 800px;
+  height: 34px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #161b22;
+}
+.lib-title {
+  flex: 1;
+  color: #e6edf3;
+  font-size: 16px;
+}
+.lib-count {
+  color: #8b949e;
+  font-size: 12px;
+  margin-right: 10px;
+}
+.btn-refresh {
+  height: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  border-radius: 6px;
+}
+.btn-refresh-text {
+  color: #c9d1d9;
+  font-size: 13px;
+}
+
+.lib-scroller {
+  width: 800px;
+  height: 186px;
+  padding-top: 6px;
+}
+
+.movie-card {
+  width: 776px;
+  height: 42px;
+  margin-left: 12px;
+  margin-bottom: 6px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #161b22;
+  border-radius: 8px;
+}
+.movie-badge {
+  width: 32px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f6feb;
+  border-radius: 6px;
+}
+.movie-badge-text {
+  color: #ffffff;
+  font-size: 14px;
+}
+.movie-name {
+  width: 530px;
+  margin-left: 10px;
+  color: #e6edf3;
+  font-size: 15px;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+.movie-duration {
+  width: 90px;
+  color: #58a6ff;
+  font-size: 14px;
+  text-align: center;
+}
+.movie-size {
+  width: 70px;
+  color: #8b949e;
+  font-size: 13px;
+  text-align: right;
+}
+.list-pad {
+  width: 800px;
+  height: 40px;
+}
+
+.empty-wrap {
+  width: 800px;
+  height: 186px;
+  justify-content: center;
+  align-items: center;
+}
+.empty-title {
+  color: #e6edf3;
+  font-size: 18px;
+}
+.empty-hint {
+  margin-top: 10px;
+  color: #8b949e;
+  font-size: 14px;
+}
+.empty-path {
+  margin-top: 6px;
+  color: #58a6ff;
+  font-size: 14px;
+}

@@ -1,0 +1,47 @@
+name: build-amr
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Ensure qjsc binaries are executable
+        run: chmod +x aiot-vue-cli/cli-libs/aiot-qjsc-tool/assets/bin/linux/*
+
+      - name: Run unit tests
+        run: pnpm test
+
+      # 必须用与目标固件匹配的旧 buildroot 工具链（2018.11 / glibc 2.2x）：
+      # apt 的 g++-arm-linux-gnueabihf 会引入更新的 GLIBC 版本符号，笔上 dlopen 失败。
+      - name: Build AMR for x5 (cross toolchain + native module + package)
+        run: |
+          chmod +x tools/build-native.sh tools/build-all-releases.sh
+          tools/build-all-releases.sh x5
+
+      - name: Upload AMR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-video-player-x5
+          path: dist/releases/*.amr
+          if-no-files-found: error

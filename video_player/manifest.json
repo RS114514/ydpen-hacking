@@ -1,0 +1,12 @@
+{
+  "appName": "视频播放器",
+  "appid": "8002026102300004",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "pages": ["pages/index/index", "pages/player/player"],
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false,
+    "targets": ["app.js.bin", "index.js.bin", "pages/index/index.js.bin", "pages/player/player.js.bin"]
+  }
+}

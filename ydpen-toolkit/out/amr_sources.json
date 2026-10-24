@@ -1,0 +1,1534 @@
+{
+  "repos": [
+    {
+      "full_name": "PenUniverse/Installer",
+      "desc": "A handy PenMods installer.",
+      "stars": 42,
+      "pushed": "2023-03-25",
+      "url": "https://github.com/PenUniverse/Installer",
+      "why": "PenUniverse org",
+      "assets": [
+        {
+          "release": "100",
+          "name": "Installer_1.0.0_win32.zip",
+          "size": 9797647,
+          "downloads": 763,
+          "url": "https://github.com/PenUniverse/Installer/releases/download/100/Installer_1.0.0_win32.zip",
+          "published": "2022-12-23"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "adogecheems/doge-reader",
+      "desc": "一款为有道词典笔 OS 设计的第三方阅读器程序 | A third-party reader program designed for Youdao Dictionary Pen OS.",
+      "stars": 19,
+      "pushed": "2026-06-10",
+      "url": "https://github.com/adogecheems/doge-reader",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.1.2",
+          "name": "all.amr",
+          "size": 1114735,
+          "downloads": 89,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.2/all.amr",
+          "published": "2026-06-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 1114687,
+          "downloads": 12,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 1114378,
+          "downloads": 14,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.0/all.amr",
+          "published": "2026-05-17"
+        },
+        {
+          "release": "v1.0.6",
+          "name": "all.amr",
+          "size": 1113360,
+          "downloads": 7,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.6/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.0.5",
+          "name": "all.amr",
+          "size": 1113338,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.5/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.0.2",
+          "name": "all.amr",
+          "size": 1113368,
+          "downloads": 32,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.2/all.amr",
+          "published": "2026-04-19"
+        },
+        {
+          "release": "v1.0.1",
+          "name": "all.amr",
+          "size": 1120464,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.1/all.amr",
+          "published": "2026-04-12"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 1122272,
+          "downloads": 35,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.0/all.amr",
+          "published": "2026-04-04"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "adogecheems/doge-calculator",
+      "desc": "一款为有道词典笔 OS 设计的第三方计算器程序 | A third-party calculator program designed for Youdao Dictionary Pen OS.",
+      "stars": 17,
+      "pushed": "2026-08-11",
+      "url": "https://github.com/adogecheems/doge-calculator",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.2.0",
+          "name": "all.amr",
+          "size": 748454,
+          "downloads": 63,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.2.0/all.amr",
+          "published": "2026-06-10"
+        },
+        {
+          "release": "v1.1.3",
+          "name": "all.amr",
+          "size": 748329,
+          "downloads": 8,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.3/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.1.2",
+          "name": "all.amr",
+          "size": 748420,
+          "downloads": 21,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.2/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 748426,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 748420,
+          "downloads": 5,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.0/all.amr",
+          "published": "2026-04-19"
+        },
+        {
+          "release": "v1.0.4",
+          "name": "all.amr",
+          "size": 746834,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.4/all.amr",
+          "published": "2026-04-04"
+        },
+        {
+          "release": "v1.0.2",
+          "name": "all.amr",
+          "size": 748106,
+          "downloads": 20,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.2/all.amr",
+          "published": "2026-03-01"
+        },
+        {
+          "release": "v1.0.1",
+          "name": "all.amr",
+          "size": 747539,
+          "downloads": 23,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.1/all.amr",
+          "published": "2026-02-15"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 747542,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.0/all.amr",
+          "published": "2026-02-14"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "PenUniverse/RKCfgTool",
+      "desc": "A tool to manipulate cfg files output by rkdevtool.",
+      "stars": 14,
+      "pushed": "2024-10-04",
+      "url": "https://github.com/PenUniverse/RKCfgTool",
+      "why": "PenUniverse org",
+      "assets": [
+        {
+          "release": "v0.2.0",
+          "name": "rkcfgtool-debug-linux-x64.zip",
+          "size": 2998624,
+          "downloads": 35,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.2.0/rkcfgtool-debug-linux-x64.zip",
+          "published": "2024-10-04"
+        },
+        {
+          "release": "v0.2.0",
+          "name": "rkcfgtool-debug-windows-x64.zip",
+          "size": 12320715,
+          "downloads": 420,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.2.0/rkcfgtool-debug-windows-x64.zip",
+          "published": "2024-10-04"
+        },
+        {
+          "release": "v0.1.0",
+          "name": "rkcfgtool-debug-linux-x64.zip",
+          "size": 2998330,
+          "downloads": 2,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.1.0/rkcfgtool-debug-linux-x64.zip",
+          "published": "2024-09-18"
+        },
+        {
+          "release": "v0.1.0",
+          "name": "rkcfgtool-debug-windows-x64.zip",
+          "size": 12327874,
+          "downloads": 13,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.1.0/rkcfgtool-debug-windows-x64.zip",
+          "published": "2024-09-18"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "Mxzsan/file-manager-miniapp",
+      "desc": "A miniapp for Youdao Dictionary Pen",
+      "stars": 6,
+      "pushed": "2026-05-24",
+      "url": "https://github.com/Mxzsan/file-manager-miniapp",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.2.0",
+          "name": "8001771940015915.1_2_0.amr",
+          "size": 8697477,
+          "downloads": 209,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.2.0/8001771940015915.1_2_0.amr",
+          "published": "2026-05-24"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "8001771940015915.1_1_1.amr",
+          "size": 4309137,
+          "downloads": 20,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.1.1/8001771940015915.1_1_1.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "8001771940015915.1_1_0.amr",
+          "size": 2964704,
+          "downloads": 15,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.1.0/8001771940015915.1_1_0.amr",
+          "published": "2026-05-09"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "adogecheems/doge-comic",
+      "desc": "一款为有道词典笔 OS 设计的第三方漫画阅读器程序 | A third-party comic reader program designed for Youdao Dictionary Pen OS.",
+      "stars": 2,
+      "pushed": "2026-05-31",
+      "url": "https://github.com/adogecheems/doge-comic",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.3.1",
+          "name": "all.amr",
+          "size": 519907,
+          "downloads": 52,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.3.1/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.3.0",
+          "name": "all.amr",
+          "size": 519984,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.3.0/all.amr",
+          "published": "2026-05-17"
+        },
+        {
+          "release": "v1.2.0",
+          "name": "all.amr",
+          "size": 518862,
+          "downloads": 8,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.2.0/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 519027,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 518891,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.1.0/all.amr",
+          "published": "2026-05-01"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 507893,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.0.0/all.amr",
+          "published": "2026-04-26"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "gwjcfls/ydpen-toolkit",
+      "desc": "ydpen-toolkit: 有道词典笔 (YDPX6/X7) 改造工具集与逆向笔记 (ADB root / miniapp 自研工具链 / jsapi 插件 / OTA 补丁 / 侧载保活 / USB-MTP)；11 ",
+      "stars": 1,
+      "pushed": "2026-10-03",
+      "url": "https://github.com/gwjcfls/ydpen-toolkit",
+      "why": "youdao miniapp",
+      "assets": [],
+      "repo_files": [
+        "assets/terminal/PenTerm-4.0.0.amr",
+        "assets/terminal/PenTerm-4.5.0.amr",
+        "assets/terminal/PenTerm-5.1.0.amr",
+        "assets/terminal/PenTerm-6.0.0-selfmade-entry.amr",
+        "assets/terminal/PenTerm-9.0.0-selfmade.amr",
+        "assets/terminal/PenTerm-9.1.0-cjk.amr",
+        "assets/terminal/PenTerm-9.3.6.amr"
+      ]
+    },
+    {
+      "full_name": "gwjcfls/pen-term",
+      "desc": "PenTerm: 有道词典笔上的真终端 (PTY + 自绘VT点阵渲染 + 中文 + SSH + 命令历史/常用命令)；含完整构建工具链与 48 个历史版本 .amr（每版一个 Release）",
+      "stars": 0,
+      "pushed": "2026-10-03",
+      "url": "https://github.com/gwjcfls/pen-term",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v9.4.0",
+          "name": "terminal-9.4.0.amr",
+          "size": 473662,
+          "downloads": 11,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.4.0/terminal-9.4.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.9",
+          "name": "terminal-9.3.9.amr",
+          "size": 472904,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.9/terminal-9.3.9.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.8",
+          "name": "terminal-9.3.8.amr",
+          "size": 472850,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.8/terminal-9.3.8.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.6",
+          "name": "terminal-9.3.6.amr",
+          "size": 467821,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.6/terminal-9.3.6.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.5",
+          "name": "terminal-9.3.5.amr",
+          "size": 467689,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.5/terminal-9.3.5.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.4",
+          "name": "terminal-9.3.4.amr",
+          "size": 467677,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.4/terminal-9.3.4.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.3",
+          "name": "terminal-9.3.3.amr",
+          "size": 467673,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.3/terminal-9.3.3.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.2",
+          "name": "terminal-9.3.2.amr",
+          "size": 467674,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.2/terminal-9.3.2.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.1",
+          "name": "terminal-9.3.1.amr",
+          "size": 465391,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.1/terminal-9.3.1.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.0",
+          "name": "terminal-9.3.0.amr",
+          "size": 465395,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.0/terminal-9.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.2.0",
+          "name": "terminal-9.2.0.amr",
+          "size": 453544,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.2.0/terminal-9.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.1.0",
+          "name": "terminal-9.1.0.amr",
+          "size": 462776,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.1.0/terminal-9.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.0.0",
+          "name": "terminal-9.0.0.amr",
+          "size": 136946,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.0.0/terminal-9.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v8.0.0",
+          "name": "terminal-8.0.0.amr",
+          "size": 136360,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v8.0.0/terminal-8.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.3.0",
+          "name": "terminal-7.3.0.amr",
+          "size": 135633,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.3.0/terminal-7.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.1.0",
+          "name": "terminal-7.1.0.amr",
+          "size": 141526,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.1.0/terminal-7.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.0.0",
+          "name": "terminal-7.0.0.amr",
+          "size": 141435,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.0.0/terminal-7.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v6.0.0",
+          "name": "terminal-6.0.0.amr",
+          "size": 140443,
+          "downloads": 3,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v6.0.0/terminal-6.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v5.1.0",
+          "name": "terminal-5.1.0.amr",
+          "size": 140773,
+          "downloads": 2,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v5.1.0/terminal-5.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v5.0.0",
+          "name": "terminal-5.0.0.amr",
+          "size": 140774,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v5.0.0/terminal-5.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.5.0",
+          "name": "terminal-4.5.0.amr",
+          "size": 139024,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.5.0/terminal-4.5.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.4.0",
+          "name": "terminal-4.4.0.amr",
+          "size": 138575,
+          "downloads": 2,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.4.0/terminal-4.4.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.3.0",
+          "name": "terminal-4.3.0.amr",
+          "size": 138214,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.3.0/terminal-4.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.2.0",
+          "name": "terminal-4.2.0.amr",
+          "size": 138770,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.2.0/terminal-4.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.1.0",
+          "name": "terminal-4.1.0.amr",
+          "size": 138094,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.1.0/terminal-4.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.0.0",
+          "name": "terminal-4.0.0.amr",
+          "size": 137702,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.0.0/terminal-4.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.2.0",
+          "name": "terminal-3.2.0.amr",
+          "size": 130083,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.2.0/terminal-3.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.1.0",
+          "name": "terminal-3.1.0.amr",
+          "size": 130563,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.1.0/terminal-3.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.0.0",
+          "name": "terminal-3.0.0.amr",
+          "size": 130550,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.0.0/terminal-3.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v2.9.0",
+          "name": "terminal-2.9.0.amr",
+          "size": 130600,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v2.9.0/terminal-2.9.0.amr",
+          "published": "2026-10-03"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "mcBill1/youdao-localsend",
+      "desc": "LocalSend 有道词典笔移植版 - 备用更新源（Space/X 双机型 .amr 安装包）",
+      "stars": 0,
+      "pushed": "2026-10-18",
+      "url": "https://github.com/mcBill1/youdao-localsend",
+      "why": "词典笔 amr",
+      "assets": [],
+      "repo_files": [
+        "app/space/localsend_v2.0.0.amr",
+        "app/x/localsend_v2.0.0.amr"
+      ]
+    },
+    {
+      "full_name": "56dz/PenBili",
+      "desc": "有道词典笔 X5 上的哔哩哔哩播放器：DASH 视频播放 · 蓝牙耳机音频优化 · 烧进视频帧的零闪弹幕 · 评论浏览/发表 · 扫码登录。Falcon/QuickJS mini-app（Vue 2），附成品 AMR 与",
+      "stars": 0,
+      "pushed": "2026-10-08",
+      "url": "https://github.com/56dz/PenBili",
+      "why": "词典笔 amr",
+      "assets": [
+        {
+          "release": "v2.9.5",
+          "name": "PenBili-server.zip",
+          "size": 18461,
+          "downloads": 6,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.5/PenBili-server.zip",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.9.5",
+          "name": "PenBili.amr",
+          "size": 99465,
+          "downloads": 18,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.5/PenBili.amr",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.9.4",
+          "name": "PenBili.amr",
+          "size": 99465,
+          "downloads": 0,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.4/PenBili.amr",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.8.3",
+          "name": "PenBili.amr",
+          "size": 103454,
+          "downloads": 2,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.8.3/PenBili.amr",
+          "published": "2026-10-06"
+        },
+        {
+          "release": "v2.8.0",
+          "name": "PenBili.amr",
+          "size": 103262,
+          "downloads": 5,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.8.0/PenBili.amr",
+          "published": "2026-10-04"
+        },
+        {
+          "release": "v2.7.1",
+          "name": "PenBili.amr",
+          "size": 97380,
+          "downloads": 1,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.7.1/PenBili.amr",
+          "published": "2026-10-03"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "Mr-HXQ/aichat-miniapp-youdaox5p",
+      "desc": "this is an ai chat miniapp for youdao's dictpenx5p.",
+      "stars": 0,
+      "pushed": "2026-10-02",
+      "url": "https://github.com/Mr-HXQ/aichat-miniapp-youdaox5p",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "youdaox5p",
+          "name": "aichat.amr",
+          "size": 479800,
+          "downloads": 2,
+          "url": "https://github.com/Mr-HXQ/aichat-miniapp-youdaox5p/releases/download/youdaox5p/aichat.amr",
+          "published": "2026-10-02"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "glasses666/youdao-x5-customization",
+      "desc": "Youdao X5 customization toolkit: firmware analysis, ADB authentication, OTA reproduction, and native miniapps",
+      "stars": 0,
+      "pushed": "2026-09-02",
+      "url": "https://github.com/glasses666/youdao-x5-customization",
+      "why": "youdao miniapp",
+      "assets": [],
+      "repo_files": [
+        "system-status-app/dist/system-status.amr"
+      ]
+    },
+    {
+      "full_name": "GuaiRenGR/youdaopen-miniapp-wordle",
+      "desc": "为有道词典笔A7Pro制作的Wordle游戏",
+      "stars": 0,
+      "pushed": "2026-08-04",
+      "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-wordle",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "1.0.0",
+          "name": "8001785852476154.1_0_0.amr",
+          "size": 38953,
+          "downloads": 15,
+          "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-wordle/releases/download/1.0.0/8001785852476154.1_0_0.amr",
+          "published": "2026-08-04"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "GuaiRenGR/youdaopen-miniapp-2048game",
+      "desc": "一个专为有道词典笔开发的2048游戏miniapp，仅供测试。",
+      "stars": 0,
+      "pushed": "2026-08-03",
+      "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-2048game",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "1.0.0",
+          "name": "8001785744904295.1_0_0.amr",
+          "size": 42698,
+          "downloads": 19,
+          "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-2048game/releases/download/1.0.0/8001785744904295.1_0_0.amr",
+          "published": "2026-08-03"
+        }
+      ],
+      "repo_files": []
+    }
+  ],
+  "all_searched": [
+    {
+      "full_name": "Guzhuooo/meituan-miniapp",
+      "desc": "美团风格 mini-app for Youdao dictionary pen (Falcon/QuickJS, Vue3, vh/vw, aarch64 native JSAPI via GitHub Actions)",
+      "stars": 0,
+      "pushed": "2026-10-06",
+      "url": "https://github.com/Guzhuooo/meituan-miniapp",
+      "why": "youdao pen miniapp"
+    },
+    {
+      "full_name": "gwjcfls/pen-term",
+      "desc": "PenTerm: 有道词典笔上的真终端 (PTY + 自绘VT点阵渲染 + 中文 + SSH + 命令历史/常用命令)；含完整构建工具链与 48 个历史版本 .amr（每版一个 Release）",
+      "stars": 0,
+      "pushed": "2026-10-03",
+      "url": "https://github.com/gwjcfls/pen-term",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v9.4.0",
+          "name": "terminal-9.4.0.amr",
+          "size": 473662,
+          "downloads": 11,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.4.0/terminal-9.4.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.9",
+          "name": "terminal-9.3.9.amr",
+          "size": 472904,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.9/terminal-9.3.9.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.8",
+          "name": "terminal-9.3.8.amr",
+          "size": 472850,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.8/terminal-9.3.8.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.6",
+          "name": "terminal-9.3.6.amr",
+          "size": 467821,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.6/terminal-9.3.6.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.5",
+          "name": "terminal-9.3.5.amr",
+          "size": 467689,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.5/terminal-9.3.5.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.4",
+          "name": "terminal-9.3.4.amr",
+          "size": 467677,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.4/terminal-9.3.4.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.3",
+          "name": "terminal-9.3.3.amr",
+          "size": 467673,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.3/terminal-9.3.3.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.2",
+          "name": "terminal-9.3.2.amr",
+          "size": 467674,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.2/terminal-9.3.2.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.1",
+          "name": "terminal-9.3.1.amr",
+          "size": 465391,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.1/terminal-9.3.1.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.3.0",
+          "name": "terminal-9.3.0.amr",
+          "size": 465395,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.3.0/terminal-9.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.2.0",
+          "name": "terminal-9.2.0.amr",
+          "size": 453544,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.2.0/terminal-9.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.1.0",
+          "name": "terminal-9.1.0.amr",
+          "size": 462776,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.1.0/terminal-9.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v9.0.0",
+          "name": "terminal-9.0.0.amr",
+          "size": 136946,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v9.0.0/terminal-9.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v8.0.0",
+          "name": "terminal-8.0.0.amr",
+          "size": 136360,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v8.0.0/terminal-8.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.3.0",
+          "name": "terminal-7.3.0.amr",
+          "size": 135633,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.3.0/terminal-7.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.1.0",
+          "name": "terminal-7.1.0.amr",
+          "size": 141526,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.1.0/terminal-7.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v7.0.0",
+          "name": "terminal-7.0.0.amr",
+          "size": 141435,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v7.0.0/terminal-7.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v6.0.0",
+          "name": "terminal-6.0.0.amr",
+          "size": 140443,
+          "downloads": 3,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v6.0.0/terminal-6.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v5.1.0",
+          "name": "terminal-5.1.0.amr",
+          "size": 140773,
+          "downloads": 2,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v5.1.0/terminal-5.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v5.0.0",
+          "name": "terminal-5.0.0.amr",
+          "size": 140774,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v5.0.0/terminal-5.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.5.0",
+          "name": "terminal-4.5.0.amr",
+          "size": 139024,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.5.0/terminal-4.5.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.4.0",
+          "name": "terminal-4.4.0.amr",
+          "size": 138575,
+          "downloads": 2,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.4.0/terminal-4.4.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.3.0",
+          "name": "terminal-4.3.0.amr",
+          "size": 138214,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.3.0/terminal-4.3.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.2.0",
+          "name": "terminal-4.2.0.amr",
+          "size": 138770,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.2.0/terminal-4.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.1.0",
+          "name": "terminal-4.1.0.amr",
+          "size": 138094,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.1.0/terminal-4.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v4.0.0",
+          "name": "terminal-4.0.0.amr",
+          "size": 137702,
+          "downloads": 1,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v4.0.0/terminal-4.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.2.0",
+          "name": "terminal-3.2.0.amr",
+          "size": 130083,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.2.0/terminal-3.2.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.1.0",
+          "name": "terminal-3.1.0.amr",
+          "size": 130563,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.1.0/terminal-3.1.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v3.0.0",
+          "name": "terminal-3.0.0.amr",
+          "size": 130550,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v3.0.0/terminal-3.0.0.amr",
+          "published": "2026-10-03"
+        },
+        {
+          "release": "v2.9.0",
+          "name": "terminal-2.9.0.amr",
+          "size": 130600,
+          "downloads": 0,
+          "url": "https://github.com/gwjcfls/pen-term/releases/download/v2.9.0/terminal-2.9.0.amr",
+          "published": "2026-10-03"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "86lbs/ts-manager",
+      "desc": "Tailscale Manager for Youdao Dictionary Pen (Falcon miniapp)",
+      "stars": 1,
+      "pushed": "2026-08-25",
+      "url": "https://github.com/86lbs/ts-manager",
+      "why": "youdao pen miniapp"
+    },
+    {
+      "full_name": "adogecheems/doge-calculator",
+      "desc": "一款为有道词典笔 OS 设计的第三方计算器程序 | A third-party calculator program designed for Youdao Dictionary Pen OS.",
+      "stars": 17,
+      "pushed": "2026-08-11",
+      "url": "https://github.com/adogecheems/doge-calculator",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.2.0",
+          "name": "all.amr",
+          "size": 748454,
+          "downloads": 63,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.2.0/all.amr",
+          "published": "2026-06-10"
+        },
+        {
+          "release": "v1.1.3",
+          "name": "all.amr",
+          "size": 748329,
+          "downloads": 8,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.3/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.1.2",
+          "name": "all.amr",
+          "size": 748420,
+          "downloads": 21,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.2/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 748426,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 748420,
+          "downloads": 5,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.1.0/all.amr",
+          "published": "2026-04-19"
+        },
+        {
+          "release": "v1.0.4",
+          "name": "all.amr",
+          "size": 746834,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.4/all.amr",
+          "published": "2026-04-04"
+        },
+        {
+          "release": "v1.0.2",
+          "name": "all.amr",
+          "size": 748106,
+          "downloads": 20,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.2/all.amr",
+          "published": "2026-03-01"
+        },
+        {
+          "release": "v1.0.1",
+          "name": "all.amr",
+          "size": 747539,
+          "downloads": 23,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.1/all.amr",
+          "published": "2026-02-15"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 747542,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-calculator/releases/download/v1.0.0/all.amr",
+          "published": "2026-02-14"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "adogecheems/doge-reader",
+      "desc": "一款为有道词典笔 OS 设计的第三方阅读器程序 | A third-party reader program designed for Youdao Dictionary Pen OS.",
+      "stars": 19,
+      "pushed": "2026-06-10",
+      "url": "https://github.com/adogecheems/doge-reader",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.1.2",
+          "name": "all.amr",
+          "size": 1114735,
+          "downloads": 89,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.2/all.amr",
+          "published": "2026-06-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 1114687,
+          "downloads": 12,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 1114378,
+          "downloads": 14,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.1.0/all.amr",
+          "published": "2026-05-17"
+        },
+        {
+          "release": "v1.0.6",
+          "name": "all.amr",
+          "size": 1113360,
+          "downloads": 7,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.6/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.0.5",
+          "name": "all.amr",
+          "size": 1113338,
+          "downloads": 13,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.5/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.0.2",
+          "name": "all.amr",
+          "size": 1113368,
+          "downloads": 32,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.2/all.amr",
+          "published": "2026-04-19"
+        },
+        {
+          "release": "v1.0.1",
+          "name": "all.amr",
+          "size": 1120464,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.1/all.amr",
+          "published": "2026-04-12"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 1122272,
+          "downloads": 35,
+          "url": "https://github.com/adogecheems/doge-reader/releases/download/v1.0.0/all.amr",
+          "published": "2026-04-04"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "adogecheems/doge-comic",
+      "desc": "一款为有道词典笔 OS 设计的第三方漫画阅读器程序 | A third-party comic reader program designed for Youdao Dictionary Pen OS.",
+      "stars": 2,
+      "pushed": "2026-05-31",
+      "url": "https://github.com/adogecheems/doge-comic",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.3.1",
+          "name": "all.amr",
+          "size": 519907,
+          "downloads": 52,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.3.1/all.amr",
+          "published": "2026-05-31"
+        },
+        {
+          "release": "v1.3.0",
+          "name": "all.amr",
+          "size": 519984,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.3.0/all.amr",
+          "published": "2026-05-17"
+        },
+        {
+          "release": "v1.2.0",
+          "name": "all.amr",
+          "size": 518862,
+          "downloads": 8,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.2.0/all.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "all.amr",
+          "size": 519027,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.1.1/all.amr",
+          "published": "2026-05-03"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "all.amr",
+          "size": 518891,
+          "downloads": 3,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.1.0/all.amr",
+          "published": "2026-05-01"
+        },
+        {
+          "release": "v1.0.0",
+          "name": "all.amr",
+          "size": 507893,
+          "downloads": 11,
+          "url": "https://github.com/adogecheems/doge-comic/releases/download/v1.0.0/all.amr",
+          "published": "2026-04-26"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "Mxzsan/file-manager-miniapp",
+      "desc": "A miniapp for Youdao Dictionary Pen",
+      "stars": 6,
+      "pushed": "2026-05-24",
+      "url": "https://github.com/Mxzsan/file-manager-miniapp",
+      "why": "youdao pen miniapp",
+      "assets": [
+        {
+          "release": "v1.2.0",
+          "name": "8001771940015915.1_2_0.amr",
+          "size": 8697477,
+          "downloads": 209,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.2.0/8001771940015915.1_2_0.amr",
+          "published": "2026-05-24"
+        },
+        {
+          "release": "v1.1.1",
+          "name": "8001771940015915.1_1_1.amr",
+          "size": 4309137,
+          "downloads": 20,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.1.1/8001771940015915.1_1_1.amr",
+          "published": "2026-05-10"
+        },
+        {
+          "release": "v1.1.0",
+          "name": "8001771940015915.1_1_0.amr",
+          "size": 2964704,
+          "downloads": 15,
+          "url": "https://github.com/Mxzsan/file-manager-miniapp/releases/download/v1.1.0/8001771940015915.1_1_0.amr",
+          "published": "2026-05-09"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "wang-lu-yuan/dictpen-usb-mode-controller",
+      "desc": "A miniapp for YouDao Dictionary Pen. I try to build a program like this to control the dictpen's USB mode. ",
+      "stars": 0,
+      "pushed": "2026-03-14",
+      "url": "https://github.com/wang-lu-yuan/dictpen-usb-mode-controller",
+      "why": "youdao pen miniapp"
+    },
+    {
+      "full_name": "langningchen/miniapp",
+      "desc": "A miniapp for YouDao Dictionary Pen",
+      "stars": 19,
+      "pushed": "2026-03-06",
+      "url": "https://github.com/langningchen/miniapp",
+      "why": "youdao pen miniapp"
+    },
+    {
+      "full_name": "mcBill1/youdao-localsend",
+      "desc": "LocalSend 有道词典笔移植版 - 备用更新源（Space/X 双机型 .amr 安装包）",
+      "stars": 0,
+      "pushed": "2026-10-18",
+      "url": "https://github.com/mcBill1/youdao-localsend",
+      "why": "词典笔 amr",
+      "assets": [],
+      "repo_files": [
+        "app/space/localsend_v2.0.0.amr",
+        "app/x/localsend_v2.0.0.amr"
+      ]
+    },
+    {
+      "full_name": "56dz/PenBili",
+      "desc": "有道词典笔 X5 上的哔哩哔哩播放器：DASH 视频播放 · 蓝牙耳机音频优化 · 烧进视频帧的零闪弹幕 · 评论浏览/发表 · 扫码登录。Falcon/QuickJS mini-app（Vue 2），附成品 AMR 与",
+      "stars": 0,
+      "pushed": "2026-10-08",
+      "url": "https://github.com/56dz/PenBili",
+      "why": "词典笔 amr",
+      "assets": [
+        {
+          "release": "v2.9.5",
+          "name": "PenBili-server.zip",
+          "size": 18461,
+          "downloads": 6,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.5/PenBili-server.zip",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.9.5",
+          "name": "PenBili.amr",
+          "size": 99465,
+          "downloads": 18,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.5/PenBili.amr",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.9.4",
+          "name": "PenBili.amr",
+          "size": 99465,
+          "downloads": 0,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.9.4/PenBili.amr",
+          "published": "2026-10-07"
+        },
+        {
+          "release": "v2.8.3",
+          "name": "PenBili.amr",
+          "size": 103454,
+          "downloads": 2,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.8.3/PenBili.amr",
+          "published": "2026-10-06"
+        },
+        {
+          "release": "v2.8.0",
+          "name": "PenBili.amr",
+          "size": 103262,
+          "downloads": 5,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.8.0/PenBili.amr",
+          "published": "2026-10-04"
+        },
+        {
+          "release": "v2.7.1",
+          "name": "PenBili.amr",
+          "size": 97380,
+          "downloads": 1,
+          "url": "https://github.com/56dz/PenBili/releases/download/v2.7.1/PenBili.amr",
+          "published": "2026-10-03"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "wanfeng74/tetris",
+      "desc": "俄罗斯方块 - 有道词典笔 X6PRO (aiot-vue-cli 小程序 + AMR)",
+      "stars": 0,
+      "pushed": "2026-09-18",
+      "url": "https://github.com/wanfeng74/tetris",
+      "why": "词典笔 amr"
+    },
+    {
+      "full_name": "Technology3019/youdao-slay-the-spire",
+      "desc": "Slay the Spire style card roguelike for Youdao Dictionary Pen (Falcon/QuickJS AMR)",
+      "stars": 0,
+      "pushed": "2026-10-07",
+      "url": "https://github.com/Technology3019/youdao-slay-the-spire",
+      "why": "youdao dictionary pen amr"
+    },
+    {
+      "full_name": "yuhe0110625/YOUDAO",
+      "desc": "有道miniapp",
+      "stars": 0,
+      "pushed": "2026-10-03",
+      "url": "https://github.com/yuhe0110625/YOUDAO",
+      "why": "youdao miniapp"
+    },
+    {
+      "full_name": "gwjcfls/ydpen-toolkit",
+      "desc": "ydpen-toolkit: 有道词典笔 (YDPX6/X7) 改造工具集与逆向笔记 (ADB root / miniapp 自研工具链 / jsapi 插件 / OTA 补丁 / 侧载保活 / USB-MTP)；11 ",
+      "stars": 1,
+      "pushed": "2026-10-03",
+      "url": "https://github.com/gwjcfls/ydpen-toolkit",
+      "why": "youdao miniapp",
+      "assets": [],
+      "repo_files": [
+        "assets/terminal/PenTerm-4.0.0.amr",
+        "assets/terminal/PenTerm-4.5.0.amr",
+        "assets/terminal/PenTerm-5.1.0.amr",
+        "assets/terminal/PenTerm-6.0.0-selfmade-entry.amr",
+        "assets/terminal/PenTerm-9.0.0-selfmade.amr",
+        "assets/terminal/PenTerm-9.1.0-cjk.amr",
+        "assets/terminal/PenTerm-9.3.6.amr"
+      ]
+    },
+    {
+      "full_name": "Mr-HXQ/aichat-miniapp-youdaox5p",
+      "desc": "this is an ai chat miniapp for youdao's dictpenx5p.",
+      "stars": 0,
+      "pushed": "2026-10-02",
+      "url": "https://github.com/Mr-HXQ/aichat-miniapp-youdaox5p",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "youdaox5p",
+          "name": "aichat.amr",
+          "size": 479800,
+          "downloads": 2,
+          "url": "https://github.com/Mr-HXQ/aichat-miniapp-youdaox5p/releases/download/youdaox5p/aichat.amr",
+          "published": "2026-10-02"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "glasses666/youdao-x5-customization",
+      "desc": "Youdao X5 customization toolkit: firmware analysis, ADB authentication, OTA reproduction, and native miniapps",
+      "stars": 0,
+      "pushed": "2026-09-02",
+      "url": "https://github.com/glasses666/youdao-x5-customization",
+      "why": "youdao miniapp",
+      "assets": [],
+      "repo_files": [
+        "system-status-app/dist/system-status.amr"
+      ]
+    },
+    {
+      "full_name": "liaunx/fruit-ninja-youdao-miniapp",
+      "desc": "針對有道辭典筆做的水果忍者遊戲",
+      "stars": 0,
+      "pushed": "2026-08-13",
+      "url": "https://github.com/liaunx/fruit-ninja-youdao-miniapp",
+      "why": "youdao miniapp"
+    },
+    {
+      "full_name": "GuaiRenGR/youdaopen-miniapp-wordle",
+      "desc": "为有道词典笔A7Pro制作的Wordle游戏",
+      "stars": 0,
+      "pushed": "2026-08-04",
+      "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-wordle",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "1.0.0",
+          "name": "8001785852476154.1_0_0.amr",
+          "size": 38953,
+          "downloads": 15,
+          "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-wordle/releases/download/1.0.0/8001785852476154.1_0_0.amr",
+          "published": "2026-08-04"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "GuaiRenGR/youdaopen-miniapp-2048game",
+      "desc": "一个专为有道词典笔开发的2048游戏miniapp，仅供测试。",
+      "stars": 0,
+      "pushed": "2026-08-03",
+      "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-2048game",
+      "why": "youdao miniapp",
+      "assets": [
+        {
+          "release": "1.0.0",
+          "name": "8001785744904295.1_0_0.amr",
+          "size": 42698,
+          "downloads": 19,
+          "url": "https://github.com/GuaiRenGR/youdaopen-miniapp-2048game/releases/download/1.0.0/8001785744904295.1_0_0.amr",
+          "published": "2026-08-03"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "PenUniverse/PenMods",
+      "desc": "🔥 A third-party mod runtime for YoudaoDictPen.",
+      "stars": 275,
+      "pushed": "2025-10-25",
+      "url": "https://github.com/PenUniverse/PenMods",
+      "why": "PenUniverse org"
+    },
+    {
+      "full_name": "PenUniverse/RKCfgTool",
+      "desc": "A tool to manipulate cfg files output by rkdevtool.",
+      "stars": 14,
+      "pushed": "2024-10-04",
+      "url": "https://github.com/PenUniverse/RKCfgTool",
+      "why": "PenUniverse org",
+      "assets": [
+        {
+          "release": "v0.2.0",
+          "name": "rkcfgtool-debug-linux-x64.zip",
+          "size": 2998624,
+          "downloads": 35,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.2.0/rkcfgtool-debug-linux-x64.zip",
+          "published": "2024-10-04"
+        },
+        {
+          "release": "v0.2.0",
+          "name": "rkcfgtool-debug-windows-x64.zip",
+          "size": 12320715,
+          "downloads": 420,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.2.0/rkcfgtool-debug-windows-x64.zip",
+          "published": "2024-10-04"
+        },
+        {
+          "release": "v0.1.0",
+          "name": "rkcfgtool-debug-linux-x64.zip",
+          "size": 2998330,
+          "downloads": 2,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.1.0/rkcfgtool-debug-linux-x64.zip",
+          "published": "2024-09-18"
+        },
+        {
+          "release": "v0.1.0",
+          "name": "rkcfgtool-debug-windows-x64.zip",
+          "size": 12327874,
+          "downloads": 13,
+          "url": "https://github.com/PenUniverse/RKCfgTool/releases/download/v0.1.0/rkcfgtool-debug-windows-x64.zip",
+          "published": "2024-09-18"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "PenUniverse/Installer",
+      "desc": "A handy PenMods installer.",
+      "stars": 42,
+      "pushed": "2023-03-25",
+      "url": "https://github.com/PenUniverse/Installer",
+      "why": "PenUniverse org",
+      "assets": [
+        {
+          "release": "100",
+          "name": "Installer_1.0.0_win32.zip",
+          "size": 9797647,
+          "downloads": 763,
+          "url": "https://github.com/PenUniverse/Installer/releases/download/100/Installer_1.0.0_win32.zip",
+          "published": "2022-12-23"
+        }
+      ],
+      "repo_files": []
+    },
+    {
+      "full_name": "PenUniverse/WordBookTools",
+      "desc": "📕 通过 PenMods 导出的词典数据制作更有用的单词本！",
+      "stars": 7,
+      "pushed": "2023-05-09",
+      "url": "https://github.com/PenUniverse/WordBookTools",
+      "why": "PenUniverse org"
+    }
+  ]
+}

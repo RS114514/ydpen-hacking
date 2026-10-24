@@ -1,0 +1,40 @@
+{
+  "appName": "PenBili",
+  "version": "2.9.4",
+  "appid": "8002026091900004",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "cert": {
+    "app.js.bin": {
+      "size": 1017,
+      "md5": "58b3284dfd217c2d2b7ab8a6403aa52c"
+    },
+    "base-page-dca68d51.js.bin": {
+      "size": 2018,
+      "md5": "2bbc30bb51fd0c5f183828bd4445ca6d"
+    },
+    "diag.js.bin": {
+      "size": 12277,
+      "md5": "e884523a79ba584203985e3ec3bab07f"
+    },
+    "index.js.bin": {
+      "size": 96473,
+      "md5": "16a39a50bb0659fd75c4c22cc37cda15"
+    },
+    "player-2dc41f21.js.bin": {
+      "size": 30680,
+      "md5": "c93b81ec85d41f5038f8fc8631d08763"
+    },
+    "libs/libjsapi_httpjson.so": {
+      "size": 16648,
+      "md5": "0754a67de1fe8eb2112d584a1f22608b"
+    },
+    "libs/libjsapi_player.so": {
+      "size": 18776,
+      "md5": "ae9ff0372ce2e77f125f4a2557c35d9a"
+    }
+  }
+}

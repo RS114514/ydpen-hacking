@@ -1,0 +1,70 @@
+{
+  "msg": "success",
+  "status": 1000,
+  "data": {
+    "releaseNotes": {
+      "publishDate": "2023-06-29",
+      "version": "99.99.91",
+      "content": "[{\"country\":\"zh_CN\",\"content\":\"1.优化系统.修复错误\"}]"
+    },
+    "sha256": "fbef7c7ae95673dbf71b77cb9eb77fb07b159f3ec65e0c714d23ba960c6dfafb",
+    "safe": {
+      "encKey": null,
+      "isEncrypt": 0
+    },
+    "version": {
+      "segmentMd5": "[{\"num\":0,\"startpos\":0,\"md5\":\"8bd0c27b327130a9b5c0ff0c3eb6a706\",\"endpos\":104857600},{\"num\":1,\"startpos\":104857600,\"md5\":\"e8def3280e7d23faf61c889c47fd4f5a\",\"endpos\":209715200},{\"num\":2,\"startpos\":209715200,\"md5\":\"fcb155dba03790d0011f459890fcabbd\",\"endpos\":314572800},{\"num\":3,\"startpos\":314572800,\"md5\":\"49ad092046133ad6e52d8e68342ceae4\",\"endpos\":419430400},{\"num\":4,\"startpos\":419430400,\"md5\":\"96cfdac0d65ff73b4eafb977ff000a1c\",\"endpos\":524288000},{\"num\":5,\"startpos\":524288000,\"md5\":\"6303f1e2d280ad1b1a01f3c94821f437\",\"endpos\":629145600},{\"num\":6,\"startpos\":629145600,\"md5\":\"153178b120b41331e634c6c3a761d53b\",\"endpos\":734003200},{\"num\":7,\"startpos\":734003200,\"md5\":\"6e7358ef1afeb1ea728568c283b79139\",\"endpos\":838860800},{\"num\":8,\"startpos\":838860800,\"md5\":\"d6666b68b16357481dffe7ecf0bcb67b\",\"endpos\":943718400},{\"num\":9,\"startpos\":943718400,\"md5\":\"42665201292000d53ec3471110dc92d2\",\"endpos\":1048576000},{\"num\":10,\"startpos\":1048576000,\"md5\":\"29526889243de3029cf401f4ba028139\",\"endpos\":1153433600},{\"num\":11,\"startpos\":1153433600,\"md5\":\"4bcaeaae52d486bbfa674dc06bcba32f\",\"endpos\":1258291200},{\"num\":12,\"startpos\":1258291200,\"md5\":\"88813a1c3315b5bca820eab0952647ed\",\"endpos\":1363148800},{\"num\":13,\"startpos\":1363148800,\"md5\":\"fcffc7feec491d76cfc6eca70c3cfb04\",\"endpos\":1468006400},{\"num\":14,\"startpos\":1468006400,\"md5\":\"63fcc542e1c2a11fc64c923d3d0c836a\",\"endpos\":1572864000},{\"num\":15,\"startpos\":1572864000,\"md5\":\"455f7c1974e155c659f5add83341cb3b\",\"endpos\":1677721600},{\"num\":16,\"startpos\":1677721600,\"md5\":\"90e899a481b5f500f2b0163b16f25e2e\",\"endpos\":1782579200},{\"num\":17,\"startpos\":1782579200,\"md5\":\"cbc8e2f90e65ee3b299019fa4c309fe2\",\"endpos\":1887436800},{\"num\":18,\"startpos\":1887436800,\"md5\":\"eae733d611c843ccccd10c5b3009c7c5\",\"endpos\":1992294400},{\"num\":19,\"startpos\":1992294400,\"md5\":\"64b63b4eec8d34f6517e5e60c234822e\",\"endpos\":2097152000},{\"num\":20,\"startpos\":2097152000,\"md5\":\"df1a6fed875e94bb1aea76d6370a3aa6\",\"endpos\":2125597258}]",
+      "bakUrl": "http://192.168.31.170:14514/d5c214b2-7a1a-4317-a457-9bc7e186a81a.img",
+      "versionAlias": "",
+      "deltaUrl": "http://192.168.31.170:14514/d5c214b2-7a1a-4317-a457-9bc7e186a81a.img",
+      "deltaID": "9502418",
+      "fileSize": 2125597258,
+      "md5sum": "4dd3516643d12c105b2a7036ce76975a",
+      "versionName": "99.99.91",
+      "sha": "fbef7c7ae95673dbf71b77cb9eb77fb07b159f3ec65e0c714d23ba960c6dfafb"
+    },
+    "policy": {
+      "download": [
+        {
+          "key_name": "wifi",
+          "key_message": "仅wifi下载",
+          "key_value": "optional"
+        },
+        {
+          "key_name": "storageSize",
+          "key_message": "存储空间不足",
+          "key_value": "2125597258"
+        },
+        {
+          "key_name": "forceDownload",
+          "key_message": "",
+          "key_value": "false"
+        }
+      ],
+      "install": [
+        {
+          "key_name": "battery",
+          "key_message": "电量不足，请充电后重试！",
+          "key_value": "30"
+        },
+        {
+          "key_name": "rebootUpgrade",
+          "key_message": "",
+          "key_value": "true"
+        },
+        {
+          "key_name": "force",
+          "key_message": "",
+          "key_value": "{\"from\": \"00:00\", \"to\": \"00:00\",\"gap\": \"00:00\"}"
+        }
+      ],
+      "check": [
+        {
+          "key_name": "cycle",
+          "key_message": "",
+          "key_value": "1500"
+        }
+      ]
+    }
+  }
+}

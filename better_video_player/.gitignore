@@ -1,0 +1,10 @@
+node_modules/
+.falcon_/
+*.amr
+tmp/
+*.png
+!ui/app_icon.png
+!probe/app_icon.png
+.DS_Store
+dist/
+.toolchains/

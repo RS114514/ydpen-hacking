@@ -1,0 +1,7 @@
+AI写的太狗屎了
+直接miniapp安装
+api自己填，我加了读取扫描记录填入的功能，扫一遍api直接填进去
+跟ai对话也可以直接扫
+给x5p用的，其他的不知道行不行
+dsh从penbili和其他几个doge写的软件那里读了源码来理解怎么写miniapp
+1000% AI-generated

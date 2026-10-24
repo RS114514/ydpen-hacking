@@ -1,0 +1,593 @@
+/* pages/gallery/gallery.css —— 柚子社和风多合一鉴赏收藏馆，严格适配 800x220 */
+.gallery-root {
+  width: 800px;
+  height: 220px;
+  background-color: #0e0710;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-header {
+  width: 800px;
+  height: 36px;
+  background-color: #1a0d1b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-bottom-width: 1px;
+  border-bottom-color: #4a2134;
+}
+
+.gallery-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f5d4a9;
+}
+
+.gallery-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gallery-tab-item {
+  height: 26px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #2b1320;
+  border-width: 1px;
+  border-color: #6a3449;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+.gallery-tab-active {
+  background-color: #b82647;
+  border-color: #f2cfa0;
+}
+
+.gallery-tab-text {
+  font-size: 11px;
+  font-weight: bold;
+  color: #eedce4;
+}
+
+.gallery-back-btn {
+  height: 26px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #381525;
+  border-width: 1px;
+  border-color: #8c3b5a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+
+.gallery-back-text {
+  font-size: 11px;
+  font-weight: bold;
+  color: #fbd6a5;
+}
+
+/* 1. CG 鉴赏 */
+.gallery-cg-container {
+  width: 800px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+}
+
+.gallery-cg-row {
+  width: 776px;
+  height: 136px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cg-card {
+  width: 250px;
+  height: 136px;
+  background-color: #1c0e18;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-width: 1px;
+  border-color: #63334d;
+}
+
+.cg-card-img {
+  width: 250px;
+  height: 104px;
+}
+
+.cg-card-info {
+  width: 250px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #170b14;
+}
+
+.cg-card-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fce8d5;
+}
+
+.cg-card-badge {
+  background-color: #a8203e;
+  border-width: 1px;
+  border-color: #f0c999;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cg-card-badge-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.gallery-cg-footer {
+  width: 776px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery-cg-tip {
+  font-size: 11px;
+  color: #9c7b8d;
+}
+
+.gallery-cg-pager {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gallery-pager-btn {
+  height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #2b1320;
+  border-width: 1px;
+  border-color: #6a3449;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+.gallery-pager-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #fad7a9;
+}
+
+/* 全屏 CG 浏览 */
+.gallery-fs-root {
+  width: 800px;
+  height: 220px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #000000;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.gallery-fs-img {
+  width: 800px;
+  height: 220px;
+}
+
+.gallery-fs-bar {
+  width: 800px;
+  height: 32px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(18, 9, 20, 0.88);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top-width: 1px;
+  border-top-color: #6e334c;
+}
+
+.gallery-fs-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #f5d4a9;
+}
+
+.gallery-fs-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gallery-fs-btn {
+  height: 22px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #3b1828;
+  border-width: 1px;
+  border-color: #8c425c;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.gallery-fs-btn-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #fcedd8;
+}
+
+/* 2. 音乐鉴赏 */
+.gallery-bgm-container {
+  width: 800px;
+  height: 184px;
+  display: flex;
+  flex-direction: row;
+  padding: 6px 14px;
+  justify-content: space-between;
+}
+
+.gallery-bgm-list {
+  width: 456px;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gallery-bgm-item {
+  width: 456px;
+  height: 26px;
+  background-color: #1a0e1c;
+  border-width: 1px;
+  border-color: #4b2337;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.gallery-bgm-item-active {
+  background-color: #351424;
+  border-color: #b82647;
+}
+
+.gallery-bgm-item-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gallery-bgm-icon {
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+.gallery-bgm-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #eedce4;
+}
+
+.gallery-bgm-theme {
+  font-size: 10px;
+  color: #9c7b8d;
+}
+
+.gallery-bgm-player {
+  width: 298px;
+  height: 172px;
+  background-color: #170c18;
+  border-width: 1px;
+  border-color: #582b41;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+
+.gallery-player-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-player-status {
+  font-size: 10px;
+  color: #64ad77;
+  margin-bottom: 2px;
+}
+
+.gallery-player-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fad7a9;
+}
+
+.gallery-player-author {
+  font-size: 10px;
+  color: #a57e92;
+  margin-top: 2px;
+}
+
+.gallery-player-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.gallery-player-btn {
+  height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #381525;
+  border-width: 1px;
+  border-color: #8c3b5a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-player-btn-primary {
+  background-color: #b82647;
+  border-color: #f2cfa0;
+}
+
+.gallery-player-btn-text {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* 3. 立绘鉴赏 */
+.gallery-stand-container {
+  width: 800px;
+  height: 184px;
+  display: flex;
+  flex-direction: row;
+  padding: 6px 14px;
+  justify-content: space-between;
+}
+
+.gallery-stand-chars {
+  width: 160px;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gallery-char-btn {
+  width: 160px;
+  height: 26px;
+  background-color: #1b0f1e;
+  border-width: 1px;
+  border-color: #4b2337;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.gallery-char-active {
+  background-color: #381525;
+  border-color: #b82647;
+}
+
+.gallery-char-text {
+  font-size: 11px;
+  font-weight: bold;
+  color: #eedce4;
+}
+
+.gallery-stand-stage {
+  width: 596px;
+  height: 172px;
+  background-color: #160b17;
+  border-width: 1px;
+  border-color: #552a3e;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.gallery-stage-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  border-bottom-color: #3d1c2c;
+  padding-bottom: 6px;
+}
+
+.gallery-stage-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fad7a9;
+}
+
+.gallery-stage-title {
+  font-size: 11px;
+  color: #a88195;
+}
+
+.gallery-stage-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.gallery-stage-label {
+  font-size: 11px;
+  color: #df9e59;
+  font-weight: bold;
+  width: 60px;
+}
+
+.gallery-stage-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gallery-opt-btn {
+  height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #2b1320;
+  border-width: 1px;
+  border-color: #6a3449;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+.gallery-opt-active {
+  background-color: #b82647;
+  border-color: #f2cfa0;
+}
+
+.gallery-opt-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.gallery-voice-btn {
+  height: 26px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #3c1728;
+  border-width: 1px;
+  border-color: #8e3d5c;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.gallery-voice-text {
+  font-size: 11px;
+  font-weight: bold;
+  color: #fad7a9;
+}
+
+/* 4. 场景回想 */
+.gallery-scene-container {
+  width: 800px;
+  height: 184px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 6px 14px;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.gallery-scene-card {
+  width: 378px;
+  height: 80px;
+  background-color: #1a0e1c;
+  border-width: 1px;
+  border-color: #52273c;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+}
+
+.gallery-scene-info {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-scene-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fad7a9;
+  margin-bottom: 2px;
+}
+
+.gallery-scene-desc {
+  font-size: 10px;
+  color: #9c7b8d;
+}
+
+.gallery-scene-btn {
+  height: 26px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #3b1727;
+  border-width: 1px;
+  border-color: #8c3b5a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-scene-btn-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffffff;
+}

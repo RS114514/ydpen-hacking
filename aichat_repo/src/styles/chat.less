@@ -1,0 +1,375 @@
+// 对话页专用（骨架与导航来自 base.less）
+// 逻辑 800x254：左栏 172 + 右栏 628（顶栏 38 + 消息区 + 输入条 46）
+@import "base.less";
+
+/* ================= 顶栏里的模型胶囊 ================= */
+.model-chip {
+  height: 26px;
+  max-width: 148px;
+  margin-right: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 13px;
+  background-color: @accent-soft;
+  border-color: @accent-line;
+  flex-direction: row;
+  align-items: center;
+}
+
+.model-chip:active {
+  opacity: 0.6;
+}
+
+.model-chip-text {
+  font-size: 12px;
+  color: @accent;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+/* ================= 消息区 ================= */
+.msgs {
+  flex: 1;
+  width: 628px;
+}
+
+/* 空状态 */
+.empty {
+  width: 628px;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-title {
+  font-size: 15px;
+  color: @text-2;
+  text-align: center;
+}
+
+.empty-tip {
+  width: 500px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: @dim-2;
+  text-align: center;
+}
+
+/* 消息块：AI 用轻量深色内容块，用户用蓝色气泡 */
+.msg {
+  width: 596px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 7px 12px;
+  border-radius: 12px;
+  background-color: @bubble-ai;
+}
+
+.msg-u {
+  background-color: @bubble-user;
+}
+
+.msg-err-box {
+  background-color: #2a1a22;
+}
+
+.msg-head {
+  flex-direction: row;
+  align-items: center;
+  height: 15px;
+}
+
+.msg-role {
+  width: 26px;
+  font-size: 10px;
+  color: @accent;
+  lines: 1;
+}
+
+.role-u {
+  color: #dbe8ff;
+}
+
+.role-sys {
+  color: @warn;
+}
+
+.msg-meta {
+  flex: 1;
+  font-size: 10px;
+  color: @dim-2;
+  text-align: right;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.msg-meta-u {
+  color: #b9d2ff;
+}
+
+/* ================= AI 回复正文（Markdown 降级块） ================= */
+.blk {
+  width: 572px;
+  margin-top: 3px;
+}
+
+.t-p {
+  width: 572px;
+  font-size: 14px;
+  color: @text;
+}
+
+.t-h {
+  width: 572px;
+  font-size: 14px;
+  color: @accent;
+}
+
+.t-li {
+  width: 572px;
+  font-size: 14px;
+  color: @text;
+}
+
+.t-quote {
+  width: 572px;
+  font-size: 13px;
+  color: @think-text;
+}
+
+.t-hr {
+  width: 572px;
+  font-size: 11px;
+  color: @dim-2;
+}
+
+.hr-line {
+  width: 572px;
+  height: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: @line;
+}
+
+.code {
+  width: 556px;
+  margin-top: 4px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background-color: @code-bg;
+}
+
+.code-lang {
+  width: 540px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 1;
+}
+
+.code-text {
+  width: 540px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #a8e6a3;
+}
+
+/* ================= 思考过程块 ================= */
+.think {
+  width: 572px;
+  margin-top: 5px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background-color: @think-bg;
+}
+
+.think-title {
+  width: 556px;
+  font-size: 10px;
+  color: @accent;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.think-title:active {
+  opacity: 0.6;
+}
+
+.think-text {
+  width: 556px;
+  margin-top: 3px;
+  font-size: 12px;
+  color: @think-text;
+}
+
+.think-closed {
+  lines: 2;
+  text-overflow: ellipsis;
+}
+
+.think-open {
+  lines: 40;
+  text-overflow: ellipsis;
+}
+
+.msg-err {
+  width: 572px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: @danger;
+  lines: 4;
+}
+
+.msg-warn {
+  width: 572px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: @warn;
+  lines: 2;
+}
+
+.pending {
+  width: 572px;
+  font-size: 13px;
+  color: @dim;
+}
+
+/* ================= 底部输入条 ================= */
+.composer {
+  width: 628px;
+  height: 46px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* 圆角输入条（整条胶囊） */
+.composer-box {
+  flex: 1;
+  height: 34px;
+  margin-left: 6px;
+  border-radius: 17px;
+  background-color: @surface-2;
+  justify-content: center;
+  padding-left: 14px;
+  padding-right: 12px;
+}
+
+.composer-box:active {
+  opacity: 0.75;
+}
+
+.composer-text {
+  width: 348px;
+  font-size: 13px;
+  color: @text;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.composer-ph {
+  color: @dim-2;
+}
+
+/* 圆形发送按钮（蓝色实心） */
+.cbtn {
+  width: 34px;
+  height: 34px;
+  margin-left: 8px;
+  border-radius: 17px;
+  background-color: @accent-str;
+  justify-content: center;
+  align-items: center;
+}
+
+.cbtn:active {
+  opacity: 0.65;
+}
+
+.cbtn-ghost {
+  background-color: @surface-2;
+}
+
+.cbtn-stop {
+  background-color: #7f2d3a;
+}
+
+.cbtn-dim {
+  background-color: @surface-3;
+}
+
+.cbtn-text {
+  width: 34px;
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  lines: 1;
+}
+
+.cbtn-text-dim {
+  color: @dim-2;
+}
+
+/* ================= 最近扫描（输入条左侧） ================= */
+.scan-chip {
+  width: 104px;
+  height: 34px;
+  border-radius: 10px;
+  background-color: @surface;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 6px;
+}
+
+.scan-chip:active {
+  opacity: 0.65;
+}
+
+.scan-chip-live {
+  background-color: @accent-soft;
+}
+
+.scan-chip-name {
+  width: 92px;
+  font-size: 9px;
+  color: @dim-2;
+  lines: 1;
+}
+
+.scan-chip-text {
+  width: 92px;
+  margin-top: 1px;
+  font-size: 11px;
+  color: @text-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.scan-chip-text-live {
+  color: @accent;
+}
+
+.scan-refresh {
+  width: 26px;
+  height: 34px;
+  margin-left: 4px;
+  border-radius: 9px;
+  background-color: @surface;
+  justify-content: center;
+  align-items: center;
+}
+
+.scan-refresh:active {
+  opacity: 0.6;
+}
+
+.scan-refresh-text {
+  width: 24px;
+  font-size: 12px;
+  color: @dim;
+  text-align: center;
+  lines: 1;
+}

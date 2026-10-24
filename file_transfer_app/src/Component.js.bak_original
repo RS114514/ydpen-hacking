@@ -1,0 +1,189 @@
+export default {
+  name: 'index',
+  data: function () {
+    return {
+      ip: '192.168.31.30',
+      port: '8080',
+      savePath: '/userdisk/Favorite',
+      statusMsg: '局域网互传服务运行中 (8080端口)',
+      refreshing: false
+    };
+  },
+  mounted: function () {
+    this.detectIp();
+  },
+  methods: {
+    detectIp: function () {
+      var self = this;
+      self.refreshing = true;
+      try {
+        if ($falcon && $falcon.jsapi && $falcon.jsapi.http && $falcon.jsapi.http.request) {
+          $falcon.jsapi.http.request({
+            url: 'http://127.0.0.1:8080/files/ip.txt',
+            method: 'GET',
+            timeout: 2000
+          }, function (res) {
+            self.refreshing = false;
+            if (res && res.result) {
+              var cleanIp = String(res.result).trim();
+              if (cleanIp && cleanIp.length >= 7) {
+                self.ip = cleanIp;
+                self.statusMsg = '最新 IP 已同步：' + cleanIp;
+                return;
+              }
+            }
+            self.statusMsg = '已就绪 (192.168.31.30)';
+          });
+          return;
+        }
+      } catch (e) {
+        self.statusMsg = '网络状态就绪';
+      }
+      self.refreshing = false;
+    },
+    onRefreshClick: function () {
+      this.detectIp();
+    }
+  },
+  render: function (h) {
+    return h('div', {
+      staticStyle: {
+        width: '800px',
+        height: '220px',
+        backgroundColor: '#0f172a',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingLeft: '24px',
+        paddingRight: '24px',
+        paddingTop: '12px',
+        paddingBottom: '12px',
+        overflow: 'hidden'
+      }
+    }, [
+      h('div', {
+        staticStyle: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '32px'
+        }
+      }, [
+        h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+          h('text', {
+            staticStyle: {
+              color: '#f8fafc',
+              fontSize: '22px',
+              fontWeight: 'bold',
+              marginRight: '12px'
+            }
+          }, '文件互传'),
+          h('div', {
+            staticStyle: {
+              backgroundColor: '#166534',
+              borderRadius: '4px',
+              paddingLeft: '8px',
+              paddingRight: '8px',
+              height: '22px',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }
+          }, [
+            h('text', { staticStyle: { color: '#86efac', fontSize: '13px', fontWeight: 'bold' } }, 'HTTP服务已就绪')
+          ])
+        ]),
+        h('text', {
+          staticStyle: {
+            color: '#64748b',
+            fontSize: '13px'
+          }
+        }, '有道词典笔 X6 Pro')
+      ]),
+
+      h('div', {
+        staticStyle: {
+          backgroundColor: '#1e293b',
+          borderRadius: '10px',
+          borderWidth: '1px',
+          borderColor: '#334155',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '104px',
+          paddingLeft: '16px',
+          paddingRight: '16px'
+        }
+      }, [
+        h('text', {
+          staticStyle: {
+            color: '#94a3b8',
+            fontSize: '14px',
+            marginBottom: '6px'
+          }
+        }, '请在同一 WiFi 下的电脑或手机浏览器中访问：'),
+        h('text', {
+          staticStyle: {
+            color: '#38bdf8',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            letterSpacing: '1px'
+          }
+        }, 'http://' + this.ip + ':8080/'),
+        h('text', {
+          staticStyle: {
+            color: '#64748b',
+            fontSize: '12px',
+            marginTop: '4px'
+          }
+        }, '支持电脑直接拖拽上传、创建文件夹与极速下载')
+      ]),
+
+      h('div', {
+        staticStyle: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '36px'
+        }
+      }, [
+        h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+          h('text', {
+            staticStyle: {
+              color: '#e2e8f0',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              marginRight: '6px'
+            }
+          }, '保存位置:'),
+          h('text', {
+            staticStyle: {
+              color: '#38bdf8',
+              fontSize: '14px'
+            }
+          }, this.savePath)
+        ]),
+        h('div', {
+          staticStyle: {
+            backgroundColor: this.refreshing ? '#475569' : '#2563eb',
+            borderRadius: '6px',
+            paddingLeft: '14px',
+            paddingRight: '14px',
+            height: '32px',
+            justifyContent: 'center',
+            alignItems: 'center'
+          },
+          on: {
+            click: this.onRefreshClick
+          }
+        }, [
+          h('text', {
+            staticStyle: {
+              color: '#ffffff',
+              fontSize: '13px',
+              fontWeight: 'bold'
+            }
+          }, this.refreshing ? '正在检测...' : '重新检测 IP')
+        ])
+      ])
+    ]);
+  }
+};

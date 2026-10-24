@@ -1,0 +1,32 @@
+{
+  "img": "/Users/fuzihao/.gemini/antigravity/scratch/ydpen/firmware/d5c214b2-7a1a-4317-a457-9bc7e186a81a.img",
+  "url": "http://192.168.31.170:14514/d5c214b2-7a1a-4317-a457-9bc7e186a81a.img",
+  "md5": "4dd3516643d12c105b2a7036ce76975a",
+  "sha1": "ffd743aa4878c3a6a881b8143085270f6338b7a7",
+  "sha256": "fbef7c7ae95673dbf71b77cb9eb77fb07b159f3ec65e0c714d23ba960c6dfafb",
+  "segment_md5": [
+    "8bd0c27b327130a9b5c0ff0c3eb6a706",
+    "e8def3280e7d23faf61c889c47fd4f5a",
+    "fcb155dba03790d0011f459890fcabbd",
+    "49ad092046133ad6e52d8e68342ceae4",
+    "96cfdac0d65ff73b4eafb977ff000a1c",
+    "6303f1e2d280ad1b1a01f3c94821f437",
+    "153178b120b41331e634c6c3a761d53b",
+    "6e7358ef1afeb1ea728568c283b79139",
+    "d6666b68b16357481dffe7ecf0bcb67b",
+    "42665201292000d53ec3471110dc92d2",
+    "29526889243de3029cf401f4ba028139",
+    "4bcaeaae52d486bbfa674dc06bcba32f",
+    "88813a1c3315b5bca820eab0952647ed",
+    "fcffc7feec491d76cfc6eca70c3cfb04",
+    "63fcc542e1c2a11fc64c923d3d0c836a",
+    "455f7c1974e155c659f5add83341cb3b",
+    "90e899a481b5f500f2b0163b16f25e2e",
+    "cbc8e2f90e65ee3b299019fa4c309fe2",
+    "eae733d611c843ccccd10c5b3009c7c5",
+    "64b63b4eec8d34f6517e5e60c234822e",
+    "df1a6fed875e94bb1aea76d6370a3aa6"
+  ],
+  "size": 2125597258,
+  "seconds": 8.4
+}

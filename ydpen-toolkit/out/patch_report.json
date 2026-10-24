@@ -1,0 +1,91 @@
+{
+  "img": "/Users/fuzihao/.gemini/antigravity/scratch/ydpen/firmware/d5c214b2-7a1a-4317-a457-9bc7e186a81a.img",
+  "size": 2125597258,
+  "password_len": 9,
+  "patched_at": "2026-10-22 22:22:09",
+  "entries": [
+    {
+      "marker": ".adb_auth_verified",
+      "marker_offset": 87505470,
+      "script_offset": 87505446,
+      "hash_offset": 87505663,
+      "algo": "md5",
+      "newline": true,
+      "old_hash": "302af1d80be1106586775350cc0a2c92",
+      "new_hash": "054bda46d56c8496e14e81d78f5a3c27",
+      "replaced_offsets": [
+        "0x5373aff"
+      ],
+      "verified": true
+    }
+  ],
+  "findings": [
+    {
+      "marker": "adbd_auth.sh",
+      "marker_offset": 87300750,
+      "script_offset": 87300750,
+      "script_len": 12,
+      "algo": null,
+      "newline": true,
+      "newline_reason": "未发现 echo 用法，按教程默认补一个 \\n（可用 --newline 覆盖）",
+      "candidates": []
+    },
+    {
+      "marker": "adbd_auth.sh",
+      "marker_offset": 87477469,
+      "script_offset": 87477454,
+      "script_len": 27,
+      "algo": null,
+      "newline": true,
+      "newline_reason": "未发现 echo 用法，按教程默认补一个 \\n（可用 --newline 覆盖）",
+      "candidates": []
+    },
+    {
+      "marker": "adbd_auth.sh",
+      "marker_offset": 87477495,
+      "script_offset": 87477486,
+      "script_len": 21,
+      "algo": null,
+      "newline": true,
+      "newline_reason": "未发现 echo 用法，按教程默认补一个 \\n（可用 --newline 覆盖）",
+      "candidates": []
+    },
+    {
+      "marker": "adbd_auth.sh",
+      "marker_offset": 87477535,
+      "script_offset": 87477526,
+      "script_len": 27,
+      "algo": null,
+      "newline": true,
+      "newline_reason": "未发现 echo 用法，按教程默认补一个 \\n（可用 --newline 覆盖）",
+      "candidates": []
+    },
+    {
+      "marker": ".adb_auth_verified",
+      "marker_offset": 87505470,
+      "script_offset": 87505446,
+      "script_len": 374,
+      "algo": "md5",
+      "newline": true,
+      "newline_reason": "脚本里是普通 `echo $PASSWD`，会追加一个 \\n 参与哈希",
+      "candidates": [
+        {
+          "hash": "054bda46d56c8496e14e81d78f5a3c27",
+          "offset": 217,
+          "algo": "md5"
+        }
+      ]
+    },
+    {
+      "marker": "password incorrect",
+      "marker_offset": 139892724,
+      "script_offset": 139892718,
+      "script_len": 6,
+      "algo": null,
+      "newline": true,
+      "newline_reason": "未发现 echo 用法，按教程默认补一个 \\n（可用 --newline 覆盖）",
+      "candidates": []
+    }
+  ],
+  "verified": true
+}

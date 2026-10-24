@@ -1,0 +1,65 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      devices:
+        description: '机型（空格分隔，默认 x5）'
+        default: 'x5'
+
+jobs:
+  build-releases:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install cross toolchains (apt fallback for missing archs)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq g++-arm-linux-gnueabihf g++-aarch64-linux-gnu
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run unit tests
+        run: pnpm test
+
+      - name: Ensure qjsc binaries are executable
+        run: chmod +x aiot-vue-cli/cli-libs/aiot-qjsc-tool/assets/bin/linux/*
+
+      - name: Build AMR for every device
+        run: |
+          chmod +x tools/build-native.sh tools/build-all-releases.sh
+          tools/build-all-releases.sh ${{ github.event.inputs.devices }}
+
+      - name: Create release and upload AMRs
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME · 更好的视频全机型" \
+            --notes "每个附件对应一种笔型号（原生模块按该型号 ABI 交叉编译）。FFmpeg/ALSA 由模块运行时加载，目标固件需自带（CoCo-1826 已验证存在）。详见 README 机型对照。" \
+            dist/releases/*.amr || \
+          gh release upload "$GITHUB_REF_NAME" dist/releases/*.amr --clobber
+
+      - name: Upload artifacts (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: better-video-all-devices
+          path: dist/releases/*.amr
+          if-no-files-found: error

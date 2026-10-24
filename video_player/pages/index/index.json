@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "视频播放器",
+  "viewport": { "width": 800, "height": 220 },
+  "role": "library"
+}

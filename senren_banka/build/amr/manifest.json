@@ -1,0 +1,18 @@
+{
+  "appName": "千恋＊万花",
+  "appid": "8002026102400099",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "pages": ["pages/title/title", "pages/game/game", "pages/gallery/gallery"],
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false,
+    "targets": [
+      "app.js.bin",
+      "index.js.bin",
+      "pages/title/title.js.bin",
+      "pages/game/game.js.bin",
+      "pages/gallery/gallery.js.bin"
+    ]
+  }
+}

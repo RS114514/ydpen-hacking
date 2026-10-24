@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有道词典笔远程操作台</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 24px;
+    background: #141824;
+    color: #e6e8ee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+  }
+
+  .main-wrapper {
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  /* 标题与状态栏（严格符合官方文件互传规范） */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+  }
+  .root {
+    color: #8b93a7;
+    font-size: 13px;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+
+  .badges {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #1c2130;
+    border: 1px solid #2a3145;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #8b93a7;
+  }
+  .badge.online {
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+  .badge.fps {
+    color: #7cb2ff;
+    border-color: rgba(58, 134, 255, 0.4);
+  }
+
+  /* 核心卡片容器 */
+  .card {
+    background: #1c2130;
+    border: 1px solid #2a3145;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  /* 词典笔仿真硬件外壳展示区 */
+  .device-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px;
+    overflow-x: auto;
+  }
+  .device-outer {
+    background: linear-gradient(135deg, #242938 0%, #171b26 100%);
+    padding: 16px 26px;
+    border-radius: 40px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 100%;
+  }
+  .device-bezel {
+    background: #000000;
+    padding: 8px 12px;
+    border-radius: 14px;
+    border: 2px solid #2a3145;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
+  }
+  .screen-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: crosshair;
+    background: #000;
+    line-height: 0;
+  }
+  #pen-display {
+    display: block;
+    width: 960px;
+    height: 266px;
+    object-fit: fill;
+    transition: transform 0.2s ease, width 0.15s ease, height 0.15s ease;
+  }
+  #pen-display.flipped {
+    transform: rotate(180deg);
+  }
+
+  /* 鼠标触控涟漪效果 */
+  .touch-ripple {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin-left: -11px;
+    margin-top: -11px;
+    border-radius: 50%;
+    background: rgba(58, 134, 255, 0.35);
+    border: 2px solid #3a86ff;
+    pointer-events: none;
+    transform: scale(0.5);
+    opacity: 1;
+    transition: transform 0.22s ease-out, opacity 0.22s ease-out;
+  }
+  .touch-ripple.active {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+
+  /* 工具栏与按钮组件（符合官方文件互传规范） */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  button {
+    background: #3a86ff;
+    color: #ffffff;
+    border: 0;
+    border-radius: 8px;
+    padding: 9px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  button:hover {
+    background: #2b74eb;
+  }
+  button:active {
+    transform: translateY(1px);
+  }
+  button.ghost {
+    background: #2a3145;
+    color: #e6e8ee;
+  }
+  button.ghost:hover {
+    background: #37415a;
+  }
+  button.active {
+    background: #3a86ff;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+  }
+  .divider {
+    width: 1px;
+    height: 22px;
+    background: #2a3145;
+    margin: 0 2px;
+  }
+
+  /* 提示卡片 */
+  .hints {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: #8b93a7;
+    margin-top: 4px;
+    padding: 0 4px;
+    justify-content: center;
+  }
+  .hint-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  kbd {
+    background: #171c29;
+    border: 1px solid #2a3145;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 11px;
+    color: #7cb2ff;
+  }
+</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <header>
+    <div>
+      <h1>🖊️ 有道词典笔远程操作台</h1>
+      <div class="root">硬件平台：Rockchip RK3562 · PenOS 4.x · 笔端原生独立服务 (免客户端)</div>
+    </div>
+    <div class="badges">
+      <div class="badge online"><span>●</span> <span id="status-text">笔端直连</span></div>
+      <div class="badge fps">⚡ <span id="fps-val">0.0</span> FPS</div>
+      <div class="badge">📐 960 × 266</div>
+    </div>
+  </header>
+
+  <!-- 屏幕画面卡片 -->
+  <div class="card device-card">
+    <div class="device-outer">
+      <div class="device-bezel">
+        <div class="screen-box" id="screen-box">
+          <img id="pen-display" src="/stream" alt="词典笔实时画面" draggable="false">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 控制工具栏卡片 -->
+  <div class="card">
+    <div class="toolbar">
+      <div class="btn-group">
+        <button class="ghost" onclick="sendKey('back')" title="返回 (Esc)">⬅️ 返回</button>
+        <button class="ghost" onclick="sendKey('home')" title="回到主屏幕 (Home)">🏠 主页</button>
+        <button class="ghost" onclick="sendKey('power')" title="电源/亮屏/息屏 (Space)">⚡ 唤醒/息屏</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btn-group">
+        <button class="ghost" onclick="sendSwipe(700, 133, 200, 133, 220)" title="向左划动 (下一屏)">◀️ 下一页</button>
+        <button class="ghost" onclick="sendSwipe(200, 133, 700, 133, 220)" title="向右划动 (上一屏)">▶️ 上一页</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btn-group">
+        <button class="ghost" id="rotate-btn" onclick="toggleRotation()" title="旋转画面与触控 180 度">🔄 旋转 180°</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btn-group">
+        <button class="ghost" onclick="setScale(1.0)">1.0x</button>
+        <button class="ghost" onclick="setScale(1.25)">1.25x</button>
+        <button class="ghost" onclick="setScale(1.5)">1.5x</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btn-group">
+        <button onclick="takeScreenshot()">📸 截图标存</button>
+        <button class="ghost" onclick="reloadStream()">🔄 刷新流</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hints">
+    <div class="hint-item"><kbd>鼠标左键</kbd> 点击与拖动滑动</div>
+    <div class="hint-item"><kbd>鼠标右键</kbd> 或 <kbd>Esc</kbd> 返回上一级</div>
+    <div class="hint-item"><kbd>Space 空格</kbd> 唤醒亮屏/息屏</div>
+    <div class="hint-item"><kbd>←</kbd> / <kbd>→</kbd> 翻页滑动</div>
+  </div>
+</div>
+
+<script>
+  const screen = document.getElementById('pen-display');
+  const box = document.getElementById('screen-box');
+  const fpsVal = document.getElementById('fps-val');
+  const rotateBtn = document.getElementById('rotate-btn');
+
+  let isMouseDown = false;
+  let startX = 0, startY = 0;
+  let startTime = 0;
+  let hasMoved = false;
+  let isFlipped = false;
+
+  function toggleRotation() {
+    isFlipped = !isFlipped;
+    if (isFlipped) {
+      screen.classList.add('flipped');
+      rotateBtn.classList.add('active');
+    } else {
+      screen.classList.remove('flipped');
+      rotateBtn.classList.remove('active');
+    }
+  }
+
+  function getPenCoords(e) {
+    const rect = screen.getBoundingClientRect();
+    const scaleX = 960 / rect.width;
+    const scaleY = 266 / rect.height;
+    let x = Math.round((e.clientX - rect.left) * scaleX);
+    let y = Math.round((e.clientY - rect.top) * scaleY);
+    x = Math.max(0, Math.min(959, x));
+    y = Math.max(0, Math.min(265, y));
+
+    if (isFlipped) {
+      x = 959 - x;
+      y = 265 - y;
+    }
+    return { x, y };
+  }
+
+  function showRipple(clientX, clientY) {
+    const rect = box.getBoundingClientRect();
+    const ripple = document.createElement('div');
+    ripple.className = 'touch-ripple';
+    ripple.style.left = (clientX - rect.left) + 'px';
+    ripple.style.top = (clientY - rect.top) + 'px';
+    box.appendChild(ripple);
+    requestAnimationFrame(() => {
+      ripple.classList.add('active');
+    });
+    setTimeout(() => ripple.remove(), 240);
+  }
+
+  function postTouch(data) {
+    fetch('/api/touch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => {});
+  }
+
+  box.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    isMouseDown = true;
+    hasMoved = false;
+    startTime = Date.now();
+    const { x, y } = getPenCoords(e);
+    startX = x; startY = y;
+    showRipple(e.clientX, e.clientY);
+    postTouch({ type: 'down', x, y });
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isMouseDown) return;
+    const { x, y } = getPenCoords(e);
+    if (Math.abs(x - startX) > 4 || Math.abs(y - startY) > 4) {
+      hasMoved = true;
+    }
+    postTouch({ type: 'move', x, y });
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    if (!isMouseDown) return;
+    isMouseDown = false;
+    const { x, y } = getPenCoords(e);
+    const dur = Date.now() - startTime;
+    if (!hasMoved && dur < 350) {
+      postTouch({ type: 'tap', x, y });
+    } else {
+      postTouch({ type: 'up' });
+    }
+  });
+
+  box.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    sendKey('back');
+  });
+
+  function sendKey(key) {
+    postTouch({ type: 'key', key });
+  }
+
+  function sendSwipe(x1, y1, x2, y2, dur) {
+    if (isFlipped) {
+      x1 = 959 - x1; y1 = 265 - y1;
+      x2 = 959 - x2; y2 = 265 - y2;
+    }
+    postTouch({ type: 'swipe', x1, y1, x2, y2, dur });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.key === 'Backspace') {
+      sendKey('back');
+    } else if (e.key === ' ' || e.code === 'Space') {
+      e.preventDefault();
+      sendKey('power');
+    } else if (e.key === 'Home') {
+      sendKey('home');
+    } else if (e.key === 'ArrowLeft') {
+      sendSwipe(700, 133, 200, 133, 220);
+    } else if (e.key === 'ArrowRight') {
+      sendSwipe(200, 133, 700, 133, 220);
+    }
+  });
+
+  function setScale(s) {
+    screen.style.width = Math.round(960 * s) + 'px';
+    screen.style.height = Math.round(266 * s) + 'px';
+  }
+
+  function reloadStream() {
+    screen.src = '/stream?t=' + Date.now();
+  }
+
+  function takeScreenshot() {
+    const a = document.createElement('a');
+    a.href = '/api/screenshot?t=' + Date.now();
+    a.download = `ydpen_screenshot_${Date.now()}.jpg`;
+    a.click();
+  }
+
+  setInterval(() => {
+    fetch('/api/status')
+      .then(r => r.json())
+      .then(d => {
+        fpsVal.innerText = d.fps.toFixed(1);
+      })
+      .catch(() => {});
+  }, 1000);
+</script>
+
+</body>
+</html>

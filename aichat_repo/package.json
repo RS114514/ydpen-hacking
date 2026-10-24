@@ -1,0 +1,37 @@
+{
+  "name": "AiPenChat",
+  "appName": "AI对话",
+  "appid": "8002026091900010",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "description": "有道词典笔 X5 轻量级 AI 对话客户端：多服务商/模型切换、思考(reasoning)参数调节、多轮对话",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "simulator": {
+    "path": "",
+    "page": ""
+  },
+  "single-js-bundle": false,
+  "scripts": {
+    "test": "node test/run.mjs",
+    "check": "node tools/check-templates.js && node tools/check-tags.js",
+    "build": "node tools/build.js -q -p",
+    "build:dev": "node tools/build.js",
+    "build:prod": "node tools/build.js -c -q -p",
+    "icon": "python tools/make-icon.py",
+    "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/deploy.ps1"
+  },
+  "keywords": [
+    "youdao",
+    "dictionary-pen",
+    "x5",
+    "falcon",
+    "miniapp",
+    "ai",
+    "chat",
+    "deepseek"
+  ],
+  "license": "MIT"
+}

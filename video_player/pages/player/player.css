@@ -1,0 +1,233 @@
+/* pages/player/player.css —— 播放页全新大按钮布局
+ * 左边栏 156px（超大控制触控按键） + 中间 488px（硬件视频透明层与自隐藏进度条） + 右边栏 156px（直观放大缩小按键）
+ * 156 + 488 + 156 = 800px，全高度严格控制在 220px 以内 */
+
+.player-root {
+  position: relative;
+  width: 800px;
+  height: 220px;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+}
+
+/* 左侧超大控制面板（宽 156px，高 220px） */
+.side-left {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 156px;
+  height: 220px;
+  background-color: #0b0f14;
+  flex-direction: column;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-right-width: 1px;
+  border-right-color: #1e2630;
+}
+
+.btn-back {
+  width: 140px;
+  height: 42px;
+  margin-top: 2px;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  border-radius: 8px;
+}
+.btn-back-text {
+  color: #e6edf3;
+  font-size: 16px;
+}
+
+.btn-primary {
+  width: 140px;
+  height: 48px;
+  margin-top: 6px;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f6feb;
+  border-radius: 8px;
+}
+.btn-primary-text {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.row-dual {
+  width: 140px;
+  height: 44px;
+  margin-top: 6px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.btn-half {
+  width: 66px;
+  height: 44px;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  border-radius: 6px;
+}
+.btn-half-text {
+  color: #e6edf3;
+  font-size: 15px;
+}
+
+.time-display {
+  width: 140px;
+  height: 24px;
+  margin-top: 6px;
+  color: #58a6ff;
+  font-size: 13px;
+  text-align: center;
+}
+
+.state-badge {
+  width: 140px;
+  height: 18px;
+  margin-top: 2px;
+  color: #8b949e;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* 中间区域（宽 488px，高 220px，透明透出视频） */
+.center-viewport {
+  position: absolute;
+  left: 156px;
+  top: 0px;
+  width: 488px;
+  height: 220px;
+  background-color: rgba(0,0,0,0);
+}
+
+.center-touch {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 488px;
+  height: 220px;
+  background-color: rgba(0,0,0,0);
+}
+
+.center-tip {
+  position: absolute;
+  left: 24px;
+  top: 96px;
+  width: 440px;
+  text-align: center;
+  font-size: 14px;
+  color: #8b949e;
+}
+
+/* 中间底部自隐藏进度条浮层 */
+.floating-bar {
+  position: absolute;
+  left: 16px;
+  top: 168px;
+  width: 456px;
+  height: 42px;
+  background-color: rgba(13,17,23,0.92);
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #30363d;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.seek-track-wide {
+  width: 360px;
+  height: 34px;
+  flex-direction: row;
+  align-items: center;
+}
+.seg-cell {
+  width: 20px;
+  height: 34px;
+  justify-content: center;
+}
+.seg-fill {
+  width: 16px;
+  height: 10px;
+  margin-left: 2px;
+  background-color: #30363d;
+  border-radius: 3px;
+}
+
+.floating-time {
+  width: 80px;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* 右侧直观放大缩小面板（宽 156px，高 220px） */
+.side-right {
+  position: absolute;
+  left: 644px;
+  top: 0px;
+  width: 156px;
+  height: 220px;
+  background-color: #0b0f14;
+  flex-direction: column;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-left-width: 1px;
+  border-left-color: #1e2630;
+}
+
+.video-info-name {
+  width: 140px;
+  height: 32px;
+  color: #e6edf3;
+  font-size: 13px;
+  lines: 2;
+  text-overflow: ellipsis;
+}
+
+.btn-zoom {
+  width: 140px;
+  height: 44px;
+  margin-top: 6px;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #388bfd;
+}
+.btn-zoom-text {
+  color: #58a6ff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.zoom-level-text {
+  width: 140px;
+  height: 20px;
+  margin-top: 4px;
+  color: #8b949e;
+  font-size: 13px;
+  text-align: center;
+}
+
+.btn-action {
+  width: 140px;
+  height: 38px;
+  margin-top: 4px;
+  justify-content: center;
+  align-items: center;
+  background-color: #21262d;
+  border-radius: 6px;
+}
+.btn-action-text {
+  color: #c9d1d9;
+  font-size: 14px;
+}

@@ -1,0 +1,364 @@
+// 公共骨架与通用控件（四个页面共用；各页 .vue 通过 @import "base.less" 引入）。
+//
+// 平台硬约束（真机证据，见 README §4）：
+//   · 只支持**单类选择器**（.a、.a:active）——`.a .b` / `div` / `.a.b` 会被整条丢掉，
+//     所以状态变体一律写成扁平类（.nav-item-on / .tbtn-str / .dot-ok），用 :class 切换；
+//   · overflow 只允许 visible|hidden，display 只能是 flex；
+//   · 尺寸一律字面 px（逻辑画布 800x254，setViewPort(800) 后 1px = 1 逻辑像素）；
+//   · <text> 默认字号 ~32px，所以每个含文本的类都必须显式写 font-size；
+//   · 截断用平台属性 `lines` 配 `text-overflow: ellipsis`（不是 -webkit-line-clamp）。
+@import "var.less";
+
+/* ================= 页面骨架 ================= */
+.page {
+  width: 800px;
+  height: 254px;
+  flex-direction: row;
+  background-color: @bg;
+}
+
+/* 左栏 172px：品牌 + 主导航 + 底部状态 */
+.side {
+  width: 172px;
+  height: 254px;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: @sidebar;
+}
+
+/* 右栏 628px：顶栏 + 内容 */
+.main {
+  width: 628px;
+  height: 254px;
+  flex-direction: column;
+}
+
+/* ================= 品牌 ================= */
+.brand {
+  height: 26px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.brand-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background-color: @accent-str;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-logo-text {
+  width: 18px;
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+  lines: 1;
+}
+
+.brand-name {
+  margin-left: 7px;
+  font-size: 14px;
+  color: @text;
+  lines: 1;
+}
+
+/* ================= 左栏导航 ================= */
+.nav {
+  margin-top: 8px;
+  flex-direction: column;
+}
+
+.nav-item {
+  width: 152px;
+  height: 30px;
+  margin-bottom: 3px;
+  border-radius: 8px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 9px;
+}
+
+.nav-item:active {
+  opacity: 0.65;
+}
+
+/* 当前页：蓝色弱高亮（不是大块实心蓝） */
+.nav-item-on {
+  background-color: @accent-soft;
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: @dim-2;
+}
+
+.nav-dot-on {
+  background-color: @accent;
+}
+
+.nav-label {
+  margin-left: 9px;
+  font-size: 13px;
+  color: @dim;
+  lines: 1;
+}
+
+.nav-label-on {
+  color: @text;
+}
+
+/* ================= 左栏底部状态 ================= */
+.side-foot {
+  flex: 1;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.foot-row {
+  height: 16px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: @dim-2;
+}
+
+.dot-ok {
+  background-color: @ok;
+}
+
+.dot-err {
+  background-color: @danger;
+}
+
+.dot-run {
+  background-color: @accent;
+}
+
+.foot-text {
+  margin-left: 6px;
+  width: 130px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.side-status {
+  margin-top: 4px;
+}
+
+.status-line {
+  width: 152px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.status-err {
+  width: 152px;
+  font-size: 10px;
+  color: @danger;
+  lines: 2;
+  text-overflow: ellipsis;
+}
+
+/* ================= 内容区顶栏 ================= */
+.topbar {
+  width: 628px;
+  height: 38px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 12px;
+}
+
+.topbar-title {
+  font-size: 15px;
+  color: @text;
+  lines: 1;
+}
+
+.topbar-sub {
+  margin-left: 8px;
+  width: 150px;
+  font-size: 11px;
+  color: @dim-2;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.topbar-actions {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* 顶栏按钮：默认低调的描边胶囊，主按钮才用实心蓝 */
+.tbtn {
+  height: 26px;
+  min-width: 52px;
+  margin-left: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 13px;
+  background-color: @surface-2;
+  justify-content: center;
+  align-items: center;
+}
+
+.tbtn:active {
+  opacity: 0.6;
+}
+
+.tbtn-str {
+  background-color: @accent-str;
+}
+
+.tbtn-on {
+  background-color: @accent-soft;
+}
+
+.tbtn-danger {
+  background-color: #3a1c26;
+}
+
+.tbtn-text {
+  font-size: 12px;
+  color: @text-2;
+  text-align: center;
+  lines: 1;
+}
+
+.tbtn-text-on {
+  color: #ffffff;
+}
+
+.tbtn-text-dim {
+  color: @dim-2;
+}
+
+/* ================= 内容区容器 ================= */
+/* 表单/列表滚动容器 */
+.form {
+  flex: 1;
+  width: 628px;
+}
+
+.anchor {
+  width: 628px;
+  height: 2px;
+}
+
+/* ================= 分组标题 ================= */
+.sec {
+  width: 600px;
+  margin-left: 14px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: @dim-2;
+  lines: 1;
+}
+
+/* ================= 通用行（参数/模型编辑） ================= */
+.row {
+  width: 600px;
+  height: 36px;
+  margin-left: 14px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background-color: @surface;
+}
+
+.row:active {
+  opacity: 0.75;
+}
+
+.row-key {
+  width: 112px;
+  font-size: 12px;
+  color: @dim;
+  lines: 1;
+}
+
+.row-val {
+  flex: 1;
+  font-size: 13px;
+  color: @text;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+
+.row-val-dim {
+  color: @dim-2;
+}
+
+.row-val-on {
+  color: @accent;
+}
+
+.row-warn {
+  font-size: 10px;
+  color: @warn;
+  lines: 2;
+}
+
+.row-note {
+  width: 600px;
+  margin-left: 14px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 10px;
+  color: @dim-2;
+  lines: 3;
+}
+
+/* ================= 步进器 ================= */
+.step {
+  width: 30px;
+  height: 26px;
+  border-radius: 8px;
+  background-color: @surface-2;
+  justify-content: center;
+  align-items: center;
+}
+
+.step:active {
+  opacity: 0.6;
+}
+
+.step-text {
+  width: 28px;
+  font-size: 14px;
+  color: @text-2;
+  text-align: center;
+  lines: 1;
+}
+
+.step-val {
+  width: 76px;
+  font-size: 13px;
+  color: @text;
+  text-align: center;
+  lines: 1;
+  text-overflow: ellipsis;
+}

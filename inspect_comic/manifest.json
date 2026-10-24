@@ -1,0 +1,92 @@
+{
+  "appName": "Doge漫画",
+  "version": "1.3.1",
+  "appid": "8001145141919812",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "cert": {
+    "FakeStorage-c426ce5c.js.bin": {
+      "size": 1449,
+      "md5": "ad82628dc09038611396dacf73255a20"
+    },
+    "delete-0c9e6973.js.bin": {
+      "size": 4225,
+      "md5": "d41584cba30af9bcceba7541a2f14196"
+    },
+    "back-a7a4b9d0.js.bin": {
+      "size": 2924,
+      "md5": "1bea3ce9f156fefb5258d7a04ad86ef0"
+    },
+    "Storage-093bad50.js.bin": {
+      "size": 1616,
+      "md5": "2c1033aa3bf068240d648778a9af9900"
+    },
+    "favorite.js.bin": {
+      "size": 2403,
+      "md5": "68199afc1bc510e642983182163ae504"
+    },
+    "fileSort-4c99fe8b.js.bin": {
+      "size": 572,
+      "md5": "551bbe9ff56cda4fa4480306ff4fb57f"
+    },
+    "filemanager.js.bin": {
+      "size": 14984,
+      "md5": "f309eaef6a1abdf37518472142fb4e29"
+    },
+    "app.js.bin": {
+      "size": 3648,
+      "md5": "4c857910e75dfb8ad6fa85ccb17f4201"
+    },
+    "folder-3340a4a7.js.bin": {
+      "size": 2505,
+      "md5": "1cdd8b8d1b520be917c402d1426049c9"
+    },
+    "history.js.bin": {
+      "size": 2396,
+      "md5": "4640e6dd7c14ce613afaa4e8064b6279"
+    },
+    "index-button-79f257b2.js.bin": {
+      "size": 2415,
+      "md5": "2bc5eabf9cd0efcf511c9e2950a91f84"
+    },
+    "index.js.bin": {
+      "size": 28352,
+      "md5": "b8cd95a8eb4382f273dd1634b8a7643a"
+    },
+    "info.js.bin": {
+      "size": 295468,
+      "md5": "d1c5e5240d546ace006e04ebbf4c8b55"
+    },
+    "license.js.bin": {
+      "size": 1835,
+      "md5": "1d54f2d34f854e729cc795ba8024f7a8"
+    },
+    "love-9ca5a340.js.bin": {
+      "size": 3679,
+      "md5": "93c18d872a4d99737987ec4aac4c574f"
+    },
+    "reader.js.bin": {
+      "size": 13102,
+      "md5": "a928254b239f8dfbbdec5e0f5a75fcf9"
+    },
+    "seekbar-card-7bde1a12.js.bin": {
+      "size": 1907,
+      "md5": "1033195bedf01aac3d50e3d86197a003"
+    },
+    "setting.js.bin": {
+      "size": 4477,
+      "md5": "b023f16aa89c11b335a03f9766e95fac"
+    },
+    "store.js.bin": {
+      "size": 2946,
+      "md5": "fcd92d535dc8c236a5e57e6106deeaef"
+    },
+    "assets/license.txt": {
+      "size": 34523,
+      "md5": "eb1e647870add0502f8f010b19de32af"
+    }
+  }
+}

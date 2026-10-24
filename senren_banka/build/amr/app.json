@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "title": "pages/title/title.js",
+    "game": "pages/game/game.js",
+    "gallery": "pages/gallery/gallery.js"
+  },
+  "options": { "style": { "lessPaths": ["pages"] } }
+}

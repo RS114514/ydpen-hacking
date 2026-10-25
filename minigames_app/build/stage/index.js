@@ -17,11 +17,15 @@ function attach(page, comp) {
 
 class PageMinigames extends BasePage {
   onLoad(options) {
-    super.onLoad(options);
+    super.onLoad(options || {});
+    attach(this, Component);
+  }
+  onShow() {
+    super.onShow();
     attach(this, Component);
   }
   onNewOptions(options) {
-    super.onNewOptions(options);
+    super.onNewOptions(options || {});
     attach(this, Component);
   }
 }

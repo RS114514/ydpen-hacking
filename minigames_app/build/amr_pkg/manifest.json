@@ -1,0 +1,17 @@
+{
+  "appName": "小游戏",
+  "appid": "8002026102500001",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "pages": [
+    "pages/index/index"
+  ],
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false,
+    "targets": [
+      "app.js.bin",
+      "index.js.bin"
+    ]
+  }
+}

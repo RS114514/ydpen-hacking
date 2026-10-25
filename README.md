@@ -29,7 +29,8 @@
 | [`pen_term_repo/`](pen_term_repo/) | **PenTerm 终端** | `8002026091900001` | 词典笔端原生 Linux Shell 终端交互界面 |
 | [`screen_cast_app/`](screen_cast_app/) | **屏幕投屏** | `8002026102400001` | 低延迟实时屏幕流式传输至电脑端浏览器 |
 | [`file_transfer_app/`](file_transfer_app/) | **文件快传** | `8002026091900003` | 局域网 HTTP 文件无线上传下载管理器 |
-| [`ydpen-toolkit/`](ydpen-toolkit/) | **开发运维工具集** | — | AMR 字节码编译、逆向分析、签名与 ADB 自动化脚本 |
+| [`ydpen-toolkit/`](ydpen-toolkit/) | **开发运维工具集** | — | AMR 字节码编译、逆向分析、签名与 ADB 自动化脚本（包含本地适配插件） |
+| [`gwjcfls-ydpen-toolkit/`](gwjcfls-ydpen-toolkit/) | **上游开源工具包** | — | [gwjcfls/ydpen-toolkit](https://github.com/gwjcfls/ydpen-toolkit) 原版仓库，支持持续与上游同步更新 |
 | [`research_scripts/`](research_scripts/) | **逆向与调试工具** | — | 针对 QuickJS 字节码与动态库导出的 40+ 深度分析脚本 |
 | [`pen_backup/`](pen_backup/) | **系统历史备份** | — | 提取自设备的原始系统包、固件碎片与备份产物 |
 

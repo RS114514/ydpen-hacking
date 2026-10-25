@@ -20,19 +20,19 @@ var BGM_TRACKS = [
 ];
 
 var STAND_CHARS = [
-  { id: 'yoshino', tag: '【芳乃】', name: '朝武 芳乃', title: '朝武神社巫女 / 祟神宿主', voice: 'yos001_012.ogg' },
-  { id: 'mako', tag: '【茉子】', name: '常陆 茉子', title: '朝武家护卫 / 忍者少女', voice: 'uts001_001.ogg' },
-  { id: 'murasame', tag: '【丛雨】', name: '丛 雨', title: '神刀丛雨丸之灵 / 幽灵少女', voice: 'mur001_069.ogg' },
-  { id: 'lena', tag: '【蕾娜】', name: '蕾 娜', title: '芬兰留学生 / 绿茶爱好者', voice: 'uts001_002.ogg' },
-  { id: 'koharu', tag: '【小春】', name: '鞍马 小春', title: '甜点店学徒 / 温柔后辈', voice: 'uts001_003.ogg' },
-  { id: 'roka', tag: '【芦花】', name: '马场 芦花', title: '志那都庄老板娘 / 幼驯染', voice: 'uts001_004.ogg' }
+  { id: 'yoshino', tag: '【芳乃】', name: '朝武 芳乃', title: '朝武神社巫女 / 祟神宿主', voice: 'yoshino_after.ogg' },
+  { id: 'mako', tag: '【茉子】', name: '常陆 茉子', title: '朝武家护卫 / 忍者少女', voice: 'mako_after.ogg' },
+  { id: 'murasame', tag: '【丛雨】', name: '丛 雨', title: '神刀丛雨丸之灵 / 幽灵少女', voice: 'murasame_after.ogg' },
+  { id: 'lena', tag: '【蕾娜】', name: '蕾 娜', title: '芬兰留学生 / 绿茶爱好者', voice: 'lena_after.ogg' },
+  { id: 'koharu', tag: '【小春】', name: '鞍马 小春', title: '甜点店学徒 / 温柔后辈', voice: 'koharu_after.ogg' },
+  { id: 'roka', tag: '【芦花】', name: '马场 芦花', title: '志那都庄老板娘 / 幼驯染', voice: 'roka_after.ogg' }
 ];
 
 var SCENES = [
-  { id: 'sc01', name: '1-1 · 穗织来访', desc: '初临神域，古镇街道漫步', line: 0 },
-  { id: 'sc02', name: '1-2 · 庆典拔刀', desc: '神社盛典，拔出名刀丛雨丸', line: 350 },
-  { id: 'sc03', name: '1-3 · 刀灵现身', desc: '神刀少女显现，五百年心意相通', line: 550 },
-  { id: 'sc04', name: '2-1 · 婚约分歧', desc: '四方宿命分道扬镳之抉择点', line: 780 }
+  { id: 'sc01', name: '1-1', desc: '第 1 ~ 350 句剧情', line: 0 },
+  { id: 'sc02', name: '1-2', desc: '第 351 ~ 550 句剧情', line: 350 },
+  { id: 'sc03', name: '1-3', desc: '第 551 ~ 780 句剧情', line: 550 },
+  { id: 'sc04', name: '2-1', desc: '第 781 句开始', line: 780 }
 ];
 
 

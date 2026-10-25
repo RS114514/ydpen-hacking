@@ -65,5 +65,5 @@ def disasm(pc, count=40):
         print(f"0x{pc:04x}: {name:20s} {args_str}")
         pc += sz
 
-print("Disassembling around 0x12880:")
-disasm(0x12880, 50)
+# print("Disassembling around 0x12880:")
+# disasm(0x12880, 50)

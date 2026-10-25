@@ -190,11 +190,13 @@ export var gameMethods = {
     if (p < 0) p = 4;
     if (p > 4) p = 0;
     this.savePage = p;
+    this.selectedSlot = p * 6 + 1;
     this.confirmModal = null;
   },
 
   // 槽位点击交互：触发和风二次确认弹窗
   selectSlotItem: function (slotNum) {
+    if (this._confirmExecuting) return;
     this.selectedSlot = slotNum;
     var saves = this.modalSaves || readAllSaves();
     var existing = saves['slot' + slotNum];
@@ -210,7 +212,8 @@ export var gameMethods = {
           isOverwrite: true,
           title: '覆盖存档确认',
           subtitle: '槽位 ' + codeStr + ' 已存有数据（' + (existing.time || '——') + ' · ' + (existing.chapter || '1-1') + '）',
-          message: '覆盖后原有进度将无法找回，是否确定要覆盖此槽位？'
+          message: '覆盖后原有进度将无法找回，是否确定要覆盖此槽位？',
+          warn: '※ 提示：原存档数据一经覆盖将无法复原'
         };
       } else {
         this.confirmModal = {
@@ -219,7 +222,8 @@ export var gameMethods = {
           isOverwrite: false,
           title: '保存物语进度',
           subtitle: '目标：空存档槽位 ' + codeStr,
-          message: '是否将当前【' + currentChapter + '】物语进度封存至此槽位？'
+          message: '是否将当前【' + currentChapter + '】物语进度封存至此槽位？',
+          warn: '※ 提示：将保存当前台词进度及场景数据'
         };
       }
     } else if (this.modalType === 'load') {
@@ -230,26 +234,33 @@ export var gameMethods = {
           isOverwrite: false,
           title: '读取进度确认',
           subtitle: '载入目标：' + codeStr + '（' + (existing.time || '——') + ' · ' + (existing.chapter || '1-1') + '）',
-          message: '读取后当前未保存的推进进度将会丢失，是否确定读取？'
+          message: '读取后当前未保存的推进进度将会丢失，是否确定读取？',
+          warn: '※ 提示：载入将直接跳转至目标物语进度，当前未保存进度将丢失'
         };
       }
     }
   },
 
   confirmExecuteAction: function () {
-    if (!this.confirmModal) return;
+    if (!this.confirmModal || this._confirmExecuting) return;
+    this._confirmExecuting = true;
     var slotNum = this.confirmModal.slotNum;
     var mode = this.confirmModal.mode;
     this.confirmModal = null;
-    if (mode === 'save') {
-      this.executeSaveToSlot(slotNum);
-    } else if (mode === 'load') {
-      this.executeLoadFromSlot(slotNum);
-    }
+    var self = this;
+    setTimeout(function () {
+      self._confirmExecuting = false;
+      if (mode === 'save') {
+        self.executeSaveToSlot(slotNum);
+      } else if (mode === 'load') {
+        self.executeLoadFromSlot(slotNum);
+      }
+    }, 60);
   },
 
   cancelConfirmAction: function () {
     this.confirmModal = null;
+    this._confirmExecuting = false;
   },
 
   executeSaveToSlot: function (slotNum) {
@@ -653,7 +664,7 @@ export function renderGame(vm, h) {
           h('div', { staticStyle: S('confirm-content') }, [
             h('text', { staticStyle: S('confirm-slot-code') }, vm.confirmModal.subtitle),
             h('text', { staticStyle: S('confirm-msg-text') }, vm.confirmModal.message),
-            vm.confirmModal.isOverwrite ? h('text', { staticStyle: S('confirm-sub-warn') }, '※ 提示：原存档数据一经覆盖将无法复原') : null
+            vm.confirmModal.warn ? h('text', { staticStyle: S('confirm-sub-warn') }, vm.confirmModal.warn) : null
           ]),
           // 底部双按钮操作区
           h('div', { staticStyle: S('confirm-actions') }, [

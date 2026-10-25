@@ -11,7 +11,10 @@ struct LayerInfo {
     let h: Int
 }
 
-func compositeAndCrop(layers: [LayerInfo], cropRect: CGRect, outW: Int, outH: Int, outPath: String) {
+let stageW = 390
+let stageH = 220
+
+func compositeAndCropToStage(layers: [LayerInfo], cropRect: CGRect, outPath: String) {
     let width = 1800
     let height = 2550
     let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -24,7 +27,6 @@ func compositeAndCrop(layers: [LayerInfo], cropRect: CGRect, outW: Int, outH: In
         let url = URL(fileURLWithPath: lay.file)
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
               let img = CGImageSourceCreateImageAtIndex(src, 0, nil) else {
-            print("Missing layer: \(lay.file)")
             continue
         }
         let rect = CGRect(x: lay.x, y: height - lay.y - lay.h, width: lay.w, height: lay.h)
@@ -37,11 +39,19 @@ func compositeAndCrop(layers: [LayerInfo], cropRect: CGRect, outW: Int, outH: In
         return
     }
 
-    guard let outCtx = CGContext(data: nil, width: outW, height: outH, bitsPerComponent: 8, bytesPerRow: outW * 4, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+    // 建立 390x220 标准舞台区透明底画布，人物等比居中绘制，确保两侧长发完整舒展
+    guard let outCtx = CGContext(data: nil, width: stageW, height: stageH, bitsPerComponent: 8, bytesPerRow: stageW * 4, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
         return
     }
     outCtx.interpolationQuality = .high
-    outCtx.draw(cropped, in: CGRect(x: 0, y: 0, width: outW, height: outH))
+
+    let scale = Double(stageH) / cropRect.height
+    let drawW = cropRect.width * scale
+    let drawH = Double(stageH)
+    let drawX = (Double(stageW) - drawW) / 2.0
+    let drawRect = CGRect(x: drawX, y: 0, width: drawW, height: drawH)
+
+    outCtx.draw(cropped, in: drawRect)
     guard let finalImg = outCtx.makeImage() else { return }
 
     let outUrl = URL(fileURLWithPath: outPath)
@@ -54,14 +64,15 @@ func compositeAndCrop(layers: [LayerInfo], cropRect: CGRect, outW: Int, outH: In
 let jsonFile = CommandLine.arguments[1]
 let data = try! Data(contentsOf: URL(fileURLWithPath: jsonFile))
 if let specs = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
-    for spec in specs {
+    let total = specs.count
+    print("Processing \(total) standing sprites with parallel dispatch (390x220 Stage Canvas)...")
+    DispatchQueue.concurrentPerform(iterations: total) { i in
+        let spec = specs[i]
         let outPath = spec["out"] as! String
         let cropX = spec["cropX"] as! Double
         let cropY = spec["cropY"] as! Double
         let cropW = spec["cropW"] as! Double
         let cropH = spec["cropH"] as! Double
-        let outW = spec["outW"] as! Int
-        let outH = spec["outH"] as! Int
         let rawLayers = spec["layers"] as! [[String: Any]]
         var layers: [LayerInfo] = []
         for l in rawLayers {
@@ -73,6 +84,7 @@ if let specs = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]]
                 h: l["h"] as! Int
             ))
         }
-        compositeAndCrop(layers: layers, cropRect: CGRect(x: cropX, y: cropY, width: cropW, height: cropH), outW: outW, outH: outH, outPath: outPath)
+        compositeAndCropToStage(layers: layers, cropRect: CGRect(x: cropX, y: cropY, width: cropW, height: cropH), outPath: outPath)
     }
+    print("Completed \(total) standing sprites composite.")
 }

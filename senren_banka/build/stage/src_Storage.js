@@ -48,7 +48,7 @@ export function readAllSaves(gameId) {
   var G = getGal();
   if (G && typeof G.readText === 'function') {
     try {
-      // 1. 尝试通用路径
+      // 1. 尝试标准命名空间路径
       var newPath = getSaveFilePath(gid);
       var txt = G.readText(newPath);
       if (txt) {
@@ -56,7 +56,14 @@ export function readAllSaves(gameId) {
         _savesCache[gid] = parsed;
         return parsed;
       }
-      // 2. 兼容现有旧路径
+      // 2. 尝试通用备用平铺路径
+      var flatTxt = G.readText('/userdisk/gal_data/' + gid + '_saves.json');
+      if (flatTxt) {
+        var flatParsed = JSON.parse(flatTxt);
+        _savesCache[gid] = flatParsed;
+        return flatParsed;
+      }
+      // 3. 兼容现有旧路径
       if (gid === 'senren_banka') {
         var legacyTxt = G.readText('/userdisk/SenrenBanka/saves.json');
         if (legacyTxt) {
@@ -80,14 +87,20 @@ export function writeAllSaves(saves, gameId) {
   if (G && typeof G.writeText === 'function') {
     try {
       var str = JSON.stringify(saves);
-      G.writeText(getSaveFilePath(gid), str);
+      var ok = G.writeText(getSaveFilePath(gid), str);
+      if (!ok) {
+        ok = G.writeText('/userdisk/gal_data/' + gid + '_saves.json', str);
+      }
       if (gid === 'senren_banka') {
         G.writeText('/userdisk/SenrenBanka/saves.json', str);
       }
+      return ok;
     } catch (e) {
       log('writeAllSaves error: ' + e);
+      return false;
     }
   }
+  return true;
 }
 
 // 写入单槽存档记录
@@ -153,6 +166,9 @@ export function readSettings(gameId) {
   if (G && typeof G.readText === 'function') {
     try {
       var txt = G.readText(getSettingsFilePath(gid));
+      if (!txt) {
+        txt = G.readText('/userdisk/gal_data/' + gid + '_settings.json');
+      }
       if (txt) {
         var parsed = JSON.parse(txt);
         _settingsCache[gid] = Object.assign({}, DEFAULT_SETTINGS, parsed);
@@ -173,11 +189,18 @@ export function writeSettings(settings, gameId) {
   var G = getGal();
   if (G && typeof G.writeText === 'function') {
     try {
-      G.writeText(getSettingsFilePath(gid), JSON.stringify(merged));
+      var str = JSON.stringify(merged);
+      var ok = G.writeText(getSettingsFilePath(gid), str);
+      if (!ok) {
+        ok = G.writeText('/userdisk/gal_data/' + gid + '_settings.json', str);
+      }
+      return ok;
     } catch (e) {
       log('writeSettings error: ' + e);
+      return false;
     }
   }
+  return true;
 }
 
 // 历史履历（Backlog）入队

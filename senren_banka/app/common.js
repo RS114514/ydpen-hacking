@@ -39,6 +39,9 @@ export {
 
 // 章节判定（原版真实章节规范：1-1, 1-2, 1-3, 2-1 等）
 export function getChapterByLine(line) {
+  if (typeof line === 'string' && /^\d+-\d+$/.test(line.trim())) {
+    return line.trim();
+  }
   var l = Number(line) || 0;
   if (l < 350) return '1-1';
   if (l < 550) return '1-2';

@@ -31,6 +31,8 @@ MODULES = [
     ("pages/title/title.js", ["TitleView.js"]),
     ("pages/game/game.js", ["GameView.js"]),
     ("pages/gallery/gallery.js", ["GalleryView.js"]),
+    ("pages/flowchart/flowchart.js", ["FlowchartView.js"]),
+    ("pages/afterstory/afterstory.js", ["AfterstoryView.js"]),
     ("root.js", ["Component.js"]),
     ("base-page.js", ["BasePage.js"]),
     ("page-entry.js", ["index.js", "shell.js"]),
@@ -47,6 +49,8 @@ IMPORT_MAP = {
     "./pages/title/title.js": "./TitleView.js",
     "./pages/game/game.js": "./GameView.js",
     "./pages/gallery/gallery.js": "./GalleryView.js",
+    "./pages/flowchart/flowchart.js": "./FlowchartView.js",
+    "./pages/afterstory/afterstory.js": "./AfterstoryView.js",
 }
 
 
@@ -95,7 +99,13 @@ def check_bounds(name, r):
 
 def build_styles(out_dir):
     styles, errs = {}, []
-    for css in ("pages/title/title.css", "pages/game/game.css", "pages/gallery/gallery.css"):
+    for css in (
+        "pages/title/title.css",
+        "pages/game/game.css",
+        "pages/gallery/gallery.css",
+        "pages/flowchart/flowchart.css",
+        "pages/afterstory/afterstory.css"
+    ):
         rules = css_to_obj(os.path.join(APP_DIR, css))
         for n, r in rules.items():
             errs += check_bounds(n, r)
@@ -137,7 +147,7 @@ def compile_all(stage, bins):
         print("      %-16s %s" % (mod, line[0].strip()))
 
     for n in ("index.js.bin", "shell.js.bin"):
-        for sub in ("title", "game", "gallery"):
+        for sub in ("title", "game", "gallery", "flowchart", "afterstory"):
             os.makedirs(os.path.join(bins, "pages", sub), exist_ok=True)
             shutil.copy(os.path.join(bins, n), os.path.join(bins, "pages", sub, n))
 
@@ -165,7 +175,7 @@ def main():
         if os.path.exists(src):
             shutil.copy(src, amr_dir)
 
-    for page in ("title", "game", "gallery"):
+    for page in ("title", "game", "gallery", "flowchart", "afterstory"):
         src_json = os.path.join(APP_DIR, "pages", page, "%s.json" % page)
         dst_dir = os.path.join(amr_dir, "pages", page)
         os.makedirs(dst_dir, exist_ok=True)

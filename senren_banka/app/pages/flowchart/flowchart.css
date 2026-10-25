@@ -1,0 +1,259 @@
+/* app/pages/flowchart/flowchart.css —— 树状剧情分支流程图 */
+.fc-root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 220px;
+  background-color: #0b0f17;
+  overflow: hidden;
+}
+
+.fc-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 220px;
+  opacity: 0.22;
+}
+
+.fc-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 28px;
+  background-color: rgba(15, 23, 42, 0.92);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.fc-title-box {
+  flex-direction: row;
+  align-items: center;
+}
+
+.fc-title-text {
+  color: #f6e05e;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.fc-subtitle {
+  color: #94a3b8;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.fc-header-actions {
+  flex-direction: row;
+  align-items: center;
+}
+
+.fc-btn-reset {
+  background-color: rgba(51, 65, 85, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.fc-btn-reset-text {
+  color: #e2e8f0;
+  font-size: 10px;
+}
+
+.fc-btn-back {
+  background-color: rgba(185, 28, 28, 0.9);
+  border: 1px solid rgba(252, 165, 165, 0.6);
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-btn-back-text {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.fc-viewport {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  width: 800px;
+  height: 192px;
+  overflow: hidden;
+}
+
+.fc-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.fc-trunk-container {
+  flex-direction: column;
+  padding-left: 16px;
+  padding-top: 10px;
+}
+
+.fc-row {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fc-node-card {
+  width: 155px;
+  height: 64px;
+  background-color: rgba(30, 41, 59, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.fc-node-card-active {
+  border: 1px solid #ecc94b;
+  background-color: rgba(45, 55, 72, 0.95);
+}
+
+.fc-node-decision {
+  width: 155px;
+  height: 64px;
+  background-color: rgba(58, 26, 40, 0.88);
+  border: 1px solid rgba(246, 173, 85, 0.8);
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.fc-node-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.fc-node-tag {
+  color: #ecc94b;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.fc-node-status {
+  color: #48bb78;
+  font-size: 8px;
+}
+
+.fc-node-status-decision {
+  color: #ed8936;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.fc-node-title {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.fc-node-desc {
+  color: #cbd5e0;
+  font-size: 8px;
+  margin-top: 2px;
+}
+
+.fc-arrow-box {
+  width: 22px;
+  height: 64px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.fc-arrow-text {
+  color: #d4af37;
+  font-size: 13px;
+}
+
+.fc-branches-col {
+  flex-direction: column;
+  margin-left: 10px;
+  padding-top: 4px;
+}
+
+.fc-branch-item {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.fc-branch-arrow-box {
+  width: 24px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+}
+
+.fc-branch-arrow-text {
+  color: #a78bfa;
+  font-size: 11px;
+}
+
+.fc-branch-card {
+  width: 190px;
+  height: 48px;
+  background-color: rgba(30, 41, 59, 0.88);
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+.fc-branch-card-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.fc-branch-name {
+  color: #f1f5f9;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.fc-branch-end-badge {
+  background-color: rgba(220, 38, 38, 0.85);
+  border-radius: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  height: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-branch-end-text {
+  color: #ffffff;
+  font-size: 7px;
+  font-weight: bold;
+}
+
+.fc-branch-desc {
+  color: #94a3b8;
+  font-size: 8px;
+}

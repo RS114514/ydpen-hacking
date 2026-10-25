@@ -16,31 +16,31 @@
   top: 0;
 }
 
-/* 左侧原版文字菜单容器（2列 x 4行，8个官方选项全部一览无余，完美适配 800x220） */
-.title-menu-scroll {
+/* 左侧原版文字菜单容器（置于千恋万花 Logo 正下方，完全不遮挡 Logo，支持上下滑动） */
+.title-menu-viewport {
   position: absolute;
-  left: 14px;
-  top: 54px;
-  width: 308px;
-  height: 154px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  left: 16px;
+  top: 76px;
+  width: 170px;
+  height: 138px;
+  overflow: hidden;
 }
 
-.title-menu-col {
-  width: 150px;
-  height: 154px;
+.title-menu-list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 170px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 /* 单个文字按钮条目 */
 .title-menu-btn {
-  width: 150px;
-  height: 33px;
-  background-color: rgba(24, 12, 18, 0.90);
+  width: 170px;
+  height: 28px;
+  margin-bottom: 5px;
+  background-color: rgba(24, 12, 18, 0.92);
   border-width: 1px;
   border-color: #6e4152;
   border-radius: 4px;
@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 10px;
-  padding-right: 8px;
+  padding-right: 10px;
 }
 
 .title-btn-primary {
@@ -71,6 +71,56 @@
 .title-btn-sub-highlight {
   font-size: 9px;
   color: #ffe8cb;
+}
+
+/* 菜单滑动辅助控制器（微调箭头与滑块） */
+.title-menu-scroll-ctrl {
+  position: absolute;
+  left: 190px;
+  top: 76px;
+  width: 18px;
+  height: 138px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-scroll-arrow {
+  width: 18px;
+  height: 18px;
+  background-color: rgba(30, 15, 22, 0.88);
+  border-width: 1px;
+  border-color: #6e4152;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-scroll-arrow-text {
+  font-size: 9px;
+  color: #cca474;
+}
+
+.title-scroll-arrow-disabled {
+  opacity: 0.35;
+}
+
+.title-scroll-bar {
+  width: 3px;
+  height: 92px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  position: relative;
+}
+
+.title-scroll-thumb {
+  width: 3px;
+  background-color: #e5b982;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
 }
 
 /* 右上角原版极简雅乐按键 */
@@ -457,7 +507,7 @@
   color: #fde8d0;
 }
 
-/* 后日谈 AFTER STORY 全屏角色菜单样式 */
+/* 日后谈 AFTER STORY 全屏角色菜单样式 */
 .after-root {
   width: 800px;
   height: 220px;

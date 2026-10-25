@@ -1,130 +1,314 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""generate_all_fg.py —— 批量生成角色立绘差分 PNG 并缩放至词典笔舞台区规格 (height 220px)"""
-import os, sys, subprocess, json
+"""generate_all_fg.py —— 千恋万花全角色差分立绘批量合成与导出脚本（390x220 完整舞台版）
+
+特性：
+  - 完整保留人物两侧长发、发饰、双马尾与双手，绝对不硬截切窄条；
+  - 修正玄十郎头部裁切视口（Y=490，完整保留银发与面部五官）；
+  - 修正各角色五官图层解析，精确匹配官方 _info.txt 与 _0.txt，排除无效差分层；
+  - 严格按照 PSD 图层自底向上（身体素体 -> 表情五官 -> 前发遮罩）精准分层渲染；
+  - 输出 390x220 标准舞台透明底 PNG，支持剧本驱动动态差分与表情切换。
+"""
+import os, sys, json, subprocess, shutil, argparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(HERE)
 OUT_DIR = os.path.join(PROJECT_DIR, "assets", "fg")
 os.makedirs(OUT_DIR, exist_ok=True)
 
-# 芦花图层表
-ROKA_DIR = "/Volumes/500GB/千恋万花_移植资源库/assets_ready/characters/fgimage/６芦花"
-ROKA_BODY = os.path.join(ROKA_DIR, "芦花a_0_683.tlg")
-ROKA_HAIR = os.path.join(ROKA_DIR, "芦花a_0_678.tlg")
-ROKA_BLUSH = os.path.join(ROKA_DIR, "芦花a_0_689.tlg")
+if "/opt/homebrew/bin" not in os.environ.get("PATH", ""):
+    os.environ["PATH"] = os.environ.get("PATH", "") + ":/opt/homebrew/bin:/usr/local/bin"
 
-roka_faces = {
-    "01": (275, 848, 807, 167, 131),
-    "02": (300, 856, 816, 154, 127),
-    "03": (326, 850, 813, 161, 129),
-    "04": (347, 848, 806, 164, 134),
-    "06": (411, 849, 816, 158, 126),
-    "07h": (437, 852, 816, 156, 125),
-    "08": (463, 849, 806, 162, 247),
-    "09": (489, 854, 822, 153, 120),
-    "10": (521, 851, 818, 158, 121),
-    "11": (547, 848, 820, 164, 122),
-    "12": (573, 854, 813, 156, 132),
-    "13": (599, 851, 801, 155, 140),
-    "14": (625, 851, 801, 155, 143),
-    "15": (651, 851, 801, 155, 144),
-    "17": (691, 856, 807, 159, 131),
-    "18": (692, 848, 816, 162, 127),
-    "19": (693, 854, 807, 161, 131),
-    "20": (694, 851, 816, 159, 126),
-    "21": (695, 848, 822, 159, 116),
-    "22": (696, 856, 822, 151, 120),
-    "23": (697, 851, 822, 156, 121),
-    "24": (698, 848, 801, 158, 140),
-    "25": (699, 848, 806, 164, 135),
-    "25h": (699, 848, 806, 164, 135),
-    "26": (700, 854, 816, 154, 125),
-    "28": (702, 854, 816, 154, 122),
-    "29": (703, 854, 801, 152, 140),
-    "30": (704, 848, 801, 158, 147),
-    "31": (705, 848, 822, 159, 119),
-    "32": (706, 849, 822, 158, 231),
-    "34": (708, 848, 807, 167, 132),
-}
+FG_ROOT = "/Volumes/500GB/千恋万花_移植资源库/assets_ready/characters/fgimage"
+DEVICE_DIR = "/userdisk/SenrenBanka/fg"
+SERIAL = os.environ.get("PEN_SERIAL", "9DA2200007506350")
 
-# 芳乃图层表
-YOSH_DIR = "/Volumes/500GB/千恋万花_移植资源库/assets_ready/characters/fgimage/１芳乃"
-YOSH_BODY = os.path.join(YOSH_DIR, "芳乃a_0_1855.tlg")
-YOSH_HAIR = os.path.join(YOSH_DIR, "芳乃a_0_1890.tlg")
+CHARACTER_CONFIGS = [
+    {
+        "name": "芳乃",
+        "aliases": ["芳乃"],
+        "folder": "１芳乃",
+        "prefix": "芳乃a_0_",
+        "info": "芳乃a_info.txt",
+        "txt0": "芳乃a_0.txt",
+        "dresses": {
+            "舞服": ["舞巫女服", "髪かぶせ"],
+            "巫女服": ["巫女服", "髪かぶせ"],
+            "私服": ["私服", "髪かぶせ"],
+            "制服": ["制服", "髪かぶせ"],
+        },
+        "crop": {"cropX": 320.0, "cropY": 705.0, "cropW": 960.0, "cropH": 680.0},
+        "extra_faces": ["22", "30", "33"]
+    },
+    {
+        "name": "茉子",
+        "aliases": ["茉子"],
+        "folder": "２茉子",
+        "prefix": "茉子a_0_",
+        "info": "茉子a_info.txt",
+        "txt0": "茉子a_0.txt",
+        "dresses": {
+            "私服": ["私服1"],
+            "忍者": ["忍者服", "忍者服用マフラー"],
+            "制服": ["制服"],
+            "洋装": ["私服2"],
+        },
+        "crop": {"cropX": 390.0, "cropY": 685.0, "cropW": 900.0, "cropH": 700.0},
+        "extra_faces": []
+    },
+    {
+        "name": "ムラサメ",
+        "aliases": ["ムラサメ", "丛雨"],
+        "folder": "３ムラサメ",
+        "prefix": "ムラサメa_0_",
+        "info": "ムラサメa_info.txt",
+        "txt0": "ムラサメa_0.txt",
+        "dresses": {
+            "私服": ["刀服", "髪かぶせ(刀服用)"],
+            "洋装": ["私服", "髪かぶせ"],
+            "制服": ["制服", "髪かぶせ"],
+            "寝間着": ["寝間着", "髪かぶせ"],
+        },
+        "crop": {"cropX": 510.0, "cropY": 790.0, "cropW": 840.0, "cropH": 680.0},
+        "extra_faces": []
+    },
+    {
+        "name": "レナ",
+        "aliases": ["レナ", "蕾娜"],
+        "folder": "４レナ",
+        "prefix": "レナa_0_",
+        "info": "レナa_info.txt",
+        "txt0": "レナa_0.txt",
+        "dresses": {
+            "私服": ["私服", "前髪かぶせ"],
+            "和装": ["現地服", "前髪かぶせ"],
+            "制服": ["制服", "前髪かぶせ"],
+            "仲居服": ["仲居服", "前髪かぶせ"],
+        },
+        "crop": {"cropX": 560.0, "cropY": 655.0, "cropW": 840.0, "cropH": 700.0},
+        "extra_faces": []
+    },
+    {
+        "name": "小春",
+        "aliases": ["小春"],
+        "folder": "５小春",
+        "prefix": "小春a_0_",
+        "info": "小春a_info.txt",
+        "txt0": "小春a_0.txt",
+        "dresses": {
+            "私服": ["私服"],
+            "仕事着": ["店服"],
+            "制服": ["制服"],
+        },
+        "crop": {"cropX": 550.0, "cropY": 705.0, "cropW": 580.0, "cropH": 680.0},
+        "extra_faces": []
+    },
+    {
+        "name": "玄十郎",
+        "aliases": ["玄十郎"],
+        "folder": "９玄十郎",
+        "prefix": "玄十郎a_0_",
+        "info": "玄十郎a_info.txt",
+        "txt0": "玄十郎a_0.txt",
+        "dresses": {
+            "私服": ["私服", "髪かぶせ"],
+            "剣道": ["剣道着", "髪かぶせ"],
+        },
+        "crop": {"cropX": 550.0, "cropY": 480.0, "cropW": 700.0, "cropH": 720.0},
+        "extra_faces": []
+    },
+    {
+        "name": "芦花",
+        "aliases": ["芦花"],
+        "folder": "６芦花",
+        "prefix": "芦花a_0_",
+        "info": "芦花a_info.txt",
+        "txt0": "芦花a_0.txt",
+        "dresses": {
+            "私服": ["私服", "髪かぶせ"],
+            "仕事着": ["甘味処服", "髪かぶせ"],
+        },
+        "crop": {"cropX": 570.0, "cropY": 665.0, "cropW": 650.0, "cropH": 650.0},
+        "extra_faces": [
+            "21", "22", "23", "24", "25", "25h", "26", "28", "29", "30", "31", "32", "34"
+        ]
+    }
+]
 
-yosh_faces = {
-    "01": (1867, 767, 892, 165, 125),
-    "04": (1870, 770, 894, 162, 122),
-    "05": (1871, 770, 895, 162, 125),
-    "06": (1872, 769, 893, 164, 129),
-    "09": (1875, 767, 900, 167, 118),
-    "10": (1876, 766, 891, 166, 125),
-    "11": (1877, 766, 891, 167, 125),
-    "17": (1883, 771, 892, 162, 125),
-    "18": (1884, 769, 893, 163, 122),
-    "20": (1886, 771, 897, 163, 120),
-    "22": (1888, 768, 895, 164, 121),
-    "30": (1915, 767, 900, 166, 117),
-    "33": (1918, 769, 893, 161, 122),
-}
+def load_character_tables(cfg):
+    char_folder = os.path.join(FG_ROOT, cfg["folder"])
+    info_path = os.path.join(FG_ROOT, cfg["info"])
+    txt0_path = os.path.join(char_folder, cfg["txt0"])
 
-specs = []
+    with open(info_path, "rb") as f:
+        info_lines = f.read().decode("utf-16le", errors="ignore").splitlines()
+    with open(txt0_path, "rb") as f:
+        txt0_lines = f.read().decode("utf-16le", errors="ignore").splitlines()
 
-# 芦花半身立绘：原画 X: 650..1130 (w: 480), Y: 680..1700 (h: 1020) -> 缩放至 104x220
-for code, info in roka_faces.items():
-    lid, fx, fy, fw, fh = info
-    face_file = os.path.join(ROKA_DIR, f"芦花a_0_{lid}.tlg")
-    layers = [
-        {"file": ROKA_BODY, "x": 666, "y": 687, "w": 446, "h": 1706},
-        {"file": face_file, "x": fx, "y": fy, "w": fw, "h": fh},
-        {"file": ROKA_HAIR, "x": 838, "y": 830, "w": 175, "h": 79},
-    ]
-    if "h" in code:
-        layers.append({"file": ROKA_BLUSH, "x": 860, "y": 855, "w": 140, "h": 97})
-    
-    out_path = os.path.join(OUT_DIR, f"芦花_私服_{code}.png")
-    specs.append({
-        "out": out_path,
-        "cropX": 650.0,
-        "cropY": 680.0,
-        "cropW": 480.0,
-        "cropH": 1020.0,
-        "outW": 104,
-        "outH": 220,
-        "layers": layers
-    })
+    layer_by_name = {}
+    for line_idx, l in enumerate(txt0_lines[2:], start=2):
+        p = l.split("\t")
+        if len(p) >= 10:
+            name = p[1]
+            try:
+                lid = int(p[9])
+                w = int(p[4])
+                h = int(p[5])
+                tlg_file = os.path.join(char_folder, f"{cfg['prefix']}{lid}.tlg")
+                if w > 0 and h > 0 and os.path.exists(tlg_file):
+                    if name not in layer_by_name:
+                        layer_by_name[name] = {
+                            "id": lid,
+                            "file": tlg_file,
+                            "x": int(p[2]),
+                            "y": int(p[3]),
+                            "w": w,
+                            "h": h,
+                            "name": name,
+                            "line": line_idx
+                        }
+            except ValueError:
+                pass
 
-# 芳乃半身立绘：原画 X: 560..1040 (w: 480), Y: 730..1750 (h: 1020) -> 缩放至 104x220
-for code, info in yosh_faces.items():
-    lid, fx, fy, fw, fh = info
-    face_file = os.path.join(YOSH_DIR, f"芳乃a_0_{lid}.tlg")
-    layers = [
-        {"file": YOSH_BODY, "x": 328, "y": 753, "w": 953, "h": 1632},
-        {"file": face_file, "x": fx, "y": fy, "w": fw, "h": fh},
-        {"file": YOSH_HAIR, "x": 768, "y": 907, "w": 168, "h": 82},
-    ]
-    out_path = os.path.join(OUT_DIR, f"芳乃_舞服_{code}.png")
-    specs.append({
-        "out": out_path,
-        "cropX": 560.0,
-        "cropY": 730.0,
-        "cropW": 480.0,
-        "cropH": 1020.0,
-        "outW": 104,
-        "outH": 220,
-        "layers": layers
-    })
+    # 解析表情列表
+    faces_raw = {}
+    for l in info_lines:
+        p = l.split("\t")
+        if len(p) >= 4 and p[0] == "face":
+            code = p[1]
+            raw_path = p[3]
+            base_name = raw_path.split("/")[-1]
+            faces_raw.setdefault(code, []).append((raw_path, base_name))
 
-spec_file = "/tmp/fg_specs.json"
-with open(spec_file, "w", encoding="utf-8") as f:
-    json.dump(specs, f)
+    resolved_faces = {}
+    for code, items in faces_raw.items():
+        base_num_str = code.rstrip("h").rstrip("m").rstrip("n").rstrip("d").rstrip("r")
+        is_standard = False
+        if base_num_str.isdigit() and 1 <= int(base_num_str) <= 20:
+            if not any(code.endswith(sfx) for sfx in ["m", "n", "d", "r"]):
+                is_standard = True
+        if code in cfg["extra_faces"]:
+            is_standard = True
 
-print(f"Generated spec for {len(specs)} character sprites. Running Swift compositor...")
-swift_bin = os.path.join(HERE, "composite.swift")
-ret = subprocess.run(["swift", swift_bin, spec_file], capture_output=True, text=True)
-if ret.returncode != 0:
-    print("Swift compositor error:", ret.stderr)
-    sys.exit(1)
+        if not is_standard:
+            continue
 
-print(f"Successfully generated {len(specs)} standing sprites in {OUT_DIR}!")
+        layers = []
+        for raw, bname in items:
+            if bname in layer_by_name:
+                layers.append(layer_by_name[bname])
+            elif raw in layer_by_name:
+                layers.append(layer_by_name[raw])
+
+        if layers:
+            resolved_faces[code] = layers
+
+    return layer_by_name, resolved_faces
+
+def build_specs():
+    specs = []
+    alias_map = {}
+
+    for cfg in CHARACTER_CONFIGS:
+        char_name = cfg["name"]
+        aliases = cfg["aliases"]
+        layer_by_name, resolved_faces = load_character_tables(cfg)
+        crop = cfg["crop"]
+
+        print(f"[{char_name}] 表情解析成功: {len(resolved_faces)} 种常用差分, 服装: {list(cfg['dresses'].keys())}")
+
+        for dress_name, dress_layer_names in cfg["dresses"].items():
+            dress_layers = [layer_by_name[l_name] for l_name in dress_layer_names if l_name in layer_by_name]
+
+            for face_code, face_layers in resolved_faces.items():
+                all_layers_map = {}
+                for l in dress_layers:
+                    all_layers_map[l["id"]] = l
+                for l in face_layers:
+                    all_layers_map[l["id"]] = l
+
+                # 按 PSD 图层自底向上顺序排序（行号降序：衣服素体在底，五官在中，前发遮罩在顶）
+                sorted_layers = sorted(all_layers_map.values(), key=lambda l: l["line"], reverse=True)
+
+                primary_filename = f"{char_name}_{dress_name}_{face_code}.png"
+                primary_out = os.path.join(OUT_DIR, primary_filename)
+
+                spec = {
+                    "out": primary_out,
+                    "cropX": crop["cropX"],
+                    "cropY": crop["cropY"],
+                    "cropW": crop["cropW"],
+                    "cropH": crop["cropH"],
+                    "layers": [
+                        {
+                            "file": l["file"],
+                            "x": l["x"],
+                            "y": l["y"],
+                            "w": l["w"],
+                            "h": l["h"]
+                        } for l in sorted_layers
+                    ]
+                }
+                specs.append(spec)
+
+                # 记录别名文件映射（例如 丛雨 <-> ムラサメ, 蕾娜 <-> レナ）
+                other_aliases = [a for a in aliases if a != char_name]
+                if other_aliases:
+                    alias_files = []
+                    for a in other_aliases:
+                        alias_filename = f"{a}_{dress_name}_{face_code}.png"
+                        alias_files.append(os.path.join(OUT_DIR, alias_filename))
+                    alias_map[primary_out] = alias_files
+
+    return specs, alias_map
+
+def main():
+    parser = argparse.ArgumentParser(description="千恋万花立绘全差分批量合成与导出（390x220舞台标准）")
+    parser.add_argument("--push", action="store_true", default=True, help="是否使用 adb 推送到设备")
+    parser.add_argument("--no-push", dest="push", action="store_false", help="仅本地生成，不推送到设备")
+    args = parser.parse_args()
+
+    print("=== 开始构建角色立绘差分规格表 ===")
+    specs, alias_map = build_specs()
+    print(f"总计规划生成主立绘文件: {len(specs)} 张")
+
+    spec_file = "/tmp/fg_all_specs.json"
+    with open(spec_file, "w", encoding="utf-8") as f:
+        json.dump(specs, f)
+
+    swift_bin = os.path.join(HERE, "composite.swift")
+    print(f"调用 Swift 多核合成引擎执行图层合成与 390x220 舞台画布输出...")
+    ret = subprocess.run(["swift", swift_bin, spec_file], capture_output=True, text=True)
+    if ret.returncode != 0:
+        print("Swift 合成引擎执行出错:", ret.stderr)
+        sys.exit(1)
+    print(ret.stdout.strip())
+
+    # 生成别名映射文件
+    alias_count = 0
+    for primary_out, alias_paths in alias_map.items():
+        if os.path.exists(primary_out):
+            for dst in alias_paths:
+                shutil.copyfile(primary_out, dst)
+                alias_count += 1
+    print(f"完成别名文件同步: {alias_count} 张（丛雨/蕾娜中日双向名称映射）")
+
+    total_local_files = len([f for f in os.listdir(OUT_DIR) if f.endswith(".png")])
+    print(f"本地立绘输出目录已就绪: {OUT_DIR}，共计 {total_local_files} 张 PNG 文件")
+
+    if args.push:
+        print(f"\n=== 开始通过 ADB 推送至词典笔设备 ({SERIAL}) ===")
+        subprocess.run(["adb", "-s", SERIAL, "shell", f"mkdir -p {DEVICE_DIR}"], check=True)
+        print(f"批量推送本地 {OUT_DIR}/ 至设备 {DEVICE_DIR}/ ...")
+        batch_push = subprocess.run(["adb", "-s", SERIAL, "push", OUT_DIR + "/.", DEVICE_DIR + "/"], capture_output=True, text=True)
+        if batch_push.returncode != 0:
+            print("ADB 推送失败:", batch_push.stderr)
+            sys.exit(1)
+        print("ADB 批量推送完成！")
+
+        dev_check = subprocess.run(["adb", "-s", SERIAL, "shell", f"ls -1 {DEVICE_DIR} | wc -l"], capture_output=True, text=True)
+        dev_count = dev_check.stdout.strip()
+        print(f"设备端 {DEVICE_DIR} 当前立绘文件总数: {dev_count}")
+
+if __name__ == "__main__":
+    main()

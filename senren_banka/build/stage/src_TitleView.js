@@ -1,15 +1,16 @@
 // pages/title/title.js —— 原版文字主菜单与鉴赏/日后谈入口
 import { S, getGal, log, getChapterByLine } from './Common.js';
-import { readAllSaves } from './Storage.js';
+import { readAllSaves, readSettings } from './Storage.js';
 
 export var titleMethods = {
   initTitle: function () {
     var G = getGal();
-    if (G && !this.bgmOn) {
+    if (G) {
       this.bgmOn = true;
       G.playBgm('/userdisk/SenrenBanka/bgm/BGM01.opus', true, 0.8);
     }
     this.titleConfirmModal = null;
+    this._confirmExecuting = false;
   },
   startNewGame: function () {
     log('start new game');
@@ -46,9 +47,11 @@ export var titleMethods = {
     if (p < 0) p = 4;
     if (p > 4) p = 0;
     this.titleSavePage = p;
+    this.titleSelectedSlot = p * 6 + 1;
     this.titleConfirmModal = null;
   },
   selectTitleSlotItem: function (slotNum) {
+    if (this._confirmExecuting) return;
     this.titleSelectedSlot = slotNum;
     var saves = this.titleSaves || readAllSaves();
     var data = saves['slot' + slotNum];
@@ -57,24 +60,38 @@ export var titleMethods = {
       var codeStr = 's000' + pageStr + '-' + (slotNum < 10 ? '0' + slotNum : '' + slotNum);
       this.titleConfirmModal = {
         slotNum: slotNum,
+        isAfterStory: false,
         title: '读取进度确认',
         subtitle: '载入目标：' + codeStr + '（' + (data.time || '——') + ' · ' + (data.chapter || '1-1') + '）',
-        message: '是否确定载入该槽位的物语推进记录？'
+        message: '是否确定载入该槽位的物语推进记录？',
+        warn: '※ 提示：载入将直接跳转至目标物语进度，未保存进度将丢失'
       };
     }
   },
   confirmExecuteTitleLoad: function () {
-    if (!this.titleConfirmModal) return;
+    if (!this.titleConfirmModal || this._confirmExecuting) return;
+    if (this.titleConfirmModal.isAfterStory) {
+      this.titleConfirmModal = null;
+      return;
+    }
+    this._confirmExecuting = true;
     var slotNum = this.titleConfirmModal.slotNum;
     this.titleConfirmModal = null;
-    this.loadSlotFromTitle(slotNum);
+    var self = this;
+    setTimeout(function () {
+      self._confirmExecuting = false;
+      self.loadSlotFromTitle(slotNum);
+    }, 60);
   },
   cancelTitleConfirm: function () {
     this.titleConfirmModal = null;
+    this._confirmExecuting = false;
   },
   openFlowchartModal: function () {
-    this.titleModalType = 'flowchart';
-    this.titleConfirmModal = null;
+    this.view = 'flowchart';
+    if (typeof this.initFlowchart === 'function') {
+      this.initFlowchart();
+    }
   },
   jumpFromFlowchart: function (line) {
     this.currentLine = line || 0;
@@ -86,16 +103,39 @@ export var titleMethods = {
     }
   },
   openAfterModal: function () {
-    this.titleModalType = 'after';
-    this.titleConfirmModal = null;
+    this.view = 'afterstory';
+    if (typeof this.initAfterStory === 'function') {
+      this.initAfterStory();
+    }
   },
-  startAfterStory: function (heroineKey, line) {
-    this.currentLine = line || 0;
-    this.titleModalType = '';
-    this.titleConfirmModal = null;
-    this.view = 'game';
-    if (typeof this.initGame === 'function') {
-      this.initGame();
+  selectAfterHeroine: function (item) {
+    if (!item) return;
+    var G = getGal();
+    if (G && item.voice) {
+      G.stopVoice();
+      G.playVoice('/userdisk/SenrenBanka/voice/' + item.voice, 1.0);
+    }
+    var settings = readSettings();
+    var cleared = settings && settings.clearedRoutes && settings.clearedRoutes.indexOf(item.key) >= 0;
+    this.afterSelectedHeroine = item.key;
+    this.titleConfirmModal = {
+      slotNum: null,
+      isAfterStory: true,
+      voiceFile: item.voice,
+      title: '日后谈 · ' + item.name,
+      subtitle: item.title + '（AFTER STORY）',
+      message: cleared
+        ? '【已通关本篇】该角色专属日后谈物语已解锁。'
+        : '【待解锁】日后谈为该角色线完结之后的追加故事，需先通关本篇【' + item.name + '线】达成结局后开启。',
+      warn: cleared ? '※ 状态：已解锁' : '※ 提示：请先在主线流程图中达成该角色路线结局',
+      isCleared: cleared
+    };
+  },
+  playHeroineVoiceAgain: function (voiceFile) {
+    var G = getGal();
+    if (G && voiceFile) {
+      G.stopVoice();
+      G.playVoice('/userdisk/SenrenBanka/voice/' + voiceFile, 1.0);
     }
   },
   closeTitleModal: function () {
@@ -146,7 +186,7 @@ export var titleMethods = {
       }
       var newY = this._menuStartScroll + dy;
       if (newY > 0) newY = 0;
-      if (newY < -135) newY = -135;
+      if (newY < -124) newY = -124;
       this.titleScrollY = newY;
     }
   },
@@ -157,25 +197,23 @@ export var titleMethods = {
     }, 120);
   },
   scrollMenuUp: function () {
-    var y = (this.titleScrollY || 0) + 68;
+    var y = (this.titleScrollY || 0) + 66;
     if (y > 0) y = 0;
     this.titleScrollY = y;
   },
   scrollMenuDown: function () {
-    var y = (this.titleScrollY || 0) - 68;
-    if (y < -135) y = -135;
+    var y = (this.titleScrollY || 0) - 66;
+    if (y < -124) y = -124;
     this.titleScrollY = y;
   }
 };
 
 export function renderTitle(vm, h) {
-  var bgmText = vm.bgmOn ? '♫ 雅乐: 奏鸣中' : '♫ 雅乐: 已止音';
-
-  var col1Buttons = [
+  var menuButtons = [
     // (1) 新游戏 NEW GAME
     h('div', {
       staticStyle: S('title-menu-btn title-btn-primary'),
-      on: { click: function () { vm.startNewGame(); } }
+      on: { click: function () { log('click new game'); vm.startNewGame(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '新游戏'),
       h('text', { staticStyle: S('title-btn-sub-highlight') }, 'START ›')
@@ -184,7 +222,7 @@ export function renderTitle(vm, h) {
     // (2) 继续游戏 CONTINUE
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.continueGame(); } }
+      on: { click: function () { log('click continue'); vm.continueGame(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '继续游戏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'CONTINUE')
@@ -193,7 +231,7 @@ export function renderTitle(vm, h) {
     // (3) 读取存档 LOAD DATA
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.openTitleLoadModal(); } }
+      on: { click: function () { log('click load'); vm.openTitleLoadModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '读取存档'),
       h('text', { staticStyle: S('title-btn-sub') }, 'DATA LOAD')
@@ -202,18 +240,16 @@ export function renderTitle(vm, h) {
     // (4) 流程图 FLOW CHART
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.openFlowchartModal(); } }
+      on: { click: function () { log('click flowchart'); vm.openFlowchartModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '流程图'),
       h('text', { staticStyle: S('title-btn-sub') }, 'CHART')
-    ])
-  ];
+    ]),
 
-  var col2Buttons = [
     // (5) 鉴赏 EXTRA（严格修正为原版真实名称“鉴赏”）
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.openGallery(); } }
+      on: { click: function () { log('click gallery'); vm.openGallery(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '鉴赏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'EXTRA')
@@ -222,7 +258,7 @@ export function renderTitle(vm, h) {
     // (6) 日后谈 AFTER STORY（主线/单人线完结后的专属故事）
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.openAfterModal(); } }
+      on: { click: function () { log('click afterstory'); vm.openAfterModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '日后谈'),
       h('text', { staticStyle: S('title-btn-sub') }, 'AFTER')
@@ -231,7 +267,7 @@ export function renderTitle(vm, h) {
     // (7) 系统设置 SYSTEM
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.toggleTitleBgm(); } }
+      on: { click: function () { log('click system'); vm.toggleTitleBgm(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '系统设置'),
       h('text', { staticStyle: S('title-btn-sub') }, 'SYSTEM')
@@ -240,12 +276,19 @@ export function renderTitle(vm, h) {
     // (8) 退出游戏 EXIT
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { vm.toggleTitleBgm(); } }
+      on: { click: function () { log('click exit'); vm.toggleTitleBgm(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '退出游戏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'EXIT')
     ])
   ];
+
+  // 计算右侧滑动指示滑块位置
+  var curY = vm.titleScrollY || 0;
+  var ratio = -curY / 124.0;
+  if (ratio < 0) ratio = 0;
+  if (ratio > 1) ratio = 1;
+  var thumbTop = Math.round(ratio * 74);
 
   var children = [
     // 1. 官方原版 800x220 四女主与官方 Logo 大背景
@@ -254,20 +297,44 @@ export function renderTitle(vm, h) {
       attrs: { src: 'file:///userdisk/SenrenBanka/bg/title_bg.png' }
     }),
 
-    // 2. 右上角原版极简雅乐按键
-    h('div', { staticStyle: S('title-top-bar') }, [
+    // 2. 左侧原版纵向和风毛笔滑动菜单（位于千恋万花Logo正下方，完全避开Logo，支持滑动）
+    h('div', {
+      staticStyle: S('title-menu-viewport'),
+      on: {
+        touchstart: function (e) { vm.onMenuTouchStart(e); },
+        touchmove: function (e) { vm.onMenuTouchMove(e); },
+        touchend: function (e) { vm.onMenuTouchEnd(e); }
+      }
+    }, [
       h('div', {
-        staticStyle: S('title-bgm-pill'),
-        on: { click: function () { vm.toggleTitleBgm(); } }
-      }, [
-        h('text', { staticStyle: S('title-bgm-pill-text') }, bgmText)
-      ])
+        staticStyle: S('title-menu-list', {
+          top: (vm.titleScrollY || 0) + 'px'
+        })
+      }, menuButtons)
     ]),
 
-    // 3. 左侧原版双列文字菜单栏（2列 x 4行，8个官方选项一览无余）
-    h('div', { staticStyle: S('title-menu-scroll') }, [
-      h('div', { staticStyle: S('title-menu-col') }, col1Buttons),
-      h('div', { staticStyle: S('title-menu-col') }, col2Buttons)
+    // 4. 菜单右侧滑动微调控制条（上滑 ▲ / 下滑 ▼ / 进度滑块）
+    h('div', { staticStyle: S('title-menu-scroll-ctrl') }, [
+      h('div', {
+        staticStyle: S((vm.titleScrollY || 0) >= 0 ? 'title-scroll-arrow title-scroll-arrow-disabled' : 'title-scroll-arrow'),
+        on: { click: function () { vm.scrollMenuUp(); } }
+      }, [
+        h('text', { staticStyle: S('title-scroll-arrow-text') }, '▲')
+      ]),
+      h('div', { staticStyle: S('title-scroll-bar') }, [
+        h('div', {
+          staticStyle: S('title-scroll-thumb', {
+            height: '24px',
+            top: thumbTop + 'px'
+          })
+        })
+      ]),
+      h('div', {
+        staticStyle: S((vm.titleScrollY || 0) <= -172 ? 'title-scroll-arrow title-scroll-arrow-disabled' : 'title-scroll-arrow'),
+        on: { click: function () { vm.scrollMenuDown(); } }
+      }, [
+        h('text', { staticStyle: S('title-scroll-arrow-text') }, '▼')
+      ])
     ])
   ];
 
@@ -418,7 +485,7 @@ export function renderTitle(vm, h) {
           h('div', { staticStyle: S('flowchart-header') }, [
             h('div', { staticStyle: S('flowchart-title-box') }, [
               h('text', { staticStyle: S('flowchart-title-text') }, '◆ 流程图 FLOW CHART ◆'),
-              h('text', { staticStyle: S('flowchart-subtitle') }, '规范真实章节节点（1-1、1-2、1-3、2-1），轻触直接跳转')
+              h('text', { staticStyle: S('flowchart-subtitle') }, '原版章节节点（1-1、1-2、1-3、2-1），轻触直接跳转')
             ]),
             h('div', {
               staticStyle: S('flowchart-close-btn'),
@@ -443,7 +510,7 @@ export function renderTitle(vm, h) {
                     h('text', { staticStyle: S('flowchart-node-status') }, '● 已解锁')
                   ]),
                   h('text', { staticStyle: S('flowchart-node-title') }, '1-1'),
-                  h('text', { staticStyle: S('flowchart-node-desc') }, '初临神域，古镇街道漫步')
+                  h('text', { staticStyle: S('flowchart-node-desc') }, '第 1 ~ 350 句剧情')
                 ]),
                 h('div', { staticStyle: S('flowchart-arrow') }, [
                   h('text', { staticStyle: S('flowchart-arrow-text') }, '▶')
@@ -457,7 +524,7 @@ export function renderTitle(vm, h) {
                     h('text', { staticStyle: S('flowchart-node-status') }, '● 已解锁')
                   ]),
                   h('text', { staticStyle: S('flowchart-node-title') }, '1-2'),
-                  h('text', { staticStyle: S('flowchart-node-desc') }, '神社盛典，拔出名刀丛雨丸')
+                  h('text', { staticStyle: S('flowchart-node-desc') }, '第 351 ~ 550 句剧情')
                 ])
               ]),
 
@@ -472,7 +539,7 @@ export function renderTitle(vm, h) {
                     h('text', { staticStyle: S('flowchart-node-status') }, '● 已解锁')
                   ]),
                   h('text', { staticStyle: S('flowchart-node-title') }, '1-3'),
-                  h('text', { staticStyle: S('flowchart-node-desc') }, '神刀少女显现，五百年心意相通')
+                  h('text', { staticStyle: S('flowchart-node-desc') }, '第 551 ~ 780 句剧情')
                 ]),
                 h('div', { staticStyle: S('flowchart-arrow') }, [
                   h('text', { staticStyle: S('flowchart-arrow-text') }, '▶')
@@ -486,7 +553,7 @@ export function renderTitle(vm, h) {
                     h('text', { staticStyle: S('flowchart-node-status') }, '★ 分歧点')
                   ]),
                   h('text', { staticStyle: S('flowchart-node-title') }, '2-1'),
-                  h('text', { staticStyle: S('flowchart-node-desc') }, '四方宿命由此分道扬镳')
+                  h('text', { staticStyle: S('flowchart-node-desc') }, '第 781 句开始')
                 ])
               ])
             ]),
@@ -500,10 +567,10 @@ export function renderTitle(vm, h) {
               }, [
                 h('div', { staticStyle: S('flowchart-branch-info') }, [
                   h('text', { staticStyle: S('flowchart-branch-name') }, '【芳乃】朝武芳乃线'),
-                  h('text', { staticStyle: S('flowchart-branch-sub') }, '神刀解除・巫女誓约')
+                  h('text', { staticStyle: S('flowchart-branch-sub') }, '主线物语')
                 ]),
                 h('div', { staticStyle: S('flowchart-branch-end') }, [
-                  h('text', { staticStyle: S('flowchart-branch-end-text') }, '蝶印 · TRUE END')
+                  h('text', { staticStyle: S('flowchart-branch-end-text') }, 'TRUE END')
                 ])
               ]),
 
@@ -514,10 +581,10 @@ export function renderTitle(vm, h) {
               }, [
                 h('div', { staticStyle: S('flowchart-branch-info') }, [
                   h('text', { staticStyle: S('flowchart-branch-name') }, '【茉子】常陆茉子线'),
-                  h('text', { staticStyle: S('flowchart-branch-sub') }, '忍者少女・忠义守护')
+                  h('text', { staticStyle: S('flowchart-branch-sub') }, '主线物语')
                 ]),
                 h('div', { staticStyle: S('flowchart-branch-end') }, [
-                  h('text', { staticStyle: S('flowchart-branch-end-text') }, '蝶印 · HAPPY END')
+                  h('text', { staticStyle: S('flowchart-branch-end-text') }, 'HAPPY END')
                 ])
               ]),
 
@@ -528,10 +595,10 @@ export function renderTitle(vm, h) {
               }, [
                 h('div', { staticStyle: S('flowchart-branch-info') }, [
                   h('text', { staticStyle: S('flowchart-branch-name') }, '【丛雨】丛雨幼刀线'),
-                  h('text', { staticStyle: S('flowchart-branch-sub') }, '五百年宿命・神刀之誓')
+                  h('text', { staticStyle: S('flowchart-branch-sub') }, '主线物语')
                 ]),
                 h('div', { staticStyle: S('flowchart-branch-end') }, [
-                  h('text', { staticStyle: S('flowchart-branch-end-text') }, '蝶印 · TRUE END')
+                  h('text', { staticStyle: S('flowchart-branch-end-text') }, 'TRUE END')
                 ])
               ]),
 
@@ -542,10 +609,10 @@ export function renderTitle(vm, h) {
               }, [
                 h('div', { staticStyle: S('flowchart-branch-info') }, [
                   h('text', { staticStyle: S('flowchart-branch-name') }, '【蕾娜】蕾娜异国线'),
-                  h('text', { staticStyle: S('flowchart-branch-sub') }, '异国微风・绿茶物语')
+                  h('text', { staticStyle: S('flowchart-branch-sub') }, '主线物语')
                 ]),
                 h('div', { staticStyle: S('flowchart-branch-end') }, [
-                  h('text', { staticStyle: S('flowchart-branch-end-text') }, '蝶印 · HAPPY END')
+                  h('text', { staticStyle: S('flowchart-branch-end-text') }, 'HAPPY END')
                 ])
               ])
             ])
@@ -554,19 +621,19 @@ export function renderTitle(vm, h) {
       );
     } else if (vm.titleModalType === 'after') {
       var afterHeroines = [
-        { key: 'yoshino', tag: '【芳乃】', name: '朝武 芳乃', title: '「巫女新娘的日常」', desc: '神刀解除后的甘甜同居时光', line: 784 },
-        { key: 'mako', tag: '【茉子】', name: '常陆 茉子', title: '「忍者少女的假日」', desc: '卸下护卫重任的两人约会', line: 200 },
-        { key: 'murasame', tag: '【丛雨】', name: '丛 雨', title: '「幽灵的永恒之约」', desc: '跨越五百年的相伴温暖心愿', line: 560 },
-        { key: 'lena', tag: '【蕾娜】', name: '蕾 娜', title: '「绿茶香气的晨光」', desc: '异国风情调配与晨间轻吻', line: 260 },
-        { key: 'koharu', tag: '【小春】', name: '鞍马 小春', title: '「甜点屋的和风修行」', desc: '和果子制作中的心跳亲近', line: 160 },
-        { key: 'roka', tag: '【芦花】', name: '马场 芦花', title: '「温泉旅馆的微醺之夜」', desc: '志那都庄老板娘的温柔照料', line: 120 }
+        { key: 'yoshino', tag: '【芳乃】', name: '朝武 芳乃', title: '115 · 芳乃－ａｆｔｅｒ', desc: '主线、共同线与芳乃线完结后的专属后日谈', voice: 'yoshino_after.ogg' },
+        { key: 'mako', tag: '【茉子】', name: '常陆 茉子', title: '211 · 茉子－ａｆｔｅｒ', desc: '主线、共同线与茉子线完结后的专属后日谈', voice: 'mako_after.ogg' },
+        { key: 'murasame', tag: '【丛雨】', name: '丛 雨', title: '317 · ムラサメちゃんおまけルート', desc: '主线、共同线与丛雨线完结后的专属后日谈', voice: 'murasame_after.ogg' },
+        { key: 'lena', tag: '【蕾娜】', name: '蕾 娜', title: '429 · レナ・いらっしゃい', desc: '主线、共同线与蕾娜线完结后的专属后日谈', voice: 'lena_after.ogg' },
+        { key: 'koharu', tag: '【小春】', name: '鞍马 小春', title: '513 · 小春－ａｆｔｅｒ', desc: '主线、共同线与小春线完结后的专属后日谈', voice: 'koharu_after.ogg' },
+        { key: 'roka', tag: '【芦花】', name: '马场 芦花', title: '523 · 芦花－ａｆｔｅｒ', desc: '主线、共同线与芦花线完结后的专属后日谈', voice: 'roka_after.ogg' }
       ];
 
       var afterCards = afterHeroines.map(function (it) {
         return h('div', {
           key: it.key,
           staticStyle: S('after-card'),
-          on: { click: function () { vm.startAfterStory(it.key, it.line); } }
+          on: { click: function () { vm.selectAfterHeroine(it); } }
         }, [
           h('div', { staticStyle: S('after-card-top') }, [
             h('div', { staticStyle: S('after-card-name-box') }, [
@@ -574,7 +641,7 @@ export function renderTitle(vm, h) {
               h('text', { staticStyle: S('after-card-name') }, it.name)
             ]),
             h('div', { staticStyle: S('after-card-badge') }, [
-              h('text', { staticStyle: S('after-card-badge-text') }, '后日篇')
+              h('text', { staticStyle: S('after-card-badge-text') }, '日后谈')
             ])
           ]),
           h('text', { staticStyle: S('after-card-title') }, it.title),
@@ -587,7 +654,7 @@ export function renderTitle(vm, h) {
           h('div', { staticStyle: S('after-header') }, [
             h('div', { staticStyle: S('after-title-box') }, [
               h('text', { staticStyle: S('after-title-text') }, '◆ 日后谈 AFTER STORY ◆'),
-              h('text', { staticStyle: S('after-subtitle') }, '主线、共同线与单人线完结之后的追加故事，轻触角色卡片开启物语')
+              h('text', { staticStyle: S('after-subtitle') }, '主线、共同线与单人线完结之后的追加故事，轻触角色卡片查看解锁详情与原版台词')
             ]),
             h('div', {
               staticStyle: S('after-close-btn'),
@@ -602,8 +669,9 @@ export function renderTitle(vm, h) {
     }
   }
 
-  // 和风二次确认弹窗（TITLE DATA LOAD CONFIRM）
+  // 和风二次确认弹窗（TITLE DATA LOAD CONFIRM / AFTER STORY NOTICE）
   if (vm.titleConfirmModal) {
+    var isAfter = vm.titleConfirmModal.isAfterStory;
     children.push(
       h('div', { staticStyle: S('confirm-mask') }, [
         h('div', { staticStyle: S('confirm-box') }, [
@@ -616,10 +684,24 @@ export function renderTitle(vm, h) {
           // 中间提示与风险信息
           h('div', { staticStyle: S('confirm-content') }, [
             h('text', { staticStyle: S('confirm-slot-code') }, vm.titleConfirmModal.subtitle),
-            h('text', { staticStyle: S('confirm-msg-text') }, vm.titleConfirmModal.message)
+            h('text', { staticStyle: S('confirm-msg-text') }, vm.titleConfirmModal.message),
+            vm.titleConfirmModal.warn ? h('text', { staticStyle: S('confirm-sub-warn') }, vm.titleConfirmModal.warn) : null
           ]),
           // 底部双按钮操作区
-          h('div', { staticStyle: S('confirm-actions') }, [
+          h('div', { staticStyle: S('confirm-actions') }, isAfter ? [
+            h('div', {
+              staticStyle: S('confirm-btn confirm-btn-ok'),
+              on: { click: function () { vm.confirmExecuteTitleLoad(); } }
+            }, [
+              h('text', { staticStyle: S('confirm-btn-ok-text') }, '我知道了')
+            ]),
+            h('div', {
+              staticStyle: S('confirm-btn confirm-btn-cancel'),
+              on: { click: function () { vm.playHeroineVoiceAgain(vm.titleConfirmModal.voiceFile); } }
+            }, [
+              h('text', { staticStyle: S('confirm-btn-cancel-text') }, '♪ 重听台词')
+            ])
+          ] : [
             h('div', {
               staticStyle: S('confirm-btn confirm-btn-ok'),
               on: { click: function () { vm.confirmExecuteTitleLoad(); } }

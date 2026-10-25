@@ -2,6 +2,8 @@
 import { titleMethods, renderTitle } from './TitleView.js';
 import { gameMethods, renderGame } from './GameView.js';
 import { galleryMethods, renderGallery } from './GalleryView.js';
+import { flowchartMethods, renderFlowchart } from './FlowchartView.js';
+import { afterstoryMethods, renderAfterstory } from './AfterstoryView.js';
 import { getGal, log } from './Common.js';
 
 var methods = {
@@ -11,6 +13,10 @@ var methods = {
       this.initTitle();
     } else if (this.view === 'game' && typeof this.initGame === 'function') {
       this.initGame();
+    } else if (this.view === 'flowchart' && typeof this.initFlowchart === 'function') {
+      this.initFlowchart();
+    } else if (this.view === 'afterstory' && typeof this.initAfterStory === 'function') {
+      this.initAfterStory();
     }
   },
   onHide: function () {
@@ -33,13 +39,15 @@ var k;
 for (k in titleMethods) methods[k] = titleMethods[k];
 for (k in gameMethods) methods[k] = gameMethods[k];
 for (k in galleryMethods) methods[k] = galleryMethods[k];
+for (k in flowchartMethods) methods[k] = flowchartMethods[k];
+for (k in afterstoryMethods) methods[k] = afterstoryMethods[k];
 
 export default {
   name: 'index',
   data: function () {
     return {
-      view: 'title', // 'title' | 'game' | 'gallery'
-      bgmOn: false,
+      view: 'title', // 'title' | 'game' | 'gallery' | 'flowchart' | 'afterstory'
+      bgmOn: true,
       titleModalType: '',
       titleSaves: {},
       currentLine: 0,
@@ -68,6 +76,10 @@ export default {
       galleryStandFace: 0,
       galleryStandPos: 0,
       galleryPage: 0,
+      flowPanX: 0,
+      flowPanY: 0,
+      afterPanX: 0,
+      selectedAfterHeroine: 'yoshino',
       index: 0,
       zoomIdx: 0,
       uiVisible: true,
@@ -86,6 +98,10 @@ export default {
       return renderGame(this, h);
     } else if (this.view === 'gallery') {
       return renderGallery(this, h);
+    } else if (this.view === 'flowchart') {
+      return renderFlowchart(this, h);
+    } else if (this.view === 'afterstory') {
+      return renderAfterstory(this, h);
     }
     return renderTitle(this, h);
   }

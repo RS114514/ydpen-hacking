@@ -13,6 +13,20 @@ shutil.copyfile(
     os.path.join(clean_dir, "libs", "libjsapi_shell.so")
 )
 
+# 确保 index.js.bin 中的常量已 patch
+index_bin_path = os.path.join(clean_dir, "index.js.bin")
+if os.path.exists(index_bin_path):
+    with open(index_bin_path, "rb") as f:
+        data = f.read()
+    target = "左侧：暂停/开始 · ±".encode("utf-16le")
+    replacement = "     下载\n    ".encode("utf-16le")
+    pos = data.find(target)
+    if pos != -1:
+        data = data[:pos] + replacement + data[pos+len(target):]
+        with open(index_bin_path, "wb") as f:
+            f.write(data)
+        print("Patched atom in index.js.bin at offset:", pos)
+
 js_source = r'''
 import shell from "shell";
 
@@ -130,17 +144,6 @@ class BasePage extends $falcon.Page {
         var opt = this.$options;
         if (!opt || opt.name !== "PageBili") return;
 
-        if (opt.computed) {
-          var origCurrentItems = opt.computed.currentItems;
-          opt.computed.currentItems = function() {
-            if (this._isCacheTab) {
-              return this._cachedMoviesAsCards || [];
-            }
-            if (origCurrentItems) return origCurrentItems.call(this);
-            return this.tab === "hot" ? this.hotItems : this.rcmdItems;
-          };
-        }
-
         if (opt.style) {
           if (opt.style["info-spacer"]) {
             opt.style["info-spacer"].flex = 0;
@@ -165,7 +168,10 @@ class BasePage extends $falcon.Page {
             lineHeight: "34px",
             justifyContent: "center",
             alignItems: "center",
-            opacity: 1
+            opacity: 1,
+            lines: 1,
+            maxLines: 1,
+            overflow: "hidden"
           };
           if (opt.style.brand) {
             opt.style.brand.height = "0px";
@@ -192,6 +198,17 @@ class BasePage extends $falcon.Page {
           opt.render = function(h) {
             var comp = this;
             var vnode = origRender.call(comp, h);
+            var infoCol = findNodeByClass(vnode, "info-col");
+            if (infoCol && infoCol.children && infoCol.children[5]) {
+              var hNode = infoCol.children[5];
+              console.warn('[H_TEXT] text=' + hNode.text + ' c0=' + (hNode.children && hNode.children[0] ? hNode.children[0].text : 'none'));
+              try {
+                console.warn('[H_JSON] ' + JSON.stringify(hNode));
+              } catch(eJ) {
+                console.warn('[H_JSON_ERR] ' + eJ);
+              }
+            }
+            console.warn('[PAGE_RENDER] mode=' + comp.mode + ' tab=' + comp.tab);
 
             try {
               if (vnode) {
@@ -210,7 +227,7 @@ class BasePage extends $falcon.Page {
                         }
                       } catch (e) {}
 
-                      // Un-highlight "rcmd" (推荐)
+                      // Un-highlight "rcmd"
                       if (itemKey === "rcmd" || itemText === "\u63a8\u8350" || k === 1) {
                         itemNode.data.class = "tab";
                         itemNode.data.staticClass = "tab";
@@ -224,7 +241,7 @@ class BasePage extends $falcon.Page {
                           if (t0.staticStyle) t0.staticStyle.color = "#8d99a6";
                         }
                       }
-                      // Highlight "cache" (缓存)
+                      // Highlight "cache"
                       if (itemKey === "cache" || itemText === "\u7f13\u5b58" || k === barNode.children.length - 1) {
                         itemNode.data.class = "tab tab-on";
                         itemNode.data.staticClass = "tab tab-on";
@@ -242,71 +259,66 @@ class BasePage extends $falcon.Page {
                   }
                 }
 
-                // 2. Play mode: format Download button from info-hint in info-col
-                var infoCol = findNodeByClass(vnode, "info-col");
-                if (infoCol && infoCol.children) {
-                  var hintNode = null;
-                  var stateNode = null;
-                  var spacerNode = null;
-
-                  for (var cidx = 0; cidx < infoCol.children.length; cidx++) {
-                    var ch = infoCol.children[cidx];
-                    var chCls = (ch.data && (ch.data.staticClass || ch.data.class)) || "";
-                    console.warn('[INFO_COL_CHILD ' + cidx + '] tag=' + ch.tag + ' cls=' + JSON.stringify(chCls));
-                    var sCls = JSON.stringify(chCls);
-                    if (sCls.indexOf("info-hint") !== -1 || cidx === 5) hintNode = ch;
-                    if (sCls.indexOf("info-state") !== -1 || cidx === 4) stateNode = ch;
-                    if (sCls.indexOf("info-spacer") !== -1 || cidx === 3) spacerNode = ch;
-                  }
-
-                  if (spacerNode && spacerNode.data) {
-                    spacerNode.data.style = { height: "0px", flex: 0 };
-                  }
-                  if (stateNode && stateNode.data) {
-                    stateNode.data.style = { height: "0px", width: "0px", opacity: 0 };
-                  }
-
-                  if (hintNode) {
-                    if (!hintNode.data) hintNode.data = {};
-                    hintNode.data.style = {
-                      width: "158px",
-                      height: "34px",
-                      marginTop: "6px",
-                      borderRadius: "6px",
-                      backgroundColor: "#162338",
-                      color: "#38bdf8",
-                      fontSize: "13px",
-                      textAlign: "center",
-                      lineHeight: "34px",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      opacity: 1
-                    };
-                    if (comp._v) {
-                      hintNode.children = [ comp._v(comp.dlBtnStatus || "\u4e0b\u8f7d") ];
-                    }
-                    hintNode.data.on = {
-                      click: function() {
-                        console.warn("[CLICK_DOWNLOAD] triggered!");
-                        comp.dlBtnStatus = "\u6b63\u5728\u4e0b\u8f7d\u2026";
-                        if (comp.$forceUpdate) comp.$forceUpdate();
-                        try {
-                          if (shell && shell.Shell && shell.Shell.exec) {
-                            shell.Shell.exec("/userdisk/bin/bili-download &");
-                          }
-                        } catch (e) {
-                          console.warn("[DOWNLOAD_ERR] " + e);
-                        }
-                        setTimeout(function() {
-                          comp.dlBtnStatus = "\u5df2\u52a0\u5165\u7f13\u5b58";
-                          if (comp.$forceUpdate) comp.$forceUpdate();
-                          setTimeout(function() {
-                            comp.dlBtnStatus = "\u4e0b\u8f7d";
+                // 2. Play mode: create real div button with comp._c
+                if (comp.mode === "play") {
+                  var infoCol = findNodeByClass(vnode, "info-col");
+                  if (infoCol && infoCol.children && infoCol.children.length >= 6) {
+                    try {
+                      var dlBtn = comp._c("div", {
+                        staticClass: "info-ctrl",
+                        class: "info-ctrl",
+                        style: {
+                          width: "158px",
+                          height: "34px",
+                          marginTop: "6px",
+                          borderRadius: "6px",
+                          backgroundColor: "#162338",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        },
+                        on: {
+                          click: function() {
+                            console.warn("[DOWNLOAD_TRIGGERED]");
+                            comp.dlBtnText = "\u6b63\u5728\u4e0b\u8f7d\u2026";
                             if (comp.$forceUpdate) comp.$forceUpdate();
-                          }, 3000);
-                        }, 1500);
-                      }
-                    };
+                            try {
+                              if (shell && shell.Shell && shell.Shell.exec) {
+                                shell.Shell.exec("/userdisk/bin/bili-download &");
+                              }
+                            } catch (e) {
+                              console.warn("[DL_ERR] " + e);
+                            }
+                            setTimeout(function() {
+                              comp.dlBtnText = "\u5df2\u52a0\u5165\u7f13\u5b58";
+                              if (comp.$forceUpdate) comp.$forceUpdate();
+                              setTimeout(function() {
+                                comp.dlBtnText = "\u4e0b\u8f7d";
+                                if (comp.$forceUpdate) comp.$forceUpdate();
+                              }, 3000);
+                            }, 1500);
+                          }
+                        }
+                      }, [
+                        comp._c("text", {
+                          staticClass: "info-ctrl-text",
+                          class: "info-ctrl-text",
+                          style: { color: "#38bdf8", fontSize: "13px" }
+                        }, [
+                          comp._v(comp.dlBtnText || "\u4e0b\u8f7d")
+                        ])
+                      ]);
+                      console.warn("[CTRL_ON_KEYS] " + (infoCol.children[2].data && infoCol.children[2].data.on ? Object.keys(infoCol.children[2].data.on).join(",") : "none"));
+                      infoCol.children[5] = dlBtn;
+                    } catch (eC) {
+                      console.warn("[COMP_C_ERR] " + eC);
+                    }
+
+                    if (infoCol.children[3] && infoCol.children[3].data) {
+                      infoCol.children[3].data.style = { height: "0px", flex: 0 };
+                    }
+                    if (infoCol.children[4] && infoCol.children[4].data) {
+                      infoCol.children[4].data.style = { height: "0px", width: "0px", opacity: 0 };
+                    }
                   }
                 }
               }
@@ -321,7 +333,9 @@ class BasePage extends $falcon.Page {
         if (!this.$options || this.$options.name !== "PageBili") return;
         var vm = this;
         this._isCacheTab = false;
+        this._origRcmdItems = null;
         this._cachedMoviesAsCards = [];
+        this.dlBtnText = "\u4e0b\u8f7d";
 
         // Append 5th tab: cache
         if (this.tabs && Array.isArray(this.tabs)) {
@@ -335,25 +349,26 @@ class BasePage extends $falcon.Page {
         }
 
         this._scanCache = function() {
-          console.warn("[CACHE_SCAN] scanning /userdisk/Favorite/Movies/*.mp4 ...");
+          console.warn("[CACHE_SCAN] scanning /userdisk/Favorite/Bilibili/*.mp4 ...");
           if (shell && shell.Shell && shell.Shell.exec) {
-            shell.Shell.exec("ls -1 /userdisk/Favorite/Movies/*.mp4 2>/dev/null").then(function(out) {
+            shell.Shell.exec("ls -1 /userdisk/Favorite/Bilibili/*.mp4 2>/dev/null").then(function(out) {
               var lines = (out || "").trim().split("\n").filter(function(l) { return l.trim().length > 0; });
               console.warn("[CACHE_SCAN] found " + lines.length + " files");
               var cards = [];
               for (var j = 0; j < lines.length; j++) {
                 var p = lines[j].trim();
                 var fname = p.split("/").pop().replace(/\.mp4$/i, "");
+                var coverUrl = "http://127.0.0.1:8080/files/Bilibili/" + encodeURIComponent(fname) + ".jpg";
                 cards.push({
                   key: "cached_" + j,
                   bvid: "local:" + p,
                   title: fname,
-                  cover: "http://i0.hdslb.com/bfs/archive/e86ddab343a72592a503fcec30dba0b5e031d592.jpg",
-                  pic: "http://i0.hdslb.com/bfs/archive/e86ddab343a72592a503fcec30dba0b5e031d592.jpg",
+                  cover: coverUrl,
+                  pic: coverUrl,
                   duration: "\u672c\u5730\u7f13\u5b58",
                   durationSec: 0,
-                  up: "\u79bb\u7ebf\u672c\u5730\u89c6\u9891",
-                  owner: { name: "\u79bb\u7ebf\u672c\u5730\u89c6\u9891" },
+                  up: "\u54d4\u54e9\u54d4\u54e9\u79bb\u7ebf\u7f13\u5b58",
+                  owner: { name: "\u54d4\u54e9\u54d4\u54e9\u79bb\u7ebf\u7f13\u5b58" },
                   view: "\u5df2\u5c31\u7eea",
                   stat: { view: "\u5df2\u5c31\u7eea" },
                   kind: "video",
@@ -361,8 +376,9 @@ class BasePage extends $falcon.Page {
                 });
               }
               vm._cachedMoviesAsCards = cards;
-              if (vm._isCacheTab && vm.$forceUpdate) {
-                vm.$forceUpdate();
+              if (vm._isCacheTab) {
+                vm.rcmdItems = cards;
+                if (vm.$forceUpdate) vm.$forceUpdate();
               }
             }).catch(function(e) {
               console.warn("[CACHE_SCAN_ERR] " + e);
@@ -376,14 +392,24 @@ class BasePage extends $falcon.Page {
             console.warn("[SELECT_TAB] " + tabId);
             if (tabId === "cache") {
               this._isCacheTab = true;
+              if (!this._origRcmdItems && this.rcmdItems) {
+                this._origRcmdItems = this.rcmdItems;
+              }
               this.tab = "rcmd";
               this.loading = false;
               this.statusText = "";
+              this.rcmdItems = this._cachedMoviesAsCards || [];
               this._scanCache();
               if (this.$forceUpdate) this.$forceUpdate();
               return;
             }
-            this._isCacheTab = false;
+            if (this._isCacheTab) {
+              this._isCacheTab = false;
+              if (this._origRcmdItems) {
+                this.rcmdItems = this._origRcmdItems;
+              }
+              this.tab = "";
+            }
             origSelectTab.call(this, tabId);
           };
         }

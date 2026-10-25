@@ -1,0 +1,57 @@
+#!/bin/sh
+PREF="/userdisk/miniapp/data/mini_app/pkg/8002026091900004/data/sharedpreferences/preferences.json"
+LOG="/tmp/bili_download.log"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Download triggered" >> "$LOG"
+
+bvid=$(grep -o '\\"bvid\\":\\"[^\\]*' "$PREF" | head -n 1 | awk -F'"' '{print $NF}')
+cid=$(grep -o '\\"cid\\":[0-9]*' "$PREF" | head -n 1 | awk -F':' '{print $NF}')
+title=$(grep -o '\\"title\\":\\"[^\\]*' "$PREF" | head -n 1 | awk -F'"' '{print $NF}')
+cover=$(grep -o '\\"cover\\":\\"[^\\]*' "$PREF" | head -n 1 | awk -F'"' '{print $NF}')
+
+if [ -z "$bvid" ] || [ -z "$cid" ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Error: No active video in history" >> "$LOG"
+    exit 1
+fi
+
+clean_title=$(echo "$title" | tr -d '/\:*?"<>|' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+[ -z "$clean_title" ] && clean_title="$bvid"
+
+bili_dir="/userdisk/Favorite/Bilibili"
+mkdir -p "$bili_dir"
+out_file="${bili_dir}/${clean_title}.mp4"
+cover_file="${bili_dir}/${clean_title}.jpg"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Target: $clean_title -> $out_file" >> "$LOG"
+
+# 1. Download cover image
+if [ -n "$cover" ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Fetching cover: $cover" >> "$LOG"
+    curl -s -L -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)' -H 'Referer: https://www.bilibili.com/' "$cover" -o "$cover_file"
+fi
+
+api_url="https://api.bilibili.com/x/player/wbi/playurl?bvid=${bvid}&cid=${cid}&qn=16&fnval=1"
+resp=$(curl -s "$api_url" -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)' -H 'Referer: https://www.bilibili.com/' "$api_url")
+dl_url=$(echo "$resp" | grep -o '"url":"[^"]*' | head -n 1 | awk -F'"' '{print $NF}' | sed 's/\\u0026/\&/g')
+
+if [ -z "$dl_url" ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Error: Failed to get download stream URL" >> "$LOG"
+    exit 1
+fi
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Downloading video..." >> "$LOG"
+curl -s -L -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)' -H 'Referer: https://www.bilibili.com/' "$dl_url" -o "$out_file"
+ret=$?
+
+if [ $ret -eq 0 ] && [ -f "$out_file" ] && [ $(ls -s "$out_file" | awk '{print $1}') -gt 100 ]; then
+    sz=$(ls -lh "$out_file" | awk '{print $5}')
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Successfully downloaded: $clean_title.mp4 ($sz)" >> "$LOG"
+    # Ensure thumbnail exists
+    if [ ! -f "$cover_file" ] || [ $(ls -s "$cover_file" | awk '{print $1}') -lt 1 ]; then
+        /bin/ffmpeg -ss 00:00:01 -i "$out_file" -vframes 1 -q:v 3 "$cover_file" -y 2>/dev/null
+    fi
+else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Error: Download failed or empty file" >> "$LOG"
+    rm -f "$out_file"
+    exit 1
+fi

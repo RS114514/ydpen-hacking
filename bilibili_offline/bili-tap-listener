@@ -1,0 +1,19 @@
+#!/bin/sh
+cur_x=0
+cur_y=0
+stdbuf -oL -eL evtest /dev/input/event1 2>/dev/null | while IFS= read -r line; do
+    case "$line" in
+        *ABS_MT_POSITION_X*value*)
+            cur_x=$(echo "$line" | awk '{print $NF}')
+            ;;
+        *ABS_MT_POSITION_Y*value*)
+            cur_y=$(echo "$line" | awk '{print $NF}')
+            ;;
+        *BTN_TOUCH*value\ 0*)
+            if [ "$cur_x" -ge 240 ] && [ "$cur_x" -le 305 ] && [ "$cur_y" -ge 10 ] && [ "$cur_y" -le 200 ]; then
+                echo "[$(date '+%Y-%m-%d %H:%M:%S')] [TAP_LISTENER] Download capsule tapped at phys ($cur_x, $cur_y)" >> /tmp/bili_download.log
+                /userdisk/bin/bili-download &
+            fi
+            ;;
+    esac
+done

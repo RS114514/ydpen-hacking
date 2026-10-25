@@ -5,88 +5,190 @@ var ST = {
   "width": "800px",
   "height": "220px",
   "overflow": "hidden",
-  "backgroundColor": "#0d1117"
+  "backgroundColor": "#0b0f19"
  },
  "lib-header": {
   "width": "800px",
-  "height": "34px",
+  "height": "38px",
   "flexDirection": "row",
   "alignItems": "center",
+  "justifyContent": "space-between",
   "paddingLeft": "12px",
   "paddingRight": "12px",
-  "backgroundColor": "#161b22"
+  "backgroundColor": "#111827",
+  "borderBottomWidth": "1px",
+  "borderBottomColor": "#1f2937"
  },
- "lib-title": {
-  "flex": 1,
-  "color": "#e6edf3",
-  "fontSize": "16px"
+ "header-left-group": {
+  "flexDirection": "row",
+  "alignItems": "center",
+  "flex": 1
  },
- "lib-count": {
-  "color": "#8b949e",
-  "fontSize": "12px",
-  "marginRight": "10px"
- },
- "btn-refresh": {
-  "height": "24px",
-  "paddingLeft": "10px",
-  "paddingRight": "10px",
+ "btn-back-dir": {
+  "height": "30px",
+  "paddingLeft": "12px",
+  "paddingRight": "12px",
   "justifyContent": "center",
   "alignItems": "center",
-  "backgroundColor": "#21262d",
-  "borderRadius": "6px"
+  "backgroundColor": "#1f2937",
+  "borderRadius": "8px",
+  "marginRight": "10px"
+ },
+ "btn-back-dir-text": {
+  "color": "#38bdf8",
+  "fontSize": "13px",
+  "fontWeight": "bold"
+ },
+ "lib-title": {
+  "color": "#f9fafb",
+  "fontSize": "15px",
+  "fontWeight": "bold",
+  "lines": 1,
+  "textOverflow": "ellipsis"
+ },
+ "header-right-group": {
+  "flexDirection": "row",
+  "alignItems": "center"
+ },
+ "lib-count": {
+  "color": "#9ca3af",
+  "fontSize": "12px",
+  "marginRight": "12px"
+ },
+ "btn-refresh": {
+  "height": "30px",
+  "paddingLeft": "14px",
+  "paddingRight": "14px",
+  "justifyContent": "center",
+  "alignItems": "center",
+  "backgroundColor": "#2563eb",
+  "borderRadius": "8px"
  },
  "btn-refresh-text": {
-  "color": "#c9d1d9",
-  "fontSize": "13px"
+  "color": "#ffffff",
+  "fontSize": "13px",
+  "fontWeight": "bold"
  },
  "lib-scroller": {
   "width": "800px",
-  "height": "186px",
+  "height": "182px",
   "paddingTop": "6px"
  },
  "movie-card": {
   "width": "776px",
-  "height": "42px",
+  "height": "48px",
   "marginLeft": "12px",
   "marginBottom": "6px",
   "flexDirection": "row",
   "alignItems": "center",
   "paddingLeft": "10px",
   "paddingRight": "10px",
-  "backgroundColor": "#161b22",
-  "borderRadius": "8px"
+  "backgroundColor": "#161e2e",
+  "borderRadius": "10px",
+  "borderLeftWidth": "4px",
+  "borderLeftColor": "#3b82f6"
+ },
+ "folder-card": {
+  "width": "776px",
+  "height": "48px",
+  "marginLeft": "12px",
+  "marginBottom": "6px",
+  "flexDirection": "row",
+  "alignItems": "center",
+  "paddingLeft": "10px",
+  "paddingRight": "10px",
+  "backgroundColor": "#1c1c28",
+  "borderRadius": "10px",
+  "borderLeftWidth": "4px",
+  "borderLeftColor": "#f59e0b"
  },
  "movie-badge": {
-  "width": "32px",
-  "height": "28px",
+  "width": "36px",
+  "height": "34px",
   "justifyContent": "center",
   "alignItems": "center",
-  "backgroundColor": "#1f6feb",
-  "borderRadius": "6px"
+  "backgroundColor": "#2563eb",
+  "borderRadius": "8px"
  },
  "movie-badge-text": {
   "color": "#ffffff",
-  "fontSize": "14px"
+  "fontSize": "15px"
+ },
+ "folder-badge": {
+  "width": "36px",
+  "height": "34px",
+  "justifyContent": "center",
+  "alignItems": "center",
+  "backgroundColor": "#b45309",
+  "borderRadius": "8px"
+ },
+ "folder-badge-text": {
+  "color": "#fef3c7",
+  "fontSize": "12px",
+  "fontWeight": "bold"
+ },
+ "item-info-wrap": {
+  "width": "530px",
+  "marginLeft": "12px",
+  "flexDirection": "column",
+  "justifyContent": "center"
  },
  "movie-name": {
-  "width": "530px",
-  "marginLeft": "10px",
-  "color": "#e6edf3",
+  "color": "#f3f4f6",
   "fontSize": "15px",
+  "fontWeight": "bold",
   "lines": 1,
   "textOverflow": "ellipsis"
  },
- "movie-duration": {
-  "width": "90px",
-  "color": "#58a6ff",
-  "fontSize": "14px",
-  "textAlign": "center"
+ "item-sub-text": {
+  "color": "#9ca3af",
+  "fontSize": "11px",
+  "marginTop": "2px",
+  "lines": 1
+ },
+ "folder-sub-text": {
+  "color": "#f59e0b",
+  "fontSize": "11px",
+  "marginTop": "2px",
+  "lines": 1
+ },
+ "item-right-wrap": {
+  "width": "160px",
+  "flexDirection": "row",
+  "alignItems": "center",
+  "justifyContent": "flex-end"
  },
  "movie-size": {
-  "width": "70px",
-  "color": "#8b949e",
+  "color": "#9ca3af",
   "fontSize": "13px",
+  "marginRight": "12px",
   "textAlign": "right"
+ },
+ "btn-folder-action": {
+  "width": "66px",
+  "height": "28px",
+  "justifyContent": "center",
+  "alignItems": "center",
+  "backgroundColor": "#374151",
+  "borderRadius": "6px"
+ },
+ "btn-folder-action-text": {
+  "color": "#fcd34d",
+  "fontSize": "12px",
+  "fontWeight": "bold"
+ },
+ "btn-play-action": {
+  "width": "66px",
+  "height": "28px",
+  "justifyContent": "center",
+  "alignItems": "center",
+  "backgroundColor": "#059669",
+  "borderRadius": "6px"
+ },
+ "btn-play-action-text": {
+  "color": "#ffffff",
+  "fontSize": "12px",
+  "fontWeight": "bold"
  },
  "list-pad": {
   "width": "800px",
@@ -94,23 +196,44 @@ var ST = {
  },
  "empty-wrap": {
   "width": "800px",
-  "height": "186px",
+  "height": "182px",
+  "justifyContent": "center",
+  "alignItems": "center",
+  "padding": "16px"
+ },
+ "empty-icon": {
+  "fontSize": "32px",
+  "marginBottom": "6px"
+ },
+ "empty-title": {
+  "color": "#e5e7eb",
+  "fontSize": "16px",
+  "fontWeight": "bold"
+ },
+ "empty-hint": {
+  "marginTop": "6px",
+  "color": "#9ca3af",
+  "fontSize": "13px"
+ },
+ "empty-path": {
+  "marginTop": "4px",
+  "color": "#38bdf8",
+  "fontSize": "12px"
+ },
+ "empty-back-btn": {
+  "marginTop": "10px",
+  "height": "32px",
+  "paddingLeft": "16px",
+  "paddingRight": "16px",
+  "backgroundColor": "#2563eb",
+  "borderRadius": "8px",
   "justifyContent": "center",
   "alignItems": "center"
  },
- "empty-title": {
-  "color": "#e6edf3",
-  "fontSize": "18px"
- },
- "empty-hint": {
-  "marginTop": "10px",
-  "color": "#8b949e",
-  "fontSize": "14px"
- },
- "empty-path": {
-  "marginTop": "6px",
-  "color": "#58a6ff",
-  "fontSize": "14px"
+ "empty-back-btn-text": {
+  "color": "#ffffff",
+  "fontSize": "13px",
+  "fontWeight": "bold"
  },
  "player-root": {
   "position": "relative",

@@ -9,8 +9,15 @@ var methods = {
   // 页面生命周期必须写在 methods 里（基类用 $root.onShow() 转发）
   onShow: function () {
     log('onShow view=' + this.view);
-    if (this.view === 'list') this.loadMovies();
-    else if (this.state === 'paused' && this.cur) { /* 从后台回来保持暂停，由用户点播放 */ }
+    if (this.view === 'list') {
+      if (typeof this.loadDirectory === 'function') {
+        this.loadDirectory(this.currentDir);
+      } else {
+        this.loadMovies();
+      }
+    } else if (this.state === 'paused' && this.cur) {
+      /* 从后台回来保持暂停，由用户点播放 */
+    }
   },
   onHide: function () {
     // 切到后台：播放中则暂停并停止轮询
@@ -39,6 +46,10 @@ export default {
       items: [],
       listLoaded: false,
       listError: '',
+      currentDir: '/userdisk/Favorite/Movies',
+      parentDir: '/userdisk/Favorite/Movies',
+      canBack: false,
+      dirHistory: [],
       cur: null,
       state: 'idle',           // idle|loading|playing|paused|ended|error
       loading: false,

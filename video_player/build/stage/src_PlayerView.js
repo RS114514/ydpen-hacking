@@ -98,6 +98,9 @@ export var playerMethods = {
     this.view = 'list';
     this.state = 'idle';
     this.cur = null;
+    if (typeof this.loadDirectory === 'function') {
+      this.loadDirectory(this.currentDir);
+    }
   },
 
   // ---- 画面真正的等比放缩功能 ----

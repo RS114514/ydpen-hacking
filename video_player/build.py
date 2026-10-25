@@ -13,7 +13,14 @@ import argparse, json, os, re, shutil, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOLKIT = os.path.join(HERE, "..", "ydpen-toolkit", "scripts")
-SERIAL = os.environ.get("PEN_SERIAL", "192.168.31.30:5555")
+SERIAL = os.environ.get("PEN_SERIAL")
+if not SERIAL:
+    try:
+        p = subprocess.run(["adb", "devices"], capture_output=True, text=True)
+        lines = [l.split()[0] for l in p.stdout.strip().splitlines()[1:] if l.strip() and "device" in l]
+        SERIAL = lines[0] if lines else "9DA2200007506350"
+    except Exception:
+        SERIAL = "9DA2200007506350"
 APPID = "8002026102300004"
 VERSION = "1.0.0"
 PEN_LIB = "/oem/YoudaoDictPen/output/libs:/usr/lib:/lib"

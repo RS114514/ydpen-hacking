@@ -1,23 +1,48 @@
 // pages/title/title.js —— 原版文字主菜单与鉴赏/日后谈入口
 import { S, getGal, log, getChapterByLine } from '../../common.js';
-import { readAllSaves, readSettings } from '../../storage.js';
+import { readAllSaves, readSettings, writeSettings } from '../../storage.js';
+
+// 标题页读档/新游戏的安全场景解析：仅允许 main 与 after_* 剧本
+function safeScenario(value) {
+  if (typeof value === 'string' && (value === 'main' || /^after_[A-Za-z0-9_]+$/.test(value))) {
+    return value;
+  }
+  return 'main';
+}
+
+function safeLine(value) {
+  if (typeof value !== 'number' || !isFinite(value) || value < 0) return 0;
+  return Math.floor(value);
+}
 
 export var titleMethods = {
   initTitle: function () {
+    this.titleModalType = '';
+    var settings = readSettings() || {};
+    this.bgmOn = settings.bgmEnabled !== false;
+    this.bgmVolume = typeof settings.bgmVolume === 'number' ? settings.bgmVolume : 0.8;
+    if (this.bgmVolume < 0) this.bgmVolume = 0;
+    if (this.bgmVolume > 1) this.bgmVolume = 1;
     var G = getGal();
     if (G) {
-      this.bgmOn = true;
-      G.playBgm('/userdisk/SenrenBanka/bgm/BGM01.opus', true, 0.8);
+      G.setBgmVolume(this.bgmVolume);
+      if (this.bgmOn) {
+        G.playBgm('/userdisk/SenrenBanka/bgm/BGM01.opus', true, this.bgmVolume);
+      } else {
+        G.stopBgm();
+      }
     }
     this.titleConfirmModal = null;
     this._confirmExecuting = false;
   },
   startNewGame: function () {
     log('start new game');
+    // 新游戏必须显式回到 main 剧本，清除日后谈等残留场景状态
+    this.currentScenario = 'main';
     this.currentLine = 0;
     this.view = 'game';
     if (typeof this.initGame === 'function') {
-      this.initGame();
+      this.initGame('main', 0);
     }
   },
   continueGame: function () {
@@ -25,14 +50,13 @@ export var titleMethods = {
     var saves = readAllSaves();
     var latestSlot = saves.latest || '1';
     var data = saves['slot' + latestSlot];
-    if (data && typeof data.line === 'number') {
-      this.currentLine = data.line;
-    } else {
-      this.currentLine = 0;
-    }
+    var scenario = data ? safeScenario(data.scenario) : 'main';
+    var line = data ? safeLine(data.line) : 0;
+    this.currentScenario = scenario;
+    this.currentLine = line;
     this.view = 'game';
     if (typeof this.initGame === 'function') {
-      this.initGame();
+      this.initGame(scenario, line);
     }
   },
   openTitleLoadModal: function () {
@@ -88,6 +112,8 @@ export var titleMethods = {
     this._confirmExecuting = false;
   },
   openFlowchartModal: function () {
+    this.titleModalType = '';
+    this.titleConfirmModal = null;
     this.view = 'flowchart';
     if (typeof this.initFlowchart === 'function') {
       this.initFlowchart();
@@ -103,6 +129,8 @@ export var titleMethods = {
     }
   },
   openAfterModal: function () {
+    this.titleModalType = '';
+    this.titleConfirmModal = null;
     this.view = 'afterstory';
     if (typeof this.initAfterStory === 'function') {
       this.initAfterStory();
@@ -146,28 +174,67 @@ export var titleMethods = {
     var saves = this.titleSaves || readAllSaves();
     var data = saves['slot' + slotNum];
     if (data && typeof data.line === 'number') {
-      this.currentLine = data.line;
+      var scenario = safeScenario(data.scenario);
+      var line = safeLine(data.line);
+      this.currentScenario = scenario;
+      this.currentLine = line;
       this.titleModalType = '';
       this.titleConfirmModal = null;
       this.view = 'game';
       if (typeof this.initGame === 'function') {
-        this.initGame();
+        this.initGame(scenario, line);
       }
     }
   },
   openGallery: function () {
     log('open gallery');
+    this.titleModalType = '';
+    this.titleConfirmModal = null;
+    this.galleryCgFullscreen = false;
     this.view = 'gallery';
+    if (typeof this.initGallery === 'function') {
+      this.initGallery();
+    }
+  },
+  openTitleSettings: function () {
+    var settings = readSettings() || {};
+    this.bgmOn = settings.bgmEnabled !== false;
+    this.bgmVolume = typeof settings.bgmVolume === 'number' ? settings.bgmVolume : 0.8;
+    this.titleModalType = 'settings';
+    this.titleConfirmModal = null;
   },
   toggleTitleBgm: function () {
     var G = getGal();
     this.bgmOn = !this.bgmOn;
     if (G) {
       if (this.bgmOn) {
-        G.playBgm('/userdisk/SenrenBanka/bgm/BGM01.opus', true, 0.8);
+        G.setBgmVolume(this.bgmVolume);
+        G.playBgm('/userdisk/SenrenBanka/bgm/BGM01.opus', true, this.bgmVolume);
       } else {
         G.stopBgm();
       }
+    }
+    writeSettings({ bgmEnabled: this.bgmOn, bgmVolume: this.bgmVolume });
+  },
+  adjustTitleBgmVolume: function (delta) {
+    var volume = Math.round((this.bgmVolume + delta) * 10) / 10;
+    if (volume < 0) volume = 0;
+    if (volume > 1) volume = 1;
+    this.bgmVolume = volume;
+    var G = getGal();
+    if (G) G.setBgmVolume(volume);
+    writeSettings({ bgmEnabled: this.bgmOn, bgmVolume: volume });
+  },
+  openTitleExitModal: function () {
+    this.titleModalType = 'exit';
+    this.titleConfirmModal = null;
+  },
+  cancelTitleExit: function () {
+    this.titleModalType = '';
+  },
+  confirmTitleExit: function () {
+    if (this.$page && typeof this.$page.finish === 'function') {
+      this.$page.finish();
     }
   },
   onMenuTouchStart: function (e) {
@@ -209,17 +276,17 @@ export var titleMethods = {
 };
 
 export function renderTitle(vm, h) {
-  var menuButtons = [
-    // (1) 新游戏 NEW GAME
+  // 左列 4 个核心游玩按钮
+  var col1Buttons = [
+    // (1) 新游戏
     h('div', {
       staticStyle: S('title-menu-btn title-btn-primary'),
       on: { click: function () { log('click new game'); vm.startNewGame(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '新游戏'),
-      h('text', { staticStyle: S('title-btn-sub-highlight') }, 'START ›')
+      h('text', { staticStyle: S('title-btn-sub-highlight') }, 'START')
     ]),
-
-    // (2) 继续游戏 CONTINUE
+    // (2) 继续游戏
     h('div', {
       staticStyle: S('title-menu-btn'),
       on: { click: function () { log('click continue'); vm.continueGame(); } }
@@ -227,26 +294,27 @@ export function renderTitle(vm, h) {
       h('text', { staticStyle: S('title-btn-label') }, '继续游戏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'CONTINUE')
     ]),
-
-    // (3) 读取存档 LOAD DATA
+    // (3) 读取存档
     h('div', {
       staticStyle: S('title-menu-btn'),
       on: { click: function () { log('click load'); vm.openTitleLoadModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '读取存档'),
-      h('text', { staticStyle: S('title-btn-sub') }, 'DATA LOAD')
+      h('text', { staticStyle: S('title-btn-sub') }, 'LOAD')
     ]),
-
-    // (4) 流程图 FLOW CHART
+    // (4) 流程图
     h('div', {
       staticStyle: S('title-menu-btn'),
       on: { click: function () { log('click flowchart'); vm.openFlowchartModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '流程图'),
       h('text', { staticStyle: S('title-btn-sub') }, 'CHART')
-    ]),
+    ])
+  ];
 
-    // (5) 鉴赏 EXTRA（严格修正为原版真实名称“鉴赏”）
+  // 右列 4 个鉴赏扩展按钮
+  var col2Buttons = [
+    // (5) 鉴赏 EXTRA
     h('div', {
       staticStyle: S('title-menu-btn'),
       on: { click: function () { log('click gallery'); vm.openGallery(); } }
@@ -254,8 +322,7 @@ export function renderTitle(vm, h) {
       h('text', { staticStyle: S('title-btn-label') }, '鉴赏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'EXTRA')
     ]),
-
-    // (6) 日后谈 AFTER STORY（主线/单人线完结后的专属故事）
+    // (6) 日后谈 AFTER
     h('div', {
       staticStyle: S('title-menu-btn'),
       on: { click: function () { log('click afterstory'); vm.openAfterModal(); } }
@@ -263,32 +330,23 @@ export function renderTitle(vm, h) {
       h('text', { staticStyle: S('title-btn-label') }, '日后谈'),
       h('text', { staticStyle: S('title-btn-sub') }, 'AFTER')
     ]),
-
     // (7) 系统设置 SYSTEM
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { log('click system'); vm.toggleTitleBgm(); } }
+      on: { click: function () { log('click system'); vm.openTitleSettings(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '系统设置'),
       h('text', { staticStyle: S('title-btn-sub') }, 'SYSTEM')
     ]),
-
     // (8) 退出游戏 EXIT
     h('div', {
       staticStyle: S('title-menu-btn'),
-      on: { click: function () { log('click exit'); vm.toggleTitleBgm(); } }
+      on: { click: function () { log('click exit'); vm.openTitleExitModal(); } }
     }, [
       h('text', { staticStyle: S('title-btn-label') }, '退出游戏'),
       h('text', { staticStyle: S('title-btn-sub') }, 'EXIT')
     ])
   ];
-
-  // 计算右侧滑动指示滑块位置
-  var curY = vm.titleScrollY || 0;
-  var ratio = -curY / 124.0;
-  if (ratio < 0) ratio = 0;
-  if (ratio > 1) ratio = 1;
-  var thumbTop = Math.round(ratio * 74);
 
   var children = [
     // 1. 官方原版 800x220 四女主与官方 Logo 大背景
@@ -297,50 +355,92 @@ export function renderTitle(vm, h) {
       attrs: { src: 'file:///userdisk/SenrenBanka/bg/title_bg.png' }
     }),
 
-    // 2. 左侧原版纵向和风毛笔滑动菜单（位于千恋万花Logo正下方，完全避开Logo，支持滑动）
-    h('div', {
-      staticStyle: S('title-menu-viewport'),
-      on: {
-        touchstart: function (e) { vm.onMenuTouchStart(e); },
-        touchmove: function (e) { vm.onMenuTouchMove(e); },
-        touchend: function (e) { vm.onMenuTouchEnd(e); }
-      }
-    }, [
-      h('div', {
-        staticStyle: S('title-menu-list', {
-          top: (vm.titleScrollY || 0) + 'px'
-        })
-      }, menuButtons)
-    ]),
-
-    // 4. 菜单右侧滑动微调控制条（上滑 ▲ / 下滑 ▼ / 进度滑块）
-    h('div', { staticStyle: S('title-menu-scroll-ctrl') }, [
-      h('div', {
-        staticStyle: S((vm.titleScrollY || 0) >= 0 ? 'title-scroll-arrow title-scroll-arrow-disabled' : 'title-scroll-arrow'),
-        on: { click: function () { vm.scrollMenuUp(); } }
-      }, [
-        h('text', { staticStyle: S('title-scroll-arrow-text') }, '▲')
-      ]),
-      h('div', { staticStyle: S('title-scroll-bar') }, [
-        h('div', {
-          staticStyle: S('title-scroll-thumb', {
-            height: '24px',
-            top: thumbTop + 'px'
-          })
-        })
-      ]),
-      h('div', {
-        staticStyle: S((vm.titleScrollY || 0) <= -172 ? 'title-scroll-arrow title-scroll-arrow-disabled' : 'title-scroll-arrow'),
-        on: { click: function () { vm.scrollMenuDown(); } }
-      }, [
-        h('text', { staticStyle: S('title-scroll-arrow-text') }, '▼')
-      ])
+    // 2. 左侧双列 8 大按钮（位于 Logo 正下方，完全不遮挡四女主与 Logo）
+    h('div', { staticStyle: S('title-menu-container') }, [
+      h('div', { staticStyle: S('title-menu-col') }, col1Buttons),
+      h('div', { staticStyle: S('title-menu-col') }, col2Buttons)
     ])
   ];
 
   // 弹窗浮层
   if (vm.titleModalType) {
-    if (vm.titleModalType === 'load') {
+    if (vm.titleModalType === 'settings') {
+      children.push(
+        h('div', { staticStyle: S('title-system-mask') }, [
+          h('div', { staticStyle: S('title-system-box') }, [
+            h('div', { staticStyle: S('title-system-header') }, [
+              h('text', { staticStyle: S('title-system-title') }, '❖ 系统设置 SYSTEM ❖'),
+              h('text', { staticStyle: S('title-system-subtitle') }, '音频设置将立即生效并保存')
+            ]),
+            h('div', { staticStyle: S('title-system-content') }, [
+              h('div', { staticStyle: S('title-system-row') }, [
+                h('text', { staticStyle: S('title-system-label') }, 'BGM 背景音乐'),
+                h('div', {
+                  staticStyle: S('title-system-btn title-system-switch'),
+                  on: { click: function () { vm.toggleTitleBgm(); } }
+                }, [
+                  h('text', { staticStyle: S('title-system-btn-text') }, vm.bgmOn ? '开启 ON' : '关闭 OFF')
+                ])
+              ]),
+              h('div', { staticStyle: S('title-system-row') }, [
+                h('text', { staticStyle: S('title-system-label') }, 'BGM 音量'),
+                h('div', { staticStyle: S('title-system-volume') }, [
+                  h('div', {
+                    staticStyle: S('title-system-btn title-system-volume-btn'),
+                    on: { click: function () { vm.adjustTitleBgmVolume(-0.1); } }
+                  }, [
+                    h('text', { staticStyle: S('title-system-volume-text') }, '－')
+                  ]),
+                  h('text', { staticStyle: S('title-system-percent') }, Math.round(vm.bgmVolume * 100) + '%'),
+                  h('div', {
+                    staticStyle: S('title-system-btn title-system-volume-btn'),
+                    on: { click: function () { vm.adjustTitleBgmVolume(0.1); } }
+                  }, [
+                    h('text', { staticStyle: S('title-system-volume-text') }, '＋')
+                  ])
+                ])
+              ])
+            ]),
+            h('div', { staticStyle: S('title-system-footer') }, [
+              h('div', {
+                staticStyle: S('title-system-btn title-system-close'),
+                on: { click: function () { vm.closeTitleModal(); } }
+              }, [
+                h('text', { staticStyle: S('title-system-btn-text') }, '返回标题')
+              ])
+            ])
+          ])
+        ])
+      );
+    } else if (vm.titleModalType === 'exit') {
+      children.push(
+        h('div', { staticStyle: S('title-system-mask') }, [
+          h('div', { staticStyle: S('title-system-box title-exit-box') }, [
+            h('div', { staticStyle: S('title-system-header') }, [
+              h('text', { staticStyle: S('title-system-title') }, '❖ 退出游戏 EXIT ❖')
+            ]),
+            h('div', { staticStyle: S('title-exit-content') }, [
+              h('text', { staticStyle: S('title-exit-message') }, '是否确定结束游戏并退出当前页面？'),
+              h('text', { staticStyle: S('title-exit-warn') }, '未保存的物语进度将会丢失')
+            ]),
+            h('div', { staticStyle: S('title-system-footer title-exit-actions') }, [
+              h('div', {
+                staticStyle: S('title-system-btn title-system-confirm'),
+                on: { click: function () { vm.confirmTitleExit(); } }
+              }, [
+                h('text', { staticStyle: S('title-system-btn-text') }, '确定退出')
+              ]),
+              h('div', {
+                staticStyle: S('title-system-btn title-system-close'),
+                on: { click: function () { vm.cancelTitleExit(); } }
+              }, [
+                h('text', { staticStyle: S('title-system-btn-text') }, '取消')
+              ])
+            ])
+          ])
+        ])
+      );
+    } else if (vm.titleModalType === 'load') {
       var page = vm.titleSavePage || 0;
       var totalPages = 5;
       var pageStr = '000' + (page + 1) + ' / 000' + totalPages;

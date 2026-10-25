@@ -16,29 +16,28 @@
   top: 0;
 }
 
-/* 左侧原版文字菜单容器（置于千恋万花 Logo 正下方，完全不遮挡 Logo，支持上下滑动） */
-.title-menu-viewport {
+/* 左侧原版文字菜单容器（置于千恋万花 Logo 正下方，两列并排，全部直观展示） */
+.title-menu-container {
   position: absolute;
-  left: 16px;
+  left: 14px;
   top: 76px;
-  width: 170px;
+  width: 200px;
   height: 138px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.title-menu-list {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 170px;
+.title-menu-col {
+  width: 96px;
   display: flex;
   flex-direction: column;
 }
 
 /* 单个文字按钮条目 */
 .title-menu-btn {
-  width: 170px;
-  height: 28px;
+  width: 96px;
+  height: 29px;
   margin-bottom: 5px;
   background-color: rgba(24, 12, 18, 0.92);
   border-width: 1px;
@@ -48,8 +47,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .title-btn-primary {
@@ -58,26 +57,20 @@
 }
 
 .title-btn-label {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: bold;
   color: #fff6eb;
 }
 
 .title-btn-sub {
-  font-size: 9px;
+  font-size: 8px;
   color: #cca474;
 }
 
 .title-btn-sub-highlight {
-  font-size: 9px;
+  font-size: 8px;
   color: #ffe8cb;
 }
-
-/* 菜单滑动辅助控制器（微调箭头与滑块） */
-.title-menu-scroll-ctrl {
-  position: absolute;
-  left: 190px;
-  top: 76px;
   width: 18px;
   height: 138px;
   display: flex;
@@ -656,5 +649,173 @@
 .after-card-desc {
   font-size: 10px;
   color: #9d7b8e;
+}
+
+/* 系统设置与独立退出确认：800x220 和风触控弹层 */
+.title-system-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 800px;
+  height: 220px;
+  background-color: rgba(8, 3, 8, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.title-system-box {
+  width: 420px;
+  height: 182px;
+  padding: 10px 16px;
+  background-color: #1c0e19;
+  border-width: 2px;
+  border-color: #d4a366;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title-system-header {
+  height: 32px;
+  border-bottom-width: 1px;
+  border-bottom-color: #6e4152;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-system-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #f7d9ae;
+}
+
+.title-system-subtitle {
+  font-size: 11px;
+  color: #b894a3;
+}
+
+.title-system-content {
+  height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title-system-row {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-system-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f4e4d3;
+}
+
+.title-system-btn {
+  min-width: 104px;
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #481a2c;
+  border-width: 1px;
+  border-color: #b06a68;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-system-btn-text {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff1df;
+}
+
+.title-system-switch {
+  min-width: 128px;
+  background-color: #7d1c31;
+  border-color: #e0b477;
+}
+
+.title-system-volume {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title-system-volume-btn {
+  min-width: 48px;
+  width: 48px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.title-system-volume-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffe7c2;
+}
+
+.title-system-percent {
+  width: 76px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #f7d9ae;
+  text-align: center;
+}
+
+.title-system-footer {
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.title-system-close {
+  min-width: 112px;
+}
+
+.title-exit-box {
+  height: 158px;
+}
+
+.title-exit-content {
+  height: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-exit-message {
+  font-size: 15px;
+  font-weight: bold;
+  color: #f8e7d4;
+}
+
+.title-exit-warn {
+  font-size: 12px;
+  color: #d89b9f;
+  margin-top: 6px;
+}
+
+.title-exit-actions {
+  justify-content: space-between;
+}
+
+.title-system-confirm {
+  min-width: 128px;
+  background-color: #8c1d33;
+  border-color: #e5b982;
 }
 

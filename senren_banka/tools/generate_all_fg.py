@@ -276,9 +276,10 @@ def main():
     with open(spec_file, "w", encoding="utf-8") as f:
         json.dump(specs, f)
 
-    swift_bin = os.path.join(HERE, "composite.swift")
-    print(f"调用 Swift 多核合成引擎执行图层合成与 390x220 舞台画布输出...")
-    ret = subprocess.run(["swift", swift_bin, spec_file], capture_output=True, text=True)
+    bin_path = os.path.join(HERE, "composite_bin")
+    cmd = [bin_path, spec_file] if os.path.exists(bin_path) else ["swift", swift_bin, spec_file]
+    print(f"调用 Swift 多核合成引擎执行图层合成与 780x440 2x高清舞台画布输出...")
+    ret = subprocess.run(cmd, capture_output=True, text=True)
     if ret.returncode != 0:
         print("Swift 合成引擎执行出错:", ret.stderr)
         sys.exit(1)

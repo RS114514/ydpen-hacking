@@ -112,6 +112,7 @@ export function saveSlotRecord(slotNum, state, gameId) {
     gameId: gid,
     time: getNowDateStr(),
     timestamp: Date.now(),
+    scenario: state.scenario || 'main',
     line: Number(state.line || 0),
     chapter: state.chapter || '1-1',
     speaker: state.speaker || '',

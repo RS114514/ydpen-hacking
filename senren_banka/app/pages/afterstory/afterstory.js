@@ -1,68 +1,77 @@
 // pages/afterstory/afterstory.js —— 6位女主专属后日谈物语与系统播报语音
 import { S, log, getGal } from '../../common.js';
+import { after_yoshino } from '../../data/after_yoshino.js';
+import { after_mako } from '../../data/after_mako.js';
+import { after_murasame } from '../../data/after_murasame.js';
+import { after_rena } from '../../data/after_rena.js';
+import { after_koharu } from '../../data/after_koharu.js';
+import { after_roka } from '../../data/after_roka.js';
 
 var HEROINES = [
   {
     key: 'yoshino',
     chapter: '115 · AFTER',
     name: '朝武 芳乃',
-    role: '朝武神社巫女 / 神刀契约者',
-    quote: '『我和将臣君两个人的故事，还没有结束呢……接下来，请多指教了。』',
+    lines: after_yoshino,
     voice: 'yoshino_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev112a_hd.png',
-    line: 800
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_12.jpg'
   },
   {
     key: 'mako',
     chapter: '211 · AFTER',
     name: '常陆 茉子',
-    role: '朝武家护卫 / 忍者少女',
-    quote: '『主公大人，今天也由茉子来守护您！无论什么时候都不许离开视线哦。』',
+    lines: after_mako,
     voice: 'mako_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev214a_hd.png',
-    line: 400
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_13.jpg'
   },
   {
     key: 'murasame',
     chapter: '317 · AFTER',
     name: '丛 雨',
-    role: '丛雨丸之灵 / 幼刀幽灵',
-    quote: '『吾之主人哟！五百年的等待终于迎来了最喜欢的日常，快来陪吾玩嘛！』',
+    lines: after_murasame,
     voice: 'murasame_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev317a_hd.png',
-    line: 560
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_14.jpg'
   },
   {
-    key: 'lena',
+    key: 'rena',
     chapter: '429 · AFTER',
     name: '蕾 娜',
-    role: '芬兰留学生 / 绿茶爱好者',
-    quote: '『Moi！将臣，穗织的温泉很棒，但最棒的……果然还是跟你在一起的时光♪』',
+    lines: after_rena,
     voice: 'lena_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev414a_hd.png',
-    line: 250
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_06.jpg'
   },
   {
     key: 'koharu',
     chapter: '513 · AFTER',
     name: '鞍马 小春',
-    role: '甜品店学徒 / 温柔后辈',
-    quote: '『前辈，今天我也做了新的和果子，请先尝一口……然后再告诉我喜不喜欢！』',
+    lines: after_koharu,
     voice: 'koharu_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev505a_hd.png',
-    line: 600
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_09.jpg'
   },
   {
     key: 'roka',
     chapter: '523 · AFTER',
     name: '马场 芦花',
-    role: '志那都庄老板娘 / 青梅竹马',
-    quote: '『阿将，今天店里打烊了，来陪姐姐喝一杯吧。不许找借口溜掉哦～』',
+    lines: after_roka,
     voice: 'roka_after.ogg',
-    bg: 'file:///userdisk/SenrenBanka/cg/ev604a_hd.png',
-    line: 46
+    bg: 'file:///userdisk/SenrenBanka/bg/ema/ema_01.jpg'
   }
 ];
+
+for (var i = 0; i < HEROINES.length; i++) {
+  HEROINES[i].lineCount = HEROINES[i].lines.length;
+  HEROINES[i].voiceCount = HEROINES[i].lines.filter(function (line) {
+    return !!line[3];
+  }).length;
+}
+
+var AS_VIEWPORT_WIDTH = 800;
+var AS_VIEWPORT_HEIGHT = 192;
+var AS_CARD_WIDTH = 180;
+var AS_CARD_GAP = 12;
+var AS_LIST_PADDING = 12;
+var AS_CONTENT_WIDTH = HEROINES.length * (AS_CARD_WIDTH + AS_CARD_GAP) + AS_LIST_PADDING * 2;
+var AS_MIN_PAN = Math.min(0, AS_VIEWPORT_WIDTH - AS_CONTENT_WIDTH);
 
 export var afterstoryMethods = {
   initAfterStory: function () {
@@ -70,7 +79,9 @@ export var afterstoryMethods = {
     this._asStartX = 0;
     this._asStartPanX = 0;
     this._asMoved = false;
-    this.selectedAfterHeroine = 'yoshino';
+    if (!this.selectedAfterHeroine) {
+      this.selectedAfterHeroine = 'yoshino';
+    }
   },
   onAsTouchStart: function (e) {
     if (e && e.changedTouches && e.changedTouches[0]) {
@@ -90,7 +101,7 @@ export var afterstoryMethods = {
       }
       var newX = this._asStartPanX + dx;
       if (newX > 0) newX = 0;
-      if (newX < -320) newX = -320;
+      if (newX < AS_MIN_PAN) newX = AS_MIN_PAN;
       this.afterPanX = newX;
     }
   },
@@ -99,6 +110,11 @@ export var afterstoryMethods = {
     setTimeout(function () {
       self._asMoved = false;
     }, 120);
+  },
+  selectAfterHeroine: function (heroine) {
+    if (this._asMoved || !heroine) return;
+    this.selectedAfterHeroine = heroine.key;
+    this.playHeroineVoice(heroine.voice);
   },
   playHeroineVoice: function (voiceFile) {
     if (this._asMoved) return;
@@ -110,16 +126,16 @@ export var afterstoryMethods = {
     }
   },
   startHeroineStory: function (heroine) {
-    if (this._asMoved) return;
-    log('start heroine story: ' + heroine.name + ', line=' + heroine.line);
+    if (this._asMoved || !heroine) return;
+    log('start heroine story: after_' + heroine.key);
     var G = getGal();
     if (G) {
       G.stopVoice();
     }
-    this.currentLine = heroine.line || 0;
+    this.selectedAfterHeroine = heroine.key;
     this.view = 'game';
     if (typeof this.initGame === 'function') {
-      this.initGame();
+      this.initGame('after_' + heroine.key, 0);
     }
   },
   returnToTitleFromAs: function () {
@@ -141,46 +157,49 @@ export function renderAfterstory(vm, h) {
       cards.push(
         h('div', {
           key: heroine.key,
-          staticStyle: S('as-card')
+          staticStyle: S(vm.selectedAfterHeroine === heroine.key ? 'as-card as-card-active' : 'as-card'),
+          on: { click: function () { vm.selectAfterHeroine(heroine); } }
         }, [
-          // 卡片背景立绘/CG图
-          h('image', {
-            staticStyle: S('as-card-bg'),
-            attrs: { src: heroine.bg }
-          }),
-
-          // 卡片内部信息
-          h('div', { staticStyle: S('as-card-content') }, [
-            // 顶部徽章与章节
-            h('div', { staticStyle: S('as-card-top') }, [
-              h('div', { staticStyle: S('as-card-badge') }, [
-                h('text', { staticStyle: S('as-card-badge-text') }, '日后谈')
-              ]),
+          // 顶部 16:9 绘马图像区（独立区域，不整卡拉伸）
+          h('div', { staticStyle: S('as-card-cover') }, [
+            h('image', {
+              staticStyle: S('as-card-cover-img'),
+              attrs: { src: heroine.bg }
+            }),
+            // 图片上只保留小尺寸章节角标
+            h('div', { staticStyle: S('as-card-chapter-badge') }, [
               h('text', { staticStyle: S('as-card-chapter') }, heroine.chapter)
-            ]),
+            ])
+          ]),
 
-            // 角色名字与身份
-            h('div', { staticStyle: S('as-card-name-box') }, [
-              h('text', { staticStyle: S('as-card-name') }, heroine.name),
-              h('text', { staticStyle: S('as-card-role') }, heroine.role)
-            ]),
+          // 底部信息区：角色名 / 真实台词与语音数量 / 操作按钮
+          h('div', { staticStyle: S('as-card-info') }, [
+            h('text', { staticStyle: S('as-card-name') }, heroine.name),
 
-            // 台词语录
-            h('text', { staticStyle: S('as-card-quote') }, heroine.quote),
+            // 由真实后日谈数组计算的台词与语音数量
+            h('text', {
+              staticStyle: S('as-card-stats')
+            }, heroine.lineCount + ' 句台词 · ' + heroine.voiceCount + ' 条语音'),
 
             // 底部操作区
             h('div', { staticStyle: S('as-card-bottom-actions') }, [
               h('div', {
                 staticStyle: S('as-btn-voice'),
-                on: { click: function () { vm.playHeroineVoice(heroine.voice); } }
+                on: { click: function (e) {
+                  if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+                  vm.selectAfterHeroine(heroine);
+                } }
               }, [
-                h('text', { staticStyle: S('as-btn-voice-text') }, '♪ 播报语音')
+                h('text', { staticStyle: S('as-btn-voice-text') }, '♪ 播报')
               ]),
               h('div', {
                 staticStyle: S('as-btn-play'),
-                on: { click: function () { vm.startHeroineStory(heroine); } }
+                on: { click: function (e) {
+                  if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+                  vm.startHeroineStory(heroine);
+                } }
               }, [
-                h('text', { staticStyle: S('as-btn-play-text') }, '▶ 开启物语')
+                h('text', { staticStyle: S('as-btn-play-text') }, '▶ 进入后日谈物语')
               ])
             ])
           ])
@@ -190,11 +209,14 @@ export function renderAfterstory(vm, h) {
   }
 
   return h('div', { staticStyle: S('as-root') }, [
-    // 背景图
+    // 背景图（opacity 0.5 清晰可见）
     h('image', {
       staticStyle: S('as-bg-img'),
       attrs: { src: 'file:///userdisk/SenrenBanka/bg/title_bg.png' }
     }),
+
+    // 轻微压暗层，保证亮背景上的标题仍可读
+    h('div', { staticStyle: S('as-bg-shade') }),
 
     // 顶部导航栏
     h('div', { staticStyle: S('as-header') }, [
@@ -222,7 +244,8 @@ export function renderAfterstory(vm, h) {
       h('div', {
         staticStyle: S('as-card-list', {
           left: (vm.afterPanX || 0) + 'px',
-          width: '1100px'
+          width: AS_CONTENT_WIDTH + 'px',
+          height: AS_VIEWPORT_HEIGHT + 'px'
         })
       }, cards)
     ])

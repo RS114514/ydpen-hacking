@@ -11,8 +11,8 @@ struct LayerInfo {
     let h: Int
 }
 
-let stageW = 390
-let stageH = 220
+let stageW = 780
+let stageH = 440
 
 func compositeAndCropToStage(layers: [LayerInfo], cropRect: CGRect, outPath: String) {
     let width = 1800

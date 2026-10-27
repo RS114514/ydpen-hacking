@@ -22,7 +22,7 @@
 
 | 子项目目录 | 应用名称 | AppID | 功能与架构特性 |
 | :--- | :--- | :--- | :--- |
-| [`senren_banka/`](senren_banka/) | **《千恋＊万花》** | `8002026102400099` | PenOS 移植版视觉小说引擎，含立绘/CG/剧情分支/流程图与存档管理 |
+| [`senren_banka/`](https://github.com/RS114514/senren-banka-ydpen-port) | **《千恋＊万花》移植版** | `8002026102400099` | PenOS 移植版视觉小说完整工程（**已独立开源维护于 [RS114514/senren-banka-ydpen-port](https://github.com/RS114514/senren-banka-ydpen-port)**，底层引擎参见 [gal-dictionary-pen-engine](https://github.com/RS114514/gal-dictionary-pen-engine)），含全套自动化解包转码工具链 |
 | [`video_player/`](video_player/) | **视频播放器** | `8002026102300004` | 硬件解码播放，支持实时读取目录、多级文件夹浏览与宽屏触控界面 |
 | [`minigames_app/`](minigames_app/) | **小游戏合集** | `8002026102500001` | 集成扫雷、小恐龙、马里奥、五子棋、贪吃蛇、推箱子等十多款 GUI 游戏 |
 | [`aichat_repo/`](aichat_repo/) | **词典笔 AI 助手** | `8002026091900010` | 离线/在线大模型对话助手，含语音输入与 Markdown 富文本排版 |

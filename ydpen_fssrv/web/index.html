@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>有道词典笔 - 文件互传与挂载管理平台</title>
 <style>
   :root {
@@ -604,6 +604,178 @@
     line-height: 1.5;
   }
   .step-box strong { color: #f8fafc; }
+
+  /* -------------------------------------------------------------------------- 移动端自动适配 (屏幕宽度 <= 768px) */
+  @media (max-width: 768px) {
+    header {
+      height: auto;
+      padding: 10px 14px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .brand-group {
+      justify-content: space-between;
+    }
+    .brand-title {
+      font-size: 15px;
+    }
+    .brand-title .badge-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+    }
+    .header-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .header-actions .btn {
+      padding: 7px 6px;
+      font-size: 11px;
+      white-space: nowrap;
+      justify-content: center;
+    }
+    .layout-container {
+      flex-direction: column;
+      padding: 10px 10px;
+      gap: 12px;
+    }
+    .sidebar {
+      width: 100%;
+      min-width: 100%;
+      position: static;
+      max-height: none;
+      padding: 12px;
+      gap: 10px;
+      border-radius: 12px;
+    }
+    .sidebar-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .btn-sidebar {
+      justify-content: center;
+      padding: 9px 10px;
+      font-size: 12px;
+    }
+    .breadcrumb-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      padding: 10px 12px;
+    }
+    .breadcrumb-nav {
+      font-size: 13px;
+    }
+    .pen-path-box {
+      font-size: 11px;
+      padding: 6px 8px;
+      flex-wrap: wrap;
+    }
+    .table-card {
+      padding-bottom: 120px;
+    }
+    .file-table th.col-date,
+    .file-table td.col-date {
+      display: none;
+    }
+    .file-table th.col-size,
+    .file-table td.col-size {
+      width: 60px;
+      font-size: 11px;
+      padding: 8px 4px;
+    }
+    .file-table th.col-check,
+    .file-table td.col-check {
+      width: 36px;
+      padding: 8px 4px;
+    }
+    .file-table th,
+    .file-table td {
+      padding: 10px 6px;
+    }
+    .file-entry {
+      gap: 6px;
+      font-size: 13px;
+      word-break: break-all;
+    }
+    .file-icon {
+      font-size: 16px;
+      width: 18px;
+    }
+    .col-actions {
+      width: auto;
+      min-width: auto;
+      padding: 8px 4px;
+    }
+    .inline-actions {
+      gap: 3px;
+    }
+    .inline-actions .action-btn {
+      padding: 6px 6px;
+      font-size: 13px;
+    }
+    .inline-actions .btn-text {
+      display: none;
+    }
+    .modal-box {
+      width: 95vw !important;
+      max-width: 95vw !important;
+      padding: 16px 14px !important;
+      margin: 10px auto;
+      border-radius: 14px;
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+    .transfer-fab {
+      right: 14px;
+      bottom: 18px;
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+    .transfer-drawer {
+      right: 10px;
+      left: 10px;
+      bottom: 68px;
+      width: calc(100vw - 20px);
+      max-width: none;
+      max-height: 65vh;
+      border-radius: 14px;
+    }
+    .mobile-selected-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(30, 41, 59, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 150;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+      gap: 8px;
+    }
+    .mobile-selected-info {
+      font-size: 13px;
+      color: #93c5fd;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .mobile-selected-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .mobile-selected-actions .btn {
+      padding: 7px 11px;
+      font-size: 13px;
+      border-radius: 7px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -721,6 +893,18 @@
       </table>
     </div>
   </main>
+</div>
+
+<!-- 移动端批量选中操作底部浮动工具栏 -->
+<div class="mobile-selected-bar" id="mobile-selected-bar" style="display:none;">
+  <div class="mobile-selected-info">已选 <b id="mobile-selected-count">0</b> 项</div>
+  <div class="mobile-selected-actions">
+    <button class="btn btn-purple" onclick="downloadSelectedZip()" title="打包下载">📦 打包</button>
+    <button class="btn btn-secondary" onclick="openCompressModal()" title="原地压缩">🗜️ 压缩</button>
+    <button class="btn btn-secondary" onclick="cutSelected()" title="剪切">✂️</button>
+    <button class="btn btn-secondary" onclick="copySelected()" title="复制">📋</button>
+    <button class="btn btn-red" onclick="deleteSelected()" title="批量删除">🗑️</button>
+  </div>
 </div>
 
 <!-- 隐藏的文件选择器 -->
@@ -983,13 +1167,13 @@
           <td class="col-actions">
             <div class="inline-actions">
               ${item.isDir ? 
-                `<button class="action-btn" title="打包下载" onclick="downloadSingleDirZip('${escapeJs(item.path)}')">📦 打包</button>` : 
-                `<button class="action-btn" title="下载" onclick="downloadFile('${escapeJs(item.path)}')">⬇️ 下载</button>`
+                `<button class="action-btn" title="打包下载" onclick="downloadSingleDirZip('${escapeJs(item.path)}')">📦<span class="btn-text"> 打包</span></button>` : 
+                `<button class="action-btn" title="下载" onclick="downloadFile('${escapeJs(item.path)}')">⬇️<span class="btn-text"> 下载</span></button>`
               }
-              ${isZip ? `<button class="action-btn" title="解压" onclick="extractSingleZip('${escapeJs(item.path)}')">📂 解压</button>` : ''}
-              <button class="action-btn" title="重命名" onclick="openRenameModal('${escapeJs(item.path)}', '${escapeJs(item.name)}')">✏️ 改名</button>
-              <button class="action-btn" title="剪切移动" onclick="cutSingle('${escapeJs(item.path)}')">✂️ 剪切</button>
-              <button class="action-btn del" title="删除" onclick="deleteSingle('${escapeJs(item.path)}')">🗑️ 删除</button>
+              ${isZip ? `<button class="action-btn" title="解压" onclick="extractSingleZip('${escapeJs(item.path)}')">📂<span class="btn-text"> 解压</span></button>` : ''}
+              <button class="action-btn" title="重命名" onclick="openRenameModal('${escapeJs(item.path)}', '${escapeJs(item.name)}')">✏️<span class="btn-text"> 改名</span></button>
+              <button class="action-btn" title="剪切移动" onclick="cutSingle('${escapeJs(item.path)}')">✂️<span class="btn-text"> 剪切</span></button>
+              <button class="action-btn del" title="删除" onclick="deleteSingle('${escapeJs(item.path)}')">🗑️<span class="btn-text"> 删除</span></button>
             </div>
           </td>
         </tr>
@@ -1038,6 +1222,16 @@
     document.getElementById('btn-side-copy').disabled = !hasSel;
     document.getElementById('btn-side-download-zip').disabled = !hasSel;
     document.getElementById('btn-side-compress').disabled = !hasSel;
+
+    const mobBar = document.getElementById('mobile-selected-bar');
+    if (mobBar) {
+      if (hasSel) {
+        document.getElementById('mobile-selected-count').innerText = selectedPaths.size;
+        mobBar.style.display = 'flex';
+      } else {
+        mobBar.style.display = 'none';
+      }
+    }
   }
 
   // --------------------------------------------------------------------------- 剪贴板管理 (移动 / 剪切 / 复制)

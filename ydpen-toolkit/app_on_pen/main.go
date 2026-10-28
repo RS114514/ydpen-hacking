@@ -247,6 +247,7 @@ type StreamBroadcaster struct {
 	latestFrame []byte
 	cond        *sync.Cond
 	calcFps     float64
+	cmd         *exec.Cmd
 }
 
 func NewStreamBroadcaster(fps int) *StreamBroadcaster {
@@ -264,6 +265,11 @@ func (sb *StreamBroadcaster) Start() {
 
 func (sb *StreamBroadcaster) Stop() {
 	sb.running = false
+	sb.mu.Lock()
+	if sb.cmd != nil && sb.cmd.Process != nil {
+		_ = sb.cmd.Process.Kill()
+	}
+	sb.mu.Unlock()
 	sb.cond.Broadcast()
 }
 
@@ -279,6 +285,32 @@ func (sb *StreamBroadcaster) GetFPS() float64 {
 	return sb.calcFps
 }
 
+func (sb *StreamBroadcaster) GetTargetFPS() int {
+	sb.mu.RLock()
+	defer sb.mu.RUnlock()
+	return sb.fps
+}
+
+func (sb *StreamBroadcaster) SetTargetFPS(newFps int) bool {
+	if newFps < 5 || newFps > 60 {
+		return false
+	}
+	sb.mu.Lock()
+	if sb.fps == newFps {
+		sb.mu.Unlock()
+		return true
+	}
+	sb.fps = newFps
+	cmd := sb.cmd
+	sb.mu.Unlock()
+
+	// 终止当前 ffmpeg 进程以应用新帧率参数，captureLoop 会自动重新拉起
+	if cmd != nil && cmd.Process != nil {
+		_ = cmd.Process.Kill()
+	}
+	return true
+}
+
 func (sb *StreamBroadcaster) captureLoop() {
 	for sb.running {
 		// 每次启动前先点亮屏幕背光
@@ -291,15 +323,20 @@ func (sb *StreamBroadcaster) captureLoop() {
 			}
 		}
 
+		sb.mu.RLock()
+		curFps := sb.fps
+		sb.mu.RUnlock()
+
 		args := []string{
 			"-nostdin",
-			"-framerate", fmt.Sprintf("%d", sb.fps),
+			"-framerate", fmt.Sprintf("%d", curFps),
 			"-device", "/dev/dri/card0",
 			"-f", "kmsgrab",
 			"-i", "-",
 			"-vf", "hwdownload,format=bgr0,crop=266:960:107:0,transpose=1",
-			"-r", fmt.Sprintf("%d", sb.fps),
-			"-q:v", "5",
+			"-threads", "2",
+			"-r", fmt.Sprintf("%d", curFps),
+			"-q:v", "6",
 			"-f", "mjpeg",
 			"pipe:1",
 		}
@@ -308,17 +345,21 @@ func (sb *StreamBroadcaster) captureLoop() {
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
 			log.Printf("[Stream] 启动 ffmpeg 管道失败: %v", err)
-			time.Sleep(1 * time.Second)
+			time.Sleep(500 * time.Millisecond)
 			continue
 		}
 
 		if err := cmd.Start(); err != nil {
 			log.Printf("[Stream] 执行 ffmpeg 失败: %v", err)
-			time.Sleep(1 * time.Second)
+			time.Sleep(500 * time.Millisecond)
 			continue
 		}
 
-		log.Printf("[Stream] ffmpeg 硬件截屏流水线已启动 (PID: %d)", cmd.Process.Pid)
+		sb.mu.Lock()
+		sb.cmd = cmd
+		sb.mu.Unlock()
+
+		log.Printf("[Stream] ffmpeg 硬件截屏流水线已启动 (PID: %d, 目标帧率: %d FPS)", cmd.Process.Pid, curFps)
 
 		buf := make([]byte, 32768)
 		frameBuf := make([]byte, 0, 1024*1024)
@@ -371,14 +412,20 @@ func (sb *StreamBroadcaster) captureLoop() {
 
 		_ = cmd.Process.Kill()
 		_ = cmd.Wait()
-		log.Printf("[Stream] ffmpeg 退出，0.8秒后自动拉起...")
-		time.Sleep(800 * time.Millisecond)
+
+		sb.mu.Lock()
+		sb.cmd = nil
+		sb.mu.Unlock()
+
+		if sb.running {
+			time.Sleep(200 * time.Millisecond)
+		}
 	}
 }
 
 func main() {
 	port := flag.Int("p", 8088, "Web 服务监听端口 (默认: 8088)")
-	fps := flag.Int("fps", 15, "抓屏目标帧率 (默认: 15)")
+	fps := flag.Int("fps", 25, "抓屏目标帧率 (默认: 25)")
 	touchDev := flag.String("touch", "/dev/input/event1", "触控输入设备路径")
 	powerDev := flag.String("power", "/dev/input/event0", "电源按键设备路径")
 	flag.Parse()
@@ -416,12 +463,16 @@ func main() {
 			return
 		}
 
-		broadcaster.mu.Lock()
-		defer broadcaster.mu.Unlock()
-
 		for broadcaster.running {
+			broadcaster.mu.Lock()
 			broadcaster.cond.Wait()
+			if !broadcaster.running {
+				broadcaster.mu.Unlock()
+				break
+			}
 			frame := broadcaster.latestFrame
+			broadcaster.mu.Unlock()
+
 			if len(frame) == 0 {
 				continue
 			}
@@ -443,12 +494,39 @@ func main() {
 	http.HandleFunc("/api/status", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		status := map[string]interface{}{
-			"connected": true,
-			"fps":       broadcaster.GetFPS(),
-			"width":     960,
-			"height":    266,
+			"connected":  true,
+			"fps":        broadcaster.GetFPS(),
+			"target_fps": broadcaster.GetTargetFPS(),
+			"width":      960,
+			"height":     266,
 		}
 		json.NewEncoder(w).Encode(status)
+	})
+
+	http.HandleFunc("/api/set_fps", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fpsStr := r.URL.Query().Get("fps")
+		if fpsStr == "" && r.Method == http.MethodPost {
+			var body struct {
+				FPS int `json:"fps"`
+			}
+			if err := json.NewDecoder(r.Body).Decode(&body); err == nil && body.FPS > 0 {
+				fpsStr = fmt.Sprintf("%d", body.FPS)
+			}
+		}
+
+		var targetFps int
+		if _, err := fmt.Sscanf(fpsStr, "%d", &targetFps); err != nil || targetFps < 5 || targetFps > 60 {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]interface{}{"ok": false, "error": "无效的帧率参数 (支持 5-60)"})
+			return
+		}
+
+		broadcaster.SetTargetFPS(targetFps)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"ok":         true,
+			"target_fps": targetFps,
+		})
 	})
 
 	http.HandleFunc("/api/screenshot", func(w http.ResponseWriter, r *http.Request) {

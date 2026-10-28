@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>有道词典笔远程操作台</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 24px;
     background: #141824;
@@ -17,6 +17,7 @@
     flex-direction: column;
     align-items: center;
     user-select: none;
+    -webkit-user-select: none;
   }
 
   .main-wrapper {
@@ -24,7 +25,7 @@
     max-width: 1100px;
   }
 
-  /* 标题与状态栏（严格符合官方文件互传规范） */
+  /* 标题与状态栏 */
   header {
     display: flex;
     justify-content: space-between;
@@ -112,6 +113,7 @@
     border-radius: 14px;
     border: 2px solid #2a3145;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
+    max-width: 100%;
   }
   .screen-box {
     position: relative;
@@ -120,27 +122,30 @@
     cursor: crosshair;
     background: #000;
     line-height: 0;
+    touch-action: none;
+    -webkit-touch-callout: none;
   }
   #pen-display {
     display: block;
     width: 960px;
     height: 266px;
+    max-width: 100%;
     object-fit: fill;
-    transition: transform 0.2s ease, width 0.15s ease, height 0.15s ease;
+    transition: transform 0.2s ease;
   }
   #pen-display.flipped {
     transform: rotate(180deg);
   }
 
-  /* 鼠标触控涟漪效果 */
+  /* 鼠标/触控涟漪效果 */
   .touch-ripple {
     position: absolute;
-    width: 22px;
-    height: 22px;
-    margin-left: -11px;
-    margin-top: -11px;
+    width: 26px;
+    height: 26px;
+    margin-left: -13px;
+    margin-top: -13px;
     border-radius: 50%;
-    background: rgba(58, 134, 255, 0.35);
+    background: rgba(58, 134, 255, 0.45);
     border: 2px solid #3a86ff;
     pointer-events: none;
     transform: scale(0.5);
@@ -152,7 +157,7 @@
     opacity: 0;
   }
 
-  /* 工具栏与按钮组件（符合官方文件互传规范） */
+  /* 工具栏与按钮组件 */
   .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -165,6 +170,11 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
+  }
+  .toolbar-label {
+    font-size: 12px;
+    color: #8b93a7;
+    margin-right: 2px;
   }
   button {
     background: #3a86ff;
@@ -179,6 +189,7 @@
     align-items: center;
     gap: 6px;
     transition: background 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
   }
   button:hover {
     background: #2b74eb;
@@ -230,6 +241,92 @@
     font-size: 11px;
     color: #7cb2ff;
   }
+
+  /* 移动端深度适配 (宽度 <= 768px) */
+  @media (max-width: 768px) {
+    body {
+      padding: 12px 8px;
+      padding-bottom: 30px;
+    }
+    header {
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+    h1 {
+      font-size: 18px;
+    }
+    .root {
+      font-size: 11px;
+    }
+    .badges {
+      gap: 6px;
+    }
+    .badge {
+      padding: 4px 10px;
+      font-size: 11px;
+    }
+    .card {
+      padding: 12px 10px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+    }
+    .device-card {
+      padding: 12px 4px;
+      margin-bottom: 12px;
+    }
+    .device-outer {
+      padding: 8px 10px;
+      border-radius: 16px;
+      width: 100%;
+    }
+    .device-bezel {
+      padding: 4px 6px;
+      border-radius: 10px;
+      width: 100%;
+    }
+    .screen-box {
+      width: 100%;
+    }
+    #pen-display {
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 960 / 266;
+    }
+    .toolbar {
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .btn-group {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .btn-group.fps-group {
+      grid-template-columns: auto 1fr 1fr 1fr;
+      align-items: center;
+    }
+    .btn-group.two-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .btn-group.scale-group {
+      display: none; /* 移动端按屏幕宽度自动 100% 自适应，隐藏电脑固定倍率缩放按钮 */
+    }
+    button {
+      padding: 10px 8px;
+      font-size: 13px;
+      min-height: 42px;
+      justify-content: center;
+    }
+    .divider {
+      display: none;
+    }
+    .hints {
+      font-size: 11px;
+      gap: 8px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -238,7 +335,7 @@
   <header>
     <div>
       <h1>🖊️ 有道词典笔远程操作台</h1>
-      <div class="root">硬件平台：Rockchip RK3562 · PenOS 4.x · 笔端原生独立服务 (免客户端)</div>
+      <div class="root">硬件平台：Rockchip RK3562 · PenOS 4.x · 笔端原生独立服务</div>
     </div>
     <div class="badges">
       <div class="badge online"><span>●</span> <span id="status-text">笔端直连</span></div>
@@ -247,7 +344,7 @@
     </div>
   </header>
 
-  <!-- 屏幕画面卡片 -->
+  <!-- 屏幕画面展示区 -->
   <div class="card device-card">
     <div class="device-outer">
       <div class="device-bezel">
@@ -258,42 +355,65 @@
     </div>
   </div>
 
-  <!-- 控制工具栏卡片 -->
+  <!-- 控制工具栏 -->
   <div class="card">
     <div class="toolbar">
+      <!-- 核心按键 -->
       <div class="btn-group">
         <button class="ghost" onclick="sendKey('back')" title="返回 (Esc)">⬅️ 返回</button>
         <button class="ghost" onclick="sendKey('home')" title="回到主屏幕 (Home)">🏠 主页</button>
         <button class="ghost" onclick="sendKey('power')" title="电源/亮屏/息屏 (Space)">⚡ 唤醒/息屏</button>
       </div>
+
       <div class="divider"></div>
-      <div class="btn-group">
+
+      <!-- 快捷翻页 -->
+      <div class="btn-group two-col">
         <button class="ghost" onclick="sendSwipe(700, 133, 200, 133, 220)" title="向左划动 (下一屏)">◀️ 下一页</button>
         <button class="ghost" onclick="sendSwipe(200, 133, 700, 133, 220)" title="向右划动 (上一屏)">▶️ 上一页</button>
       </div>
+
       <div class="divider"></div>
-      <div class="btn-group">
-        <button class="ghost" id="rotate-btn" onclick="toggleRotation()" title="旋转画面与触控 180 度">🔄 旋转 180°</button>
+
+      <!-- 帧率切换档位 -->
+      <div class="btn-group fps-group" title="设置抓屏目标帧率">
+        <span class="toolbar-label">⚡ 帧率:</span>
+        <button class="ghost" id="fps-btn-15" onclick="setTargetFPS(15)">15 节能</button>
+        <button class="ghost active" id="fps-btn-25" onclick="setTargetFPS(25)">25 均衡</button>
+        <button class="ghost" id="fps-btn-30" onclick="setTargetFPS(30)">30 流畅</button>
       </div>
+
       <div class="divider"></div>
-      <div class="btn-group">
+
+      <!-- 旋转与辅助 -->
+      <div class="btn-group two-col">
+        <button class="ghost" id="rotate-btn" onclick="toggleRotation()" title="旋转画面与触控 180 度">🔄 旋转 180°</button>
+        <button class="ghost" onclick="reloadStream()">🔄 刷新流</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 电脑端缩放调节 -->
+      <div class="btn-group scale-group">
         <button class="ghost" onclick="setScale(1.0)">1.0x</button>
         <button class="ghost" onclick="setScale(1.25)">1.25x</button>
         <button class="ghost" onclick="setScale(1.5)">1.5x</button>
       </div>
+
       <div class="divider"></div>
+
+      <!-- 截屏存档 -->
       <div class="btn-group">
         <button onclick="takeScreenshot()">📸 截图标存</button>
-        <button class="ghost" onclick="reloadStream()">🔄 刷新流</button>
       </div>
     </div>
   </div>
 
   <div class="hints">
-    <div class="hint-item"><kbd>鼠标左键</kbd> 点击与拖动滑动</div>
-    <div class="hint-item"><kbd>鼠标右键</kbd> 或 <kbd>Esc</kbd> 返回上一级</div>
-    <div class="hint-item"><kbd>Space 空格</kbd> 唤醒亮屏/息屏</div>
-    <div class="hint-item"><kbd>←</kbd> / <kbd>→</kbd> 翻页滑动</div>
+    <div class="hint-item"><kbd>鼠标/触控</kbd> 屏幕直接点击与划动交互</div>
+    <div class="hint-item"><kbd>右键 / Esc</kbd> 返回</div>
+    <div class="hint-item"><kbd>Space</kbd> 唤醒/息屏</div>
+    <div class="hint-item"><kbd>← / →</kbd> 翻页</div>
   </div>
 </div>
 
@@ -308,6 +428,7 @@
   let startTime = 0;
   let hasMoved = false;
   let isFlipped = false;
+  let currentTargetFPS = 25;
 
   function toggleRotation() {
     isFlipped = !isFlipped;
@@ -320,12 +441,12 @@
     }
   }
 
-  function getPenCoords(e) {
+  function getPenCoords(point) {
     const rect = screen.getBoundingClientRect();
     const scaleX = 960 / rect.width;
     const scaleY = 266 / rect.height;
-    let x = Math.round((e.clientX - rect.left) * scaleX);
-    let y = Math.round((e.clientY - rect.top) * scaleY);
+    let x = Math.round((point.clientX - rect.left) * scaleX);
+    let y = Math.round((point.clientY - rect.top) * scaleY);
     x = Math.max(0, Math.min(959, x));
     y = Math.max(0, Math.min(265, y));
 
@@ -357,6 +478,7 @@
     }).catch(() => {});
   }
 
+  // -------------------------------- 鼠标事件绑定 --------------------------------
   box.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
     isMouseDown = true;
@@ -394,6 +516,49 @@
     sendKey('back');
   });
 
+  // -------------------------------- 手机触摸事件原生绑定 --------------------------------
+  box.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    isMouseDown = true;
+    hasMoved = false;
+    startTime = Date.now();
+    const { x, y } = getPenCoords(touch);
+    startX = x; startY = y;
+    showRipple(touch.clientX, touch.clientY);
+    postTouch({ type: 'down', x, y });
+  }, { passive: false });
+
+  box.addEventListener('touchmove', (e) => {
+    if (!isMouseDown || e.touches.length !== 1) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    const { x, y } = getPenCoords(touch);
+    if (Math.abs(x - startX) > 4 || Math.abs(y - startY) > 4) {
+      hasMoved = true;
+    }
+    postTouch({ type: 'move', x, y });
+  }, { passive: false });
+
+  function endTouch(e) {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    isMouseDown = false;
+    const touch = e.changedTouches ? e.changedTouches[0] : null;
+    const dur = Date.now() - startTime;
+    if (touch && !hasMoved && dur < 350) {
+      const { x, y } = getPenCoords(touch);
+      postTouch({ type: 'tap', x, y });
+    } else {
+      postTouch({ type: 'up' });
+    }
+  }
+
+  box.addEventListener('touchend', endTouch, { passive: false });
+  box.addEventListener('touchcancel', endTouch, { passive: false });
+
+  // -------------------------------- 快捷键与控制 --------------------------------
   function sendKey(key) {
     postTouch({ type: 'key', key });
   }
@@ -437,14 +602,55 @@
     a.click();
   }
 
+  // -------------------------------- 动态帧率档位切换 --------------------------------
+  function updateFPSButtons(targetFps) {
+    currentTargetFPS = targetFps;
+    [15, 25, 30].forEach(fps => {
+      const btn = document.getElementById('fps-btn-' + fps);
+      if (btn) {
+        if (fps === targetFps) {
+          btn.classList.add('active');
+          btn.classList.remove('ghost');
+        } else {
+          btn.classList.remove('active');
+          btn.classList.add('ghost');
+        }
+      }
+    });
+  }
+
+  function setTargetFPS(fps) {
+    updateFPSButtons(fps);
+    fetch('/api/set_fps?fps=' + fps, { method: 'POST' })
+      .then(r => r.json())
+      .then(d => {
+        if (d.ok && d.target_fps) {
+          updateFPSButtons(d.target_fps);
+        }
+      })
+      .catch(err => console.error('设置帧率失败:', err));
+  }
+
+  // 状态轮询
   setInterval(() => {
     fetch('/api/status')
       .then(r => r.json())
       .then(d => {
         fpsVal.innerText = d.fps.toFixed(1);
+        if (d.target_fps && d.target_fps !== currentTargetFPS) {
+          updateFPSButtons(d.target_fps);
+        }
       })
       .catch(() => {});
   }, 1000);
+
+  // 初始同步
+  fetch('/api/status')
+    .then(r => r.json())
+    .then(d => {
+      if (d.target_fps) updateFPSButtons(d.target_fps);
+    })
+    .catch(() => {});
 </script>
 
 </body>

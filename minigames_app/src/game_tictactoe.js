@@ -1,40 +1,43 @@
-// game_tictactoe.js —— 井字棋 (Tic-Tac-Toe, 3x3)
+// game_tictactoe.js —— 井字棋 (Tic-Tac-Toe)
 export function initTicTacToe(vm) {
   vm.g_ttt = {
-    board: [0, 0, 0, 0, 0, 0, 0, 0, 0], // 0:空, 1:X (玩家), 2:O (AI)
-    winner: 0, // 0:进行中, 1:玩家胜, 2:AI胜, 3:平局
-    turn: 1
+    board: [0, 0, 0, 0, 0, 0, 0, 0, 0], // 0: 空, 1: 玩家(O), 2: AI(X)
+    winner: 0, // 0: 进行中, 1: 玩家胜, 2: AI胜, 3: 平局
+    playerWins: vm.g_ttt ? (vm.g_ttt.playerWins || 0) : 0,
+    aiWins: vm.g_ttt ? (vm.g_ttt.aiWins || 0) : 0
   };
 }
 
-export function handleTicTacToeClick(vm, index) {
+export function handleTttClick(vm, idx) {
   var t = vm.g_ttt;
-  if (!t || t.winner !== 0 || t.turn !== 1) return;
-  if (t.board[index] !== 0) return;
+  if (!t || t.winner !== 0 || t.board[idx] !== 0) return;
 
-  t.board[index] = 1;
-  var w = checkTTTWinner(t.board);
+  t.board[idx] = 1;
+  var w = checkTttWin(t.board);
   if (w !== 0) {
     t.winner = w;
+    if (w === 1) t.playerWins++;
+    if (vm.$forceUpdate) vm.$forceUpdate();
     return;
   }
 
-  t.turn = 2;
+  // AI 快速落子
   setTimeout(function() {
-    tttAiMove(vm);
+    aiTttMove(vm);
   }, 100);
 }
 
-function checkTTTWinner(b) {
-  var lines = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [2, 4, 6]
-  ];
-  for (var i = 0; i < lines.length; i++) {
-    var a = lines[i][0], c = lines[i][1], d = lines[i][2];
-    if (b[a] !== 0 && b[a] === b[c] && b[a] === b[d]) {
-      return b[a];
+var WINS = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6]
+];
+
+function checkTttWin(b) {
+  for (var i = 0; i < WINS.length; i++) {
+    var line = WINS[i];
+    if (b[line[0]] !== 0 && b[line[0]] === b[line[1]] && b[line[1]] === b[line[2]]) {
+      return b[line[0]];
     }
   }
   for (var i = 0; i < 9; i++) {
@@ -43,110 +46,139 @@ function checkTTTWinner(b) {
   return 3; // 平局
 }
 
-function tttAiMove(vm) {
+function aiTttMove(vm) {
   var t = vm.g_ttt;
   if (!t || t.winner !== 0) return;
 
-  // 1. 寻找能赢的点
+  // 1. 尝试自胜
   for (var i = 0; i < 9; i++) {
     if (t.board[i] === 0) {
       t.board[i] = 2;
-      if (checkTTTWinner(t.board) === 2) {
+      if (checkTttWin(t.board) === 2) {
         t.winner = 2;
+        t.aiWins++;
+        if (vm.$forceUpdate) vm.$forceUpdate();
         return;
       }
       t.board[i] = 0;
     }
   }
 
-  // 2. 堵截玩家要赢的点
+  // 2. 拦堵玩家
   for (var i = 0; i < 9; i++) {
     if (t.board[i] === 0) {
       t.board[i] = 1;
-      if (checkTTTWinner(t.board) === 1) {
+      if (checkTttWin(t.board) === 1) {
         t.board[i] = 2;
-        t.turn = 1;
+        var w2 = checkTttWin(t.board);
+        if (w2 !== 0) {
+          t.winner = w2;
+          if (w2 === 2) t.aiWins++;
+        }
+        if (vm.$forceUpdate) vm.$forceUpdate();
         return;
       }
       t.board[i] = 0;
     }
   }
 
-  // 3. 占中心或空位
-  var preferred = [4, 0, 2, 6, 8, 1, 3, 5, 7];
-  for (var i = 0; i < preferred.length; i++) {
-    var pos = preferred[i];
-    if (t.board[pos] === 0) {
-      t.board[pos] = 2;
-      break;
+  // 3. 抢中心
+  if (t.board[4] === 0) {
+    t.board[4] = 2;
+  } else {
+    // 随机占空
+    var empties = [];
+    for (var i = 0; i < 9; i++) {
+      if (t.board[i] === 0) empties.push(i);
+    }
+    if (empties.length > 0) {
+      var pick = empties[Math.floor(Math.random() * empties.length)];
+      t.board[pick] = 2;
     }
   }
 
-  var res = checkTTTWinner(t.board);
-  if (res !== 0) {
-    t.winner = res;
-  } else {
-    t.turn = 1;
+  var w = checkTttWin(t.board);
+  if (w !== 0) {
+    t.winner = w;
+    if (w === 2) t.aiWins++;
   }
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 export function renderTicTacToe(vm, h) {
   var t = vm.g_ttt;
   if (!t) return h('div');
 
-  var statusText = '你的回合 (X)';
-  if (t.winner === 1) statusText = '恭喜你获得胜利！🎉';
-  else if (t.winner === 2) statusText = 'AI 获胜，再来一局吧！';
-  else if (t.winner === 3) statusText = '双方平局！🤝';
-  else if (t.turn === 2) statusText = 'AI 思考中...';
+  var statusText = '轮到你下子 (蓝圈 O)';
+  var statusColor = '#38bdf8';
+  if (t.winner === 1) {
+    statusText = '★ 恭喜你获得胜利！';
+    statusColor = '#4ade80';
+  } else if (t.winner === 2) {
+    statusText = '× AI 获胜，再来一局！';
+    statusColor = '#f87171';
+  } else if (t.winner === 3) {
+    statusText = '＝ 双方握手言和 (平局)';
+    statusColor = '#facc15';
+  }
 
   var cells = [];
   for (var i = 0; i < 9; i++) {
     var val = t.board[i];
-    var symbol = '';
-    var sColor = '#ffffff';
-    if (val === 1) {
-      symbol = '✕';
-      sColor = '#38bdf8';
-    } else if (val === 2) {
-      symbol = '◯';
-      sColor = '#f43f5e';
-    }
+    var symbol = val === 1 ? 'O' : (val === 2 ? 'X' : '');
+    var col = val === 1 ? '#38bdf8' : '#ef4444';
 
     (function(idx) {
       cells.push(h('div', {
         staticStyle: {
-          width: '62px', height: '62px', backgroundColor: '#1e293b',
-          margin: '2px', borderRadius: '8px', justifyContent: 'center', alignItems: 'center'
+          width: '54px', height: '54px', backgroundColor: '#131d31', margin: '3px',
+          borderRadius: '8px', borderWidth: '1.5px', borderColor: '#334155',
+          justifyContent: 'center', alignItems: 'center'
         },
-        on: { click: function() { handleTicTacToeClick(vm, idx); } }
+        on: { click: function() { handleTttClick(vm, idx); } }
       }, [
-        h('text', { staticStyle: { fontSize: '28px', fontWeight: 'bold', color: sColor } }, symbol)
+        h('text', { staticStyle: { fontSize: '28px', color: col, fontWeight: 'bold' } }, symbol)
       ]));
     })(i);
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 3x3 棋盘 (202x202)
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 20px'
+    }
+  }, [
+    // 3x3 棋盘 (180x180)
     h('div', {
       staticStyle: {
-        width: '202px', height: '202px', backgroundColor: '#0f172a',
-        flexDirection: 'row', flexWrap: 'wrap', padding: '2px', borderRadius: '10px'
+        width: '180px', height: '180px', backgroundColor: '#090d16',
+        borderRadius: '10px', padding: '2px', borderWidth: '2px', borderColor: '#1e293b',
+        flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center',
+        marginRight: '30px'
       }
     }, cells),
-    // 右侧提示
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '井字棋 (人机对弈)'),
-      h('text', { staticStyle: { fontSize: '12px', color: '#94a3b8', marginTop: '6px' } }, statusText),
+
+    // 信息与战绩
+    h('div', { staticStyle: { flex: 1, flexDirection: 'column', justifyContent: 'center' } }, [
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+        h('div', {
+          staticStyle: { width: '8px', height: '8px', borderRadius: '4px', backgroundColor: '#3b82f6', marginRight: '8px' }
+        }),
+        h('text', { staticStyle: { fontSize: '16px', color: '#f8fafc', fontWeight: 'bold' } }, '经典井字棋 (人机对弈)')
+      ]),
+      h('text', { staticStyle: { fontSize: '14px', color: statusColor, marginTop: '8px', fontWeight: 'bold' } }, statusText),
+      h('text', { staticStyle: { fontSize: '12px', color: '#94a3b8', marginTop: '6px' } },
+        '当前比分：玩家 ' + t.playerWins + ' 胜  |  AI ' + t.aiWins + ' 胜'
+      ),
+
       h('div', {
         staticStyle: {
-          width: '90px', height: '30px', backgroundColor: '#3b82f6',
-          borderRadius: '15px', justifyContent: 'center', alignItems: 'center',
+          width: '160px', height: '40px', backgroundColor: '#2563eb',
+          borderRadius: '20px', justifyContent: 'center', alignItems: 'center',
           marginTop: '16px'
         },
-        on: { click: function() { initTicTacToe(vm); } }
+        on: { click: function() { initTicTacToe(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#ffffff' } }, '重新开始')
+        h('text', { staticStyle: { fontSize: '14px', color: '#ffffff', fontWeight: 'bold' } }, '下一局对决')
       ])
     ])
   ]);

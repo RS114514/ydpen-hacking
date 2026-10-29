@@ -24,7 +24,7 @@ export default {
     return {
       curGame: 'hub', // 'hub' 或具体游戏 id
       hubPage: 0,
-      scaleIndex: 0, // 0: 1.0x, 1: 1.1x, 2: 1.2x, 3: 0.9x
+      scaleIndex: 0, // 0: 1.0x, 1: 1.15x, 2: 1.25x, 3: 0.9x
       // 游戏数据挂载
       g_mine: null,
       g_flappy: null,
@@ -74,14 +74,18 @@ export default {
       else if (gameId === 'dino') initDino(this);
       else if (gameId === 'mario') initMario(this);
       else if (gameId === 'pelican') initPelican(this);
+
+      if (this.$forceUpdate) this.$forceUpdate();
     },
     backToHub: function() {
       this.clearAllTimers();
       this.curGame = 'hub';
+      if (this.$forceUpdate) this.$forceUpdate();
     },
     toggleScale: function() {
       var scales = [1.0, 1.15, 1.25, 0.9];
       this.scaleIndex = (this.scaleIndex + 1) % scales.length;
+      if (this.$forceUpdate) this.$forceUpdate();
     },
     clearAllTimers: function() {
       if (this.g_flappy_timer) { clearInterval(this.g_flappy_timer); this.g_flappy_timer = null; }
@@ -106,7 +110,7 @@ export default {
     if (this.curGame === 'hub') {
       return h('div', {
         staticStyle: {
-          width: '560px', height: '220px', backgroundColor: '#090d16',
+          width: '800px', height: '220px', backgroundColor: '#090d16',
           flexDirection: 'column'
         }
       }, [
@@ -134,44 +138,62 @@ export default {
     else if (this.curGame === 'pelican') gameNode = renderPelican(this, h);
     else gameNode = h('div');
 
+    var curMeta = null;
+    for (var i = 0; i < GAME_LIST.length; i++) {
+      if (GAME_LIST[i].id === this.curGame) {
+        curMeta = GAME_LIST[i];
+        break;
+      }
+    }
+    var titleStr = curMeta ? curMeta.title : '小游戏';
+
     var scaleValues = ['1.0x', '1.15x', '1.25x', '0.9x'];
     var currentScaleText = scaleValues[this.scaleIndex || 0];
 
-    // 全局常驻顶部悬浮导航：返回大厅 ⬅️ 与 缩放切换 🔍
+    // 全局常驻顶部悬浮导航：返回大厅 ◀ 与 缩放切换
     var topBar = h('div', {
       staticStyle: {
-        height: '24px', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+        width: '800px', height: '24px', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: '8px', backgroundColor: '#0b1324', borderBottomWidth: '1px', borderColor: '#1e293b'
       }
     }, [
       h('div', {
         staticStyle: {
-          flexDirection: 'row', alignItems: 'center', paddingHorizontal: '8px', height: '20px',
+          flexDirection: 'row', alignItems: 'center', paddingHorizontal: '10px', height: '20px',
           backgroundColor: '#1e293b', borderRadius: '10px'
         },
         on: { click: function() { self.backToHub(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '11px', color: '#38bdf8' } }, '◀ 游戏大厅')
+        h('text', { staticStyle: { fontSize: '11px', color: '#38bdf8', fontWeight: 'bold' } }, '◀ 返回大厅')
+      ]),
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+        h('div', {
+          staticStyle: {
+            width: '8px', height: '8px', borderRadius: '4px', backgroundColor: curMeta ? curMeta.color : '#38bdf8',
+            marginRight: '6px'
+          }
+        }),
+        h('text', { staticStyle: { fontSize: '12px', color: '#f8fafc', fontWeight: 'bold' } }, titleStr)
       ]),
       h('div', {
         staticStyle: {
-          flexDirection: 'row', alignItems: 'center', paddingHorizontal: '8px', height: '20px',
+          flexDirection: 'row', alignItems: 'center', paddingHorizontal: '10px', height: '20px',
           backgroundColor: '#1e293b', borderRadius: '10px'
         },
         on: { click: function() { self.toggleScale(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8' } }, '🔍 尺寸: ' + currentScaleText)
+        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8' } }, '尺寸: ' + currentScaleText)
       ])
     ]);
 
     return h('div', {
       staticStyle: {
-        width: '560px', height: '220px', backgroundColor: '#090d16',
+        width: '800px', height: '220px', backgroundColor: '#090d16',
         flexDirection: 'column'
       }
     }, [
       topBar,
-      h('div', { staticStyle: { flex: 1 } }, [gameNode])
+      h('div', { staticStyle: { width: '800px', height: '196px', overflow: 'hidden' } }, [gameNode])
     ]);
   }
 };

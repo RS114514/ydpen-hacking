@@ -1,23 +1,22 @@
-// game_watermelon.js —— 合成大西瓜 (水果进化合并)
-// 0:葡萄, 1:樱桃, 2:橘子, 3:柠檬, 4:猕猴桃, 5:西红柿, 6:桃子, 7:菠萝, 8:椰子, 9:西瓜
+// game_watermelon.js —— 合成大西瓜
 export var FRUITS = [
-  { name: '葡萄', emoji: '🍇', size: 16, color: '#a855f7', score: 2 },
-  { name: '樱桃', emoji: '🍒', size: 20, color: '#ef4444', score: 4 },
-  { name: '橘子', emoji: '🍊', size: 24, color: '#f97316', score: 8 },
-  { name: '柠檬', emoji: '🍋', size: 28, color: '#eab308', score: 16 },
-  { name: '猕猴桃', emoji: '🥝', size: 32, color: '#84cc16', score: 32 },
-  { name: '番茄', emoji: '🍅', size: 36, color: '#dc2626', score: 64 },
-  { name: '桃子', emoji: '🍑', size: 40, color: '#f43f5e', score: 128 },
-  { name: '菠萝', emoji: '🍍', size: 46, color: '#eab308', score: 256 },
-  { name: '椰子', emoji: '🥥', size: 52, color: '#78350f', score: 512 },
-  { name: '大西瓜', emoji: '🍉', size: 60, color: '#16a34a', score: 1024 }
+  { name: '葡萄', size: 20, color: '#a855f7', border: '#c084fc', score: 2 },
+  { name: '樱桃', size: 24, color: '#ef4444', border: '#f87171', score: 4 },
+  { name: '橘子', size: 28, color: '#f97316', border: '#fb923c', score: 8 },
+  { name: '柠檬', size: 32, color: '#eab308', border: '#fde047', score: 16 },
+  { name: '猕猴桃', size: 36, color: '#84cc16', border: '#a3e635', score: 32 },
+  { name: '番茄', size: 42, color: '#dc2626', border: '#ef4444', score: 64 },
+  { name: '桃子', size: 48, color: '#f43f5e', border: '#fb7185', score: 128 },
+  { name: '菠萝', size: 54, color: '#d97706', border: '#f59e0b', score: 256 },
+  { name: '椰子', size: 60, color: '#78350f', border: '#92400e', score: 512 },
+  { name: '西瓜', size: 66, color: '#16a34a', border: '#4ade80', score: 1024 }
 ];
 
 export function initWatermelon(vm) {
   vm.g_wm = {
-    fruits: [], // 已经在箱子里的水果: { id, level, x, y, vy }
-    nextLevel: Math.floor(Math.random() * 3), // 0, 1, 2
-    dropX: 110,
+    fruits: [],
+    nextLevel: Math.floor(Math.random() * 3),
+    dropX: 120,
     score: 0,
     gameOver: false
   };
@@ -30,8 +29,8 @@ export function handleWatermelonDrop(vm, clickX) {
   var lvl = m.nextLevel;
   var fMeta = FRUITS[lvl];
   var x = clickX - fMeta.size / 2;
-  if (x < 4) x = 4;
-  if (x > 220 - fMeta.size - 4) x = 220 - fMeta.size - 4;
+  if (x < 6) x = 6;
+  if (x > 230 - fMeta.size) x = 230 - fMeta.size;
 
   var newFruit = {
     id: Date.now() + Math.random(),
@@ -44,17 +43,16 @@ export function handleWatermelonDrop(vm, clickX) {
   m.fruits.push(newFruit);
   m.nextLevel = Math.floor(Math.random() * 3);
 
-  // 触发物理下落与碰撞合并模拟
   runPhysics(vm);
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 function runPhysics(vm) {
   var m = vm.g_wm;
   if (!m) return;
 
-  // 简易物理迭代 20 步沉底与碰撞
-  for (var step = 0; step < 20; step++) {
-    // 重力
+  // 物理沉底与碰撞合并循环
+  for (var step = 0; step < 24; step++) {
     for (var i = 0; i < m.fruits.length; i++) {
       var f = m.fruits[i];
       f.vy += 1.2;
@@ -62,148 +60,182 @@ function runPhysics(vm) {
 
       var r = FRUITS[f.level].size;
       // 触底
-      if (f.y + r >= 196) {
-        f.y = 196 - r;
+      if (f.y >= 180 - r) {
+        f.y = 180 - r;
         f.vy = 0;
       }
     }
 
-    // 水果之间碰撞合并与排斥
+    // 两两碰撞与合成
     for (var i = 0; i < m.fruits.length; i++) {
       for (var j = i + 1; j < m.fruits.length; j++) {
-        var f1 = m.fruits[i];
-        var f2 = m.fruits[j];
-        if (!f1 || !f2) continue;
-
-        var r1 = FRUITS[f1.level].size / 2;
-        var r2 = FRUITS[f2.level].size / 2;
-        var cx1 = f1.x + r1, cy1 = f1.y + r1;
-        var cx2 = f2.x + r2, cy2 = f2.y + r2;
-
-        var dx = cx2 - cx1;
-        var dy = cy2 - cy1;
+        var f1 = m.fruits[i], f2 = m.fruits[j];
+        var r1 = FRUITS[f1.level].size, r2 = FRUITS[f2.level].size;
+        var cx1 = f1.x + r1 / 2, cy1 = f1.y + r1 / 2;
+        var cx2 = f2.x + r2 / 2, cy2 = f2.y + r2 / 2;
+        var dx = cx1 - cx2, dy = cy1 - cy2;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        var minDist = r1 + r2;
+        var minDist = (r1 + r2) / 2;
 
-        if (dist < minDist && dist > 0.01) {
-          // 同级碰撞 -> 合成进化！
-          if (f1.level === f2.level && f1.level < 9) {
+        if (dist < minDist && dist > 0.001) {
+          // 相同等级合并
+          if (f1.level === f2.level && f1.level < FRUITS.length - 1) {
             f1.level++;
-            f1.x = (f1.x + f2.x) / 2;
-            f1.y = (f1.y + f2.y) / 2;
-            f1.vy = -1; // 微微弹跳
             m.score += FRUITS[f1.level].score;
             m.fruits.splice(j, 1);
             j--;
-          } else {
-            // 排斥分开
-            var overlap = (minDist - dist) / 2;
-            var nx = dx / dist;
-            var ny = dy / dist;
-            f1.x -= nx * overlap;
-            f1.y -= ny * overlap;
-            f2.x += nx * overlap;
-            f2.y += ny * overlap;
+            continue;
           }
+
+          // 物理排斥分离
+          var overlap = (minDist - dist) / 2;
+          var nx = dx / dist, ny = dy / dist;
+          f1.x += nx * overlap; f1.y += ny * overlap;
+          f2.x -= nx * overlap; f2.y -= ny * overlap;
         }
       }
     }
-
-    // 边界限制
-    for (var i = 0; i < m.fruits.length; i++) {
-      var f = m.fruits[i];
-      var r = FRUITS[f.level].size;
-      if (f.x < 4) f.x = 4;
-      if (f.x + r > 216) f.x = 216 - r;
-      if (f.y + r > 196) f.y = 196 - r;
-      if (f.y < 10) m.gameOver = true;
-    }
   }
 
-  if (vm.$forceUpdate) vm.$forceUpdate();
+  // 触顶溢出判定
+  for (var i = 0; i < m.fruits.length; i++) {
+    if (m.fruits[i].y < 24 && m.fruits[i].vy === 0) {
+      m.gameOver = true;
+      break;
+    }
+  }
 }
 
 export function renderWatermelon(vm, h) {
   var m = vm.g_wm;
   if (!m) return h('div');
 
-  var fElements = [];
+  var elements = [];
 
-  // 警示红线
-  fElements.push(h('div', {
+  // 顶部警戒红虚线
+  elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '0px', top: '25px', width: '220px', height: '1px',
-      backgroundColor: '#ef4444', opacity: 0.6
+      position: 'absolute', left: '0px', top: '26px', width: '240px', height: '1.5px',
+      backgroundColor: '#ef4444'
     }
   }));
 
-  // 所有水果
+  // 箱中水果
   for (var i = 0; i < m.fruits.length; i++) {
     var f = m.fruits[i];
     var meta = FRUITS[f.level];
-    fElements.push(h('div', {
-      staticStyle: {
-        position: 'absolute',
-        left: Math.floor(f.x) + 'px', top: Math.floor(f.y) + 'px',
-        width: meta.size + 'px', height: meta.size + 'px',
-        borderRadius: (meta.size / 2) + 'px',
-        backgroundColor: meta.color,
-        justifyContent: 'center', alignItems: 'center',
-        borderWidth: '1.5px', borderColor: '#ffffff', opacity: 0.95
-      }
-    }, [
-      h('text', { staticStyle: { fontSize: Math.floor(meta.size * 0.55) + 'px' } }, meta.emoji)
-    ]));
+    (function(fruit, itemMeta) {
+      elements.push(h('div', {
+        staticStyle: {
+          position: 'absolute',
+          left: Math.floor(fruit.x) + 'px', top: Math.floor(fruit.y) + 'px',
+          width: itemMeta.size + 'px', height: itemMeta.size + 'px',
+          backgroundColor: itemMeta.color,
+          borderRadius: Math.floor(itemMeta.size / 2) + 'px',
+          borderWidth: '1.5px', borderColor: itemMeta.border,
+          justifyContent: 'center', alignItems: 'center'
+        }
+      }, [
+        h('text', {
+          staticStyle: {
+            fontSize: (itemMeta.size < 28 ? '9px' : '11px'),
+            color: '#ffffff', fontWeight: 'bold'
+          }
+        }, itemMeta.name)
+      ]));
+    })(f, meta);
   }
 
   if (m.gameOver) {
-    fElements.push(h('div', {
+    elements.push(h('div', {
       staticStyle: {
-        position: 'absolute', left: '0px', top: '0px', width: '220px', height: '202px',
-        backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center'
+        position: 'absolute', left: '0px', top: '0px', width: '240px', height: '186px',
+        backgroundColor: 'rgba(9, 13, 22, 0.75)', justifyContent: 'center', alignItems: 'center'
       }
     }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#ef4444', fontWeight: 'bold' } }, '水果溢出，游戏结束!'),
-      h('text', { staticStyle: { fontSize: '12px', color: '#38bdf8', marginTop: '6px' } }, '点击右侧重新挑战 🍉')
+      h('text', { staticStyle: { fontSize: '18px', color: '#ef4444', fontWeight: 'bold' } }, '× 水果满溢 ×'),
+      h('text', { staticStyle: { fontSize: '13px', color: '#f8fafc', marginTop: '6px' } }, '最终得分: ' + m.score)
     ]));
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 沉浸掉落箱子 (220x202)
+  var nextMeta = FRUITS[m.nextLevel];
+
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 20px'
+    }
+  }, [
+    // 透明玻璃水果箱 (240x188)
     h('div', {
       staticStyle: {
-        width: '220px', height: '202px', backgroundColor: '#1e293b',
-        borderLeftWidth: '3px', borderRightWidth: '3px', borderBottomWidth: '4px',
-        borderColor: '#475569', borderRadius: '4px', position: 'relative', overflow: 'hidden'
+        width: '244px', height: '188px', backgroundColor: '#090d16',
+        borderRadius: '8px', borderWidth: '2px', borderColor: '#334155',
+        overflow: 'hidden', position: 'relative', marginRight: '30px'
       },
       on: {
         click: function(e) {
-          // 简易触控横坐标检测，支持 3 个掉落列
-          var cx = 110;
-          if (e && e.position && e.position.x) cx = e.position.x;
-          else cx = 30 + Math.random() * 160;
-          handleWatermelonDrop(vm, cx);
+          handleWatermelonDrop(vm, 120);
         }
       }
-    }, fElements),
+    }, elements),
 
-    // 右侧合成状态栏
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '合成大西瓜'),
-      h('text', { staticStyle: { fontSize: '13px', color: '#f59e0b', marginTop: '8px' } }, '得分: ' + m.score),
-      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center', marginTop: '8px' } }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#94a3b8' } }, '下一个: '),
-        h('text', { staticStyle: { fontSize: '18px' } }, FRUITS[m.nextLevel].emoji)
+    // 信息与下落投掷控制区
+    h('div', { staticStyle: { flex: 1, flexDirection: 'column', justifyContent: 'center' } }, [
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+        h('div', {
+          staticStyle: { width: '8px', height: '8px', borderRadius: '4px', backgroundColor: '#10b981', marginRight: '8px' }
+        }),
+        h('text', { staticStyle: { fontSize: '16px', color: '#f8fafc', fontWeight: 'bold' } }, '合成大西瓜')
       ]),
+      h('text', { staticStyle: { fontSize: '13px', color: '#94a3b8', marginTop: '6px' } }, '当前得分: ' + m.score),
+
+      // 下一个待落水果预览
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center', marginTop: '10px' } }, [
+        h('text', { staticStyle: { fontSize: '12px', color: '#cbd5e1', marginRight: '10px' } }, '即将下落:'),
+        h('div', {
+          staticStyle: {
+            paddingHorizontal: '12px', height: '28px', backgroundColor: nextMeta.color,
+            borderRadius: '14px', borderWidth: '1.5px', borderColor: nextMeta.border,
+            justifyContent: 'center', alignItems: 'center'
+          }
+        }, [
+          h('text', { staticStyle: { fontSize: '12px', color: '#ffffff', fontWeight: 'bold' } }, nextMeta.name)
+        ])
+      ]),
+
+      // 投掷按钮组 (左中右三列精准投放)
+      h('div', { staticStyle: { flexDirection: 'row', marginTop: '14px' } }, [
+        h('div', {
+          staticStyle: {
+            width: '80px', height: '42px', backgroundColor: '#1e293b', borderRadius: '8px',
+            borderWidth: '1px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center', marginRight: '10px'
+          },
+          on: { click: function() { handleWatermelonDrop(vm, 50); } }
+        }, [h('text', { staticStyle: { fontSize: '13px', color: '#38bdf8', fontWeight: 'bold' } }, '左侧下落')]),
+        h('div', {
+          staticStyle: {
+            width: '80px', height: '42px', backgroundColor: '#1e293b', borderRadius: '8px',
+            borderWidth: '1px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center', marginRight: '10px'
+          },
+          on: { click: function() { handleWatermelonDrop(vm, 120); } }
+        }, [h('text', { staticStyle: { fontSize: '13px', color: '#38bdf8', fontWeight: 'bold' } }, '居中下落')]),
+        h('div', {
+          staticStyle: {
+            width: '80px', height: '42px', backgroundColor: '#1e293b', borderRadius: '8px',
+            borderWidth: '1px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center'
+          },
+          on: { click: function() { handleWatermelonDrop(vm, 190); } }
+        }, [h('text', { staticStyle: { fontSize: '13px', color: '#38bdf8', fontWeight: 'bold' } }, '右侧下落')])
+      ]),
+
       h('div', {
         staticStyle: {
-          width: '90px', height: '30px', backgroundColor: '#16a34a',
-          borderRadius: '15px', justifyContent: 'center', alignItems: 'center',
-          marginTop: '14px'
+          width: '120px', height: '30px', backgroundColor: '#334155', borderRadius: '15px',
+          justifyContent: 'center', alignItems: 'center', marginTop: '12px'
         },
-        on: { click: function() { initWatermelon(vm); } }
+        on: { click: function() { initWatermelon(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#ffffff', fontWeight: 'bold' } }, '重开一局')
+        h('text', { staticStyle: { fontSize: '12px', color: '#f8fafc' } }, '重置新开局')
       ])
     ])
   ]);

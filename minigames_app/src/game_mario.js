@@ -5,22 +5,25 @@ export function initMario(vm) {
     vm.g_mario_timer = null;
   }
 
-  // 地图砖块与问号箱
+  // 宽幅地图砖块与问号箱
   var blocks = [
-    { x: 100, y: 110, w: 22, h: 22, type: 'brick', hit: false },
-    { x: 130, y: 110, w: 22, h: 22, type: 'coin_box', hit: false },
-    { x: 160, y: 110, w: 22, h: 22, type: 'brick', hit: false },
-    { x: 220, y: 130, w: 26, h: 44, type: 'pipe' } // 绿色水管
+    { x: 120, y: 100, w: 26, h: 26, type: 'brick', hit: false },
+    { x: 156, y: 100, w: 26, h: 26, type: 'coin_box', hit: false },
+    { x: 192, y: 100, w: 26, h: 26, type: 'brick', hit: false },
+    { x: 260, y: 120, w: 34, h: 50, type: 'pipe' }, // 绿色水管
+    { x: 340, y: 100, w: 26, h: 26, type: 'coin_box', hit: false },
+    { x: 376, y: 100, w: 26, h: 26, type: 'brick', hit: false }
   ];
 
   // 巡逻板栗仔
   var enemies = [
-    { x: 200, y: 154, w: 20, h: 20, vx: -1.5, alive: true }
+    { x: 210, y: 148, w: 22, h: 22, vx: -1.5, alive: true },
+    { x: 420, y: 148, w: 22, h: 22, vx: -1.5, alive: true }
   ];
 
   vm.g_mario = {
     marioX: 40,
-    marioY: 150, // 地面线 y=150
+    marioY: 144, // 地面线 y=144
     vy: 0,
     vx: 0,
     isJumping: false,
@@ -42,12 +45,13 @@ export function handleMarioAction(vm, act) {
     return;
   }
 
-  if (act === 'left') m.vx = -4;
-  else if (act === 'right') m.vx = 4;
+  if (act === 'left') m.vx = -4.5;
+  else if (act === 'right') m.vx = 4.5;
   else if (act === 'jump' && !m.isJumping) {
-    m.vy = -10.5;
+    m.vy = -11.0;
     m.isJumping = true;
   }
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 function startMarioLoop(vm) {
@@ -59,32 +63,35 @@ function startMarioLoop(vm) {
       return;
     }
 
-    // 横向移动与边界
+    // 横向位移与摩擦
     m.marioX += m.vx;
-    m.vx *= 0.6; // 摩擦力
+    m.vx *= 0.65;
     if (m.marioX < 10) m.marioX = 10;
-    if (m.marioX > 250) {
-      // 成功抵达右侧旗杆通关！
+    if (m.marioX > 480) {
+      // 触达终点旗帜
       m.state = 'won';
+      m.score += 1000;
+      clearInterval(vm.g_mario_timer);
+      vm.g_mario_timer = null;
       if (vm.$forceUpdate) vm.$forceUpdate();
       return;
     }
 
-    // 重力与起跳
+    // 重力
     m.vy += 0.95;
     m.marioY += m.vy;
-    if (m.marioY >= 150) {
-      m.marioY = 150;
+    if (m.marioY >= 144) {
+      m.marioY = 144;
       m.vy = 0;
       m.isJumping = false;
     }
 
-    // 砖块顶撞判定 (向上冲时头部碰撞)
+    // 砖块碰撞
     for (var i = 0; i < m.blocks.length; i++) {
       var blk = m.blocks[i];
-      if (m.vy < 0 && m.marioX + 16 > blk.x && m.marioX < blk.x + blk.w) {
+      if (m.vy < 0 && m.marioX + 20 > blk.x && m.marioX < blk.x + blk.w) {
         if (m.marioY < blk.y + blk.h && m.marioY > blk.y) {
-          m.vy = 1; // 撞头下落
+          m.vy = 1.5;
           if (!blk.hit) {
             blk.hit = true;
             if (blk.type === 'coin_box') {
@@ -98,23 +105,21 @@ function startMarioLoop(vm) {
       }
     }
 
-    // 板栗仔巡逻与碰撞判定
+    // 敌人巡逻与碰撞
     for (var i = 0; i < m.enemies.length; i++) {
       var en = m.enemies[i];
       if (!en.alive) continue;
       en.x += en.vx;
-      if (en.x < 80 || en.x > 210) en.vx = -en.vx;
+      if (en.x < 110 || en.x > 450) en.vx = -en.vx;
 
-      // 碰撞检测 (马里奥在 marioX, marioY, 宽20, 高24)
-      if (Math.abs(m.marioX - en.x) < 18) {
+      if (Math.abs(m.marioX - en.x) < 20) {
         if (m.marioY + 24 > en.y && m.marioY < en.y + en.h) {
           // 下落踩扁
-          if (m.vy > 0 && m.marioY < en.y + 4) {
+          if (m.vy > 0 && m.marioY < en.y + 6) {
             en.alive = false;
-            m.vy = -6; // 踩中弹跳
-            m.score += 100;
+            m.vy = -7.5;
+            m.score += 200;
           } else {
-            // 被小怪击中阵亡
             m.state = 'dead';
             clearInterval(vm.g_mario_timer);
             vm.g_mario_timer = null;
@@ -135,27 +140,29 @@ export function renderMario(vm, h) {
 
   var elements = [];
 
-  // 地面 (蓝天背景与草地基座)
+  // 地面草坪 (绿茵草地 + 砖石基底)
   elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '0px', top: '174px', width: '280px', height: '36px',
-      backgroundColor: '#16a34a', borderTopWidth: '3px', borderColor: '#86efac'
+      position: 'absolute', left: '0px', top: '168px', width: '530px', height: '20px',
+      backgroundColor: '#16a34a', borderTopWidth: '4px', borderColor: '#86efac'
     }
   }));
 
-  // 终点旗杆 🚩
+  // 终点旗杆 (位于 x=480)
   elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '260px', top: '74px', width: '4px', height: '100px',
+      position: 'absolute', left: '480px', top: '50px', width: '4px', height: '118px',
       backgroundColor: '#f8fafc'
     }
   }));
   elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '264px', top: '74px', width: '16px', height: '12px',
-      backgroundColor: '#ef4444'
+      position: 'absolute', left: '484px', top: '50px', width: '22px', height: '16px',
+      backgroundColor: '#ef4444', borderRadius: '2px', justifyContent: 'center', alignItems: 'center'
     }
-  }));
+  }, [
+    h('text', { staticStyle: { fontSize: '9px', color: '#ffffff', fontWeight: 'bold' } }, 'WIN')
+  ]));
 
   // 砖块与水管
   for (var i = 0; i < m.blocks.length; i++) {
@@ -165,98 +172,170 @@ export function renderMario(vm, h) {
         staticStyle: {
           position: 'absolute', left: b.x + 'px', top: b.y + 'px',
           width: b.w + 'px', height: b.h + 'px',
-          backgroundColor: '#22c55e', borderWidth: '2px', borderColor: '#166534',
-          borderRadius: '3px'
+          backgroundColor: '#22c55e', borderWidth: '2px', borderColor: '#15803d',
+          borderRadius: '4px'
         }
-      }));
+      }, [
+        // 水管口凸出边缘
+        h('div', {
+          staticStyle: {
+            position: 'absolute', left: '-3px', top: '0px', width: (b.w + 6) + 'px', height: '10px',
+            backgroundColor: '#16a34a', borderRadius: '2px', borderWidth: '1.5px', borderColor: '#15803d'
+          }
+        })
+      ]));
     } else {
       var bgCol = b.hit ? '#94a3b8' : (b.type === 'coin_box' ? '#f59e0b' : '#b45309');
-      var label = b.hit ? '' : (b.type === 'coin_box' ? '?' : '≡');
+      var label = b.hit ? '' : (b.type === 'coin_box' ? '?' : '#');
       elements.push(h('div', {
         staticStyle: {
           position: 'absolute', left: b.x + 'px', top: b.y + 'px',
           width: b.w + 'px', height: b.h + 'px',
           backgroundColor: bgCol, borderWidth: '1.5px', borderColor: '#ffffff',
-          borderRadius: '3px', justifyContent: 'center', alignItems: 'center'
+          borderRadius: '4px', justifyContent: 'center', alignItems: 'center'
         }
       }, [
-        h('text', { staticStyle: { fontSize: '13px', color: '#ffffff', fontWeight: 'bold' } }, label)
+        h('text', { staticStyle: { fontSize: '14px', color: '#ffffff', fontWeight: 'bold' } }, label)
       ]));
     }
   }
 
-  // 敌人板栗仔 🍄
+  // 板栗仔敌人
   for (var i = 0; i < m.enemies.length; i++) {
     var en = m.enemies[i];
     if (en.alive) {
       elements.push(h('div', {
         staticStyle: {
           position: 'absolute', left: Math.floor(en.x) + 'px', top: en.y + 'px',
-          width: en.w + 'px', height: en.h + 'px', justifyContent: 'center', alignItems: 'center'
+          width: en.w + 'px', height: en.h + 'px', backgroundColor: '#78350f',
+          borderRadius: '6px', borderWidth: '1.5px', borderColor: '#d97706',
+          justifyContent: 'center', alignItems: 'center'
         }
       }, [
-        h('text', { staticStyle: { fontSize: '16px' } }, '🍄')
+        h('text', { staticStyle: { fontSize: '10px', color: '#ffffff', fontWeight: 'bold' } }, '怪')
       ]));
     }
   }
 
-  // 马里奥主角
+  // 马里奥主角 (红帽 + 蓝裤微像素装)
   elements.push(h('div', {
     staticStyle: {
       position: 'absolute', left: Math.floor(m.marioX) + 'px', top: Math.floor(m.marioY) + 'px',
-      width: '22px', height: '24px', justifyContent: 'center', alignItems: 'center'
+      width: '22px', height: '24px'
     }
   }, [
-    h('text', { staticStyle: { fontSize: '18px' } }, m.state === 'dead' ? '💀' : '👨‍🔧')
+    // 帽子与头部
+    h('div', {
+      staticStyle: {
+        width: '18px', height: '10px', backgroundColor: '#dc2626', borderRadius: '3px',
+        position: 'absolute', left: '2px', top: '0px'
+      }
+    }),
+    // 蓝色背带裤
+    h('div', {
+      staticStyle: {
+        width: '16px', height: '12px', backgroundColor: '#2563eb', borderRadius: '2px',
+        position: 'absolute', left: '3px', top: '10px'
+      }
+    }),
+    // 靴子
+    h('div', {
+      staticStyle: {
+        width: '6px', height: '4px', backgroundColor: '#78350f',
+        position: 'absolute', left: '2px', top: '20px'
+      }
+    }),
+    h('div', {
+      staticStyle: {
+        width: '6px', height: '4px', backgroundColor: '#78350f',
+        position: 'absolute', left: '14px', top: '20px'
+      }
+    })
   ]));
 
-  if (m.state === 'dead' || m.state === 'won') {
+  if (m.state === 'won') {
     elements.push(h('div', {
       staticStyle: {
-        position: 'absolute', left: '0px', top: '0px', width: '280px', height: '210px',
-        backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center'
+        position: 'absolute', left: '0px', top: '0px', width: '530px', height: '188px',
+        backgroundColor: 'rgba(9, 13, 22, 0.7)', justifyContent: 'center', alignItems: 'center'
       }
     }, [
-      h('text', { staticStyle: { fontSize: '16px', color: m.state === 'won' ? '#facc15' : '#ef4444', fontWeight: 'bold' } }, m.state === 'won' ? '通关大吉! 🏆' : '踩怪失败!'),
-      h('text', { staticStyle: { fontSize: '13px', color: '#f8fafc', marginTop: '6px' } }, '总得分: ' + m.score + ' 金币: ' + m.coins),
-      h('text', { staticStyle: { fontSize: '12px', color: '#38bdf8', marginTop: '8px' } }, '轻触下方按钮重来 🍄')
+      h('text', { staticStyle: { fontSize: '20px', color: '#4ade80', fontWeight: 'bold' } }, '★ 顺利通关 CLEAR! ★'),
+      h('text', { staticStyle: { fontSize: '14px', color: '#f8fafc', marginTop: '6px' } }, '金币总计: ' + m.coins + ' | 总得分: ' + m.score)
+    ]));
+  } else if (m.state === 'dead') {
+    elements.push(h('div', {
+      staticStyle: {
+        position: 'absolute', left: '0px', top: '0px', width: '530px', height: '188px',
+        backgroundColor: 'rgba(9, 13, 22, 0.75)', justifyContent: 'center', alignItems: 'center'
+      }
+    }, [
+      h('text', { staticStyle: { fontSize: '18px', color: '#ef4444', fontWeight: 'bold' } }, '× 遗憾阵亡 GAME OVER ×'),
+      h('text', { staticStyle: { fontSize: '13px', color: '#f8fafc', marginTop: '6px' } }, '轻触下方按钮重来')
     ]));
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 舞台 (280x210)
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 16px'
+    }
+  }, [
+    // 宽幅马里奥世界 (530x188)
     h('div', {
       staticStyle: {
-        width: '280px', height: '210px', backgroundColor: '#38bdf8',
-        borderRadius: '6px', overflow: 'hidden', position: 'relative'
+        width: '530px', height: '188px', backgroundColor: '#38bdf8',
+        borderRadius: '8px', overflow: 'hidden', position: 'relative',
+        borderWidth: '2px', borderColor: '#0284c7', marginRight: '20px'
       }
     }, elements),
 
     // 控制面板
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '马里奥冲关'),
-      h('text', { staticStyle: { fontSize: '13px', color: '#facc15', marginTop: '6px' } }, '金币: ' + m.coins + ' 得分: ' + m.score),
+    h('div', {
+      staticStyle: {
+        flex: 1, height: '188px', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'
+      }
+    }, [
+      h('div', { staticStyle: { flexDirection: 'column', alignItems: 'center' } }, [
+        h('text', { staticStyle: { fontSize: '14px', color: '#f8fafc', fontWeight: 'bold' } }, '马里奥冲关'),
+        h('text', { staticStyle: { fontSize: '12px', color: '#facc15', marginTop: '3px' } }, '金币: ' + m.coins + ' | 分数: ' + m.score)
+      ]),
 
-      // 三键控制: 左 / 右 / 跳
-      h('div', { staticStyle: { flexDirection: 'row', marginTop: '14px' } }, [
+      // 触控按键：左、跳跃、右
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
         h('div', {
-          staticStyle: { width: '42px', height: '38px', backgroundColor: '#334155', borderRadius: '8px', justifyContent: 'center', alignItems: 'center', marginRight: '8px' },
+          staticStyle: {
+            width: '60px', height: '52px', backgroundColor: '#1e293b', borderRadius: '12px',
+            borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center',
+            marginRight: '8px'
+          },
           on: { click: function() { handleMarioAction(vm, 'left'); } }
-        }, [h('text', { staticStyle: { fontSize: '16px', color: '#ffffff' } }, '◀')]),
+        }, [h('text', { staticStyle: { fontSize: '18px', color: '#38bdf8' } }, '◀')]),
         h('div', {
-          staticStyle: { width: '42px', height: '38px', backgroundColor: '#334155', borderRadius: '8px', justifyContent: 'center', alignItems: 'center', marginRight: '8px' },
-          on: { click: function() { handleMarioAction(vm, 'right'); } }
-        }, [h('text', { staticStyle: { fontSize: '16px', color: '#ffffff' } }, '▶')]),
-        h('div', {
-          staticStyle: { width: '48px', height: '38px', backgroundColor: '#ef4444', borderRadius: '8px', justifyContent: 'center', alignItems: 'center' },
+          staticStyle: {
+            width: '74px', height: '52px', backgroundColor: '#dc2626', borderRadius: '12px',
+            borderWidth: '1.5px', borderColor: '#f87171', justifyContent: 'center', alignItems: 'center',
+            marginRight: '8px'
+          },
           on: { click: function() { handleMarioAction(vm, 'jump'); } }
-        }, [h('text', { staticStyle: { fontSize: '14px', color: '#ffffff', fontWeight: 'bold' } }, '跳')])
+        }, [h('text', { staticStyle: { fontSize: '16px', color: '#ffffff', fontWeight: 'bold' } }, '跳跃')]),
+        h('div', {
+          staticStyle: {
+            width: '60px', height: '52px', backgroundColor: '#1e293b', borderRadius: '12px',
+            borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center'
+          },
+          on: { click: function() { handleMarioAction(vm, 'right'); } }
+        }, [h('text', { staticStyle: { fontSize: '18px', color: '#38bdf8' } }, '▶')])
       ]),
 
       h('div', {
-        staticStyle: { width: '80px', height: '26px', backgroundColor: '#475569', borderRadius: '13px', justifyContent: 'center', alignItems: 'center', marginTop: '12px' },
-        on: { click: function() { initMario(vm); } }
-      }, [h('text', { staticStyle: { fontSize: '12px', color: '#ffffff' } }, '重置')])
+        staticStyle: {
+          width: '120px', height: '28px', backgroundColor: '#334155', borderRadius: '14px',
+          justifyContent: 'center', alignItems: 'center'
+        },
+        on: { click: function() { initMario(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
+      }, [
+        h('text', { staticStyle: { fontSize: '11px', color: '#ffffff' } }, '重新开始')
+      ])
     ])
   ]);
 }

@@ -1,3 +1,5 @@
+import Component from './Component.js';
+
 class ResourcePage extends $falcon.Page {
   constructor() {
     super();
@@ -42,49 +44,72 @@ class ResourcePage extends $falcon.Page {
     this.intervalTokens.delete(token);
   }
 
-  onUnload() {
-    try {
-      this.falconOnTokens.forEach(([token]) => {
-        $falcon.off(token);
-      });
-      this.falconOnTokens = [];
-      this.timeoutTokens.forEach((token) => {
-        clearTimeout(token);
-      });
-      this.timeoutTokens.clear();
-      this.intervalTokens.forEach((token) => {
-        clearInterval(token);
-      });
-      this.intervalTokens.clear();
-    } catch (e) {}
+  release() {
+    this.falconOnTokens.forEach((item) => $falcon.off(item[1], item[0]));
+    this.falconOnTokens = [];
+    this.timeoutTokens.forEach((token) => clearTimeout(token));
+    this.intervalTokens.forEach((token) => clearInterval(token));
+    this.timeoutTokens.clear();
+    this.intervalTokens.clear();
   }
 }
 
-class BasePage extends ResourcePage {
-  onShow() {
-    super.onShow();
-    if (this.$root && typeof this.$root.onShow === 'function') {
-      try { this.$root.onShow(); } catch (e) {}
+function attachRoot(page) {
+  try {
+    if (page && typeof page.setRootComponentOptions === 'function') {
+      page.setRootComponentOptions(Component);
+      try { console.warn('[minigames] setRootComponentOptions called'); } catch (e) {}
+      return true;
     }
+  } catch (e) { try { console.warn('[minigames] setRootComponentOptions error ' + e); } catch (e2) {} }
+  try {
+    if (page && typeof page.setRootComponent === 'function') {
+      page.setRootComponent(Component);
+      try { console.warn('[minigames] setRootComponent called'); } catch (e) {}
+      return true;
+    }
+  } catch (e) { try { console.warn('[minigames] setRootComponent error ' + e); } catch (e2) {} }
+  return false;
+}
+
+export class BasePage extends ResourcePage {
+  onLoad(options) {
+    try { super.onLoad(options); } catch (e) {}
+    this.options = options || {};
+    try { console.warn('[minigames] BasePage.onLoad called'); } catch (e) {}
+    attachRoot(this);
+  }
+
+  onNewOptions(options) {
+    try { super.onNewOptions(options); } catch (e) {}
+    this.options = options || {};
+    attachRoot(this);
+  }
+
+  onShow() {
+    try { super.onShow(); } catch (e) {}
+    if (this.$root && this.$root.onShow) this.$root.onShow();
   }
 
   onHide() {
-    super.onHide();
-    if (this.$root && typeof this.$root.onHide === 'function') {
-      try { this.$root.onHide(); } catch (e) {}
-    }
+    try { super.onHide(); } catch (e) {}
+    if (this.$root && this.$root.onHide) this.$root.onHide();
   }
 
   onUnload() {
     try {
-      if (this.$root && typeof this.$root.onUnload === 'function') {
-        try { this.$root.onUnload(); } catch (e) {}
-      }
+      try { super.onUnload(); } catch (e) {}
+      if (this.$root && this.$root.onUnload) this.$root.onUnload();
     } finally {
-      super.onUnload();
+      this.release();
     }
+  }
+
+  beforeVueInstantiate(Vue) {
+    if (super.beforeVueInstantiate) super.beforeVueInstantiate(Vue);
+    Vue.prototype.$workspace = globalThis.$workspace;
+    Vue.prototype.$appid = globalThis.$appid;
   }
 }
 
-export { BasePage };
 export default BasePage;

@@ -25,7 +25,8 @@ VERSION = "1.0.0"
 
 def main():
     if os.path.exists(BUILD_DIR):
-        shutil.rmtree(BUILD_DIR)
+        import subprocess
+        subprocess.run(["rm", "-rf", BUILD_DIR])
     os.makedirs(STAGE_DIR, exist_ok=True)
     os.makedirs(BIN_DIR, exist_ok=True)
     os.makedirs(AMR_DIR, exist_ok=True)

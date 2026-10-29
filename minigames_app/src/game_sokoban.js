@@ -1,5 +1,4 @@
 // game_sokoban.js —— 经典推箱子 (Sokoban, 8x8 网格地图)
-// 0:空地, 1:墙壁, 2:箱子, 3:目标点, 4:目标点上的箱子
 var MAP_LEVEL1 = [
   [1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 1, 0, 0, 0, 1],
@@ -41,9 +40,7 @@ export function handleSokobanMove(vm, dx, dy) {
   // 推箱子
   if (s.board[ny][nx] === 2 || s.board[ny][nx] === 4) {
     var bx = nx + dx, by = ny + dy;
-    // 箱子前方是空地或目标点
     if (s.board[by][bx] === 0 || s.board[by][bx] === 3) {
-      // 移动箱子
       s.board[by][bx] = (s.board[by][bx] === 3 ? 4 : 2);
       s.board[ny][nx] = (s.board[ny][nx] === 4 ? 3 : 0);
       s.playerX = nx;
@@ -57,7 +54,7 @@ export function handleSokobanMove(vm, dx, dy) {
     s.stepCount++;
   }
 
-  // 胜利检测：棋盘上无普通箱子(2)，全为目标点上的箱子(4)
+  // 胜利检测
   var won = true;
   for (var r = 0; r < 8; r++) {
     for (var c = 0; c < 8; c++) {
@@ -65,13 +62,14 @@ export function handleSokobanMove(vm, dx, dy) {
     }
   }
   s.won = won;
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 export function renderSokoban(vm, h) {
   var s = vm.g_sokoban;
   if (!s) return h('div');
 
-  var cellSize = 24;
+  var cellSize = 22; // 8x22 = 176px
   var elements = [];
 
   for (var r = 0; r < 8; r++) {
@@ -79,25 +77,48 @@ export function renderSokoban(vm, h) {
       var val = s.board[r][c];
       var isPlayer = (s.playerX === c && s.playerY === r);
 
-      var bg = '#1e293b';
-      var content = '';
-      if (val === 1) bg = '#475569'; // 墙
-      else if (val === 2) content = '📦';
-      else if (val === 3) content = '🎯';
-      else if (val === 4) content = '✨';
+      var bg = '#090d16';
+      var border = '#1e293b';
+      var text = '';
+      var textColor = '#ffffff';
 
-      if (isPlayer) content = '👷';
+      if (val === 1) {
+        bg = '#334155'; // 墙
+        border = '#475569';
+      } else if (val === 2) {
+        bg = '#d97706'; // 箱子
+        border = '#f59e0b';
+        text = '箱';
+      } else if (val === 3) {
+        bg = '#064e3b'; // 目标点
+        border = '#10b981';
+        text = '点';
+        textColor = '#34d399';
+      } else if (val === 4) {
+        bg = '#15803d'; // 达成目标上的箱子
+        border = '#4ade80';
+        text = '★';
+        textColor = '#facc15';
+      }
+
+      if (isPlayer) {
+        bg = '#2563eb';
+        border = '#60a5fa';
+        text = '我';
+        textColor = '#ffffff';
+      }
 
       elements.push(h('div', {
         staticStyle: {
           position: 'absolute',
           left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
           width: cellSize + 'px', height: cellSize + 'px',
-          backgroundColor: bg, borderWidth: '0.5px', borderColor: '#334155',
+          backgroundColor: bg, borderWidth: '1px', borderColor: border,
+          borderRadius: (isPlayer ? '11px' : '3px'),
           justifyContent: 'center', alignItems: 'center'
         }
       }, [
-        h('text', { staticStyle: { fontSize: '14px' } }, content)
+        h('text', { staticStyle: { fontSize: '11px', color: textColor, fontWeight: 'bold' } }, text)
       ]));
     }
   }
@@ -105,56 +126,84 @@ export function renderSokoban(vm, h) {
   if (s.won) {
     elements.push(h('div', {
       staticStyle: {
-        position: 'absolute', left: '0px', top: '0px', width: (8 * cellSize) + 'px', height: (8 * cellSize) + 'px',
-        backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center'
+        position: 'absolute', left: '0px', top: '0px', width: '176px', height: '176px',
+        backgroundColor: 'rgba(9, 13, 22, 0.8)', justifyContent: 'center', alignItems: 'center'
       }
     }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#facc15', fontWeight: 'bold' } }, '推箱子通关! 🏆'),
-      h('text', { staticStyle: { fontSize: '12px', color: '#f8fafc', marginTop: '6px' } }, '步数: ' + s.stepCount)
+      h('text', { staticStyle: { fontSize: '15px', color: '#4ade80', fontWeight: 'bold' } }, '★ 成功归位 ★'),
+      h('text', { staticStyle: { fontSize: '11px', color: '#f8fafc', marginTop: '4px' } }, '总步数: ' + s.stepCount)
     ]));
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 舞台 (196x196)
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 20px'
+    }
+  }, [
+    // 仓库迷宫 (176x176)
     h('div', {
       staticStyle: {
-        width: (8 * cellSize) + 'px', height: (8 * cellSize) + 'px',
-        borderRadius: '6px', overflow: 'hidden', position: 'relative',
-        borderWidth: '2px', borderColor: '#334155'
+        width: '178px', height: '178px', backgroundColor: '#090d16',
+        borderRadius: '8px', position: 'relative', borderWidth: '2px', borderColor: '#475569',
+        marginRight: '24px'
       }
     }, elements),
 
-    // 控制台
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center', alignItems: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '经典推箱子'),
-      h('text', { staticStyle: { fontSize: '12px', color: '#38bdf8', marginTop: '4px' } }, '步数: ' + s.stepCount),
-
-      // 方向键
-      h('div', { staticStyle: { marginTop: '8px', alignItems: 'center' } }, [
-        h('div', {
-          staticStyle: { width: '38px', height: '28px', backgroundColor: '#334155', borderRadius: '4px', justifyContent: 'center', alignItems: 'center', marginBottom: '2px' },
-          on: { click: function() { handleSokobanMove(vm, 0, -1); } }
-        }, [h('text', { staticStyle: { fontSize: '13px', color: '#ffffff' } }, '▲')]),
-        h('div', { staticStyle: { flexDirection: 'row' } }, [
+    // 信息与大十字方向按键
+    h('div', { staticStyle: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' } }, [
+      h('div', { staticStyle: { flexDirection: 'column' } }, [
+        h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
           h('div', {
-            staticStyle: { width: '38px', height: '28px', backgroundColor: '#334155', borderRadius: '4px', justifyContent: 'center', alignItems: 'center', marginRight: '16px' },
-            on: { click: function() { handleSokobanMove(vm, -1, 0); } }
-          }, [h('text', { staticStyle: { fontSize: '13px', color: '#ffffff' } }, '◀')]),
-          h('div', {
-            staticStyle: { width: '38px', height: '28px', backgroundColor: '#334155', borderRadius: '4px', justifyContent: 'center', alignItems: 'center' },
-            on: { click: function() { handleSokobanMove(vm, 1, 0); } }
-          }, [h('text', { staticStyle: { fontSize: '13px', color: '#ffffff' } }, '▶')])
+            staticStyle: { width: '8px', height: '8px', borderRadius: '4px', backgroundColor: '#b45309', marginRight: '8px' }
+          }),
+          h('text', { staticStyle: { fontSize: '16px', color: '#f8fafc', fontWeight: 'bold' } }, '经典推箱子')
         ]),
+        h('text', { staticStyle: { fontSize: '13px', color: '#38bdf8', marginTop: '6px' } }, '当前步数: ' + s.stepCount),
+        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8', marginTop: '4px' } }, '图例：[我]搬运工 [箱]货箱 [点]目标点'),
         h('div', {
-          staticStyle: { width: '38px', height: '28px', backgroundColor: '#334155', borderRadius: '4px', justifyContent: 'center', alignItems: 'center', marginTop: '2px' },
-          on: { click: function() { handleSokobanMove(vm, 0, 1); } }
-        }, [h('text', { staticStyle: { fontSize: '13px', color: '#ffffff' } }, '▼')])
+          staticStyle: {
+            width: '100px', height: '28px', backgroundColor: '#334155', borderRadius: '14px',
+            justifyContent: 'center', alignItems: 'center', marginTop: '10px'
+          },
+          on: { click: function() { initSokoban(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
+        }, [
+          h('text', { staticStyle: { fontSize: '11px', color: '#f8fafc' } }, '重新开始')
+        ])
       ]),
 
-      h('div', {
-        staticStyle: { width: '80px', height: '24px', backgroundColor: '#475569', borderRadius: '12px', justifyContent: 'center', alignItems: 'center', marginTop: '6px' },
-        on: { click: function() { initSokoban(vm); } }
-      }, [h('text', { staticStyle: { fontSize: '11px', color: '#ffffff' } }, '重置本关')])
+      // 宽大十字方向盘
+      h('div', { staticStyle: { flexDirection: 'column', alignItems: 'center', marginRight: '20px' } }, [
+        h('div', {
+          staticStyle: {
+            width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+            borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center', marginBottom: '6px'
+          },
+          on: { click: function() { handleSokobanMove(vm, 0, -1); } }
+        }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▲')]),
+        h('div', { staticStyle: { flexDirection: 'row' } }, [
+          h('div', {
+            staticStyle: {
+              width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+              borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center', marginRight: '36px'
+            },
+            on: { click: function() { handleSokobanMove(vm, -1, 0); } }
+          }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '◀')]),
+          h('div', {
+            staticStyle: {
+              width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+              borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center'
+            },
+            on: { click: function() { handleSokobanMove(vm, 1, 0); } }
+          }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▶')])
+        ]),
+        h('div', {
+          staticStyle: {
+            width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+            borderWidth: '1.5px', borderColor: '#38bdf8', justifyContent: 'center', alignItems: 'center', marginTop: '6px'
+          },
+          on: { click: function() { handleSokobanMove(vm, 0, 1); } }
+        }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▼')])
+      ])
     ])
   ]);
 }

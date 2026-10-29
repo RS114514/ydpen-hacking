@@ -1,22 +1,25 @@
-// game_snake.js —— 贪吃蛇 (Snake, 16x11 网格)
+// game_snake.js —— 贪吃蛇 (Snake, 24列 x 12行)
 export function initSnake(vm) {
   if (vm.g_snake_timer) {
     clearInterval(vm.g_snake_timer);
     vm.g_snake_timer = null;
   }
 
+  var best = vm.g_snake ? (vm.g_snake.bestScore || 0) : 0;
+
   vm.g_snake = {
-    cols: 16,
-    rows: 11,
+    cols: 24,
+    rows: 12,
     body: [
-      { x: 5, y: 5 },
-      { x: 4, y: 5 },
-      { x: 3, y: 5 }
+      { x: 6, y: 6 },
+      { x: 5, y: 6 },
+      { x: 4, y: 6 }
     ],
-    dir: 'right', // 'up' | 'down' | 'left' | 'right'
+    dir: 'right',
     nextDir: 'right',
-    food: { x: 10, y: 5 },
+    food: { x: 14, y: 6 },
     score: 0,
+    bestScore: best,
     dead: false
   };
 
@@ -69,17 +72,19 @@ function startSnakeLoop(vm) {
 
     var newHead = { x: head.x + dx, y: head.y + dy };
 
-    // 撞墙判定
+    // 撞墙
     if (newHead.x < 0 || newHead.x >= s.cols || newHead.y < 0 || newHead.y >= s.rows) {
       s.dead = true;
+      if (s.score > s.bestScore) s.bestScore = s.score;
       if (vm.$forceUpdate) vm.$forceUpdate();
       return;
     }
 
-    // 撞自身判定
+    // 撞自身
     for (var i = 0; i < s.body.length; i++) {
       if (s.body[i].x === newHead.x && s.body[i].y === newHead.y) {
         s.dead = true;
+        if (s.score > s.bestScore) s.bestScore = s.score;
         if (vm.$forceUpdate) vm.$forceUpdate();
         return;
       }
@@ -90,42 +95,41 @@ function startSnakeLoop(vm) {
     // 吃到食物
     if (newHead.x === s.food.x && newHead.y === s.food.y) {
       s.score += 10;
+      if (s.score > s.bestScore) s.bestScore = s.score;
       spawnFood(s);
     } else {
       s.body.pop();
     }
 
     if (vm.$forceUpdate) vm.$forceUpdate();
-  }, 220);
+  }, 160);
 }
 
 export function renderSnake(vm, h) {
   var s = vm.g_snake;
   if (!s) return h('div');
 
-  var cellSize = 18;
+  var cellSize = 14;
   var elements = [];
 
-  // 渲染网格背景点位
+  // 网格底图
   elements.push(h('div', {
     staticStyle: {
       position: 'absolute', left: '0px', top: '0px', width: (s.cols * cellSize) + 'px', height: (s.rows * cellSize) + 'px',
-      backgroundColor: '#0f172a'
+      backgroundColor: '#090d16'
     }
   }));
 
-  // 渲染食物
+  // 渲染食物 (高亮红色小果实，带光泽边框)
   elements.push(h('div', {
     staticStyle: {
       position: 'absolute',
       left: (s.food.x * cellSize + 2) + 'px', top: (s.food.y * cellSize + 2) + 'px',
       width: (cellSize - 4) + 'px', height: (cellSize - 4) + 'px',
-      backgroundColor: '#ef4444', borderRadius: '7px',
-      justifyContent: 'center', alignItems: 'center'
+      backgroundColor: '#ef4444', borderRadius: '5px',
+      borderWidth: '1.5px', borderColor: '#fca5a5'
     }
-  }, [
-    h('text', { staticStyle: { fontSize: '11px' } }, '🍎')
-  ]));
+  }));
 
   // 渲染蛇身
   for (var i = 0; i < s.body.length; i++) {
@@ -137,66 +141,92 @@ export function renderSnake(vm, h) {
         left: (seg.x * cellSize + 1) + 'px', top: (seg.y * cellSize + 1) + 'px',
         width: (cellSize - 2) + 'px', height: (cellSize - 2) + 'px',
         backgroundColor: isHead ? '#22c55e' : '#15803d',
-        borderRadius: isHead ? '6px' : '4px',
+        borderRadius: isHead ? '4px' : '3px',
         borderWidth: isHead ? '1.5px' : '0px', borderColor: '#86efac'
       }
     }));
   }
 
+  // 结算蒙层
   if (s.dead) {
     elements.push(h('div', {
       staticStyle: {
         position: 'absolute', left: '0px', top: '0px',
         width: (s.cols * cellSize) + 'px', height: (s.rows * cellSize) + 'px',
-        backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center'
+        backgroundColor: 'rgba(9, 13, 22, 0.75)', justifyContent: 'center', alignItems: 'center'
       }
     }, [
-      h('text', { staticStyle: { fontSize: '16px', color: '#ef4444', fontWeight: 'bold' } }, '游戏结束!'),
+      h('text', { staticStyle: { fontSize: '18px', color: '#ef4444', fontWeight: 'bold' } }, '× 撞击阵亡 ×'),
       h('text', { staticStyle: { fontSize: '13px', color: '#f8fafc', marginTop: '6px' } }, '最终得分: ' + s.score)
     ]));
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 蛇盘
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 16px'
+    }
+  }, [
+    // 1. 宽视野贪吃蛇舞台 (340x172)
     h('div', {
       staticStyle: {
-        width: (s.cols * cellSize) + 'px', height: (s.rows * cellSize) + 'px',
-        borderRadius: '6px', overflow: 'hidden', position: 'relative',
-        borderWidth: '2px', borderColor: '#334155'
+        width: (s.cols * cellSize + 4) + 'px', height: (s.rows * cellSize + 4) + 'px',
+        borderRadius: '8px', overflow: 'hidden', position: 'relative',
+        borderWidth: '2px', borderColor: '#334155', marginRight: '24px'
       }
     }, elements),
 
-    // 控制十字键与信息
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center', alignItems: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '经典贪吃蛇'),
-      h('text', { staticStyle: { fontSize: '13px', color: '#22c55e', marginTop: '4px' } }, '得分: ' + s.score),
-
-      // 经典十字按键
-      h('div', { staticStyle: { marginTop: '8px', alignItems: 'center' } }, [
+    // 2. 信息与大尺寸方向盘
+    h('div', { staticStyle: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' } }, [
+      // 记分牌
+      h('div', { staticStyle: { flexDirection: 'column', width: '120px' } }, [
+        h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '经典贪吃蛇'),
+        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8', marginTop: '4px' } }, '当前得分:'),
+        h('text', { staticStyle: { fontSize: '20px', color: '#22c55e', fontWeight: 'bold' } }, '' + s.score),
+        h('text', { staticStyle: { fontSize: '10px', color: '#64748b', marginTop: '4px' } }, '历史最高: ' + s.bestScore),
         h('div', {
-          staticStyle: { width: '38px', height: '32px', backgroundColor: '#334155', borderRadius: '6px', justifyContent: 'center', alignItems: 'center', marginBottom: '3px' },
-          on: { click: function() { handleSnakeDir(vm, 'up'); } }
-        }, [h('text', { staticStyle: { fontSize: '14px', color: '#ffffff' } }, '▲')]),
-        h('div', { staticStyle: { flexDirection: 'row' } }, [
-          h('div', {
-            staticStyle: { width: '38px', height: '32px', backgroundColor: '#334155', borderRadius: '6px', justifyContent: 'center', alignItems: 'center', marginRight: '24px' },
-            on: { click: function() { handleSnakeDir(vm, 'left'); } }
-          }, [h('text', { staticStyle: { fontSize: '14px', color: '#ffffff' } }, '◀')]),
-          h('div', {
-            staticStyle: { width: '38px', height: '32px', backgroundColor: '#334155', borderRadius: '6px', justifyContent: 'center', alignItems: 'center' },
-            on: { click: function() { handleSnakeDir(vm, 'right'); } }
-          }, [h('text', { staticStyle: { fontSize: '14px', color: '#ffffff' } }, '▶')])
-        ]),
-        h('div', {
-          staticStyle: { width: '38px', height: '32px', backgroundColor: '#334155', borderRadius: '6px', justifyContent: 'center', alignItems: 'center', marginTop: '3px' },
-          on: { click: function() { handleSnakeDir(vm, 'down'); } }
-        }, [h('text', { staticStyle: { fontSize: '14px', color: '#ffffff' } }, '▼')])
+          staticStyle: {
+            width: '90px', height: '30px', backgroundColor: '#334155', borderRadius: '15px',
+            justifyContent: 'center', alignItems: 'center', marginTop: '10px'
+          },
+          on: { click: function() { initSnake(vm); } }
+        }, [
+          h('text', { staticStyle: { fontSize: '11px', color: '#ffffff' } }, s.dead ? '重玩' : '重新开始')
+        ])
       ]),
 
-      h('div', {
-        staticStyle: { width: '80px', height: '24px', backgroundColor: '#475569', borderRadius: '12px', justifyContent: 'center', alignItems: 'center', marginTop: '8px' },
-        on: { click: function() { initSnake(vm); } }
-      }, [h('text', { staticStyle: { fontSize: '11px', color: '#ffffff' } }, '重新开始')])
+      // 宽大十字方向盘
+      h('div', { staticStyle: { flexDirection: 'column', alignItems: 'center', marginRight: '16px' } }, [
+        h('div', {
+          staticStyle: {
+            width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+            borderWidth: '1.5px', borderColor: '#3b82f6', justifyContent: 'center', alignItems: 'center', marginBottom: '6px'
+          },
+          on: { click: function() { handleSnakeDir(vm, 'up'); } }
+        }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▲')]),
+        h('div', { staticStyle: { flexDirection: 'row' } }, [
+          h('div', {
+            staticStyle: {
+              width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+              borderWidth: '1.5px', borderColor: '#3b82f6', justifyContent: 'center', alignItems: 'center', marginRight: '36px'
+            },
+            on: { click: function() { handleSnakeDir(vm, 'left'); } }
+          }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '◀')]),
+          h('div', {
+            staticStyle: {
+              width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+              borderWidth: '1.5px', borderColor: '#3b82f6', justifyContent: 'center', alignItems: 'center'
+            },
+            on: { click: function() { handleSnakeDir(vm, 'right'); } }
+          }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▶')])
+        ]),
+        h('div', {
+          staticStyle: {
+            width: '64px', height: '46px', backgroundColor: '#1e293b', borderRadius: '10px',
+            borderWidth: '1.5px', borderColor: '#3b82f6', justifyContent: 'center', alignItems: 'center', marginTop: '6px'
+          },
+          on: { click: function() { handleSnakeDir(vm, 'down'); } }
+        }, [h('text', { staticStyle: { fontSize: '20px', color: '#38bdf8' } }, '▼')])
+      ])
     ])
   ]);
 }

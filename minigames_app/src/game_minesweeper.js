@@ -1,4 +1,4 @@
-// game_minesweeper.js —— 扫雷 (8x8, 10颗雷)
+// game_minesweeper.js —— 经典扫雷 (8x8, 10颗雷)
 export function initMinesweeper(vm) {
   var rows = 8, cols = 8, minesCount = 10;
   var grid = [];
@@ -63,26 +63,27 @@ export function handleMineClick(vm, r, c) {
       cell.flagged = !cell.flagged;
       m.remainMines += (cell.flagged ? -1 : 1);
     }
+    if (vm.$forceUpdate) vm.$forceUpdate();
     return;
   }
 
   if (cell.flagged || cell.revealed) return;
 
   if (cell.mine) {
-    // 踩雷
     cell.revealed = true;
     m.state = 'lost';
     revealAll(m);
+    if (vm.$forceUpdate) vm.$forceUpdate();
     return;
   }
 
   // 泛洪展开
   reveal(m, r, c);
 
-  // 判定胜利
   if (checkMineWin(m)) {
     m.state = 'won';
   }
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 function reveal(m, r, c) {
@@ -123,8 +124,14 @@ export function renderMinesweeper(vm, h) {
   if (!m) return h('div');
 
   var statusText = '剩余雷数: ' + m.remainMines;
-  if (m.state === 'won') statusText = '恭喜扫雷成功！🏆';
-  else if (m.state === 'lost') statusText = '踩雷了，再试一次！💥';
+  var statusColor = '#94a3b8';
+  if (m.state === 'won') {
+    statusText = '★ 扫雷成功！全部排查！';
+    statusColor = '#4ade80';
+  } else if (m.state === 'lost') {
+    statusText = '× 触雷失败！请重试！';
+    statusColor = '#f87171';
+  }
 
   var numColors = ['#94a3b8', '#38bdf8', '#4ade80', '#f87171', '#818cf8', '#fb923c', '#2dd4bf', '#f43f5e', '#a855f7'];
 
@@ -133,71 +140,94 @@ export function renderMinesweeper(vm, h) {
     var cols = [];
     for (var c = 0; c < m.cols; c++) {
       var cell = m.grid[r][c];
-      var bg = cell.revealed ? (cell.mine ? '#ef4444' : '#1e293b') : '#334155';
+      var bg = cell.revealed ? (cell.mine ? '#dc2626' : '#1e293b') : '#334155';
+      var border = cell.revealed ? '#0f172a' : '#475569';
       var text = '';
       var textColor = '#ffffff';
 
       if (cell.revealed) {
-        if (cell.mine) text = '💣';
-        else if (cell.count > 0) {
+        if (cell.mine) {
+          text = '雷';
+          textColor = '#ffffff';
+        } else if (cell.count > 0) {
           text = '' + cell.count;
           textColor = numColors[cell.count] || '#ffffff';
         }
       } else if (cell.flagged) {
-        text = '🚩';
+        text = '旗';
         textColor = '#facc15';
+        bg = '#854d0e';
+        border = '#eab308';
       }
 
       (function(row, col) {
         cols.push(h('div', {
           staticStyle: {
-            width: '24px', height: '24px', backgroundColor: bg,
+            width: '21px', height: '21px', backgroundColor: bg,
             margin: '1px', borderRadius: '3px',
+            borderWidth: '1px', borderColor: border,
             justifyContent: 'center', alignItems: 'center'
           },
           on: { click: function() { handleMineClick(vm, row, col); } }
         }, [
-          h('text', { staticStyle: { fontSize: '13px', fontWeight: 'bold', color: textColor } }, text)
+          h('text', { staticStyle: { fontSize: '11px', fontWeight: 'bold', color: textColor } }, text)
         ]));
       })(r, c);
     }
     rows.push(h('div', { staticStyle: { flexDirection: 'row' } }, cols));
   }
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 棋盘
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 20px'
+    }
+  }, [
+    // 棋盘主体 (190x190)
     h('div', {
       staticStyle: {
-        width: '210px', height: '210px', backgroundColor: '#0f172a',
-        padding: '2px', borderRadius: '6px', justifyContent: 'center', alignItems: 'center'
+        width: '188px', height: '188px', backgroundColor: '#090d16',
+        padding: '2px', borderRadius: '8px', borderWidth: '2px', borderColor: '#334155',
+        justifyContent: 'center', alignItems: 'center', marginRight: '30px'
       }
     }, rows),
-    // 侧边操作栏
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '经典扫雷 (8×8)'),
-      h('text', { staticStyle: { fontSize: '12px', color: '#94a3b8', marginTop: '6px' } }, statusText),
-      // 模式切换
+
+    // 侧边宽屏操作区
+    h('div', { staticStyle: { flex: 1, flexDirection: 'column', justifyContent: 'center' } }, [
+      h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center' } }, [
+        h('div', {
+          staticStyle: { width: '8px', height: '8px', borderRadius: '4px', backgroundColor: '#0ea5e9', marginRight: '8px' }
+        }),
+        h('text', { staticStyle: { fontSize: '16px', color: '#f8fafc', fontWeight: 'bold' } }, '经典扫雷 (8×8 网格)')
+      ]),
+      h('text', { staticStyle: { fontSize: '14px', color: statusColor, marginTop: '8px', fontWeight: 'bold' } }, statusText),
+
+      // 大触控操作模式切换按钮
       h('div', {
         staticStyle: {
-          width: '110px', height: '32px',
-          backgroundColor: m.flagMode ? '#f59e0b' : '#3b82f6',
-          borderRadius: '16px', justifyContent: 'center', alignItems: 'center',
+          width: '260px', height: '52px',
+          backgroundColor: m.flagMode ? '#d97706' : '#2563eb',
+          borderRadius: '12px', borderWidth: '1.5px',
+          borderColor: m.flagMode ? '#f59e0b' : '#60a5fa',
+          justifyContent: 'center', alignItems: 'center',
+          marginTop: '14px'
+        },
+        on: { click: function() { m.flagMode = !m.flagMode; if (vm.$forceUpdate) vm.$forceUpdate(); } }
+      }, [
+        h('text', { staticStyle: { fontSize: '16px', color: '#ffffff', fontWeight: 'bold' } },
+          m.flagMode ? '当前模式: [ 标旗模式 ] (点击切翻开)' : '当前模式: [ 翻开模式 ] (点击切插旗)'
+        )
+      ]),
+
+      // 重新开始按钮
+      h('div', {
+        staticStyle: {
+          width: '160px', height: '36px', backgroundColor: '#334155',
+          borderRadius: '18px', justifyContent: 'center', alignItems: 'center',
           marginTop: '12px'
         },
-        on: { click: function() { m.flagMode = !m.flagMode; } }
+        on: { click: function() { initMinesweeper(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#ffffff', fontWeight: 'bold' } }, m.flagMode ? '🚩 标记模式' : '⛏️ 翻开模式')
-      ]),
-      // 重新开始
-      h('div', {
-        staticStyle: {
-          width: '90px', height: '28px', backgroundColor: '#475569',
-          borderRadius: '14px', justifyContent: 'center', alignItems: 'center',
-          marginTop: '10px'
-        },
-        on: { click: function() { initMinesweeper(vm); } }
-      }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#f1f5f9' } }, '重置棋局')
+        h('text', { staticStyle: { fontSize: '13px', color: '#f1f5f9' } }, '重置新棋局')
       ])
     ])
   ]);

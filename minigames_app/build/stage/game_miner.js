@@ -5,26 +5,27 @@ export function initMiner(vm) {
     vm.g_miner_timer = null;
   }
 
-  // 矿物列表 (x, y, radius, type, value, weight)
-  var minerals = [
-    { x: 50, y: 110, r: 14, type: 'gold', val: 250, w: 2 },
-    { x: 130, y: 150, r: 20, type: 'gold', val: 500, w: 3.5 },
-    { x: 210, y: 120, r: 12, type: 'diamond', val: 600, w: 1 },
-    { x: 90, y: 160, r: 18, type: 'rock', val: 20, w: 4 },
-    { x: 170, y: 100, r: 16, type: 'rock', val: 30, w: 3 }
+  // 矿物分布
+  var items = [
+    { x: 120, y: 110, r: 16, type: 'gold', val: 100, color: '#facc15', label: '金' },
+    { x: 220, y: 150, r: 24, type: 'gold', val: 250, color: '#eab308', label: '金' },
+    { x: 330, y: 120, r: 12, type: 'diamond', val: 500, color: '#38bdf8', label: '钻' },
+    { x: 420, y: 140, r: 20, type: 'rock', val: 20, color: '#64748b', label: '石' },
+    { x: 480, y: 90, r: 14, type: 'gold', val: 100, color: '#facc15', label: '金' }
   ];
 
   vm.g_miner = {
-    angle: 0, // -70度 到 +70度
-    angleSpeed: 2.5,
-    hookLen: 25,
-    hookState: 'swing', // 'swing' | 'extend' | 'retract'
-    hookX: 130,
-    hookY: 25,
+    originX: 265, // 顶部矿工绳索起点
+    originY: 15,
+    angle: 0, // -60 ~ 60 度
+    angleDir: 1.5,
+    state: 'swing', // 'swing' | 'extending' | 'retracting'
+    hookLen: 20,
+    hookSpeed: 5,
     caughtItem: null,
     score: 0,
-    timeRemain: 60,
-    minerals: minerals
+    timeLeft: 60,
+    items: items
   };
 
   startMinerLoop(vm);
@@ -32,8 +33,10 @@ export function initMiner(vm) {
 
 export function handleMinerDrop(vm) {
   var m = vm.g_miner;
-  if (!m || m.hookState !== 'swing') return;
-  m.hookState = 'extend';
+  if (!m || m.state !== 'swing') return;
+  m.state = 'extending';
+  m.hookSpeed = 6;
+  if (vm.$forceUpdate) vm.$forceUpdate();
 }
 
 function startMinerLoop(vm) {
@@ -45,55 +48,55 @@ function startMinerLoop(vm) {
       return;
     }
 
-    var rad = (m.angle * Math.PI) / 180;
-    var originX = 130, originY = 25;
+    if (m.state === 'swing') {
+      m.angle += m.angleDir;
+      if (m.angle > 55 || m.angle < -55) m.angleDir = -m.angleDir;
+    } else if (m.state === 'extending') {
+      m.hookLen += m.hookSpeed;
+      var rad = (m.angle * Math.PI) / 180;
+      var hx = m.originX + Math.sin(rad) * m.hookLen;
+      var hy = m.originY + Math.cos(rad) * m.hookLen;
 
-    if (m.hookState === 'swing') {
-      m.angle += m.angleSpeed;
-      if (m.angle > 70 || m.angle < -70) m.angleSpeed = -m.angleSpeed;
-      m.hookLen = 25;
-      m.hookX = originX + Math.sin(rad) * m.hookLen;
-      m.hookY = originY + Math.cos(rad) * m.hookLen;
-    } else if (m.hookState === 'extend') {
-      m.hookLen += 5;
-      m.hookX = originX + Math.sin(rad) * m.hookLen;
-      m.hookY = originY + Math.cos(rad) * m.hookLen;
-
-      // 碰撞检测
-      for (var i = 0; i < m.minerals.length; i++) {
-        var it = m.minerals[i];
-        var dx = m.hookX - it.x;
-        var dy = m.hookY - it.y;
+      // 抓取碰撞检测
+      for (var i = 0; i < m.items.length; i++) {
+        var it = m.items[i];
+        if (it.caught) continue;
+        var dx = hx - it.x, dy = hy - it.y;
         if (Math.sqrt(dx * dx + dy * dy) < it.r + 6) {
-          // 抓到矿物
+          it.caught = true;
           m.caughtItem = it;
-          m.minerals.splice(i, 1);
-          m.hookState = 'retract';
+          m.state = 'retracting';
+          m.hookSpeed = it.type === 'rock' ? 2 : (it.type === 'gold' ? 3.5 : 5);
           break;
         }
       }
 
       // 触及边界回拉
-      if (m.hookX < 10 || m.hookX > 250 || m.hookY > 195) {
-        m.hookState = 'retract';
+      if (hx < 10 || hx > 520 || hy > 175) {
+        m.state = 'retracting';
+        m.hookSpeed = 5;
       }
-    } else if (m.hookState === 'retract') {
-      var retractSpeed = m.caughtItem ? (6 / m.caughtItem.w) : 6;
-      m.hookLen -= retractSpeed;
-      if (m.hookLen <= 25) {
-        m.hookLen = 25;
+    } else if (m.state === 'retracting') {
+      m.hookLen -= m.hookSpeed;
+      if (m.hookLen <= 20) {
+        m.hookLen = 20;
+        m.state = 'swing';
         if (m.caughtItem) {
           m.score += m.caughtItem.val;
+          // 从矿场中移除
+          for (var i = 0; i < m.items.length; i++) {
+            if (m.items[i] === m.caughtItem) {
+              m.items.splice(i, 1);
+              break;
+            }
+          }
           m.caughtItem = null;
         }
-        m.hookState = 'swing';
       }
-      m.hookX = originX + Math.sin(rad) * m.hookLen;
-      m.hookY = originY + Math.cos(rad) * m.hookLen;
     }
 
     if (vm.$forceUpdate) vm.$forceUpdate();
-  }, 45);
+  }, 40);
 }
 
 export function renderMiner(vm, h) {
@@ -102,111 +105,96 @@ export function renderMiner(vm, h) {
 
   var elements = [];
 
-  // 地面矿区背景
+  // 矿井顶棚
   elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '0px', top: '35px', width: '260px', height: '170px',
-      backgroundColor: '#78350f', opacity: 0.85
+      position: 'absolute', left: '0px', top: '0px', width: '530px', height: '18px',
+      backgroundColor: '#451a03', borderBottomWidth: '2px', borderColor: '#78350f'
     }
   }));
 
-  // 矿工平台
-  elements.push(h('div', {
-    staticStyle: {
-      position: 'absolute', left: '115px', top: '10px', width: '30px', height: '22px',
-      backgroundColor: '#f59e0b', borderRadius: '4px', justifyContent: 'center', alignItems: 'center'
-    }
-  }, [
-    h('text', { staticStyle: { fontSize: '13px' } }, '🤠')
-  ]));
+  // 矿石分布
+  for (var i = 0; i < m.items.length; i++) {
+    var it = m.items[i];
+    var ix = it.caught ? (m.originX + Math.sin((m.angle * Math.PI) / 180) * m.hookLen) : it.x;
+    var iy = it.caught ? (m.originY + Math.cos((m.angle * Math.PI) / 180) * m.hookLen) : it.y;
 
-  // 吊绳
-  elements.push(h('div', {
-    staticStyle: {
-      position: 'absolute',
-      left: Math.min(130, m.hookX) + 'px',
-      top: Math.min(25, m.hookY) + 'px',
-      width: Math.max(3, Math.abs(m.hookX - 130)) + 'px',
-      height: Math.max(3, Math.abs(m.hookY - 25)) + 'px',
-      borderLeftWidth: '2px', borderColor: '#e2e8f0'
-    }
-  }));
-
-  // 铁钩
-  elements.push(h('div', {
-    staticStyle: {
-      position: 'absolute',
-      left: (m.hookX - 6) + 'px', top: (m.hookY - 6) + 'px',
-      width: '12px', height: '12px', backgroundColor: '#94a3b8',
-      borderRadius: '6px', borderWidth: '2px', borderColor: '#475569'
-    }
-  }));
-
-  // 渲染所有待抓取矿物
-  for (var i = 0; i < m.minerals.length; i++) {
-    var it = m.minerals[i];
-    var col = it.type === 'gold' ? '#eab308' : (it.type === 'diamond' ? '#38bdf8' : '#64748b');
-    var emoji = it.type === 'gold' ? '🪙' : (it.type === 'diamond' ? '💎' : '🪨');
     elements.push(h('div', {
       staticStyle: {
-        position: 'absolute',
-        left: (it.x - it.r) + 'px', top: (it.y - it.r) + 'px',
+        position: 'absolute', left: Math.floor(ix - it.r) + 'px', top: Math.floor(iy - it.r) + 'px',
         width: (it.r * 2) + 'px', height: (it.r * 2) + 'px',
-        borderRadius: it.r + 'px', backgroundColor: col,
+        backgroundColor: it.color, borderRadius: it.r + 'px',
+        borderWidth: '1.5px', borderColor: '#ffffff',
         justifyContent: 'center', alignItems: 'center'
       }
     }, [
-      h('text', { staticStyle: { fontSize: (it.r * 0.9) + 'px' } }, emoji)
+      h('text', { staticStyle: { fontSize: (it.r < 15 ? '10px' : '12px'), color: '#090d16', fontWeight: 'bold' } }, it.label)
     ]));
   }
 
-  // 被抓取的矿物跟随钩子
-  if (m.caughtItem) {
-    var cit = m.caughtItem;
-    var ccol = cit.type === 'gold' ? '#eab308' : (cit.type === 'diamond' ? '#38bdf8' : '#64748b');
-    elements.push(h('div', {
-      staticStyle: {
-        position: 'absolute',
-        left: (m.hookX - cit.r) + 'px', top: (m.hookY) + 'px',
-        width: (cit.r * 2) + 'px', height: (cit.r * 2) + 'px',
-        borderRadius: cit.r + 'px', backgroundColor: ccol,
-        justifyContent: 'center', alignItems: 'center'
-      }
-    }));
-  }
+  // 飞爪与绳索
+  var rad = (m.angle * Math.PI) / 180;
+  var hx = m.originX + Math.sin(rad) * m.hookLen;
+  var hy = m.originY + Math.cos(rad) * m.hookLen;
 
-  return h('div', { staticStyle: { flex: 1, flexDirection: 'row', padding: '6px' } }, [
-    // 矿区
+  // 爪头
+  elements.push(h('div', {
+    staticStyle: {
+      position: 'absolute', left: Math.floor(hx - 6) + 'px', top: Math.floor(hy - 6) + 'px',
+      width: '12px', height: '12px', backgroundColor: '#f97316', borderRadius: '6px',
+      borderWidth: '2px', borderColor: '#ffffff'
+    }
+  }));
+
+  return h('div', {
+    staticStyle: {
+      width: '800px', height: '196px', flexDirection: 'row', alignItems: 'center', padding: '4px 16px'
+    }
+  }, [
+    // 宽幅矿场舞台 (530x188)
     h('div', {
       staticStyle: {
-        width: '260px', height: '202px', backgroundColor: '#451a03',
-        borderRadius: '6px', overflow: 'hidden', position: 'relative'
+        width: '530px', height: '188px', backgroundColor: '#1c1917',
+        borderRadius: '8px', overflow: 'hidden', position: 'relative',
+        borderWidth: '2px', borderColor: '#44403c', marginRight: '20px'
       },
       on: { click: function() { handleMinerDrop(vm); } }
     }, elements),
-    // 控制台
-    h('div', { staticStyle: { flex: 1, paddingLeft: '16px', justifyContent: 'center' } }, [
-      h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '黄金矿工'),
-      h('text', { staticStyle: { fontSize: '13px', color: '#facc15', marginTop: '8px' } }, '财富: $' + m.score),
+
+    // 右侧得分与下爪拉杆
+    h('div', {
+      staticStyle: {
+        flex: 1, height: '188px', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'
+      }
+    }, [
+      h('div', { staticStyle: { flexDirection: 'column', alignItems: 'center' } }, [
+        h('text', { staticStyle: { fontSize: '15px', color: '#f8fafc', fontWeight: 'bold' } }, '黄金矿工'),
+        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8', marginTop: '4px' } }, '累计收益:'),
+        h('text', { staticStyle: { fontSize: '24px', color: '#facc15', fontWeight: 'bold' } }, '$' + m.score)
+      ]),
+
+      // 释放飞爪按钮
       h('div', {
         staticStyle: {
-          width: '90px', height: '34px', backgroundColor: '#eab308',
-          borderRadius: '17px', justifyContent: 'center', alignItems: 'center',
-          marginTop: '16px'
+          width: '180px', height: '56px', backgroundColor: m.state === 'swing' ? '#d97706' : '#78350f',
+          borderRadius: '14px', borderWidth: '2px', borderColor: '#fde047',
+          justifyContent: 'center', alignItems: 'center'
         },
         on: { click: function() { handleMinerDrop(vm); } }
       }, [
-        h('text', { staticStyle: { fontSize: '13px', color: '#1e293b', fontWeight: 'bold' } }, '放钩 🪝')
+        h('text', { staticStyle: { fontSize: '18px', color: '#ffffff', fontWeight: 'bold' } },
+          m.state === 'swing' ? '▼ 释放飞爪 (GRAB)' : '收爪拉回中...'
+        )
       ]),
+
       h('div', {
         staticStyle: {
-          width: '90px', height: '26px', backgroundColor: '#334155',
-          borderRadius: '13px', justifyContent: 'center', alignItems: 'center',
-          marginTop: '10px'
+          width: '120px', height: '28px', backgroundColor: '#334155', borderRadius: '14px',
+          justifyContent: 'center', alignItems: 'center'
         },
-        on: { click: function() { initMiner(vm); } }
+        on: { click: function() { initMiner(vm); if (vm.$forceUpdate) vm.$forceUpdate(); } }
       }, [
-        h('text', { staticStyle: { fontSize: '12px', color: '#94a3b8' } }, '重置矿区')
+        h('text', { staticStyle: { fontSize: '11px', color: '#f8fafc' } }, '重置矿场')
       ])
     ])
   ]);

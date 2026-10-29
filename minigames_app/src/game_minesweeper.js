@@ -140,39 +140,49 @@ export function renderMinesweeper(vm, h) {
     var cols = [];
     for (var c = 0; c < m.cols; c++) {
       var cell = m.grid[r][c];
-      var bg = cell.revealed ? (cell.mine ? '#dc2626' : '#1e293b') : '#334155';
-      var border = cell.revealed ? '#0f172a' : '#475569';
-      var text = '';
-      var textColor = '#ffffff';
+      var cellContent = [];
 
       if (cell.revealed) {
         if (cell.mine) {
-          text = '雷';
-          textColor = '#ffffff';
-        } else if (cell.count > 0) {
-          text = '' + cell.count;
-          textColor = numColors[cell.count] || '#ffffff';
+          cellContent.push(h('image', {
+            staticStyle: { width: '21px', height: '21px' },
+            attrs: { src: 'assets/mine_bomb.png' }
+          }));
+        } else {
+          cellContent.push(h('image', {
+            staticStyle: { width: '21px', height: '21px', position: 'absolute', left: '0px', top: '0px' },
+            attrs: { src: 'assets/mine_tile_down.png' }
+          }));
+          if (cell.count > 0) {
+            cellContent.push(h('text', {
+              staticStyle: {
+                fontSize: '11px', fontWeight: 'bold',
+                color: numColors[cell.count] || '#ffffff'
+              }
+            }, '' + cell.count));
+          }
         }
       } else if (cell.flagged) {
-        text = '旗';
-        textColor = '#facc15';
-        bg = '#854d0e';
-        border = '#eab308';
+        cellContent.push(h('image', {
+          staticStyle: { width: '21px', height: '21px' },
+          attrs: { src: 'assets/mine_flag.png' }
+        }));
+      } else {
+        cellContent.push(h('image', {
+          staticStyle: { width: '21px', height: '21px' },
+          attrs: { src: 'assets/mine_tile_up.png' }
+        }));
       }
 
-      (function(row, col) {
+      (function(row, col, children) {
         cols.push(h('div', {
           staticStyle: {
-            width: '21px', height: '21px', backgroundColor: bg,
-            margin: '1px', borderRadius: '3px',
-            borderWidth: '1px', borderColor: border,
-            justifyContent: 'center', alignItems: 'center'
+            width: '21px', height: '21px', margin: '1px',
+            position: 'relative', justifyContent: 'center', alignItems: 'center'
           },
           on: { click: function() { handleMineClick(vm, row, col); } }
-        }, [
-          h('text', { staticStyle: { fontSize: '11px', fontWeight: 'bold', color: textColor } }, text)
-        ]));
-      })(r, c);
+        }, children));
+      })(r, c, cellContent);
     }
     rows.push(h('div', { staticStyle: { flexDirection: 'row' } }, cols));
   }

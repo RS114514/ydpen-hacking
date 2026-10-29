@@ -144,101 +144,38 @@ export function renderDino(vm, h) {
     }));
   }
 
-  // 恐龙本体 (纯 CSS 构造的利落像素小恐龙)
-  var legOffset = (d.frame % 4 < 2) ? 0 : 4;
-  elements.push(h('div', {
+  // 恐龙主角 (16-bit 像素霸王龙，双腿交替迈步动画)
+  var dinoSprite = (d.isJumping || d.frame % 4 < 2) ? 'assets/dino_run1.png' : 'assets/dino_run2.png';
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: '60px', top: Math.floor(d.dinoY) + 'px',
-      width: '26px', height: '32px'
-    }
-  }, [
-    // 恐龙头与身躯
-    h('div', {
-      staticStyle: {
-        width: '22px', height: '20px', backgroundColor: '#10b981', borderRadius: '4px',
-        position: 'absolute', left: '4px', top: '0px'
-      }
-    }, [
-      // 眼睛
-      h('div', {
-        staticStyle: {
-          width: '3px', height: '3px', backgroundColor: '#090d16',
-          position: 'absolute', right: '4px', top: '4px'
-        }
-      })
-    ]),
-    // 恐龙嘴
-    h('div', {
-      staticStyle: {
-        width: '8px', height: '6px', backgroundColor: '#059669',
-        position: 'absolute', right: '-2px', top: '8px', borderRadius: '1px'
-      }
-    }),
-    // 恐龙下身
-    h('div', {
-      staticStyle: {
-        width: '18px', height: '10px', backgroundColor: '#047857',
-        position: 'absolute', left: '2px', top: '18px', borderRadius: '2px'
-      }
-    }),
-    // 奔跑左右腿交替
-    h('div', {
-      staticStyle: {
-        width: '4px', height: '6px', backgroundColor: '#10b981',
-        position: 'absolute', left: (4 + legOffset) + 'px', top: '26px'
-      }
-    }),
-    h('div', {
-      staticStyle: {
-        width: '4px', height: '6px', backgroundColor: '#10b981',
-        position: 'absolute', left: (14 - legOffset) + 'px', top: '26px'
-      }
-    })
-  ]));
+      position: 'absolute', left: '56px', top: Math.floor(d.dinoY - 4) + 'px',
+      width: '32px', height: '36px'
+    },
+    attrs: { src: dinoSprite }
+  }));
 
-  // 仙人掌
+  // 仙人掌 (像素仙人掌)
   for (var i = 0; i < d.cacti.length; i++) {
     var c = d.cacti[i];
-    elements.push(h('div', {
+    elements.push(h('image', {
       staticStyle: {
-        position: 'absolute', left: Math.floor(c.x) + 'px', top: (168 - c.h) + 'px',
-        width: c.w + 'px', height: c.h + 'px', backgroundColor: '#15803d',
-        borderRadius: '3px', borderWidth: '1.5px', borderColor: '#4ade80'
-      }
-    }, [
-      // 仙人掌侧臂
-      h('div', {
-        staticStyle: {
-          position: 'absolute', left: '-4px', top: '6px', width: '4px', height: '12px',
-          backgroundColor: '#15803d', borderRadius: '2px'
-        }
-      }),
-      h('div', {
-        staticStyle: {
-          position: 'absolute', right: '-4px', top: '12px', width: '4px', height: '10px',
-          backgroundColor: '#15803d', borderRadius: '2px'
-        }
-      })
-    ]));
+        position: 'absolute', left: Math.floor(c.x) + 'px', top: (168 - 34) + 'px',
+        width: '24px', height: '34px'
+      },
+      attrs: { src: 'assets/dino_cactus.png' }
+    }));
   }
 
-  // 翼龙
+  // 翼龙 (像素飞翼翼龙)
   for (var i = 0; i < d.birds.length; i++) {
     var b = d.birds[i];
-    elements.push(h('div', {
+    elements.push(h('image', {
       staticStyle: {
         position: 'absolute', left: Math.floor(b.x) + 'px', top: b.y + 'px',
-        width: b.w + 'px', height: b.h + 'px', backgroundColor: '#d97706',
-        borderRadius: '4px', borderWidth: '1px', borderColor: '#fde047'
-      }
-    }, [
-      h('div', {
-        staticStyle: {
-          position: 'absolute', left: '4px', top: (d.frame % 6 < 3 ? '-4px' : '6px'),
-          width: '14px', height: '4px', backgroundColor: '#f59e0b', borderRadius: '2px'
-        }
-      })
-    ]));
+        width: '32px', height: '24px'
+      },
+      attrs: { src: 'assets/dino_pterodactyl.png' }
+    }));
   }
 
   // 死亡结算

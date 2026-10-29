@@ -151,20 +151,20 @@ export function renderGomoku(vm, h) {
 
       var pieceEl = null;
       if (val === 1) {
-        pieceEl = h('div', {
+        pieceEl = h('image', {
           staticStyle: {
-            width: '13px', height: '13px', borderRadius: '6.5px',
-            backgroundColor: '#090d16',
-            borderWidth: isLast ? '2px' : '0.5px', borderColor: isLast ? '#ef4444' : '#64748b'
-          }
+            width: '14px', height: '14px',
+            borderWidth: isLast ? '1.5px' : '0px', borderColor: '#ef4444', borderRadius: '7px'
+          },
+          attrs: { src: 'assets/gomoku_stone_black.png' }
         });
       } else if (val === 2) {
-        pieceEl = h('div', {
+        pieceEl = h('image', {
           staticStyle: {
-            width: '13px', height: '13px', borderRadius: '6.5px',
-            backgroundColor: '#f8fafc',
-            borderWidth: isLast ? '2px' : '0.5px', borderColor: isLast ? '#ef4444' : '#cbd5e1'
-          }
+            width: '14px', height: '14px',
+            borderWidth: isLast ? '1.5px' : '0px', borderColor: '#ef4444', borderRadius: '7px'
+          },
+          attrs: { src: 'assets/gomoku_stone_white.png' }
         });
       }
 

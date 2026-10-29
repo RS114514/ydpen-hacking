@@ -128,7 +128,20 @@ export function renderTicTacToe(vm, h) {
     var symbol = val === 1 ? 'O' : (val === 2 ? 'X' : '');
     var col = val === 1 ? '#38bdf8' : '#ef4444';
 
-    (function(idx) {
+    (function(idx, cellVal) {
+      var childEl = null;
+      if (cellVal === 1) {
+        childEl = h('image', {
+          staticStyle: { width: '40px', height: '40px' },
+          attrs: { src: 'assets/ttt_o.png' }
+        });
+      } else if (cellVal === 2) {
+        childEl = h('image', {
+          staticStyle: { width: '40px', height: '40px' },
+          attrs: { src: 'assets/ttt_x.png' }
+        });
+      }
+
       cells.push(h('div', {
         staticStyle: {
           width: '54px', height: '54px', backgroundColor: '#131d31', margin: '3px',
@@ -136,10 +149,8 @@ export function renderTicTacToe(vm, h) {
           justifyContent: 'center', alignItems: 'center'
         },
         on: { click: function() { handleTttClick(vm, idx); } }
-      }, [
-        h('text', { staticStyle: { fontSize: '28px', color: col, fontWeight: 'bold' } }, symbol)
-      ]));
-    })(i);
+      }, childEl ? [childEl] : []));
+    })(i, val);
   }
 
   return h('div', {

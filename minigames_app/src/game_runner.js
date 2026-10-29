@@ -136,64 +136,38 @@ export function renderRunner(vm, h) {
     }));
   }
 
-  // 主角 (科技风霓虹跑者)
-  elements.push(h('div', {
+  // 主角 (16-bit 像素跑酷主角)
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: '60px', top: Math.floor(r.heroY) + 'px',
-      width: '22px', height: '26px'
-    }
-  }, [
-    // 头部
-    h('div', {
-      staticStyle: {
-        width: '14px', height: '12px', backgroundColor: '#38bdf8', borderRadius: '4px',
-        position: 'absolute', left: '4px', top: '0px'
-      }
-    }),
-    // 身躯
-    h('div', {
-      staticStyle: {
-        width: '18px', height: '12px', backgroundColor: '#6366f1', borderRadius: '3px',
-        position: 'absolute', left: '2px', top: '10px'
-      }
-    }),
-    // 腿部
-    h('div', {
-      staticStyle: {
-        width: '5px', height: '6px', backgroundColor: '#818cf8',
-        position: 'absolute', left: (r.frame % 4 < 2 ? '4px' : '12px'), top: '20px'
-      }
-    })
-  ]));
+      position: 'absolute', left: '56px', top: Math.floor(r.heroY - 6) + 'px',
+      width: '24px', height: '32px'
+    },
+    attrs: { src: 'assets/runner_player.png' }
+  }));
 
-  // 障碍物
+  // 障碍物 (16-bit 像素跨栏路障)
   for (var i = 0; i < r.obstacles.length; i++) {
     var ob = r.obstacles[i];
-    elements.push(h('div', {
+    elements.push(h('image', {
       staticStyle: {
         position: 'absolute', left: Math.floor(ob.x) + 'px', top: (170 - ob.h) + 'px',
-        width: ob.w + 'px', height: ob.h + 'px',
-        backgroundColor: '#dc2626', borderWidth: '1.5px', borderColor: '#f87171',
-        borderRadius: '4px', justifyContent: 'center', alignItems: 'center'
-      }
-    }, [
-      h('text', { staticStyle: { fontSize: '10px', color: '#ffffff', fontWeight: 'bold' } }, '!')
-    ]));
+        width: ob.w + 'px', height: ob.h + 'px'
+      },
+      attrs: { src: 'assets/runner_hurdle.png' }
+    }));
   }
 
-  // 金币
+  // 金币 (16-bit 像素高光金星)
   for (var i = 0; i < r.coins.length; i++) {
     var cn = r.coins[i];
     if (!cn.taken) {
-      elements.push(h('div', {
+      elements.push(h('image', {
         staticStyle: {
           position: 'absolute', left: Math.floor(cn.x) + 'px', top: cn.y + 'px',
-          width: '18px', height: '18px', borderRadius: '9px', backgroundColor: '#eab308',
-          borderWidth: '1.5px', borderColor: '#fef08a', justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', { staticStyle: { fontSize: '11px', color: '#713f12', fontWeight: 'bold' } }, '★')
-      ]));
+          width: '20px', height: '20px'
+        },
+        attrs: { src: 'assets/runner_star.png' }
+      }));
     }
   }
 

@@ -77,49 +77,55 @@ export function renderSokoban(vm, h) {
       var val = s.board[r][c];
       var isPlayer = (s.playerX === c && s.playerY === r);
 
-      var bg = '#090d16';
-      var border = '#1e293b';
-      var text = '';
-      var textColor = '#ffffff';
-
-      if (val === 1) {
-        bg = '#334155'; // 墙
-        border = '#475569';
-      } else if (val === 2) {
-        bg = '#d97706'; // 箱子
-        border = '#f59e0b';
-        text = '箱';
-      } else if (val === 3) {
-        bg = '#064e3b'; // 目标点
-        border = '#10b981';
-        text = '点';
-        textColor = '#34d399';
-      } else if (val === 4) {
-        bg = '#15803d'; // 达成目标上的箱子
-        border = '#4ade80';
-        text = '★';
-        textColor = '#facc15';
-      }
+      var isPlayer = (s.playerR === r && s.playerC === c);
 
       if (isPlayer) {
-        bg = '#2563eb';
-        border = '#60a5fa';
-        text = '我';
-        textColor = '#ffffff';
+        elements.push(h('image', {
+          staticStyle: {
+            position: 'absolute',
+            left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
+            width: cellSize + 'px', height: cellSize + 'px'
+          },
+          attrs: { src: 'assets/soko_worker.png' }
+        }));
+      } else if (val === 2) {
+        elements.push(h('image', {
+          staticStyle: {
+            position: 'absolute',
+            left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
+            width: cellSize + 'px', height: cellSize + 'px'
+          },
+          attrs: { src: 'assets/soko_crate.png' }
+        }));
+      } else if (val === 3) {
+        elements.push(h('image', {
+          staticStyle: {
+            position: 'absolute',
+            left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
+            width: cellSize + 'px', height: cellSize + 'px'
+          },
+          attrs: { src: 'assets/soko_goal.png' }
+        }));
+      } else if (val === 4) {
+        elements.push(h('image', {
+          staticStyle: {
+            position: 'absolute',
+            left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
+            width: cellSize + 'px', height: cellSize + 'px'
+          },
+          attrs: { src: 'assets/soko_crate_goal.png' }
+        }));
+      } else if (val === 1) {
+        elements.push(h('div', {
+          staticStyle: {
+            position: 'absolute',
+            left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
+            width: cellSize + 'px', height: cellSize + 'px',
+            backgroundColor: '#334155', borderWidth: '1px', borderColor: '#475569',
+            borderRadius: '3px'
+          }
+        }));
       }
-
-      elements.push(h('div', {
-        staticStyle: {
-          position: 'absolute',
-          left: (c * cellSize) + 'px', top: (r * cellSize) + 'px',
-          width: cellSize + 'px', height: cellSize + 'px',
-          backgroundColor: bg, borderWidth: '1px', borderColor: border,
-          borderRadius: (isPlayer ? '11px' : '3px'),
-          justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', { staticStyle: { fontSize: '11px', color: textColor, fontWeight: 'bold' } }, text)
-      ]));
     }
   }
 
@@ -159,7 +165,7 @@ export function renderSokoban(vm, h) {
           h('text', { staticStyle: { fontSize: '16px', color: '#f8fafc', fontWeight: 'bold' } }, '经典推箱子')
         ]),
         h('text', { staticStyle: { fontSize: '13px', color: '#38bdf8', marginTop: '6px' } }, '当前步数: ' + s.stepCount),
-        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8', marginTop: '4px' } }, '图例：[我]搬运工 [箱]货箱 [点]目标点'),
+        h('text', { staticStyle: { fontSize: '11px', color: '#94a3b8', marginTop: '4px' } }, '控制工友推动木箱精准归位'),
         h('div', {
           staticStyle: {
             width: '100px', height: '28px', backgroundColor: '#334155', borderRadius: '14px',

@@ -70,21 +70,36 @@ export function renderKlotski(vm, h) {
     var isSel = (k.selectedId === b.id);
 
     (function(curB, selected) {
+      var asset = 'assets/klotski_soldier.png';
+      if (curB.id === 'caocao') asset = 'assets/klotski_caocao.png';
+      else if (curB.id === 'guanyu') asset = 'assets/klotski_guanyu.png';
+      else if (curB.id === 'zhangfei') asset = 'assets/klotski_general_orange.png';
+      else if (curB.id === 'zhaoyun') asset = 'assets/klotski_general_blue.png';
+      else if (curB.id === 'machao') asset = 'assets/klotski_general_purple.png';
+      else if (curB.id === 'huangzhong') asset = 'assets/klotski_general_green.png';
+
       blockEls.push(h('div', {
         staticStyle: {
           position: 'absolute',
-          left: (curB.x * unit + 2) + 'px', top: (curB.y * unit + 2) + 'px',
-          width: (curB.w * unit - 4) + 'px', height: (curB.h * unit - 4) + 'px',
-          backgroundColor: curB.col, borderRadius: '6px',
-          borderWidth: selected ? '2.5px' : '1px',
-          borderColor: selected ? '#fde047' : curB.border,
+          left: (curB.x * unit + 1) + 'px', top: (curB.y * unit + 1) + 'px',
+          width: (curB.w * unit - 2) + 'px', height: (curB.h * unit - 2) + 'px',
+          borderWidth: selected ? '2.5px' : '0px',
+          borderColor: '#facc15', borderRadius: '6px',
           justifyContent: 'center', alignItems: 'center'
         },
         on: { click: function() { k.selectedId = curB.id; if (vm.$forceUpdate) vm.$forceUpdate(); } }
       }, [
+        h('image', {
+          staticStyle: {
+            width: (curB.w * unit - 4) + 'px', height: (curB.h * unit - 4) + 'px',
+            borderRadius: '4px'
+          },
+          attrs: { src: asset }
+        }),
         h('text', {
           staticStyle: {
-            fontSize: (curB.w > 1 && curB.h > 1 ? '16px' : '12px'),
+            position: 'absolute',
+            fontSize: (curB.w > 1 && curB.h > 1 ? '14px' : '11px'),
             color: '#ffffff', fontWeight: 'bold'
           }
         }, curB.name)

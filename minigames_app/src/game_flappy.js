@@ -119,51 +119,53 @@ export function renderFlappy(vm, h) {
     }
   }));
 
-  // 绘制三组管道
+  // 绘制三组 16-bit 像素管道 (柱身与帽沿)
   for (var i = 0; i < f.pipes.length; i++) {
     var p = f.pipes[i];
+    var bH = 176 - (p.topH + p.gap);
+
     // 上管道
-    elements.push(h('div', {
+    if (p.topH > 14) {
+      elements.push(h('image', {
+        staticStyle: {
+          position: 'absolute', left: p.x + 'px', top: '0px', width: '40px', height: (p.topH - 14) + 'px'
+        },
+        attrs: { src: 'assets/flappy_pipe_stem.png' }
+      }));
+    }
+    elements.push(h('image', {
       staticStyle: {
-        position: 'absolute', left: p.x + 'px', top: '0px', width: '42px', height: p.topH + 'px',
-        backgroundColor: '#22c55e', borderBottomWidth: '5px', borderColor: '#166534',
-        borderLeftWidth: '1.5px', borderRightWidth: '1.5px', borderStyle: 'solid'
-      }
+        position: 'absolute', left: (p.x - 3) + 'px', top: Math.max(0, p.topH - 14) + 'px', width: '46px', height: '14px'
+      },
+      attrs: { src: 'assets/flappy_pipe_rim.png' }
     }));
+
     // 下管道
-    var bH = 188 - (p.topH + p.gap);
-    elements.push(h('div', {
+    elements.push(h('image', {
       staticStyle: {
-        position: 'absolute', left: p.x + 'px', top: (p.topH + p.gap) + 'px', width: '42px', height: bH + 'px',
-        backgroundColor: '#22c55e', borderTopWidth: '5px', borderColor: '#166534',
-        borderLeftWidth: '1.5px', borderRightWidth: '1.5px', borderStyle: 'solid'
-      }
+        position: 'absolute', left: (p.x - 3) + 'px', top: (p.topH + p.gap) + 'px', width: '46px', height: '14px'
+      },
+      attrs: { src: 'assets/flappy_pipe_rim.png' }
     }));
+    if (bH > 14) {
+      elements.push(h('image', {
+        staticStyle: {
+          position: 'absolute', left: p.x + 'px', top: (p.topH + p.gap + 14) + 'px', width: '40px', height: (bH - 14) + 'px'
+        },
+        attrs: { src: 'assets/flappy_pipe_stem.png' }
+      }));
+    }
   }
 
-  // 小鸟 (几何像素萌鸟)
-  elements.push(h('div', {
+  // 小鸟 (根据煽翅帧切换飞行动作)
+  var birdSprite = (Math.floor(Date.now() / 160) % 2 === 0 || f.vy < 0) ? 'assets/flappy_bird1.png' : 'assets/flappy_bird2.png';
+  elements.push(h('image', {
     staticStyle: {
       position: 'absolute', left: '70px', top: Math.floor(f.birdY) + 'px',
-      width: '22px', height: '18px', backgroundColor: '#facc15', borderRadius: '9px',
-      borderWidth: '2px', borderColor: '#ca8a04', justifyContent: 'center', alignItems: 'center'
-    }
-  }, [
-    // 眼睛
-    h('div', {
-      staticStyle: {
-        width: '5px', height: '5px', borderRadius: '2.5px', backgroundColor: '#090d16',
-        position: 'absolute', right: '4px', top: '3px'
-      }
-    }),
-    // 鸟嘴
-    h('div', {
-      staticStyle: {
-        width: '7px', height: '5px', backgroundColor: '#f97316', borderRadius: '2px',
-        position: 'absolute', right: '-5px', top: '7px'
-      }
-    })
-  ]));
+      width: '26px', height: '20px'
+    },
+    attrs: { src: birdSprite }
+  }));
 
   // 状态蒙层
   if (f.state === 'ready') {

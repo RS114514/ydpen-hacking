@@ -102,8 +102,15 @@ def main():
     os.makedirs(pages_idx_dir, exist_ok=True)
     shutil.copy(os.path.join(AMR_DIR, "index.js.bin"), os.path.join(pages_idx_dir, "index.js.bin"))
 
-    # 复制应用图标
+    # 复制应用图标与素材资源
     shutil.copy(os.path.join(HERE, "app_icon.png"), os.path.join(AMR_DIR, "app_icon.png"))
+    assets_src = os.path.join(SRC_DIR, "assets")
+    if os.path.exists(assets_src):
+        assets_dst = os.path.join(AMR_DIR, "assets")
+        shutil.copytree(assets_src, assets_dst, dirs_exist_ok=True)
+        # 兼容以 pages/index 为基准路径的图片解析
+        pages_assets_dst = os.path.join(pages_idx_dir, "assets")
+        shutil.copytree(assets_src, pages_assets_dst, dirs_exist_ok=True)
 
     # 4. 打包为最终 AMR 安装包
     out_amr = os.path.join(HERE, f"Minigames-{VERSION}.amr")

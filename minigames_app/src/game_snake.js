@@ -120,30 +120,27 @@ export function renderSnake(vm, h) {
     }
   }));
 
-  // 渲染食物 (高亮红色小果实，带光泽边框)
-  elements.push(h('div', {
+  // 渲染食物 (16-bit 像素红苹果)
+  elements.push(h('image', {
     staticStyle: {
       position: 'absolute',
-      left: (s.food.x * cellSize + 2) + 'px', top: (s.food.y * cellSize + 2) + 'px',
-      width: (cellSize - 4) + 'px', height: (cellSize - 4) + 'px',
-      backgroundColor: '#ef4444', borderRadius: '5px',
-      borderWidth: '1.5px', borderColor: '#fca5a5'
-    }
+      left: (s.food.x * cellSize) + 'px', top: (s.food.y * cellSize) + 'px',
+      width: cellSize + 'px', height: cellSize + 'px'
+    },
+    attrs: { src: 'assets/snake_apple.png' }
   }));
 
-  // 渲染蛇身
+  // 渲染蛇身 (像素蛇头与蛇身鳞节)
   for (var i = 0; i < s.body.length; i++) {
     var seg = s.body[i];
     var isHead = (i === 0);
-    elements.push(h('div', {
+    elements.push(h('image', {
       staticStyle: {
         position: 'absolute',
-        left: (seg.x * cellSize + 1) + 'px', top: (seg.y * cellSize + 1) + 'px',
-        width: (cellSize - 2) + 'px', height: (cellSize - 2) + 'px',
-        backgroundColor: isHead ? '#22c55e' : '#15803d',
-        borderRadius: isHead ? '4px' : '3px',
-        borderWidth: isHead ? '1.5px' : '0px', borderColor: '#86efac'
-      }
+        left: (seg.x * cellSize) + 'px', top: (seg.y * cellSize) + 'px',
+        width: cellSize + 'px', height: cellSize + 'px'
+      },
+      attrs: { src: isHead ? 'assets/snake_head.png' : 'assets/snake_body.png' }
     }));
   }
 

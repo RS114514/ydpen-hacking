@@ -118,80 +118,28 @@ export function renderPelican(vm, h) {
     }));
   }
 
-  // 待捕小鱼
+  // 待捕小鱼 (16-bit 像素游鱼)
   for (var i = 0; i < p.fishes.length; i++) {
     var f = p.fishes[i];
     if (!f.taken) {
-      elements.push(h('div', {
+      elements.push(h('image', {
         staticStyle: {
           position: 'absolute', left: Math.floor(f.x) + 'px', top: f.y + 'px',
-          width: '20px', height: '14px', backgroundColor: '#38bdf8', borderRadius: '7px',
-          borderWidth: '1.5px', borderColor: '#ffffff', justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', { staticStyle: { fontSize: '8px', color: '#090d16', fontWeight: 'bold' } }, '鱼')
-      ]));
+          width: '24px', height: '16px'
+        },
+        attrs: { src: 'assets/pelican_fish.png' }
+      }));
     }
   }
 
-  // 鹈鹕主角与单车
-  var tiltDeg = Math.floor(p.tiltAngle);
-  elements.push(h('div', {
+  // 鹈鹕主角与单车 (16-bit 像素大嘴鹈鹕骑单车)
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: '60px', top: '118px', width: '48px', height: '44px'
-    }
-  }, [
-    // 鹈鹕大头与大黄嘴
-    h('div', {
-      staticStyle: {
-        width: '18px', height: '18px', backgroundColor: '#f8fafc', borderRadius: '9px',
-        borderWidth: '1.5px', borderColor: '#cbd5e1', position: 'absolute', left: '14px', top: '0px'
-      }
-    }, [
-      // 眼睛
-      h('div', {
-        staticStyle: {
-          width: '4px', height: '4px', borderRadius: '2px', backgroundColor: '#090d16',
-          position: 'absolute', right: '3px', top: '3px'
-        }
-      })
-    ]),
-    // 巨大橙黄鱼嘴
-    h('div', {
-      staticStyle: {
-        width: '18px', height: '10px', backgroundColor: '#f97316', borderRadius: '4px',
-        position: 'absolute', left: '26px', top: '6px'
-      }
-    }),
-    // 鹈鹕翅膀与身子
-    h('div', {
-      staticStyle: {
-        width: '22px', height: '16px', backgroundColor: '#e2e8f0', borderRadius: '6px',
-        position: 'absolute', left: '6px', top: '14px'
-      }
-    }),
-    // 自行车前轮
-    h('div', {
-      staticStyle: {
-        width: '14px', height: '14px', borderRadius: '7px', backgroundColor: '#1e293b',
-        borderWidth: '2px', borderColor: '#64748b', position: 'absolute', left: '28px', top: '28px'
-      }
-    }),
-    // 自行车后轮
-    h('div', {
-      staticStyle: {
-        width: '14px', height: '14px', borderRadius: '7px', backgroundColor: '#1e293b',
-        borderWidth: '2px', borderColor: '#64748b', position: 'absolute', left: '2px', top: '28px'
-      }
-    }),
-    // 车架横梁
-    h('div', {
-      staticStyle: {
-        width: '20px', height: '2px', backgroundColor: '#ef4444',
-        position: 'absolute', left: '12px', top: '34px'
-      }
-    })
-  ]));
+      position: 'absolute', left: '60px', top: '118px',
+      width: '48px', height: '44px'
+    },
+    attrs: { src: 'assets/pelican_rider.png' }
+  }));
 
   if (p.state === 'crashed') {
     elements.push(h('div', {

@@ -1,0 +1,41 @@
+# °ÒªÿœÎ•‚©`•…“ª”E
+thum_EV114,,replay*miu_H_1,@replay_miu_H_1
+thum_EV116,,replay*miu_H_2,@replay_miu_H_2
+thum_EV119,,replay*miu_H_3,@replay_miu_H_3
+thum_EV118,,replay*miu_H_4,@replay_miu_H_4
+thum_EV111,,replay*miu_H_5,@replay_miu_H_5
+:
+thum_EV213,,replay*azu_H_1,@replay_azu_H_1
+thum_EV214,,replay*azu_H_2,@replay_azu_H_2
+thum_EV216,,replay*azu_H_3,@replay_azu_H_3
+thum_EV217,,replay*azu_H_4,@replay_azu_H_4
+thum_EV212,,replay*azu_H_5,@replay_azu_H_5
+:
+thum_EV314,,replay*rio_H_1,@replay_rio_H_1
+thum_EV311,,replay*rio_H_2,@replay_rio_H_2
+thum_EV316,,replay*rio_H_3,@replay_rio_H_3
+thum_EV318,,replay*rio_H_4,@replay_rio_H_4
+:
+thum_EV416,,replay*eri_H_1,@replay_eri_H_1
+thum_EV418,,replay*eri_H_2,@replay_eri_H_2
+thum_EV412,,replay*eri_H_3,@replay_eri_H_3
+thum_EV420,,replay*eri_H_4,@replay_eri_H_4
+thum_EV414,,replay*eri_H_5,@replay_eri_H_5
+:
+thum_EV503,,replay*nic_H_1,@replay_nic_H_1
+thum_EV506,,replay*nic_H_2,@replay_nic_H_2
+thum_EV509,,replay*nic_H_3,@replay_nic_H_3
+*
+thum_EV503_2,,replay*nic_H_4,@replay_nic_H_4
+thum_EV506_2,,replay*nic_H_5,@replay_nic_H_5
+thum_EV509_2,,replay*nic_H_6,@replay_nic_H_6
+:
+OPthum,,replay*opmovie,@movie_op
+*
+*
+*
+EDthum_miu, ,replay*edmovie_miu,@replay_ed_miu
+EDthum_azu, ,replay*edmovie_azu,@replay_ed_azu
+EDthum_rio, ,replay*edmovie_rio,@replay_ed_rio
+EDthum_eri, ,replay*edmovie_eri,@replay_ed_eri
+EDthum_nic, ,replay*edmovie_nic,@replay_ed_nic

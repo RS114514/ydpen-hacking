@@ -1,0 +1,16 @@
+{
+  "appName": "半条命",
+  "appid": "8002026110400001",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "pages": ["pages/game/game"],
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false,
+    "targets": [
+      "app.js.bin",
+      "index.js.bin",
+      "pages/game/game.js.bin"
+    ]
+  }
+}

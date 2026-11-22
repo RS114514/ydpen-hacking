@@ -172,12 +172,18 @@ test('startNewGame clears residual after-story state and boots main/0 explicitly
   vm.initGame = (scenario, line) => { calls.push([scenario, line]); };
   vm.currentScenario = 'after_yoshino';
   vm.currentLine = 640;
+  vm.choiceSelections = { old: 1 };
+  vm.choiceFlags = { sub: 2 };
+  vm.activeChoice = { id: 'old' };
 
   vm.startNewGame();
 
   assert.deepEqual(calls, [['main', 0]]);
   assert.equal(vm.currentScenario, 'main');
   assert.equal(vm.currentLine, 0);
+  assert.deepEqual(vm.choiceSelections, {});
+  assert.deepEqual(vm.choiceFlags, {});
+  assert.equal(vm.activeChoice, null);
   assert.equal(vm.view, 'game');
 });
 
@@ -185,7 +191,12 @@ test('continueGame restores saved scenario and line, rejecting unsafe scenarios'
   const after = makeVm();
   globalThis.__titleTestSaves = {
     latest: '3',
-    slot3: { line: 42, scenario: 'after_mako', chapter: '2-1' }
+    slot3: {
+      line: 42,
+      scenario: 'after_mako',
+      chapter: '2-1',
+      extra: { choices: { c1: 2 }, flags: { sub: 1 } }
+    }
   };
   const calls = [];
   after.vm.initGame = (scenario, line) => { calls.push([scenario, line]); };
@@ -196,6 +207,8 @@ test('continueGame restores saved scenario and line, rejecting unsafe scenarios'
   assert.deepEqual(calls, [['after_mako', 42]]);
   assert.equal(after.vm.currentScenario, 'after_mako');
   assert.equal(after.vm.currentLine, 42);
+  assert.deepEqual(after.vm.choiceSelections, { c1: 2 });
+  assert.deepEqual(after.vm.choiceFlags, { sub: 1 });
   assert.equal(after.vm.view, 'game');
 
   const unsafe = makeVm();
@@ -230,7 +243,12 @@ test('loadSlotFromTitle restores saved scenario and leaves the flowchart opener 
   const calls = [];
   vm.initGame = (scenario, line) => { calls.push([scenario, line]); };
   vm.titleSaves = {
-    slot7: { line: 12, scenario: 'after_roka', chapter: '3-1' }
+    slot7: {
+      line: 12,
+      scenario: 'after_roka',
+      chapter: '3-1',
+      extra: { choices: { c7: 1 }, flags: { sub: 2 } }
+    }
   };
   vm.titleModalType = 'load';
 
@@ -239,6 +257,8 @@ test('loadSlotFromTitle restores saved scenario and leaves the flowchart opener 
   assert.deepEqual(calls, [['after_roka', 12]]);
   assert.equal(vm.currentScenario, 'after_roka');
   assert.equal(vm.currentLine, 12);
+  assert.deepEqual(vm.choiceSelections, { c7: 1 });
+  assert.deepEqual(vm.choiceFlags, { sub: 2 });
   assert.equal(vm.titleModalType, '');
   assert.equal(vm.view, 'game');
 

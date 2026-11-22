@@ -1,0 +1,141 @@
+dress	パジャマ	diff	1	パジャマ
+dress	パジャマ	diff	2	パジャマ腕差分
+dress	巫女服	diff	1	巫女服
+dress	巫女服	diff	2	巫女服腕差分
+dress	私服	diff	1	私服
+dress	私服	diff	2	私服腕差分
+dress	水着	diff	1	水着
+dress	水着	diff	2	水着腕差分
+dress	制服	diff	1	制服
+dress	制服	diff	2	制服腕差分
+dress	裸	diff	1	裸
+dress	裸	diff	2	裸腕差分
+dress	裸パジャマ	diff	1	裸2
+dress	裸パジャマ	diff	2	裸腕差分2
+dress	メガネ	diff	1	私服
+dress	メガネ	diff	1	眼鏡
+dress	メガネ	diff	2	私服腕差分
+dress	メガネ	diff	2	眼鏡
+
+face	01	base	ベース表情
+face	02	base	笑顔1
+face	03	base	きょとん
+face	04	base	驚く
+face	05	base	恥ずかしい
+face	06	base	寂しい
+face	07	base	悲しい
+face	08	base	考える
+face	09	base	怒る
+face	10	base	むっとする
+face	11	base	叫ぶ
+face	12	base	はにかみ
+face	13	base	スネ
+face	14	base	苦笑
+face	15	base	とてつもなく恥ずかしい
+face	16	base	目がグリグリ
+face	17	base	むっとする（目）ベース表情（目以外）
+face	18	base	むっとする（目） 寂しい（目以外）
+face	19	base	とてつもなく恥ずかしい（目）悲しい（目以外）
+face	20	base	恥ずかしい（目）むっとする（目以外）
+face	21	base	悲しい（右目）ベース表情（それ以外）
+face	22	base	ベース表情（眉） はにかみ（眉以外）
+face	23	base	笑顔1（眉）はにかむ（目）ベース表情（口）
+face	24	base	ベース（目眉）笑顔１（口）
+face	25	base	悲しい（目）笑顔１（眉口）
+face	26	base	悲しい（目）怒る（眉口）
+face	27	base	ベース（目）悲しい（目以外）
+face	28	base	考える目寂しい眉口
+face	29	base	むっとする（目）叫ぶ（眉）怒る（口）
+face	30	base	悲しい（目）笑顔（眉）はにかみ（口）
+face	31	base	悲しい（目）はにかみ（眉口）
+face	32	base	悲しい（目眉）叫ぶ（口）
+face	33	base	寂しい目悲しい眉叫ぶ口
+
+
+face	03r	base	きょとんr
+face	06r	base	寂しいr
+face	18r	base	むっとする（目） 寂しい（目以外）r
+face	24r	base	ベース（目眉）笑顔１（口）r
+face	27r	base	ベース（目）悲しい（目以外）r
+
+
+face	01h	base	ベース表情
+face	01h	base	照れ
+face	02h	base	笑顔1
+face	02h	base	照れ
+face	03h	base	きょとん
+face	03h	base	照れ
+face	04h	base	驚く
+face	04h	base	照れ
+face	05h	base	恥ずかしい
+face	05h	base	照れ
+face	06h	base	寂しい
+face	06h	base	照れ
+face	07h	base	悲しい
+face	07h	base	照れ
+face	08h	base	考える
+face	08h	base	照れ
+face	09h	base	怒る
+face	09h	base	照れ
+face	10h	base	むっとする
+face	10h	base	照れ
+face	11h	base	叫ぶ
+face	11h	base	照れ
+face	12h	base	はにかみ
+face	12h	base	照れ
+face	13h	base	スネ
+face	13h	base	照れ
+face	14h	base	苦笑
+face	14h	base	照れ
+face	15h	base	とてつもなく恥ずかしい
+face	15h	base	照れ
+face	16h	base	目がグリグリ
+face	16h	base	照れ
+face	17h	base	むっとする（目）ベース表情（目以外）
+face	17h	base	照れ
+face	18h	base	むっとする（目） 寂しい（目以外）
+face	18h	base	照れ
+face	19h	base	とてつもなく恥ずかしい（目）悲しい（目以外）
+face	19h	base	照れ
+face	20h	base	恥ずかしい（目）むっとする（目以外）
+face	20h	base	照れ
+face	21h	base	悲しい（右目）ベース表情（それ以外）
+face	21h	base	照れ
+face	22h	base	ベース表情（眉） はにかみ（眉以外）
+face	22h	base	照れ
+face	23h	base	笑顔1（眉）はにかむ（目）ベース表情（口）
+face	23h	base	照れ
+face	24h	base	ベース（目眉）笑顔１（口）
+face	24h	base	照れ
+face	25h	base	悲しい（目）笑顔１（眉口）
+face	25h	base	照れ
+face	26h	base	悲しい（目）怒る（眉口）
+face	26h	base	照れ
+face	27h	base	ベース（目）悲しい（目以外）
+face	27h	base	照れ
+face	28h	base	考える目寂しい眉口
+face	28h	base	照れ
+face	29h	base	むっとする（目）叫ぶ（眉）怒る（口）
+face	29h	base	照れ
+face	30h	base	悲しい（目）笑顔（眉）はにかみ（口）
+face	30h	base	照れ
+face	31h	base	悲しい（目）はにかみ（眉口）
+face	31h	base	照れ
+face	32h	base	悲しい（目眉）叫ぶ（口）
+face	32h	base	照れ
+face	33h	base	寂しい目悲しい眉叫ぶ口
+face	33h	base	照れ
+
+
+face	03n	base	きょとんn
+
+face	06n	base	寂しいn
+face	07n	base	悲しいn
+face	10n	base	むっとするn
+face	18n	base	むっとする（目） 寂しい（目以外）n
+face	27n	base	ベース（目）悲しい（目以外） n
+face	28n	base	考える目寂しい眉口n
+face	32n	base	悲しい（目眉）叫ぶ（口）n
+face	33n	base	寂しい目悲しい眉叫ぶ口n
+
+face	07t	base	悲しいnn

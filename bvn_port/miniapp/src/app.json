@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "game": "pages/game/game.js"
+  },
+  "options": {
+    "style": { "lessPaths": ["pages"] }
+  }
+}

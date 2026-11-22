@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>《植物大战僵尸》词典笔原生移植版 · 丝滑实机演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#1e4d18;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden;perspective:2400px}
+
+/* 阳光草坪棋盘格背景 */
+#lawn-bg{position:absolute;inset:-160px;background-color:#2f7d22;
+  background-image:
+    linear-gradient(45deg,rgba(98,194,58,.24) 25%,transparent 25%,transparent 75%,rgba(98,194,58,.24) 75%),
+    linear-gradient(45deg,rgba(98,194,58,.24) 25%,transparent 25%,transparent 75%,rgba(98,194,58,.24) 75%);
+  background-size:180px 180px;background-position:0 0,90px 90px;will-change:transform}
+#sun-glow{position:absolute;left:-200px;top:-260px;width:1300px;height:1300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,235,110,.55) 0%,rgba(255,210,60,.18) 38%,rgba(255,210,60,0) 70%);filter:blur(40px);will-change:transform}
+#vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 48%,rgba(10,32,8,.55) 100%);pointer-events:none}
+
+/* 飘浮小阳光粒子 */
+.sun-orb{position:absolute;width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle,#fffbe0 10%,#ffd93b 55%,rgba(255,175,0,0) 78%);
+  box-shadow:0 0 22px rgba(255,220,60,.8);opacity:.85;will-change:transform}
+
+/* 电影级连续运镜容器 */
+#cam{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+
+/* 1:1 有道词典笔 X6 Pro 真机造型 (参考图样式：长方圆角黑曜石 + 偏置屏幕 + AI Scanner 透明扫描头 + 侧面红键) */
+.x6pro{position:absolute;left:50%;top:50%;width:1660px;height:380px;margin:-190px 0 0 -830px;
+  border-radius:46px;
+  background:linear-gradient(180deg,#1a1d28 0%,#0b0d14 45%,#06070c 100%);
+  box-shadow:
+    0 52px 110px rgba(0,0,0,.62),
+    0 14px 30px rgba(0,0,0,.4),
+    0 0 0 6px #2a3452,
+    0 0 0 9px #14192b,
+    inset 0 3px 6px rgba(255,255,255,.22)}
+/* 侧面醒目红色电源键与功能键（顶边左偏） */
+.x6pro .red-btn{position:absolute;left:220px;top:-11px;width:54px;height:10px;border-radius:5px 5px 0 0;background:linear-gradient(90deg,#e03131,#ff4d4d);box-shadow:0 -2px 6px rgba(255,60,60,.4)}
+.x6pro .vol-btn{position:absolute;left:310px;top:-9px;width:110px;height:8px;border-radius:4px 4px 0 0;background:#3a435e}
+/* 偏置的 960x266 超宽高清屏（占机身左侧约65%区域） */
+.x6pro .screen{position:absolute;left:64px;top:36px;width:1112px;height:308px;border-radius:20px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 4px #000,inset 0 0 0 1px rgba(255,255,255,.15)}
+.x6pro .screen img,.x6pro .screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:opacity,transform}
+.x6pro .glare{position:absolute;inset:0;background:linear-gradient(112deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.03) 34%,rgba(255,255,255,0) 42%);pointer-events:none;z-index:10}
+/* 右侧纯黑握持面板与丝印 */
+.x6pro .grip-logo{position:absolute;right:210px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:700;letter-spacing:6px;color:rgba(255,255,255,.16);writing-mode:horizontal-tb}
+/* 右端透明白灯 AI Scanner 扫描头 */
+.x6pro .scanner{position:absolute;right:0;top:16px;bottom:16px;width:138px;border-radius:16px 40px 40px 16px;
+  background:linear-gradient(90deg,#12151f 0%,#2b3245 22%,rgba(235,244,255,.92) 34%,rgba(255,255,255,.98) 72%,rgba(210,224,245,.92) 100%);
+  box-shadow:inset 4px 0 12px rgba(0,0,0,.65),0 0 24px rgba(220,240,255,.35)}
+.x6pro .scanner::before{content:"AI Scanner";position:absolute;left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:13px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.45);white-space:nowrap}
+.x6pro .scanner::after{content:"";position:absolute;right:24px;top:50%;width:18px;height:180px;margin-top:-90px;border-radius:9px;background:rgba(190,210,235,.4);border:1px solid rgba(130,155,185,.4)}
+
+/* PvZ 木牌 HUD */
+.wood-banner{position:absolute;left:50%;transform:translateX(-50%);padding:18px 48px;border-radius:20px;
+  background:linear-gradient(180deg,#9b5c2c 0%,#6f3c16 100%);
+  border:5px solid #452108;box-shadow:0 16px 40px rgba(0,0,0,.45),inset 0 3px 0 rgba(255,215,150,.35);
+  text-align:center;opacity:0;will-change:transform,opacity}
+.wood-banner h1{font-size:50px;font-weight:900;color:#fff6c4;text-shadow:0 4px 0 #3d1b06;letter-spacing:3px}
+.wood-banner p{font-size:26px;font-weight:700;color:#d6ff8f;margin-top:4px;text-shadow:0 2px 0 #264809}
+
+/* 底部动态提示牌 */
+.hud-pill{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);padding:14px 40px;border-radius:40px;
+  background:rgba(22,48,12,.88);border:3px solid #9ae64e;box-shadow:0 12px 32px rgba(0,0,0,.45);
+  font-size:32px;font-weight:800;color:#fffbe0;letter-spacing:2px;white-space:nowrap;opacity:0;will-change:transform,opacity}
+.hud-pill b{color:#ffd93b}
+
+/* 触控点击水波纹 */
+#tap-ring{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;
+  border:5px solid #ffd93b;box-shadow:0 0 20px rgba(255,217,59,.9);opacity:0;pointer-events:none;z-index:20}
+
+/* 结尾悬浮信息牌 */
+#outro{position:absolute;inset:0;background:radial-gradient(circle,rgba(20,54,14,.84) 0%,rgba(8,24,6,.94) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;z-index:30}
+.out-box{padding:44px 72px;border-radius:28px;background:linear-gradient(180deg,#8c5124,#5e3110);
+  border:6px solid #3c1c06;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:center}
+.out-box h2{font-size:66px;font-weight:900;color:#ffea75;text-shadow:0 5px 0 #3a1905;letter-spacing:4px}
+.out-box .sub{font-size:32px;color:#c7ff78;font-weight:800;margin-top:14px}
+.out-box .repo{margin-top:32px;padding:18px 36px;border-radius:14px;background:rgba(0,0,0,.35);font-family:Menlo,monospace;font-size:32px;color:#fff;border:2px solid rgba(255,225,130,.4)}
+.out-box .foot{margin-top:24px;font-size:26px;color:#e5d5bc;font-weight:600}
+
+#bar{position:absolute;left:0;top:0;height:6px;background:linear-gradient(90deg,#ffd93b,#7be038);z-index:60}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="lawn-bg"></div>
+  <div id="sun-glow"></div>
+  <div id="orbs"></div>
+  <div id="vignette"></div>
+
+  <div id="cam">
+    <div class="x6pro" id="pen">
+      <div class="red-btn"></div>
+      <div class="vol-btn"></div>
+      <div class="grip-logo">youdao</div>
+      <div class="scanner"></div>
+      <div class="screen">
+        <img id="s1" src="a/01_splash.png">
+        <img id="s2" src="a/02_mainmenu.png">
+        <img id="s3" src="a/03_dave.png">
+        <img id="s4" src="a/04_seed_select.png">
+        <img id="s5" src="a/05_plant_banner.png">
+        <video id="vid" src="a/pvz_full_gameplay.mp4" muted playsinline preload="auto"></video>
+        <div id="tap-ring"></div>
+        <div class="glare"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wood-banner" id="top-title" style="top:46px">
+    <h1>《植物大战僵尸》词典笔原生移植</h1>
+    <p>有道词典笔 X6 Pro · 960×266 超宽屏真机实机演示</p>
+  </div>
+
+  <div class="hud-pill" id="hud1"><b>原生 ARM64 移植</b> · 无需模拟器 · 丝滑草坪开局</div>
+  <div class="hud-pill" id="hud2"><b>全解锁图鉴</b> · 左侧快捷选卡 + 右侧 PAD 精准放大镜</div>
+  <div class="hud-pill" id="hud3"><b>真机实录</b> · AUTO 自动收集阳光 · 樱桃炸弹清场！</div>
+
+  <div id="outro">
+    <div class="out-box">
+      <h2>《植物大战僵尸》× 有道词典笔</h2>
+      <div class="sub">原生 pvz-portable 移植 · 全键盘 / 触控放大镜适配</div>
+      <div class="repo">作者：RS_TV · 词典笔搞机工具链：github.com/RS114514/ydpen-hacking</div>
+      <div class="foot">实机纯真机演示 · 请支持正版 Plants vs. Zombies</div>
+    </div>
+  </div>
+
+  <div id="bar"></div>
+</div>
+
+<script>
+const DURATION = 27.5;
+const $ = id => document.getElementById(id);
+const clamp = (v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const p = (t,a,b)=>clamp((t-a)/(b-a));
+const eo = x=>1-Math.pow(1-x,3);
+const eio = x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const lerp=(a,b,x)=>a+(b-a)*x;
+function vis(t,a,b,fi=.4,fo=.4){return Math.min(p(t,a,a+fi),1-p(t,b-fo,b))}
+
+// 生成飘浮阳光粒子
+const orbs=[];let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<22;i++){
+  const d=document.createElement('div');d.className='sun-orb';$('orbs').appendChild(d);
+  orbs.push({el:d,x:rnd()*1920,sp:28+rnd()*45,ph:rnd()*20,sw:20+rnd()*50,sc:.45+rnd()*.75});
+}
+
+function renderScene(t){
+  $('lawn-bg').style.transform=`translate(${-(t*18)%180}px,${-(t*10)%180}px)`;
+  $('sun-glow').style.transform=`translate(${Math.sin(t*.4)*120}px,${Math.cos(t*.3)*80}px)`;
+  orbs.forEach(o=>{
+    const y=((t+o.ph)*o.sp)%1200-80;
+    const x=o.x+Math.sin((t+o.ph)*.7)*o.sw;
+    o.el.style.transform=`translate(${x}px,${y}px) scale(${o.sc})`;
+  });
+  $('bar').style.width=(t/DURATION*100)+'%';
+
+  // 连续电影级运镜轨迹（避免PPT硬切）
+  let camX=0, camY=0, camS=1, rx=0, ry=0, rz=0;
+  if(t < 3.6){
+    const k=eio(p(t,0,3.6));
+    camS=lerp(.82,1.04,k); camX=lerp(180,60,k); camY=lerp(40,20,k);
+    rx=lerp(18,4,k); ry=lerp(-22,-4,k); rz=lerp(-4,0,k);
+  }else if(t < 10.5){
+    const k=eio(p(t,3.6,10.5));
+    camS=lerp(1.04,1.22,k); camX=lerp(60,180,k); camY=lerp(20,10,k);
+    rx=lerp(4,0,k); ry=lerp(-4,2,k);
+  }else if(t < 18.0){
+    // 推焦特写屏幕中间草坪战斗
+    const k=eio(p(t,10.5,14.0));
+    camS=lerp(1.22,1.42,k); camX=lerp(180,235,k); camY=lerp(10,0,k);
+    ry=Math.sin((t-10.5)*.5)*2.5;
+  }else if(t < 23.8){
+    // 平滑拉远展示整支 X6 Pro 词典笔与扫描头
+    const k=eio(p(t,18.0,22.0));
+    camS=lerp(1.42,.95,k); camX=lerp(235,0,k); camY=lerp(0,15,k);
+    rx=lerp(0,6,k); ry=lerp(2,-3,k);
+  }else{
+    camS=.95; camX=0; camY=15; rx=6; ry=-3;
+  }
+  $('cam').style.transform=`translate3d(${camX}px,${camY}px,0) scale(${camS}) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+
+  // 屏幕内画面无缝过渡（Splash -> MainMenu -> Dave -> SeedSelect -> PLANT! -> 11s 实机战斗视频）
+  $('s1').style.opacity = vis(t, 0, 2.8, .3, .45);
+  $('s2').style.opacity = vis(t, 2.4, 5.2, .45, .45);
+  $('s3').style.opacity = vis(t, 4.8, 7.2, .45, .45);
+  $('s4').style.opacity = vis(t, 6.8, 9.5, .45, .45);
+  $('s5').style.opacity = vis(t, 9.1, 11.4, .4, .45);
+  $('vid').style.opacity = vis(t, 11.0, 23.6, .45, .6);
+
+  // 点击波纹动画（模拟真机点击）
+  const ring=$('tap-ring');
+  const tapTimes=[2.2, 4.6, 6.6, 8.9];
+  let ro=0, rs=0.5, tx=556, ty=270;
+  for(const tt of tapTimes){
+    if(t>=tt && t<=tt+.45){
+      const k=p(t,tt,tt+.45);
+      ro=1-k; rs=lerp(.4,1.6,k);
+      if(tt===4.6){tx=620;ty=90;}
+      if(tt===8.9){tx=430;ty=280;}
+    }
+  }
+  ring.style.left=tx+'px'; ring.style.top=ty+'px';
+  ring.style.opacity=ro; ring.style.transform=`scale(${rs})`;
+
+  // 顶部木牌与底部动态 HUD
+  const tOp=vis(t, .3, 5.5, .45, .5);
+  $('top-title').style.opacity=tOp;
+  $('top-title').style.transform=`translate(-50%,${(1-eo(p(t,.3,.9)))*-30}px)`;
+
+  $('hud1').style.opacity=vis(t, 1.0, 6.2, .4, .4);
+  $('hud2').style.opacity=vis(t, 6.5, 11.2, .4, .4);
+  $('hud3').style.opacity=vis(t, 11.5, 22.8, .4, .5);
+
+  // 结尾木牌渐显
+  $('outro').style.opacity=p(t, 23.3, 24.1);
+}
+
+const vid=$('vid');
+function seekTo(v,t){
+  return new Promise(res=>{
+    if(Math.abs(v.currentTime-t)<0.005&&v.readyState>=2){res();return;}
+    let done=false;
+    const fin=()=>{if(done)return;done=true;v.removeEventListener('seeked',fin);res();};
+    v.addEventListener('seeked',fin);
+    v.currentTime=t;
+    setTimeout(fin,400);
+  });
+}
+async function renderFrame(t){
+  renderScene(t);
+  if(t>=10.8 && t<=23.8){
+    await seekTo(vid, clamp(t-11.0, 0, 10.95));
+    await new Promise(r=>requestAnimationFrame(()=>r()));
+  }
+}
+window.render=renderFrame;
+window.DURATION=DURATION;
+if(!location.search.includes('render')){
+  const st=performance.now();
+  (function loop(){renderFrame(((performance.now()-st)/1000)%DURATION);requestAnimationFrame(loop);})();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "source_root": "/Volumes/2T/春晖历史资料/春晖历史资料/assets/static/Media/images",
+  "card_size": "220x196",
+  "cards": [
+    {"file": "real_auditorium_1.png", "scene": "auditorium", "label": "大礼堂内景·钢桁架屋顶与木地板", "source": "20200921/202009211006188632923503.jpg", "year": "2019", "chapters": ["ch07", "ch09", "ch10", "ch34"]},
+    {"file": "real_archive_1.png", "scene": "archive", "label": "校史馆校园沙盘", "source": "20250103/202501031620173542296807.jpg", "year": "2025", "chapters": ["ch04", "ch33"]},
+    {"file": "real_lake_1.png", "scene": "oldhouse", "label": "老屋群鸟瞰（灰瓦连片）", "source": "20220609/202206091845348134372181.JPG", "year": "2022", "chapters": ["ch08", "ch22", "ch25"]},
+    {"file": "real_pingwu_1.png", "scene": "pingwu", "label": "蔡元培题「平屋」匾额", "source": "20201204/202012041916098272380914.jpg", "year": "2020", "chapters": ["ch12", "ch23"]},
+    {"file": "real_lake_2.png", "scene": "yangshan", "label": "古树与白色教学楼", "source": "20220609/202206091847073965429501.jpg", "year": "2022", "chapters": ["ch01"]},
+    {"file": "real_panorama_2018.png", "scene": "panorama", "label": "白马湖与老校舍全景（黑白）", "source": "20190909/201909091926195465001883.jpg", "year": "historic", "chapters": ["ch06", "ch14", "ch15", "ch32"]},
+    {"file": "real_oldhouse_2.png", "scene": "oldhouse", "label": "老屋群二号（备用）", "source": "20220609/202206091847188990622386.jpg", "year": "2022", "chapters": []}
+  ]
+}

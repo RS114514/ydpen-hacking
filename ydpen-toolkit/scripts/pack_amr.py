@@ -64,6 +64,8 @@ def main() -> int:
         for n in names:
             p = os.path.join(base, n)
             rel = os.path.relpath(p, src).replace("\\", "/")
+            if n.startswith("._") or rel.startswith("._") or "/._" in rel:
+                continue
             if rel.startswith("libs/"):
                 continue  # libs 由 --lib 决定，避免误打包源码目录里的东西
             files[rel] = open(p, "rb").read()

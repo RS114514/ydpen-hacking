@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Horsey Game - 词典笔 800x220 UI/UX 原型</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+  body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+  }
+  .device-container {
+    position: relative;
+    width: 800px;
+    height: 220px;
+    background: #000;
+    overflow: hidden;
+    border: 2px solid #555;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    image-rendering: pixelated;
+  }
+  /* 控制条供在真机或浏览器测试切换屏幕 */
+  .debug-switcher {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    width: 800px;
+    justify-content: center;
+  }
+  .debug-btn {
+    background: #333;
+    color: #eee;
+    border: 1px solid #777;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .debug-btn.active {
+    background: #2a8235;
+    border-color: #55ff55;
+    color: #fff;
+  }
+
+  /* 800x220 屏幕全局 HUD 规范 */
+  .screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 220px;
+    display: none;
+  }
+  .screen.active { display: block; }
+
+  /* 常驻顶部微缩 HUD: 仅 20px 高，左右两端分布 */
+  .global-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 22px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+    pointer-events: none;
+  }
+  .hud-left, .hud-right {
+    display: flex;
+    gap: 4px;
+    pointer-events: auto;
+  }
+  .badge-money {
+    background: #ffffff;
+    border: 1px solid #000;
+    color: #198c19;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 1px 6px;
+    height: 18px;
+    line-height: 16px;
+  }
+  .badge-location {
+    background: #333333;
+    color: #ffd700;
+    font-size: 10px;
+    padding: 1px 6px;
+    height: 18px;
+    line-height: 16px;
+    border: 1px solid #555;
+  }
+  .btn-hud {
+    background: #ffffff;
+    color: #000;
+    border: 1px solid #cc0000;
+    font-size: 10px;
+    font-weight: bold;
+    height: 18px;
+    padding: 0 6px;
+    cursor: pointer;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .btn-hud-sleep {
+    border-color: #2b5cb8;
+    color: #113377;
+  }
+
+  /* 随身拖车 Trailer: 800x220 视口中放置于左下或左侧 */
+  .trailer {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    width: 130px;
+    height: 64px;
+    background: #ffffff;
+    border: 3px solid #00a896;
+    border-radius: 2px;
+    z-index: 20;
+  }
+  .trailer-wheels {
+    position: absolute;
+    bottom: -6px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .wheel {
+    width: 12px;
+    height: 12px;
+    background: #222;
+    border-radius: 50%;
+    border: 2px solid #555;
+  }
+  .trailer-label {
+    background: #00a896;
+    color: #fff;
+    font-size: 9px;
+    padding: 1px 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .trailer-content {
+    display: flex;
+    padding: 2px;
+    gap: 4px;
+  }
+  .trailer-horse-slot {
+    width: 34px;
+    height: 38px;
+    background: #e0f2f1;
+    border: 1px dashed #00a896;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #004d40;
+    cursor: pointer;
+    position: relative;
+  }
+  .trailer-horse-slot .slot-badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    background: #ffd54f;
+    color: #000;
+    font-size: 8px;
+    font-weight: bold;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+
+  /* 物理舞台背景 */
+  .stable-bg {
+    width: 100%;
+    height: 100%;
+    background: #d8c29d;
+    position: relative;
+  }
+  .barn-wall {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: #a0522d;
+    border-bottom: 4px solid #5c2c16;
+  }
+  .barn-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    background: #8b5a2b;
+  }
+  .stable-hay-trough {
+    position: absolute;
+    bottom: 12px;
+    right: 120px;
+    width: 80px;
+    height: 36px;
+    background: #c29d38;
+    border: 2px solid #5a420b;
+    color: #fff;
+    font-size: 9px;
+    text-align: center;
+    line-height: 32px;
+  }
+
+  /* 示例马匹 (可拖拽刚体代表) */
+  .horse-entity {
+    position: absolute;
+    width: 72px;
+    height: 48px;
+    background: #8d5524;
+    border: 2px solid #4a2800;
+    cursor: grab;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2px 4px;
+  }
+  .horse-entity:active { cursor: grabbing; }
+  .horse-entity .horse-tag {
+    font-size: 9px;
+    color: #ffeaa7;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  .horse-entity .bubble {
+    position: absolute;
+    top: -18px;
+    left: 10px;
+    background: #fff;
+    border: 1px solid #333;
+    color: #000;
+    font-size: 8px;
+    padding: 1px 3px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  /* 抓取提线偏置指示器 */
+  .drag-tether {
+    position: absolute;
+    width: 2px;
+    background: #ffd700;
+    z-index: 49;
+    pointer-events: none;
+    display: none;
+  }
+
+  /* 屏幕 2: 赛马与下注 (Race Screen) */
+  .race-bg {
+    width: 100%;
+    height: 100%;
+    background: #27ae60;
+    position: relative;
+    overflow: hidden;
+  }
+  .race-track-area {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 530px;
+    height: 198px;
+    background: #2e7d32;
+    border-right: 3px solid #1b5e20;
+    position: relative;
+  }
+  .race-lane {
+    height: 36px;
+    border-bottom: 1px dashed rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    position: relative;
+  }
+  .lane-badge {
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 6px;
+  }
+  .lane-name { font-size: 10px; color: #fff; font-weight: bold; }
+  .lane-odds { font-size: 9px; color: #ffd700; margin-left: 6px; }
+  .lane-horse-runner {
+    position: absolute;
+    width: 44px;
+    height: 24px;
+    background: #795548;
+    border: 1px solid #3e2723;
+    left: 90px;
+    top: 6px;
+  }
+  .finish-pole {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    width: 4px;
+    height: 100%;
+    background: #fff;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+  }
+
+  /* 下注侧边栏: 宽 270px, 高 198px, 位于右侧 */
+  .betting-panel {
+    position: absolute;
+    top: 22px;
+    right: 0;
+    width: 270px;
+    height: 198px;
+    background: #5c3a21;
+    border-left: 2px solid #3d2314;
+    display: flex;
+    flex-direction: column;
+  }
+  .betting-header {
+    background: #3d2314;
+    color: #ffcc00;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .betting-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2px;
+  }
+  .bet-horse-row {
+    display: flex;
+    align-items: center;
+    background: #7a4e2d;
+    margin-bottom: 2px;
+    padding: 2px 4px;
+    height: 28px;
+    justify-content: space-between;
+  }
+  .bet-horse-row.selected {
+    background: #9c633a;
+    outline: 1px solid #ffd700;
+  }
+  .bet-btn-group {
+    display: flex;
+    gap: 2px;
+  }
+  .btn-bet-type {
+    background: #fff;
+    color: #000;
+    font-size: 9px;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding: 2px 5px;
+    cursor: pointer;
+  }
+  .btn-bet-type.active {
+    background: #f1c40f;
+    color: #000;
+  }
+  .betting-footer {
+    height: 38px;
+    background: #2b180d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+  }
+  .bet-stepper {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .btn-step {
+    width: 24px;
+    height: 24px;
+    background: #e67e22;
+    border: 1px solid #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .bet-amount {
+    background: #000;
+    color: #2ecc71;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border: 1px solid #444;
+  }
+  .btn-race-start {
+    background: #27ae60;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid #145a32;
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+
+  /* 屏幕 3: 马匹检视卡 (方格纸风格 620x190) */
+  .inspect-modal {
+    position: absolute;
+    top: 15px;
+    left: 90px;
+    width: 620px;
+    height: 190px;
+    background: #f4faff;
+    background-image: 
+      linear-gradient(#d4e6f1 1px, transparent 1px),
+      linear-gradient(90deg, #d4e6f1 1px, transparent 1px);
+    background-size: 12px 12px;
+    border: 3px solid #2980b9;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    z-index: 200;
+    display: flex;
+    padding: 8px;
+    color: #2c3e50;
+  }
+  .inspect-left {
+    width: 160px;
+    border-right: 2px dashed #a9cce3;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .inspect-silhouette {
+    width: 140px;
+    height: 80px;
+    background: #34495e;
+    clip-path: polygon(10% 25%, 35% 20%, 50% 10%, 65% 15%, 60% 40%, 85% 35%, 90% 65%, 85% 95%, 75% 95%, 75% 65%, 45% 65%, 40% 95%, 30% 95%, 35% 60%, 20% 60%, 15% 85%, 5% 85%);
+  }
+  .inspect-badges {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .badge-item {
+    font-size: 9px;
+    background: #f39c12;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .inspect-right {
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .inspect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .inspect-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #d35400;
+    cursor: pointer;
+    border-bottom: 1px dashed #d35400;
+  }
+  .btn-inspect-close {
+    background: #27ae60;
+    color: #fff;
+    border: 1px solid #196f3d;
+    padding: 2px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .inspect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+    font-size: 11px;
+    background: rgba(255,255,255,0.7);
+    padding: 6px;
+    border: 1px solid #d4e6f1;
+  }
+  .inspect-stat-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .inspect-stat-label { color: #7f8c8d; font-weight: bold; }
+  .inspect-stat-val { font-weight: bold; color: #2c3e50; }
+  .inspect-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-dna-action {
+    background: #8e44ad;
+    color: #fff;
+    border: 1px solid #5b2c6f;
+    font-size: 10px;
+    padding: 3px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 屏幕 4: 胶水厂 (Glue Factory) */
+  .glue-bg {
+    width: 100%;
+    height: 100%;
+    background: #4a151b;
+    position: relative;
+  }
+  .glue-header-sign {
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    background: #260508;
+    border: 2px solid #851e2b;
+    color: #ff9999;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .glue-scale-zone {
+    position: absolute;
+    bottom: 20px;
+    left: 220px;
+    width: 220px;
+    height: 70px;
+    background: #333;
+    border: 3px dashed #e74c3c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .glue-scale-dial {
+    width: 180px;
+    height: 16px;
+    background: #111;
+    border: 1px solid #666;
+    margin-top: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scale-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 25%;
+    border-right: 1px solid #888;
+    font-size: 8px;
+    color: #aaa;
+    padding-left: 2px;
+  }
+  .scale-needle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #ff0000;
+    left: 26%;
+  }
+  .glue-confirm-panel {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    width: 260px;
+    height: 95px;
+    background: #2c0b0e;
+    border: 2px solid #a93226;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hold-button-container {
+    position: relative;
+    width: 100%;
+    height: 34px;
+    background: #5c1d24;
+    border: 1px solid #e74c3c;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hold-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: #c0392b;
+    transition: width 0.05s linear;
+  }
+  .hold-text {
+    position: relative;
+    z-index: 2;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* 屏幕 5: CRISPR 实验室 (三级横向解构) */
+  .crispr-bg {
+    width: 100%;
+    height: 100%;
+    background: #2c1a4d;
+    position: relative;
+  }
+  .crispr-workbench {
+    position: absolute;
+    top: 24px;
+    left: 10px;
+    width: 780px;
+    height: 186px;
+    display: flex;
+    gap: 8px;
+  }
+  .crispr-category-tabs {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .crispr-tab {
+    background: #442a78;
+    color: #bbb;
+    border: 1px solid #6c429c;
+    font-size: 10px;
+    padding: 6px 4px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .crispr-tab.active {
+    background: #8e44ad;
+    color: #fff;
+    font-weight: bold;
+    border-color: #d2b4de;
+  }
+  .crispr-gene-list {
+    width: 180px;
+    background: #1e1035;
+    border: 1px solid #5b2c6f;
+    overflow-y: auto;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .crispr-gene-item {
+    background: #351c5e;
+    color: #ddd;
+    font-size: 10px;
+    padding: 4px 6px;
+    border: 1px solid #4a2800;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .crispr-gene-item.active {
+    background: #5e3370;
+    border-color: #f39c12;
+    color: #fff;
+  }
+  .crispr-editor-view {
+    flex: 1;
+    background: #170b2c;
+    border: 1px solid #8e44ad;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .base-slots-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 8px 0;
+  }
+  .base-slot-card {
+    width: 44px;
+    height: 52px;
+    background: #2b184c;
+    border: 2px solid #a569bd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .base-slot-card.active {
+    border-color: #f1c40f;
+    box-shadow: 0 0 8px #f1c40f;
+  }
+  .base-slot-card .base-letter {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .base-letter.A { color: #e74c3c; }
+  .base-letter.T { color: #3498db; }
+  .base-letter.G { color: #2ecc71; }
+  .base-letter.C { color: #f1c40f; }
+
+  .base-selector-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    background: #261245;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  .btn-base-option {
+    width: 36px;
+    height: 30px;
+    background: #3d1c6d;
+    border: 1px solid #8e44ad;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* 触控反馈浮层 */
+  .touch-hint {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    font-size: 9px;
+    color: #888;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="device-container" id="viewport">
+  <!-- 常驻顶部微缩 HUD -->
+  <div class="global-hud">
+    <div class="hud-left">
+      <div class="badge-money" id="hudMoney">$1,280</div>
+      <div class="badge-location" id="hudLoc">PADDOCK / STABLE</div>
+    </div>
+    <div class="hud-right">
+      <button class="btn-hud btn-hud-sleep" id="btnSleep">☾ SLEEP</button>
+      <button class="btn-hud" id="btnMap">🚗 MAP</button>
+    </div>
+  </div>
+
+  <!-- 屏幕 1: 牧场与马厩 (Stable Screen) -->
+  <div class="screen active" id="screenStable">
+    <div class="stable-bg">
+      <div class="barn-wall"></div>
+      <div class="barn-floor"></div>
+
+      <!-- 拖车 (随身移动仓库) -->
+      <div class="trailer" id="trailerDropZone">
+        <div class="trailer-label">
+          <span>TRAILER</span>
+          <span id="trailerCount">2/4</span>
+        </div>
+        <div class="trailer-content">
+          <div class="trailer-horse-slot" onclick="openInspect('Hay Fever')">
+            <span>#1</span>
+            <span class="slot-badge">3y</span>
+          </div>
+          <div class="trailer-horse-slot" onclick="openInspect('Zeke')">
+            <span>#2</span>
+            <span class="slot-badge">5y</span>
+          </div>
+        </div>
+        <div class="trailer-wheels">
+          <div class="wheel"></div>
+          <div class="wheel"></div>
+        </div>
+      </div>
+
+      <!-- 干草槽 -->
+      <div class="stable-hay-trough" id="hayDropZone">HAY TROUGH</div>
+
+      <!-- 可拖拽马匹示例 -->
+      <div class="horse-entity" id="demoHorse" style="left: 280px; top: 110px;">
+        <div class="bubble" id="horseBubble">*neigh*</div>
+        <div class="horse-tag">Fettuccine (4y)</div>
+        <div style="font-size:8px; color:#ddd;">Wt: 840lb</div>
+      </div>
+
+      <!-- 提线指引 -->
+      <div class="drag-tether" id="dragTether"></div>
+    </div>
+  </div>
+
+  <!-- 屏幕 2: 赛马与下注 (Race Screen) -->
+  <div class="screen" id="screenRace">
+    <div class="race-bg">
+      <div class="race-track-area">
+        <div class="race-lane">
+          <div class="lane-badge">1</div>
+          <div class="lane-name">Clover</div>
+          <div class="lane-odds">3-1</div>
+          <div class="lane-horse-runner" style="left: 60px;"></div>
+        </div>
+        <div class="race-lane">
+          <div class="lane-badge" style="background:#2980b9;">2</div>
+          <div class="lane-name">Titanium</div>
+          <div class="lane-odds">7-1</div>
+          <div class="lane-horse-runner" style="left: 80px;"></div>
+        </div>
+        <div class="race-lane">
+          <div class="lane-badge" style="background:#f39c12;">3</div>
+          <div class="lane-name">Lasagna</div>
+          <div class="lane-odds">12-1</div>
+          <div class="lane-horse-runner" style="left: 40px;"></div>
+        </div>
+        <div class="race-lane">
+          <div class="lane-badge" style="background:#8e44ad;">4</div>
+          <div class="lane-name">Zeke</div>
+          <div class="lane-odds">2-1</div>
+          <div class="lane-horse-runner" style="left: 110px;"></div>
+        </div>
+        <div class="finish-pole"></div>
+      </div>
+
+      <!-- 紧凑常驻下注面板 -->
+      <div class="betting-panel">
+        <div class="betting-header">
+          <span>BETTING SLATE</span>
+          <span style="color:#2ecc71;">Prize: $500</span>
+        </div>
+        <div class="betting-list">
+          <div class="bet-horse-row selected">
+            <span style="font-size:10px; color:#fff;">1. Clover (3-1)</span>
+            <div class="bet-btn-group">
+              <button class="btn-bet-type active">Win?</button>
+              <button class="btn-bet-type">Place?</button>
+              <button class="btn-bet-type">Show?</button>
+            </div>
+          </div>
+          <div class="bet-horse-row">
+            <span style="font-size:10px; color:#fff;">2. Titanium (7-1)</span>
+            <div class="bet-btn-group">
+              <button class="btn-bet-type">Win?</button>
+              <button class="btn-bet-type">Place?</button>
+              <button class="btn-bet-type">Show?</button>
+            </div>
+          </div>
+          <div class="bet-horse-row">
+            <span style="font-size:10px; color:#fff;">3. Lasagna (12-1)</span>
+            <div class="bet-btn-group">
+              <button class="btn-bet-type">Win?</button>
+              <button class="btn-bet-type">Place?</button>
+              <button class="btn-bet-type">Show?</button>
+            </div>
+          </div>
+          <div class="bet-horse-row">
+            <span style="font-size:10px; color:#fff;">4. Zeke (2-1)</span>
+            <div class="bet-btn-group">
+              <button class="btn-bet-type">Win?</button>
+              <button class="btn-bet-type">Place?</button>
+              <button class="btn-bet-type">Show?</button>
+            </div>
+          </div>
+        </div>
+        <div class="betting-footer">
+          <div class="bet-stepper">
+            <div class="btn-step" onclick="changeBet(-5)">-</div>
+            <div class="bet-amount" id="betDisplay">$25</div>
+            <div class="btn-step" onclick="changeBet(5)">+</div>
+          </div>
+          <button class="btn-race-start" onclick="startRaceAnimation()">RACE!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏幕 3: 胶水厂 (Glue Factory) -->
+  <div class="screen" id="screenGlue">
+    <div class="glue-bg">
+      <div class="glue-header-sign">SUE'S GLUES · NOW PAYING 3¢/LB</div>
+      
+      <!-- 称重台 (投放判定区) -->
+      <div class="glue-scale-zone" id="glueScaleZone">
+        <div style="font-size:10px; color:#ff9999; font-weight:bold;">WEIGHING PLATFORM</div>
+        <div class="glue-scale-dial">
+          <div class="scale-marker" style="left:0;">0</div>
+          <div class="scale-marker" style="left:25%;">1000</div>
+          <div class="scale-marker" style="left:50%;">2000</div>
+          <div class="scale-marker" style="left:75%;">3000</div>
+          <div class="scale-needle" id="scaleNeedle"></div>
+        </div>
+        <div style="font-size:9px; color:#eee; margin-top:2px;" id="scaleReadout">Scale: 840 lb = $25.20</div>
+      </div>
+
+      <!-- 不可逆操作防误触: 阻尼长按确认 -->
+      <div class="glue-confirm-panel">
+        <div style="font-size:9px; color:#ffcccc;">
+          ⚠ 警告：此操作永久销毁马匹！<br>
+          按住下方按钮 1.5 秒确认出售。
+        </div>
+        <div class="hold-button-container" id="glueHoldBtn">
+          <div class="hold-progress-fill" id="holdProgress"></div>
+          <div class="hold-text" id="holdBtnText">长按 1.5 秒确认出售 ($25)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏幕 4: CRISPR 实验室 (CRISPR Lab) -->
+  <div class="screen" id="screenCrispr">
+    <div class="crispr-bg">
+      <div class="crispr-workbench">
+        <!-- 一级分类 Tab -->
+        <div class="crispr-category-tabs">
+          <div class="crispr-tab active">四肢/步态</div>
+          <div class="crispr-tab">体型/骨骼</div>
+          <div class="crispr-tab">头部/器官</div>
+          <div class="crispr-tab">毛色/特征</div>
+        </div>
+        <!-- 二级基因列表 -->
+        <div class="crispr-gene-list">
+          <div class="crispr-gene-item active">
+            <span>LEG_LENGTH</span>
+            <span style="color:#f1c40f;">ATGC</span>
+          </div>
+          <div class="crispr-gene-item">
+            <span>KNEE_MAX</span>
+            <span style="color:#aaa;">TTGA</span>
+          </div>
+          <div class="crispr-gene-item">
+            <span>LOCO_SYNC</span>
+            <span style="color:#aaa;">CGTA</span>
+          </div>
+          <div class="crispr-gene-item">
+            <span>HOOF_GRIP</span>
+            <span style="color:#aaa;">AATT</span>
+          </div>
+        </div>
+        <!-- 三级碱基翻牌装配器 -->
+        <div class="crispr-editor-view">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:11px; font-weight:bold; color:#ffd700;">GENE: LEG_LENGTH (Helix 4)</span>
+            <span style="font-size:9px; color:#aaa;">Dominance: Slot 0 (A)</span>
+          </div>
+          <div class="base-slots-row">
+            <div class="base-slot-card active" onclick="selectSlot(0)">
+              <span style="font-size:8px; color:#aaa;">Pos 0</span>
+              <span class="base-letter A" id="slot0">A</span>
+            </div>
+            <div class="base-slot-card" onclick="selectSlot(1)">
+              <span style="font-size:8px; color:#aaa;">Pos 1</span>
+              <span class="base-letter T" id="slot1">T</span>
+            </div>
+            <div class="base-slot-card" onclick="selectSlot(2)">
+              <span style="font-size:8px; color:#aaa;">Pos 2</span>
+              <span class="base-letter G" id="slot2">G</span>
+            </div>
+            <div class="base-slot-card" onclick="selectSlot(3)">
+              <span style="font-size:8px; color:#aaa;">Pos 3</span>
+              <span class="base-letter C" id="slot3">C</span>
+            </div>
+          </div>
+          <div class="base-selector-bar">
+            <span style="font-size:9px; color:#ddd; line-height:30px; margin-right:4px;">替换为:</span>
+            <button class="btn-base-option" style="color:#e74c3c;" onclick="applyBase('A')">A</button>
+            <button class="btn-base-option" style="color:#3498db;" onclick="applyBase('T')">T</button>
+            <button class="btn-base-option" style="color:#2ecc71;" onclick="applyBase('G')">G</button>
+            <button class="btn-base-option" style="color:#f1c40f;" onclick="applyBase('C')">C</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模态浮层: 马匹检视卡 (方格纸风格 620x190) -->
+  <div class="inspect-modal" id="inspectModal" style="display:none;">
+    <div class="inspect-left">
+      <div class="inspect-silhouette"></div>
+      <div class="inspect-badges">
+        <span class="badge-item">🏆 CHAMP</span>
+        <span class="badge-item">🎗 RIBBON</span>
+      </div>
+      <button class="btn-dna-action" onclick="switchTab('screenCrispr')">🧬 CRISPR</button>
+    </div>
+    <div class="inspect-right">
+      <div class="inspect-header">
+        <div class="inspect-name" id="cardName" onclick="renamePrompt()">Fettuccine Alfredo ✎</div>
+        <button class="btn-inspect-close" onclick="closeInspect()">CLOSE [E]</button>
+      </div>
+      <div class="inspect-grid">
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Age:</span>
+          <span class="inspect-stat-val">4 / 8</span>
+        </div>
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Races:</span>
+          <span class="inspect-stat-val">5 (3 Wins)</span>
+        </div>
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Height:</span>
+          <span class="inspect-stat-val">16.7</span>
+        </div>
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Weight:</span>
+          <span class="inspect-stat-val">840 lb</span>
+        </div>
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Parents:</span>
+          <span class="inspect-stat-val">Minty Fresh × Zeke</span>
+        </div>
+        <div class="inspect-stat-row">
+          <span class="inspect-stat-label">Offspring:</span>
+          <span class="inspect-stat-val">02</span>
+        </div>
+      </div>
+      <div class="inspect-bottom-bar">
+        <span style="font-size:9px; color:#7f8c8d;">Status: Well Fed · Energetic</span>
+        <span style="font-size:9px; color:#27ae60; font-weight:bold;">Eligible for Champion Race</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="touch-hint">800×220 CSS Viewport</div>
+</div>
+
+<!-- 调试切换器 -->
+<div class="debug-switcher">
+  <button class="debug-btn active" onclick="switchTab('screenStable', this)">1. 牧场/马厩</button>
+  <button class="debug-btn" onclick="switchTab('screenRace', this)">2. 赛道与下注</button>
+  <button class="debug-btn" onclick="openInspect('Fettuccine Alfredo')">3. 检视卡浮层</button>
+  <button class="debug-btn" onclick="switchTab('screenGlue', this)">4. 胶水厂与秤</button>
+  <button class="debug-btn" onclick="switchTab('screenCrispr', this)">5. CRISPR实验室</button>
+</div>
+
+<script>
+  // 视口管理与切换
+  function switchTab(screenId, btnElem) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(screenId);
+    if(target) target.classList.add('active');
+    closeInspect();
+
+    if(btnElem) {
+      document.querySelectorAll('.debug-btn').forEach(b => b.classList.remove('active'));
+      btnElem.classList.add('active');
+    }
+    // 同步更新 HUD 位置标签
+    const locLabels = {
+      screenStable: 'PADDOCK / STABLE',
+      screenRace: 'RACE TRACK · RACE 8',
+      screenGlue: "SUE'S GLUES",
+      screenCrispr: 'C.R.I.S.P.R. LAB'
+    };
+    if(locLabels[screenId]) {
+      document.getElementById('hudLoc').innerText = locLabels[screenId];
+    }
+  }
+
+  // 检视卡控制
+  function openInspect(name) {
+    document.getElementById('inspectModal').style.display = 'flex';
+    if(name) document.getElementById('cardName').innerText = name + ' ✎';
+  }
+  function closeInspect() {
+    document.getElementById('inspectModal').style.display = 'none';
+  }
+  function renamePrompt() {
+    const newName = prompt('输入新马名 (Rename):', 'Fettuccine Alfredo');
+    if(newName) document.getElementById('cardName').innerText = newName + ' ✎';
+  }
+
+  // 下注步进控制
+  let currentBet = 25;
+  function changeBet(delta) {
+    currentBet = Math.max(5, currentBet + delta);
+    document.getElementById('betDisplay').innerText = '$' + currentBet;
+  }
+  function startRaceAnimation() {
+    alert('And They\'re Off!! 比赛开始！');
+  }
+
+  // CRISPR 碱基替换演示
+  let selectedSlotIdx = 0;
+  function selectSlot(idx) {
+    selectedSlotIdx = idx;
+    document.querySelectorAll('.base-slot-card').forEach((c, i) => {
+      c.classList.toggle('active', i === idx);
+    });
+  }
+  function applyBase(letter) {
+    const el = document.getElementById('slot' + selectedSlotIdx);
+    if(el) {
+      el.innerText = letter;
+      el.className = 'base-letter ' + letter;
+    }
+  }
+
+  // 胶水厂长按确认阻尼机制
+  let holdTimer = null;
+  let holdProgress = 0;
+  const holdBtn = document.getElementById('glueHoldBtn');
+  const fillBar = document.getElementById('holdProgress');
+  const holdText = document.getElementById('holdBtnText');
+
+  function startHold(e) {
+    e.preventDefault();
+    holdProgress = 0;
+    holdTimer = setInterval(() => {
+      holdProgress += 4;
+      fillBar.style.width = holdProgress + '%';
+      if(holdProgress >= 100) {
+        clearInterval(holdTimer);
+        holdText.innerText = '已出售！获得 $25.20';
+        fillBar.style.background = '#27ae60';
+        const moneyEl = document.getElementById('hudMoney');
+        moneyEl.innerText = '$1,305';
+      }
+    }, 50);
+  }
+  function endHold() {
+    if(holdProgress < 100) {
+      clearInterval(holdTimer);
+      holdProgress = 0;
+      fillBar.style.width = '0%';
+    }
+  }
+  holdBtn.addEventListener('mousedown', startHold);
+  holdBtn.addEventListener('mouseup', endHold);
+  holdBtn.addEventListener('mouseleave', endHold);
+  holdBtn.addEventListener('touchstart', startHold);
+  holdBtn.addEventListener('touchend', endHold);
+
+  // 核心交互：带有 Y 轴 40px 偏置的触摸拖拽与吸附
+  const horse = document.getElementById('demoHorse');
+  const tether = document.getElementById('dragTether');
+  const trailer = document.getElementById('trailerDropZone');
+  let isDragging = false;
+  let startX, startY;
+
+  function onPointerDown(e) {
+    isDragging = true;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const rect = horse.getBoundingClientRect();
+    startX = clientX - rect.left;
+    startY = clientY - rect.top;
+    horse.style.zIndex = 1000;
+  }
+
+  function onPointerMove(e) {
+    if(!isDragging) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const container = document.getElementById('viewport').getBoundingClientRect();
+
+    // 关键设计：Y 轴偏置 40px，马悬浮在手指上方，避免手指遮挡目标
+    let targetX = clientX - container.left - 36;
+    let targetY = clientY - container.top - 24 - 40; // -40px 垂直偏置
+
+    targetX = Math.max(0, Math.min(800 - 72, targetX));
+    targetY = Math.max(20, Math.min(220 - 48, targetY));
+
+    horse.style.left = targetX + 'px';
+    horse.style.top = targetY + 'px';
+
+    // 绘制虚拟提线连接手指真实触摸点与马体
+    tether.style.display = 'block';
+    tether.style.left = (clientX - container.left) + 'px';
+    tether.style.top = (targetY + 48) + 'px';
+    tether.style.height = (clientY - container.top - (targetY + 48)) + 'px';
+
+    // 磁吸高亮检测
+    const tRect = trailer.getBoundingClientRect();
+    if(clientX >= tRect.left && clientX <= tRect.right && clientY >= tRect.top && clientY <= tRect.bottom) {
+      trailer.style.borderColor = '#ffd700';
+    } else {
+      trailer.style.borderColor = '#00a896';
+    }
+  }
+
+  function onPointerUp(e) {
+    if(!isDragging) return;
+    isDragging = false;
+    tether.style.display = 'none';
+    trailer.style.borderColor = '#00a896';
+
+    const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+    const tRect = trailer.getBoundingClientRect();
+
+    // 判定是否落入拖车
+    if(clientX >= tRect.left && clientX <= tRect.right && clientY >= tRect.top && clientY <= tRect.bottom) {
+      horse.style.display = 'none';
+      document.getElementById('trailerCount').innerText = '3/4';
+      document.getElementById('horseBubble').innerText = 'In Trailer!';
+      setTimeout(() => {
+        alert('马匹已装入随身拖车！');
+        horse.style.display = 'flex';
+        horse.style.left = '280px';
+        horse.style.top = '110px';
+      }, 300);
+    }
+  }
+
+  horse.addEventListener('mousedown', onPointerDown);
+  horse.addEventListener('touchstart', onPointerDown, { passive: false });
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('touchmove', onPointerMove, { passive: false });
+  window.addEventListener('mouseup', onPointerUp);
+  window.addEventListener('touchend', onPointerUp);
+
+  // 点击马匹弹出检视卡
+  horse.addEventListener('click', (e) => {
+    if(!isDragging) openInspect('Fettuccine Alfredo');
+  });
+</script>
+</body>
+</html>

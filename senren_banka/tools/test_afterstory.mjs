@@ -55,10 +55,11 @@ function h(tag, data, children) {
 }
 
 function makeVm() {
-  const voices = [];
+  const calls = [];
   globalThis.__afterstoryTestGal = {
-    stopVoice() { voices.push({ method: 'stopVoice' }); },
-    playVoice(file, volume) { voices.push({ method: 'playVoice', file, volume }); }
+    stopBgm() { calls.push({ method: 'stopBgm' }); },
+    stopVoice() { calls.push({ method: 'stopVoice' }); },
+    playVoice(file, volume) { calls.push({ method: 'playVoice', file, volume }); }
   };
   const vm = Object.assign(Object.create(afterstoryMethods), {
     view: 'afterstory',
@@ -68,7 +69,10 @@ function makeVm() {
     initTitle() { this.initTitleCalls++; }
   });
   vm.initAfterStory();
-  return { vm, voices };
+  // Entry-time calls are captured separately so interaction tests start clean.
+  const entryCalls = calls.slice();
+  calls.length = 0;
+  return { vm, voices: calls, entryCalls };
 }
 
 function getCards(vm) {
@@ -178,7 +182,17 @@ test('cards omit fabricated quotes, roles and event CG in favor of route ema', (
   }
 });
 
-test('clicking each card selects it and plays its existing announcement', () => {
+test('entering afterstory stops the title BGM to free the exclusive sound card', () => {
+  const { vm, voices, entryCalls } = makeVm();
+  assert.equal(vm.selectedAfterHeroine, 'yoshino');
+  assert.deepEqual(entryCalls, [{ method: 'stopBgm' }]);
+
+  vm.view = 'afterstory';
+  vm.initAfterStory();
+  assert.deepEqual(voices, [{ method: 'stopBgm' }], 're-entering afterstory stops BGM again');
+});
+
+test('clicking each card stops the BGM before playing its existing announcement', () => {
   for (const key of KEYS) {
     const { vm, voices } = makeVm();
     const { cards } = getCards(vm);
@@ -188,6 +202,7 @@ test('clicking each card selects it and plays its existing announcement', () => 
     assert.equal(vm.selectedAfterHeroine, key);
     const expectedFile = key === 'rena' ? 'lena_after.ogg' : key + '_after.ogg';
     assert.deepEqual(voices, [
+      { method: 'stopBgm' },
       { method: 'stopVoice' },
       { method: 'playVoice', file: VOICE_PREFIX + expectedFile, volume: 1.0 }
     ]);

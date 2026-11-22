@@ -21,6 +21,14 @@ ANNOUNCEMENT_NAMES = [
     "koharu_after.ogg",
     "roka_after.ogg",
 ]
+ROUTE_FILES = (
+    "scn_yoshino.js",
+    "scn_mako.js",
+    "scn_murasame.js",
+    "scn_rena.js",
+    "scn_koharu.js",
+    "scn_roka.js",
+)
 VOICE_REFERENCE = re.compile(r'["\']([^"\']+\.ogg)["\']', re.IGNORECASE)
 LS_LINE = re.compile(
     r"^[bcdlps-][rwxStTs-]{9}\+?\s+\d+\s+\S+\s+\S+\s+(\d+)\s+"
@@ -40,20 +48,10 @@ class FinalVerificationError(VoiceSyncError):
     pass
 
 
-def collect_voice_names(data_dir):
-    data_dir = Path(data_dir)
-    chapter = data_dir / "chapter_all.js"
-    after_files = sorted(data_dir.glob("after_*.js"))
-    if not chapter.is_file():
-        raise ValueError("Missing scenario file: %s" % chapter)
-    if len(after_files) != 6:
-        raise ValueError(
-            "Expected exactly 6 after_*.js files, found %d" % len(after_files)
-        )
-
+def _collect_references(scenarios):
     names = []
     seen = set()
-    for scenario in [chapter] + after_files:
+    for scenario in scenarios:
         text = scenario.read_text(encoding="utf-8")
         for match in VOICE_REFERENCE.finditer(text):
             reference = match.group(1)
@@ -74,6 +72,31 @@ def collect_voice_names(data_dir):
                 seen.add(basename)
                 names.append(basename)
     return names
+
+
+def collect_voice_names(data_dir):
+    """Collect scenario references from chapter_all.js and six after stories."""
+    data_dir = Path(data_dir)
+    chapter = data_dir / "chapter_all.js"
+    after_files = sorted(data_dir.glob("after_*.js"))
+    if not chapter.is_file():
+        raise ValueError("Missing scenario file: %s" % chapter)
+    if len(after_files) != 6:
+        raise ValueError(
+            "Expected exactly 6 after_*.js files, found %d" % len(after_files)
+        )
+    return _collect_references([chapter] + after_files)
+
+
+def collect_route_voice_names(data_dir):
+    """Collect route references from the six individual route scenario files."""
+    data_dir = Path(data_dir)
+    missing = [name for name in ROUTE_FILES if not (data_dir / name).is_file()]
+    if missing:
+        raise ValueError(
+            "Missing route scenario file(s): %s" % ", ".join(missing)
+        )
+    return _collect_references([data_dir / name for name in ROUTE_FILES])
 
 
 def parse_remote_ls(output):
@@ -107,9 +130,11 @@ def _remote_sizes(runner, serial, remote_dir):
 def _file_rows(names, source_sizes, remote_sizes, category):
     rows = []
     for name in names:
-        source_size = source_sizes[name]
+        source_size = source_sizes.get(name)
         device_size = remote_sizes.get(name)
-        if device_size is None:
+        if source_size is None:
+            status = "source_missing"
+        elif device_size is None:
             status = "missing"
         elif device_size != source_size:
             status = "size_mismatch"
@@ -130,16 +155,24 @@ def _file_rows(names, source_sizes, remote_sizes, category):
 def _summary(names, source_sizes, initial_sizes, final_sizes, category, pushed_names):
     rows = _file_rows(names, source_sizes, final_sizes, category)
     initial_rows = _file_rows(names, source_sizes, initial_sizes, category)
-    pushed = sum(name in pushed_names for name in names)
+    pushed_set = set(pushed_names)
+    pushed = sum(name in pushed_set for name in names)
+    missing_sources = [
+        row["name"] for row in rows if row["status"] == "source_missing"
+    ]
     return {
         "referenced": len(names),
-        "source_missing": 0,
+        "source_missing": len(missing_sources),
+        "missing_sources": missing_sources,
         "initial_matched": sum(row["status"] == "ok" for row in initial_rows),
         "initial_missing": sum(row["status"] == "missing" for row in initial_rows),
         "initial_size_mismatch": sum(
             row["status"] == "size_mismatch" for row in initial_rows
         ),
-        "pending": sum(row["status"] != "ok" for row in initial_rows),
+        "pending": sum(
+            row["status"] in ("missing", "size_mismatch")
+            for row in initial_rows
+        ),
         "pushed": pushed,
         "verified": sum(row["status"] == "ok" for row in rows),
         "final_missing": sum(row["status"] == "missing" for row in rows),
@@ -149,8 +182,19 @@ def _summary(names, source_sizes, initial_sizes, final_sizes, category, pushed_n
     }
 
 
+def _unique(names):
+    unique_names = []
+    seen = set()
+    for name in names:
+        if name not in seen:
+            seen.add(name)
+            unique_names.append(name)
+    return unique_names
+
+
 def _make_report(
     scenario_names,
+    route_names,
     announcement_names,
     source_sizes,
     initial_sizes,
@@ -158,33 +202,49 @@ def _make_report(
     apply,
     pushed_names,
 ):
-    names = scenario_names + announcement_names
-    scenario = _summary(
-        scenario_names,
-        source_sizes,
-        initial_sizes,
-        final_sizes,
-        "scenario",
-        pushed_names,
+    groups = (
+        ("scenario", scenario_names, "scenario"),
+        ("routes", route_names, "route"),
+        ("announcements", announcement_names, "announcement"),
     )
-    announcements = _summary(
-        announcement_names,
-        source_sizes,
-        initial_sizes,
-        final_sizes,
-        "announcement",
-        pushed_names,
-    )
+    categories = {}
+    rows = []
+    for key, names, category in groups:
+        categories[key] = _summary(
+            names,
+            source_sizes,
+            initial_sizes,
+            final_sizes,
+            category,
+            pushed_names,
+        )
+        rows += _file_rows(names, source_sizes, final_sizes, category)
+
+    references = scenario_names + route_names + announcement_names
     total = _summary(
-        names, source_sizes, initial_sizes, final_sizes, "total", pushed_names
+        references, source_sizes, initial_sizes, final_sizes, "total", pushed_names
+    )
+    total["missing_sources"] = sorted(set(total["missing_sources"]))
+    total["source_missing"] = len(total["missing_sources"])
+    unique_names = _unique(references)
+    unique = _summary(
+        unique_names,
+        source_sizes,
+        initial_sizes,
+        final_sizes,
+        "unique",
+        pushed_names,
     )
     summary = dict(total)
+    summary.update(categories)
     summary.update(
-        {"scenario": scenario, "announcements": announcements, "total": total}
-    )
-    rows = _file_rows(scenario_names, source_sizes, final_sizes, "scenario")
-    rows += _file_rows(
-        announcement_names, source_sizes, final_sizes, "announcement"
+        {
+            "total": total,
+            "unique": unique,
+            "unique_referenced": unique["referenced"],
+            "duplicate_references": total["referenced"]
+            - unique["referenced"],
+        }
     )
     return {"mode": "apply" if apply else "dry-run", "summary": summary, "files": rows}
 
@@ -202,8 +262,9 @@ def synchronize(
         raise ValueError("batch_size must be at least 1")
     source_dir = Path(source_dir)
     scenario_names = collect_voice_names(data_dir)
+    route_names = collect_route_voice_names(data_dir)
     announcement_names = list(ANNOUNCEMENT_NAMES)
-    names = scenario_names + announcement_names
+    names = _unique(scenario_names + route_names + announcement_names)
     source_sizes = {}
     missing_sources = []
     for name in names:
@@ -212,7 +273,7 @@ def synchronize(
             missing_sources.append(name)
         else:
             source_sizes[name] = source.stat().st_size
-    if missing_sources:
+    if missing_sources and apply:
         raise SourceMissingError(
             "Missing %d source files; refusing to push: %s"
             % (len(missing_sources), ", ".join(missing_sources[:20]))
@@ -222,7 +283,8 @@ def synchronize(
     pending = [
         name
         for name in names
-        if initial_sizes.get(name) != source_sizes[name]
+        if name in source_sizes
+        and initial_sizes.get(name) != source_sizes[name]
     ]
     if apply:
         destination = remote_dir.rstrip("/") + "/"
@@ -239,6 +301,7 @@ def synchronize(
     pushed_names = pending if apply else []
     report = _make_report(
         scenario_names,
+        route_names,
         announcement_names,
         source_sizes,
         initial_sizes,
@@ -267,9 +330,13 @@ def _default_runner(args):
 def _print_summary(report):
     summary = report["summary"]
     print("Mode: %s" % report["mode"])
-    print("Referenced unique voices: %(referenced)d" % summary)
+    print(
+        "Referenced voices: %(referenced)d; unique files: %(unique_referenced)d; "
+        "duplicate references: %(duplicate_references)d" % summary
+    )
     for label, key in (
-        ("Scenario", "scenario"),
+        ("Scenario (common + after)", "scenario"),
+        ("Routes", "routes"),
         ("Announcements", "announcements"),
         ("Total", "total"),
     ):
@@ -279,6 +346,8 @@ def _print_summary(report):
             % (label, group["referenced"], group["verified"], group["pending"])
         )
     print("Source missing: %(source_missing)d" % summary)
+    if summary["missing_sources"]:
+        print("Missing sources: %s" % ", ".join(summary["missing_sources"]))
     print(
         "Initially matched/missing/size mismatch: "
         "%(initial_matched)d/%(initial_missing)d/%(initial_size_mismatch)d" % summary
@@ -325,6 +394,11 @@ def main(argv=None, runner=None):
     )
     _print_summary(report)
     print("JSON report: %s" % args.report)
+    if not args.apply and report["summary"]["source_missing"]:
+        print(
+            "Source files missing; --apply will refuse to push until "
+            "they are restored."
+        )
     if not args.apply and report["summary"]["pending"]:
         print("Dry-run only; rerun with --apply to push pending files.")
     return 0

@@ -148,55 +148,48 @@ export function renderMario(vm, h) {
     }
   }));
 
-  // 终点旗杆 (位于 x=480)
+  // 终点旗帜 (位于 x=475, 地面之上)
   elements.push(h('div', {
     staticStyle: {
-      position: 'absolute', left: '480px', top: '50px', width: '4px', height: '118px',
-      backgroundColor: '#f8fafc'
+      position: 'absolute', left: '484px', top: '50px', width: '4px', height: '118px',
+      backgroundColor: '#cbd5e1'
     }
   }));
-  elements.push(h('div', {
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: '484px', top: '50px', width: '22px', height: '16px',
-      backgroundColor: '#ef4444', borderRadius: '2px', justifyContent: 'center', alignItems: 'center'
-    }
-  }, [
-    h('text', { staticStyle: { fontSize: '9px', color: '#ffffff', fontWeight: 'bold' } }, 'WIN')
-  ]));
+      position: 'absolute', left: '468px', top: '50px', width: '32px', height: '48px'
+    },
+    attrs: { src: 'assets/mario_flag.png' }
+  }));
 
   // 砖块与水管
   for (var i = 0; i < m.blocks.length; i++) {
     var b = m.blocks[i];
     if (b.type === 'pipe') {
-      elements.push(h('div', {
+      // 水管口与水管身
+      elements.push(h('image', {
         staticStyle: {
-          position: 'absolute', left: b.x + 'px', top: b.y + 'px',
-          width: b.w + 'px', height: b.h + 'px',
-          backgroundColor: '#22c55e', borderWidth: '2px', borderColor: '#15803d',
-          borderRadius: '4px'
-        }
-      }, [
-        // 水管口凸出边缘
-        h('div', {
-          staticStyle: {
-            position: 'absolute', left: '-3px', top: '0px', width: (b.w + 6) + 'px', height: '10px',
-            backgroundColor: '#16a34a', borderRadius: '2px', borderWidth: '1.5px', borderColor: '#15803d'
-          }
-        })
-      ]));
+          position: 'absolute', left: (b.x - 3) + 'px', top: b.y + 'px',
+          width: (b.w + 6) + 'px', height: '16px'
+        },
+        attrs: { src: 'assets/mario_pipe_top.png' }
+      }));
+      elements.push(h('image', {
+        staticStyle: {
+          position: 'absolute', left: b.x + 'px', top: (b.y + 16) + 'px',
+          width: b.w + 'px', height: (b.h - 16) + 'px'
+        },
+        attrs: { src: 'assets/mario_pipe_body.png' }
+      }));
     } else {
-      var bgCol = b.hit ? '#94a3b8' : (b.type === 'coin_box' ? '#f59e0b' : '#b45309');
-      var label = b.hit ? '' : (b.type === 'coin_box' ? '?' : '#');
-      elements.push(h('div', {
+      var srcImg = b.hit ? 'assets/mario_block_empty.png' : (b.type === 'coin_box' ? 'assets/mario_block_coin.png' : 'assets/mario_block_brick.png');
+      elements.push(h('image', {
         staticStyle: {
           position: 'absolute', left: b.x + 'px', top: b.y + 'px',
-          width: b.w + 'px', height: b.h + 'px',
-          backgroundColor: bgCol, borderWidth: '1.5px', borderColor: '#ffffff',
-          borderRadius: '4px', justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', { staticStyle: { fontSize: '14px', color: '#ffffff', fontWeight: 'bold' } }, label)
-      ]));
+          width: b.w + 'px', height: b.h + 'px'
+        },
+        attrs: { src: srcImg }
+      }));
     }
   }
 
@@ -204,54 +197,30 @@ export function renderMario(vm, h) {
   for (var i = 0; i < m.enemies.length; i++) {
     var en = m.enemies[i];
     if (en.alive) {
-      elements.push(h('div', {
+      elements.push(h('image', {
         staticStyle: {
           position: 'absolute', left: Math.floor(en.x) + 'px', top: en.y + 'px',
-          width: en.w + 'px', height: en.h + 'px', backgroundColor: '#78350f',
-          borderRadius: '6px', borderWidth: '1.5px', borderColor: '#d97706',
-          justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', { staticStyle: { fontSize: '10px', color: '#ffffff', fontWeight: 'bold' } }, '怪')
-      ]));
+          width: '24px', height: '24px'
+        },
+        attrs: { src: 'assets/mario_goomba.png' }
+      }));
     }
   }
 
-  // 马里奥主角 (红帽 + 蓝裤微像素装)
-  elements.push(h('div', {
+  // 马里奥主角 (根据跳跃与跑动状态切换 16-bit 像素精灵)
+  var marioSprite = 'assets/mario_idle.png';
+  if (m.isJumping) {
+    marioSprite = 'assets/mario_jump.png';
+  } else if (Math.abs(m.vx) > 0.8) {
+    marioSprite = 'assets/mario_run.png';
+  }
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: Math.floor(m.marioX) + 'px', top: Math.floor(m.marioY) + 'px',
-      width: '22px', height: '24px'
-    }
-  }, [
-    // 帽子与头部
-    h('div', {
-      staticStyle: {
-        width: '18px', height: '10px', backgroundColor: '#dc2626', borderRadius: '3px',
-        position: 'absolute', left: '2px', top: '0px'
-      }
-    }),
-    // 蓝色背带裤
-    h('div', {
-      staticStyle: {
-        width: '16px', height: '12px', backgroundColor: '#2563eb', borderRadius: '2px',
-        position: 'absolute', left: '3px', top: '10px'
-      }
-    }),
-    // 靴子
-    h('div', {
-      staticStyle: {
-        width: '6px', height: '4px', backgroundColor: '#78350f',
-        position: 'absolute', left: '2px', top: '20px'
-      }
-    }),
-    h('div', {
-      staticStyle: {
-        width: '6px', height: '4px', backgroundColor: '#78350f',
-        position: 'absolute', left: '14px', top: '20px'
-      }
-    })
-  ]));
+      position: 'absolute', left: Math.floor(m.marioX) + 'px', top: Math.floor(m.marioY - 8) + 'px',
+      width: '24px', height: '32px'
+    },
+    attrs: { src: marioSprite }
+  }));
 
   if (m.state === 'won') {
     elements.push(h('div', {

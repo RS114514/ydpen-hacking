@@ -1,0 +1,185 @@
+{
+  "volume": "vol4_summer",
+  "title": "第四卷 · 盛夏篇《晖光日新：白马扬帆与时代交响》",
+  "time_span": "2027-05-01 至 2027-06-30",
+  "chapters": [
+    {
+      "id": "ch29",
+      "title": "赛艇码头的破晓",
+      "date": "2027-05-04",
+      "timeSlot": "清晨五点半",
+      "location": "白马湖赛艇训练基地",
+      "bg": "rowing_dock_dawn",
+      "bgm": "bgm_water_morning",
+      "lines": [
+        { "speaker": "", "text": "五月的清晨，白马湖水面上还聚着薄薄的水雾。岸边的八人单桨赛艇在晨光下泛着雪亮的流线光泽。" },
+        { "speaker": "我", "text": "测风仪显示东南风两级，水温十八度。今天的体测和水上赛艇测试是高二下学期最重要的体魄指标。" },
+        { "speaker": "池雨曦", "text": "长焦镜头已经架在浮桥码头上了。舵手的节奏要和划桨手的频率完全咬合，这和我们剪辑视频的声画对齐一模一样。" }
+      ]
+    },
+    {
+      "id": "ch30",
+      "title": "轻木桁架的力学奇迹",
+      "date": "2027-05-18",
+      "timeSlot": "下午科技节",
+      "location": "仰山新楼 1F 物理实验室",
+      "bg": "physics_lab_bridge",
+      "bgm": "bgm_science_tension",
+      "puzzle": {
+        "id": "puzzle_wood_bridge",
+        "type": "structural_truss",
+        "weight_limit_kg": 15.0,
+        "hint": "利用拉杆受拉、压杆受压原理，合理分散桥面中央集中载荷。"
+      },
+      "lines": [
+        { "speaker": "", "text": "科技节木桥承重决战现场。用薄木条胶结而成的轻质桁架桥被放置在受力测试台上。" },
+        { "speaker": "物理老师", "text": "注意加砝码的节奏，静态载荷已经突破十公斤了！" },
+        { "speaker": "我", "text": "中央三角受力节点的微小形变在设计预料之中，桥梁结构稳如泰山！" },
+        { "speaker": "池雨曦", "text": "成功了！自重仅三十五克的木桥，稳稳承受了十五公斤的静压！" }
+      ]
+    },
+    {
+      "id": "ch31",
+      "title": "双实验主楼的通宵灯光",
+      "date": "2027-05-28",
+      "timeSlot": "深夜统筹",
+      "location": "新逸夫楼配套报告厅 3F 机房",
+      "bg": "yifu_hall_night_glow",
+      "bgm": "bgm_night_focus",
+      "lines": [
+        { "speaker": "", "text": "新逸夫楼北侧两栋实验主楼的窗户大多亮着灯，机器人竞赛队与信息社正在做最后的联调。" },
+        { "speaker": "我", "text": "多轨剪辑台上的素材总数已经累积到了一百二十条。从秋天的一字楼落叶，到深冬平屋的雪花，再到春天的曲院墨迹。" },
+        { "speaker": "池雨曦", "text": "把最后这段白马湖划桨的破浪声混进去，声场一下子就充实了。" }
+      ]
+    },
+    {
+      "id": "ch32",
+      "title": "【历史大副本 · 1922】开校第一声《游子吟》",
+      "date": "1922-12-02",
+      "timeSlot": "历史穿越",
+      "location": "白马湖开校典礼草堂",
+      "bg": "opening_ceremony_1922",
+      "bgm": "bgm_youziyin_original",
+      "lines": [
+        { "speaker": "", "text": "【时空置换判定】：视角切换为 1922 年首届春晖学子。" },
+        { "speaker": "经亨颐", "text": "‘今日春晖开校，愿我青年学子，刚健笃实，日新其德，与时俱进！’" },
+        { "speaker": "丰子恺", "text": "（轻抚风琴按键，悠扬典雅的旋律缓缓响起）" },
+        { "speaker": "全校师生合唱", "text": "‘慈母手中线，游子身上衣。临行密密缝，意恐迟迟归……’" },
+        { "speaker": "我", "text": "百年前在芦苇荡与春风中荡漾开来的旋律，跨越世纪，依然清澈动人。" }
+      ]
+    },
+    {
+      "id": "ch33",
+      "title": "终极时间线剪辑：定稿《晖光日新》",
+      "date": "2027-06-10",
+      "timeSlot": "定剪之夜",
+      "location": "新逸夫楼配套报告厅 3F 机房",
+      "bg": "yifu_hall_3f",
+      "bgm": "bgm_climax_editing",
+      "lines": [
+        { "speaker": "我", "text": "点击【导出成片】按钮。进度条在工作站的屏幕上飞快推进。" },
+        { "speaker": "池雨曦", "text": "十四分钟零二十秒。整部片子没有一句生硬的说教，所有故事都是白马湖山水与师生真实走过的痕迹。" },
+        { "speaker": "系统提示", "text": "成片艺术综合评级：【S级 · 完美神作】。" }
+      ]
+    },
+    {
+      "id": "ch34",
+      "title": "大礼堂百廿终极大首映",
+      "date": "2027-06-18",
+      "timeSlot": "毕业典礼前夕",
+      "location": "春晖大礼堂",
+      "bg": "auditorium_grand_show",
+      "bgm": "bgm_symphony_climax",
+      "lines": [
+        { "speaker": "", "text": "歇山顶老礼堂内的巨幅银幕徐徐落下。全校两千名师生与返校老校友屏息凝神。" },
+        { "speaker": "", "text": "灯光渐暗，音箱中传来清晰的滴水声与老铜钟的双锤回响，紧接着是池雨曦沉静清澈的画外音——" },
+        { "speaker": "", "text": "片尾字幕升起，全场沉寂了三秒钟，随即爆发出一阵掀翻屋顶的雷鸣掌声！" }
+      ]
+    },
+    {
+      "id": "ch35",
+      "title": "终端的终极回答",
+      "date": "2027-06-18",
+      "timeSlot": "深夜散场",
+      "location": "白马湖畔木栈道",
+      "bg": "baimahu_summer_night",
+      "bgm": "bgm_piano_reverie",
+      "lines": [
+        { "speaker": "", "text": "掌上终端屏幕上的雪花波纹彻底消散，取而代之的是一幅清晰的百年全景合照。" },
+        { "speaker": "我", "text": "经亨颐先生、夏丏尊先生、朱自清先生，还有 1934 年排演雷雨的胡玉堂学长……他们似乎正微笑着注视着今天的我们。" },
+        { "speaker": "池雨曦", "text": "所谓的时空终端，从来不是什么超自然装置，而是每一代春晖人对真善美的不懈守望。" }
+      ]
+    },
+    {
+      "id": "ch36",
+      "title": "面向象山的成人礼（大终局）",
+      "date": "2027-06-25",
+      "timeSlot": "高二结束日",
+      "location": "新逸夫楼配套报告厅楼顶露台",
+      "bg": "yifu_rooftop_sunset",
+      "bgm": "bgm_songbie_piano",
+      "lines": [
+        { "speaker": "", "text": "盛夏的晚霞将象山染成了一片金红。高二学年正式画上句号，前方是崭新的高三旅途。" },
+        { "speaker": "池雨曦", "text": "（手扶着报告厅露台的栏杆，转过头来）并肩走过这四季，谢谢你一直以来的信任与默契。" },
+        { "speaker": "我", "text": "白马湖的清风会作证。无论走到哪里，这里的晖光永远日新。" },
+        { "speaker": "系统提示", "text": "【达成殿堂真结局 · 《春风夏雨，晖光日新》】 全员演职员名单滚动结束。" }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "case19",
+      "title": "赛艇船桨的力矩档案",
+      "volume": "vol4",
+      "unlockedChapter": "ch29",
+      "summary": "破译赛艇队十年赛绩记录，结合划桨力矩优化水上竞技策略。",
+      "clues": ["clue_oar_angle", "clue_water_drag_table"],
+      "reward": { "body": 20, "item": "赛艇队金舵手徽章" }
+    },
+    {
+      "id": "case20",
+      "title": "桁架桥的临界破坏点",
+      "volume": "vol4",
+      "unlockedChapter": "ch30",
+      "summary": "分析历届轻木承重桥破坏断面，推导出自重荷载比最优桁架拓扑构型。",
+      "clues": ["clue_truss_blueprints", "clue_fracture_sample"],
+      "reward": { "truth": 20, "item": "科技节特等奖金尺" }
+    },
+    {
+      "id": "case21",
+      "title": "报告厅地下的时间胶囊",
+      "volume": "vol4",
+      "unlockedChapter": "ch31",
+      "summary": "寻找 2026 年新逸夫楼配套报告厅奠基时埋入地基的师生心愿铜筒。",
+      "clues": ["clue_foundation_stone", "clue_copper_cylinder"],
+      "reward": { "beauty": 20, "item": "百廿心愿录" }
+    },
+    {
+      "id": "case22",
+      "title": "1922 开校典礼来宾题名录",
+      "volume": "vol4",
+      "unlockedChapter": "ch32",
+      "summary": "考订蔡元培、黄炎培等名家到访白马湖的真实题词墨宝档案。",
+      "clues": ["clue_guest_signatures", "clue_cai_inscription"],
+      "reward": { "truth": 25, "item": "先贤墨宝拓本" }
+    },
+    {
+      "id": "case23",
+      "title": "白马湖畔最后一班校车",
+      "volume": "vol4",
+      "unlockedChapter": "ch35",
+      "summary": "二十年通学校车司机老赵的行车日志与师生暖心留言合集整理。",
+      "clues": ["clue_bus_logbook", "clue_student_notes"],
+      "reward": { "bond_yuxi": 20, "item": "白马湖通学旧车票" }
+    },
+    {
+      "id": "case24",
+      "title": "终极信物：晖光徽章",
+      "volume": "vol4",
+      "unlockedChapter": "ch36",
+      "summary": "集齐全部 23 宗案件证物，在校史馆熔铸并解锁永久全局真结局徽章。",
+      "clues": ["clue_all_cases_resolved"],
+      "reward": { "global_achievement": "HUIGUANG_MASTER", "item": "百廿纯金晖光徽章" }
+    }
+  ]
+}

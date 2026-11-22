@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "appid": "8002026110100001",
+  "files": {
+    "doom_ydpen": "960b4c030936d6d2562bc2165f6cbc45f5b81e0806b7c7ea8d6706b3ad65880c",
+    "doom1.wad": "1d7d43be501e67d927e415e0b8f3e29c3bf33075e859721816f652a526cac771",
+    "Doom-1.0.0.amr": "8dfec9dcf0a2dbe6fd67ee8ebc20e306dea890516a81988a49c6eb6dc79bf3a8",
+    "run.sh": "a257192e996be3b628c2f94197f4727bc358391fbac3c41942b6852dbc2d7ee4",
+    "run_game.sh": "2a6aaddbb029f821d8bf50757d8a56a95d5da9018b6f4f54daafc518534adefb",
+    "launch_from_icon.sh": "de8f3f9b9d62f2ae84188220f57aa7e4290c6a70fd39c0f3f59436a178e4180b",
+    "lib/libasound.so.2.0.0": "a048c1266563a84dc6cdcc0afe398e73b127ef51b2bf15b3293263b44b7c45c5",
+    "lib/libwayland-client.so.0.21.0": "20143e9134becb6a1b5c7afa27253129983d3b875fa85a2d915e2ea147ed3a97"
+  }
+}

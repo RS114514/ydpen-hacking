@@ -1,0 +1,48 @@
+# horseygamemap.org — interactive map, locations & route guides
+
+**Source:** `https://horseygamemap.org/` (Next.js site; `/locations/*` 50 pages, `/guides/*` 10 pages, `/wiki/items/*`, `/wiki/npc/*`, `/breeding-simulator`, `/genome-reference`, plus a full `/zh` mirror). All pages fetched 2026-10-26.
+**Confidence: split verdict.**
+- **`verified`** — every coordinate. All 41 coordinate pairs it publishes match the shipped `game/data/horsey.tmx` object layer byte-for-byte (see `game-data-files-map-and-genes.md`), and its "south-east of the Crispr lab" style directions match patch 1.26's own wording. The site has a GitHub-linked community map dataset behind it, so the location table is a real extraction.
+- **`uncited-community`, and in at least one case demonstrably fabricated** — the `/guides/*` prose. See the alert below.
+
+> **⚠ Fabrication evidence.** `/guides/how-to-unlock-normal-suburban-house` describes a quest with three hidden **pressure pads** (green trash can, oak tree, inside the dog house), a **"200 gold coins"** price, a **"Good Neighbor achievement"**, and a "neighbor alert → teleport back to the town square" fail state. None of it is in the shipped achievement roster (26 names, see `horseygame-net-achievements-and-softlocks.md`), none of it is in any patch note, and the coordinates it gives for the "Normal Suburban House" (3360, 3488) are, in the actual map file, the location typed **`acres`**. Its `/guides/what-does-the-ram-bar-do-in-horsey-game` confuses the RAM **bar** (an in-game gauge art element `Rambar`/`ItemRambar`/`PowRambar`/`DisRambar`) with "The Bar" saloon. Treat their guide text as untrusted and check every claim against `steam-patch-notes-official.md` or the data file before porting.
+
+## Location descriptions worth keeping (with my own cross-checks)
+| Loc | Their description | Cross-check |
+|---|---|---|
+| `supply` (3072,3808) The Store | "Buy lassos, hay, hay bales and shovels here. **Exit and re-enter to refresh merchandise.**" | Only source for shop-inventory refresh; consistent with 1.1111's "Esoteric changes to Clide's inventory" and with location interiors being separate screens. `single-source` |
+| `saloon` (3072,3552) The Bar | "Purchase beer, chat with regulars for gossip, view leaderboards. **TV controls work, and watching races counts towards leaderboards.**" | Matches r/HorseyGame's "fast forward on the races on TV" champion-pool fix (`verified` by that thread) |
+| `glue` (3488,3840) | "$0.03 per lb ($20–$30 average). **Worn gear items will be returned.**" | rate matches Cheru; "worn gear returned" is `single-source` |
+| `track` (3168,3712) / `paddock` (3136,3712) | "Entry fee $25 for $500 payout; championship entry $250 with escalating payouts." paddock = "spacious grassland suitable for horse rest and natural growth" | matches horseygame.net; note track and paddock are **adjacent 32-px objects** — one site, two doors |
+| `sumo` (3680,4128) | "Horses compete in **60-second bouts**. Defeating the world champion rewards prizes **starting at $100, escalating by $100 per win**." | The only cash figure for sumo anywhere; `uncited-community`. horseygame.com says the reward is a rocket; horseygame.net (MoreCaseOh) says rocket. Both can be true (cash + item). |
+| `circus` (2464,3520) | "Enter horses to perform for money and ribbons. The **'freaks' tent costs $10** to display a horse with butchered DNA for amusement." | aligns with the "Freak Show" report in horseygame.net and with `pop.xml`'s `freak` population |
+| `hutch` (3488,4064) | "**Pay $100 to store elder horses to stop aging and feeding. Reload them back into your trailer anytime.**" | Conflicts/overlaps with "pay $100 at 远方田野 (Distant Field) to retire a horse" (老番茄). Likely the same $100 service under two names. |
+| `mabels` (3264,4800) | "**7 initial barns** with different quests, horse purchasing or breeding options. **Intelligent horses may create new barns over time.**" | Mabel is the stables manager (patch 1.1's "Mabel's eyebrow obsession"); "intelligent horses build barns" is the only written description of `HIGH_INTELLECT`'s downside besides horseygame.com's "they may even open rival yards" |
+| `abandoned` (4224,4032) | "Evaluate horse viability on a **full-length track without submitting to a race or causing exhaustion**." | matches official 1.26's abandoned racetrack; a free practice track |
+| `surebreed` (4224,4576) | no description | official 1.59: "temporarily removed **test track at Surebreed Steeples**" ← name+function confirmed by patch note |
+| `sweetie` (3264,3680) | "Talk to your sweetie, pay the doctor for treatment, and **store trophies (at the risk of Sweetie selling them for spare cash). Sweetie stops selling items once cured.**" | matches Cheru @ 15:35 $300 trophies; adds the post-cure stop condition |
+| `acres` (3360,3488) | "**Biohack residence.** Bring DNA here to unlock biohacking. Place a **16g RAM memory chip** to refine all future biohacking results." | chip capacity (16g) is their number only; horseygamemap's own "Normal Suburban House" hallucination is anchored to this coordinate |
+| `biohackers` (3584,3616) | "Unofficial genetic research point providing illegal but powerful biological enhancement tech." | consistent with the "Biohacker" NPC in patch 1.5 |
+| `hermit` (11392,3616) | "Wilderness cave, far east by the sea. The hermit has **fossils, hot sauce, and a story to tell**." | hot-sauce source list + fossil/treasure chain |
+| `club` (160,7072) | "**Not built yet.** Located in the bottom-left corner. Fly over with a **hot air balloon** and **terraform water to land**." | strongest available lead on how the balloon is used: it is a *travel/terraforming* tool to reach the unfinished south-west club. `uncited-community` |
+| `car lot` (3232,3872) | "Buy used cars… **none of them can hitch your trailer yet.**" | explains why the trailer is truck-fixed |
+| `junk` (3296,3872) | "Resource points scattered around the map; collect basic building/crafting materials." | `ItemFenceBox`, `Fence*` art supports fence-building as a crafting loop |
+| `zoo` (3168,3872) | "Collect and display rare creatures; learn about species evolution." | matches `LocZoo` + the Zoologist NPC on the CRISPR page |
+| `ecologist` (5024,5024) | "View wild-population metrics, take conservation tasks for rewards. **A reference image of how horses should look is here.**" | matches the conservation tent UI (Eco* art) |
+| `powerplant` (5664,3872) | "Provides power to the CRISPR lab. Surrounded by a field of **buried plutonium leaking radiation**." | matches 3 `buried` map objects |
+| `home` (3040,3712) | "Rest, breed, test and keep horses; stack and keep any other gear or consumables there." | matches fandom's My House description |
+| Herd spawners | `fest horse` count 50 r1 @ (2112,4224), count 20 r8 @ (3776,4864) & (4576,4864), count 10 r7 @ (2752,4032); `crazy horse` 20/·15/·0 r7 @ (4256,3360)/(6464,2528)/(7744,5664)/(5664,3840); `tiger` 9 r3 ×2; `giraffe` 40 r10; `alligator` 10 r3; `moose` 14 r4; `impala` 16 r5 | these come straight from the map file, not from prose |
+
+## Guide pages summarised (route-level, all `uncited-community`)
+- **Beginner walkthrough** — first-day route Home → Store → open-world herds → track/paddock → Bar → Glue Factory; warns "keep cash unspent; running out while all horses are tired is the classic beginner trap". Useful structural claims: **the truck+trailer is a movable holding area**, "keep food inside the same enclosure as the horses that need it", "**rest advances the age of horses at home and in the trailer**", "don't overbreed early", "**Old Abandoned Track is a testing location — use it before risking fees**".
+- **Tools & terraforming** — hay/hay bales spread grass over time; digging removes grass, reveals items, creates holes that alter travel; apples become apple trees if uneaten; fencing converts water↔land to reach island routes; plutonium converts grassland to *irradiated* grassland and raises local mutation pressure; mountains/edge features can be dug away. Planning questions ("will my truck and trailer still pass? am I blocking an NPC route?") reflect real pathing needs.
+- **CRISPR genetics route** — power-plant → lab → Normal Suburban House/biohacker + RAM chip; "save useful DNA before serious editing, because edits spread through breeding and released horses".
+- **Sumo** — low CoG, forward pressure, wide stance, explosive short stride; "if it pushes but falls, breed lower/wider; if it survives but moves nobody, add propulsion".
+- **Hot sauce / treasure map** — hot sauce sources listed as The Bar, The Circus, Hermit Cave; treasure map route via Hermit Cave + fossils + the north-east coastline (explicitly *not* a generic swamp hunt).
+
+## Conflicts with better sources
+1. `$100 sumo prize ladder` vs "sumo win → **rocket**" (MoreCaseOh via horseygame.net).
+2. `hutch elder-horse storage ($100, stops aging)` vs `远方田野/Distant Field retirement ($100)` — same price, different location name; and horseygame.net's version says the retired horse's DNA can still be extracted while map-site's version says you can **reload the horse back into your trailer** (i.e. not permanent).
+3. Their "Normal Suburban House" page vs `acres` being a biohack residence — same coordinate, two different invented identities.
+4. Their "7 initial barns" at mabels vs the shipped `FarmHouse1…12` art set (12 variants, count not evidence of 7 barns).
+5. Their breeding-simulator/genome-reference tools are their own re-implementations; horseygame.net's corrections log specifically warns that this family of tools (including their own mapper) is illustrative, not extracted from the executable.

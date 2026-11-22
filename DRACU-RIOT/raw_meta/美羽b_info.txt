@@ -1,0 +1,86 @@
+dress	裸パジャマ	diff	3	裸2
+dress	裸リボン	diff	3	裸
+dress	パジャマ	diff	3	パジャマ
+dress	軍服	diff	3	軍服
+dress	私服	diff	3	私服
+dress	脱帽	diff	3	私服2
+dress	水着	diff	3	水着
+dress	制服	diff	3	制服
+
+face	01	base	表情
+face	02	base	笑顔2
+face	03	base	きょとん
+face	04	base	驚く
+face	05	base	照れる
+face	06	base	悲しい
+face	07	base	真剣
+face	08	base	怒り
+face	09	base	叫ぶ
+face	10	base	顔真っ赤
+face	11	base	冷たい視線
+face	12	base	すまし顔
+face	13	base	逆切れ
+face	14	base	表情ベース（目、口）悲しい（眉）
+face	15	base	すまし顔（目） 悲しい（目以外）
+face	16	base	冷たい視線（目）表情ベース（目以外）
+face	17	base	逆切れ（眉） 冷たい視線（目）叫ぶ（口）
+face	18	base	表情ベース（目） 悲しい（眉）驚く（口）
+face	19	base	驚く（目）悲しい（眉）叫ぶ（口）
+face	20	base	表情ベース（目）悲しい（眉口）
+
+
+face	03r	base	きょとんr
+face	04r	base	驚くr
+face	06r	base	悲しいr
+face	08r	base	怒りr
+face	12r	base	すまし顔r
+face	14r	base	表情ベース（目、口）悲しい（眉）r
+face	18r	base	表情ベース（目） 悲しい（眉）驚く（口）r
+face	19r	base	驚く（目）悲しい（眉）叫ぶ（口）r
+face	20r	base	表情ベース（目）悲しい（眉口）r
+
+
+face	01h	base	表情
+face	01h	base	頬
+face	02h	base	笑顔2
+face	02h	base	頬
+face	03h	base	きょとん
+face	03h	base	頬
+face	04h	base	驚く
+face	04h	base	頬
+face	05h	base	照れる
+face	05h	base	頬
+face	06h	base	悲しい
+face	06h	base	頬
+face	07h	base	真剣
+face	07h	base	頬
+face	08h	base	怒り
+face	08h	base	頬
+face	09h	base	叫ぶ
+face	09h	base	頬
+face	10h	base	顔真っ赤
+face	10h	base	頬2
+face	11h	base	冷たい視線
+face	11h	base	頬
+face	12h	base	すまし顔
+face	12h	base	頬
+face	13h	base	逆切れ
+face	13h	base	頬
+face	14h	base	表情ベース（目、口）悲しい（眉）
+face	14h	base	頬
+face	15h	base	すまし顔（目） 悲しい（目以外）
+face	15h	base	頬
+face	16h	base	冷たい視線（目）表情ベース（目以外）
+face	16h	base	頬
+face	17h	base	逆切れ（眉） 冷たい視線（目）叫ぶ（口）
+face	17h	base	頬
+face	18h	base	表情ベース（目） 悲しい（眉）驚く（口）
+face	18h	base	頬
+face	19h	base	驚く（目）悲しい（眉）叫ぶ（口）
+face	19h	base	頬
+face	20h	base	表情ベース（目）悲しい（眉口）
+face	20h	base	頬
+
+face	06n	base	悲しいn
+face	15n	base	すまし顔（目） 悲しい（目以外）n
+face	18n	base	表情ベース（目） 悲しい（眉）驚く（口）n

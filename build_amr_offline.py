@@ -55,7 +55,7 @@ def pack_amr(app_dir: str, out_amr: str, appid: str, app_name: str, version: str
     # 扫描 app_dir 下的所有文件（除去临时文件和 manifest）
     for root, dirs, filenames in os.walk(app_dir):
         for fn in filenames:
-            if fn.endswith(".tmp.c") or fn == "manifest.json":
+            if fn.endswith(".tmp.c") or fn == "manifest.json" or fn.startswith("._"):
                 continue
             p = os.path.join(root, fn)
             rel = os.path.relpath(p, app_dir).replace("\\", "/")

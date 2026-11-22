@@ -1,0 +1,29 @@
+{
+  "332.tlg": "#resource#0",
+  "333.tlg": "#resource#1",
+  "height": 1229,
+  "layers": [{
+      "height": 1229,
+      "layer_id": 332,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AB",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 1,
+      "width": 1559
+    },{
+      "height": 1229,
+      "layer_id": 333,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AA",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 1,
+      "width": 1559
+    }],
+  "width": 1559
+}

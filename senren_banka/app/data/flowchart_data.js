@@ -734,7 +734,7 @@ export var flowchart_data = {
       "title": "s015*com_part_15_jmp1",
       "storage": "015・ノーマルENDver1.01.ks",
       "target": "*com_part_15_jmp1",
-      "targetLine": 8861,
+      "targetLine": 9105,
       "next": [
         "s015*com_part_yos",
         "s015*com_part_mak",
@@ -793,7 +793,7 @@ export var flowchart_data = {
       "title": "今后的打算",
       "storage": "015・ノーマルENDver1.01.ks",
       "target": "*015_01B",
-      "targetLine": 8861,
+      "targetLine": 9105,
       "next": "s015*com_part_15_jmp2"
     },
     {
@@ -804,7 +804,7 @@ export var flowchart_data = {
       "title": "s015*com_part_15_jmp2",
       "storage": "015・ノーマルENDver1.01.ks",
       "target": "*com_part_15_jmp2",
-      "targetLine": 8861,
+      "targetLine": 9139,
       "next": [
         "s015*com_part_mur",
         "s015*com_part_sub",
@@ -863,7 +863,7 @@ export var flowchart_data = {
       "title": "我们的战斗才刚以下略",
       "storage": "015・ノーマルENDver1.01.ks",
       "target": "*com_part_end",
-      "targetLine": null,
+      "targetLine": 9140,
       "next": null
     },
     {
@@ -1699,7 +1699,7 @@ export var flowchart_data = {
       "title": "[ CHAPTER 3-6 ]",
       "storage": "414レナ・イザナウ.ks",
       "target": "*len_part_0",
-      "targetLine": 8212,
+      "targetLine": 0,
       "next": "s415*len_part_1"
     },
     {
@@ -2557,7 +2557,7 @@ export var flowchart_data = {
   "branches": [
     {
       "route": "芳乃",
-      "condition": "yos == 1",
+      "condition": "yos == 2",
       "desc": "芳乃线判定：朝武芳乃好感度满足"
     },
     {
@@ -2577,7 +2577,7 @@ export var flowchart_data = {
     },
     {
       "route": "小春/芦花 (支线)",
-      "condition": "sub == 1",
+      "condition": "sub == 2",
       "desc": "支线判定：选择进入鞍马小春或马场芦花分支"
     },
     {
@@ -3252,7 +3252,7 @@ export var choices = [
 export var branches = [
   {
     "route": "芳乃",
-    "condition": "yos == 1",
+    "condition": "yos == 2",
     "desc": "芳乃线判定：朝武芳乃好感度满足"
   },
   {
@@ -3272,7 +3272,7 @@ export var branches = [
   },
   {
     "route": "小春/芦花 (支线)",
-    "condition": "sub == 1",
+    "condition": "sub == 2",
     "desc": "支线判定：选择进入鞍马小春或马场芦花分支"
   },
   {

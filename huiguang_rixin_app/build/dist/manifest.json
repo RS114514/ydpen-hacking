@@ -1,0 +1,68 @@
+{
+  "appName": "晖光日新",
+  "version": "1.0.0",
+  "appid": "8002026110100088",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "cert": {
+    "Common.js": {
+      "size": 660,
+      "md5": "f967f37081cf1836a0f9242b50b93622"
+    },
+    "Storage.js": {
+      "size": 1762,
+      "md5": "0336d09ab7e11e4bf11b2480a2b0fafb"
+    },
+    "Styles.js": {
+      "size": 9785,
+      "md5": "c57f337854e0b06a24ed835acf78a6df"
+    },
+    "StoryData.js": {
+      "size": 958087,
+      "md5": "0d9d4fb7b5427ee3e7774e4694e11fa6"
+    },
+    "TitleView.js": {
+      "size": 3564,
+      "md5": "e1a80d85942f1b965b6a9b57a7fc9072"
+    },
+    "GameView.js": {
+      "size": 26695,
+      "md5": "2b946c3333cf8f9c26291fd0baa08fda"
+    },
+    "CaseboardView.js": {
+      "size": 11900,
+      "md5": "cb4d90b46af0e65d96005f1269c3450e"
+    },
+    "Component.js": {
+      "size": 3317,
+      "md5": "427c07034b341528b47bbe463f129f51"
+    },
+    "BasePage.js": {
+      "size": 3789,
+      "md5": "acdaae14c7cadd2d2d0f32839fda8ea7"
+    },
+    "index.js": {
+      "size": 1300,
+      "md5": "6edb349d350b2b260be591fec5bbc84d"
+    },
+    "shell.js": {
+      "size": 1300,
+      "md5": "6edb349d350b2b260be591fec5bbc84d"
+    },
+    "app.js": {
+      "size": 1687,
+      "md5": "0577d91233f3e0b63e6573b6dd8faac5"
+    },
+    "app.json": {
+      "size": 226,
+      "md5": "8613125fc854db69b09b4a49cada9c77"
+    },
+    "app_icon.png": {
+      "size": 14744,
+      "md5": "0411e201a2b4582c7fd67a5879036a07"
+    }
+  }
+}

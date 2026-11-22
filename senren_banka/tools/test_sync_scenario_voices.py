@@ -18,6 +18,14 @@ ANNOUNCEMENT_NAMES = [
     "koharu_after.ogg",
     "roka_after.ogg",
 ]
+ROUTE_FILES = [
+    "scn_yoshino.js",
+    "scn_mako.js",
+    "scn_murasame.js",
+    "scn_rena.js",
+    "scn_koharu.js",
+    "scn_roka.js",
+]
 
 
 class FakeAdb:
@@ -83,6 +91,53 @@ class ScenarioParsingTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "basename"):
                 sync.collect_voice_names(data)
 
+    def test_collects_all_six_route_files_with_deduplication(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp)
+            for route_file in ROUTE_FILES:
+                route = route_file.split("_", 1)[1].split(".")[0]
+                (data / route_file).write_text(
+                    json.dumps(
+                        ["%s.ogg" % route, "shared.ogg", "shared.ogg"]
+                    )
+                )
+            (data / "scn_index.js").write_text('["metadata.ogg"]')
+            (data / "scn_common.js").write_text('["common.ogg"]')
+
+            names = sync.collect_route_voice_names(data)
+
+            self.assertEqual(
+                names,
+                [
+                    "yoshino.ogg",
+                    "shared.ogg",
+                    "mako.ogg",
+                    "murasame.ogg",
+                    "rena.ogg",
+                    "koharu.ogg",
+                    "roka.ogg",
+                ],
+            )
+            self.assertNotIn("metadata.ogg", names)
+            self.assertNotIn("common.ogg", names)
+
+    def test_requires_all_six_route_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp)
+            for route_file in ROUTE_FILES[:-1]:
+                (data / route_file).write_text("[]")
+            with self.assertRaisesRegex(ValueError, "route"):
+                sync.collect_route_voice_names(data)
+
+    def test_rejects_unsafe_route_voice_references(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp)
+            for route_file in ROUTE_FILES:
+                (data / route_file).write_text("[]")
+            (data / ROUTE_FILES[0]).write_text('["../escape.ogg"]')
+            with self.assertRaisesRegex(ValueError, "basename"):
+                sync.collect_route_voice_names(data)
+
 
 class RemoteParsingTests(unittest.TestCase):
     def test_parses_ls_metadata_and_ignores_daemon_and_appledouble(self):
@@ -109,12 +164,17 @@ class DefaultConfigTests(unittest.TestCase):
 
 
 class SynchronizationTests(unittest.TestCase):
-    def make_scenarios(self, root, names):
+    def make_scenarios(self, root, names, route_names=None):
         data = root / "data"
         data.mkdir()
         (data / "chapter_all.js").write_text(json.dumps(names))
         for index in range(6):
             (data / ("after_%d.js" % index)).write_text("[]")
+        route_names = route_names or {}
+        for route_file in ROUTE_FILES:
+            (data / route_file).write_text(
+                json.dumps(route_names.get(route_file, []))
+            )
         return data
 
     def write_announcement_sources(self, source):
@@ -299,6 +359,119 @@ class SynchronizationTests(unittest.TestCase):
                 ["scenario"] + ["announcement"] * 6,
             )
 
+    def test_report_distinguishes_scenario_routes_announcements_and_total(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            data = self.make_scenarios(
+                root,
+                ["a.ogg"],
+                {
+                    "scn_yoshino.js": ["a.ogg", "r.ogg", "r.ogg"],
+                    "scn_mako.js": ["r.ogg"],
+                },
+            )
+            source = root / "source"
+            source.mkdir()
+            self.write_announcement_sources(source)
+            for name in ("a.ogg", "r.ogg"):
+                (source / name).write_bytes(b"abc")
+            remote_sizes = self.matching_announcement_sizes(source)
+            remote_sizes.update({"a.ogg": 3, "r.ogg": 3})
+            adb = FakeAdb(source, remote_sizes)
+
+            report = sync.synchronize(
+                data, source, "serial", "/voice", adb, apply=False
+            )
+
+            summary = report["summary"]
+            self.assertEqual(summary["scenario"]["referenced"], 1)
+            self.assertEqual(summary["routes"]["referenced"], 2)
+            self.assertEqual(summary["announcements"]["referenced"], 6)
+            self.assertEqual(summary["total"]["referenced"], 9)
+            self.assertEqual(summary["referenced"], 9)
+            self.assertEqual(summary["unique_referenced"], 8)
+            self.assertEqual(summary["duplicate_references"], 1)
+            self.assertEqual(summary["source_missing"], 0)
+            self.assertEqual(summary["total"]["source_missing"], 0)
+            self.assertEqual(
+                [row.get("category") for row in report["files"]],
+                ["scenario", "route", "route"] + ["announcement"] * 6,
+            )
+
+    def test_missing_route_source_is_reported_but_blocks_apply(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            data = self.make_scenarios(
+                root, ["a.ogg"], {"scn_yoshino.js": ["missing_route.ogg"]}
+            )
+            source = root / "source"
+            source.mkdir()
+            self.write_announcement_sources(source)
+            (source / "a.ogg").write_bytes(b"abc")
+            remote_sizes = self.matching_announcement_sizes(source)
+            remote_sizes["a.ogg"] = 3
+            adb = FakeAdb(source, remote_sizes)
+
+            report = sync.synchronize(
+                data, source, "serial", "/voice", adb, apply=False
+            )
+
+            summary = report["summary"]
+            self.assertEqual(adb.pushes, [])
+            self.assertEqual(summary["source_missing"], 1)
+            self.assertEqual(summary["missing_sources"], ["missing_route.ogg"])
+            self.assertEqual(summary["routes"]["source_missing"], 1)
+            self.assertEqual(
+                summary["routes"]["missing_sources"], ["missing_route.ogg"]
+            )
+            self.assertEqual(summary["pending"], 0)
+
+            blocking_adb = FakeAdb(source, remote_sizes)
+            with self.assertRaises(sync.SourceMissingError) as caught:
+                sync.synchronize(
+                    data, source, "serial", "/voice", blocking_adb, apply=True
+                )
+            self.assertIn("missing_route.ogg", str(caught.exception))
+            self.assertEqual(blocking_adb.pushes, [])
+            self.assertEqual(blocking_adb.calls, [])
+
+    def test_main_dry_run_reports_missing_source_and_still_writes_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            data = self.make_scenarios(
+                root, ["a.ogg"], {"scn_roka.js": ["missing_route.ogg"]}
+            )
+            source = root / "source"
+            source.mkdir()
+            self.write_announcement_sources(source)
+            (source / "a.ogg").write_bytes(b"abc")
+            report_path = root / "report.json"
+            remote_sizes = self.matching_announcement_sizes(source)
+            remote_sizes["a.ogg"] = 3
+            adb = FakeAdb(source, remote_sizes)
+
+            exit_code = sync.main(
+                [
+                    "--data-dir", str(data),
+                    "--source", str(source),
+                    "--serial", "serial",
+                    "--remote-dir", "/voice",
+                    "--report", str(report_path),
+                ],
+                runner=adb,
+            )
+
+            self.assertEqual(exit_code, 0)
+            saved = json.loads(report_path.read_text())
+            self.assertEqual(saved["summary"]["source_missing"], 1)
+            self.assertEqual(
+                saved["summary"]["missing_sources"], ["missing_route.ogg"]
+            )
+            self.assertEqual(
+                saved["summary"]["routes"]["missing_sources"],
+                ["missing_route.ogg"],
+            )
+
     def test_main_writes_complete_json_report(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -333,16 +506,28 @@ class SynchronizationTests(unittest.TestCase):
 
 
 class RealDataCollectionTests(unittest.TestCase):
-    def test_real_default_sources_contain_5589_scenario_and_6_announcements(self):
-        scenario_names = sync.collect_voice_names(
-            sync.PROJECT_ROOT / "app" / "data"
-        )
+    def test_real_default_sources_contain_scenario_routes_and_announcements(self):
+        data_dir = sync.PROJECT_ROOT / "app" / "data"
+        scenario_names = sync.collect_voice_names(data_dir)
+        route_names = sync.collect_route_voice_names(data_dir)
         announcement_names = getattr(sync, "ANNOUNCEMENT_NAMES", [])
 
         self.assertEqual(len(scenario_names), 5589)
+        self.assertEqual(len(route_names), 20684)
+        self.assertEqual(len(set(route_names)), len(route_names))
+        self.assertEqual(
+            sync.ROUTE_FILES,
+            tuple(ROUTE_FILES),
+        )
+        self.assertTrue(all((data_dir / name).is_file() for name in ROUTE_FILES))
+        self.assertEqual(len(scenario_names) + len(route_names), 26273)
         self.assertEqual(announcement_names, ANNOUNCEMENT_NAMES)
         self.assertFalse(set(scenario_names).intersection(announcement_names))
-        self.assertEqual(len(scenario_names) + len(announcement_names), 5595)
+        self.assertFalse(set(route_names).intersection(announcement_names))
+        self.assertEqual(
+            len(scenario_names) + len(route_names) + len(announcement_names),
+            26279,
+        )
         self.assertTrue(
             all((sync.DEFAULT_SOURCE / name).is_file() for name in scenario_names)
         )

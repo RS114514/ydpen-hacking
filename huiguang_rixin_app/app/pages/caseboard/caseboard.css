@@ -1,0 +1,192 @@
+/* pages/caseboard/caseboard.css —— 百廿文脉案卷白板样式 (800x220) */
+
+.board-container {
+  width: 800px;
+  height: 220px;
+  background-color: #1a1817;
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  width: 800px;
+  height: 24px;
+  background-color: #262320;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.board-title {
+  font-size: 12px;
+  color: #e5b842;
+  font-weight: bold;
+}
+
+.board-close {
+  font-size: 12px;
+  color: #c23e34;
+}
+
+.board-body {
+  width: 800px;
+  height: 196px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 左侧分类 (160px) */
+.board-sidebar {
+  width: 160px;
+  height: 196px;
+  background-color: #211e1b;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 6px;
+  justify-content: space-around;
+}
+
+.side-tab {
+  width: 148px;
+  height: 38px;
+  background-color: #2b2723;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.tab-active {
+  background-color: #38322c;
+  border-left-width: 4px;
+  border-left-color: #e5b842;
+}
+
+.tab-text {
+  font-size: 12px;
+  color: #e8e2d8;
+}
+
+/* 中间内容 (420px) */
+.board-content {
+  width: 420px;
+  height: 196px;
+  background-color: #1a1817;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-left-width: 1px;
+  border-left-color: #332e29;
+  border-right-width: 1px;
+  border-right-color: #332e29;
+}
+
+.case-header-box {
+  width: 396px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.case-title-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #e8e2d8;
+}
+
+.case-meta {
+  font-size: 11px;
+  color: #9e978c;
+  margin-top: 2px;
+}
+
+.case-summary-box {
+  width: 396px;
+  height: 110px;
+  background-color: #211e1b;
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+}
+
+.case-summary-text {
+  font-size: 13px;
+  line-height: 20px;
+  color: #d6cfc5;
+}
+
+.case-action-row {
+  width: 396px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.case-hint {
+  font-size: 11px;
+  color: #4d888c;
+}
+
+/* 右侧物证 (220px) */
+.board-clues {
+  width: 220px;
+  height: 196px;
+  background-color: #211e1b;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  justify-content: space-between;
+}
+
+.clues-title {
+  font-size: 12px;
+  color: #e5b842;
+  font-weight: bold;
+}
+
+.clue-card {
+  width: 200px;
+  height: 32px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.clue-found {
+  background-color: #2d382c;
+  border-left-width: 3px;
+  border-left-color: #5b9e54;
+}
+
+.clue-missing {
+  background-color: #332826;
+  border-left-width: 3px;
+  border-left-color: #c23e34;
+}
+
+.clue-text {
+  font-size: 11px;
+  color: #e8e2d8;
+}
+
+.btn-deduce {
+  width: 200px;
+  height: 36px;
+  background-color: #c23e34;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deduce-text {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffffff;
+}

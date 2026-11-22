@@ -1,0 +1,135 @@
+dress	裸	diff	3	裸
+dress	パジャマ	diff	3	パジャマ
+dress	バニー	diff	3	バニー
+dress	私服	diff	3	私服
+dress	水着	diff	3	水着
+dress	制服	diff	3	制服
+
+face	01	base	表情
+face	02	base	3　　笑顔１
+face	03	base	5　　ジト目
+face	04	base	8　　焦る
+face	05	base	9　　恥ずかしい
+face	06	base	12　　悲しい
+face	07	base	15　　困った
+face	08	base	17　　怒り
+face	09	base	18　　拗ねる
+face	10	base	21　　無理して笑う
+face	11	base	23　　むふふ
+face	12	base	24　　にひひ
+face	13	base	28　　感じる
+face	14	base	怒り（目?口）悲しい（眉）
+face	15	base	焦る（目）怒り（眉?口）
+face	16	base	恥ずかしい（目）困った（眉口） 
+face	17	base	恥ずかしい（目）悲しい（眉?口）
+face	18	base	困った（目）むふふ（眉?口）
+face	19	base	ジト目（目） にひひ（眉?口）
+face	20	base	表情（目?口）悲しい（眉）
+face	21	base	悲しい（目）笑顔1（眉?口）
+face	22	base	困った（目） 拗ねる（眉?口）
+face	23	base	無理して笑う（目）悲しい（眉?口）
+face	24	base	無理して笑う（目）表情（眉?口）
+face	25	base	ジト目（目）無理して笑う（眉）むふふ口）
+face	26	base	表情（目） 無理して笑う（眉?口）
+face	27	base	感じる（目）にひひ（眉?口）
+face	28	base	悲しい（目）にひひ（眉?口）
+face	29	base	無理して笑う（目）怒り（眉?口）
+face	30	base	悲しい（眉）無理して笑う（目）怒り口
+face	31	base	表情（目）焦る（眉）困った
+face	32	base	感じる（目）笑顔1（眉?口）
+face	33	base	感じる（目）無理して笑う（眉?口）
+
+
+face	05r	base	9　　恥ずかしいr
+face	07r	base	15　　困ったr
+face	16r	base	恥ずかしい（目）困った（眉口）r
+face	17r	base	恥ずかしい（目）悲しい（眉?口）r
+face	21r	base	悲しい（目）笑顔1（眉?口）r
+face	23r	base	無理して笑う（目）悲しい（眉?口）r
+face	24r	base	無理して笑う（目）表情（眉?口）r
+
+
+face	01h	base	表情
+face	01h	base	照れ
+face	02h	base	3　　笑顔１
+face	02h	base	照れ
+face	03h	base	5　　ジト目
+face	03h	base	照れ
+face	04h	base	8　　焦る
+face	04h	base	照れ
+face	05h	base	9　　恥ずかしい
+face	05h	base	照れ
+face	06h	base	12　　悲しい
+face	06h	base	照れ
+face	07h	base	15　　困った
+face	07h	base	照れ
+face	08h	base	17　　怒り
+face	08h	base	照れ
+face	09h	base	18　　拗ねる
+face	09h	base	照れ
+face	10h	base	21　　無理して笑う
+face	10h	base	照れ
+face	11h	base	23　　むふふ
+face	11h	base	照れ
+face	12h	base	24　　にひひ
+face	12h	base	照れ
+face	13h	base	28　　感じる
+face	13h	base	照れ
+face	14h	base	怒り（目?口）悲しい（眉）
+face	14h	base	照れ
+face	15h	base	焦る（目）怒り（眉?口）
+face	15h	base	照れ
+face	16h	base	恥ずかしい（目）困った（眉口） 
+face	16h	base	照れ
+face	17h	base	恥ずかしい（目）悲しい（眉?口）
+face	17h	base	照れ
+face	18h	base	困った（目）むふふ（眉?口）
+face	18h	base	照れ
+face	19h	base	ジト目（目） にひひ（眉?口）
+face	19h	base	照れ
+face	20h	base	表情（目?口）悲しい（眉）
+face	20h	base	照れ
+face	21h	base	悲しい（目）笑顔1（眉?口）
+face	21h	base	照れ
+face	22h	base	困った（目） 拗ねる（眉?口）
+face	22h	base	照れ
+face	23h	base	無理して笑う（目）悲しい（眉?口）
+face	23h	base	照れ
+face	24h	base	無理して笑う（目）表情（眉?口）
+face	24h	base	照れ
+face	25h	base	ジト目（目）無理して笑う（眉）むふふ口）
+face	25h	base	照れ
+face	26h	base	表情（目） 無理して笑う（眉?口）
+face	26h	base	照れ
+face	27h	base	感じる（目）にひひ（眉?口）
+face	27h	base	照れ
+face	28h	base	悲しい（目）にひひ（眉?口）
+face	28h	base	照れ
+face	29h	base	無理して笑う（目）怒り（眉?口）
+face	29h	base	照れ
+face	30h	base	悲しい（眉）無理して笑う（目）怒り口
+face	30h	base	照れ
+face	31h	base	表情（目）焦る（眉）困った
+face	31h	base	照れ
+face	32h	base	感じる（目）笑顔1（眉?口）
+face	32h	base	照れ
+face	33h	base	感じる（目）無理して笑う（眉?口）
+face	33h	base	照れ
+
+
+face	06n	base	12　　悲しいn
+face	07n	base	15　　困ったn
+face	13n	base	28　　感じるn
+face	14n	base	怒り（目?口）悲しい（眉）n
+face	16n	base	恥ずかしい（目）困った（眉口）n
+face	17n	base	恥ずかしい（目）悲しい（眉?口）n
+face	20n	base	表情（目?口）悲しい（眉）n
+face	23n	base	無理して笑う（目）悲しい（眉?口）n
+face	30n	base	悲しい（眉）無理して笑う（目）怒り口n
+
+
+face	07t	base	15　　困ったt
+face	13t	base	28　　感じるt
+face	17t	base	恥ずかしい（目）悲しい（眉?口）t
+face	23t	base	無理して笑う（目）悲しい（眉?口）t
+face	29t	base	無理して笑う（目）怒り（眉?口）t

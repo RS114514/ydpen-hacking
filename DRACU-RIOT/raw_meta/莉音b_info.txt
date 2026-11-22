@@ -1,0 +1,75 @@
+dress	裸	diff	3	裸
+dress	パジャマ	diff	3	パジャマ
+dress	ウェイトレス	diff	3	ウェイトレス
+dress	私服	diff	3	私服
+dress	水着	diff	3	水着
+dress	制服	diff	3	制服
+
+face	01	base	表情
+face	02	base	3  笑顔１
+face	03	base	6　　きょとん
+face	04	base	9　　恥ずかしい
+face	05	base	10　照れる
+face	06	base	１３　真剣
+face	07	base	15　　困った
+face	08	base	18　拗ねる
+face	09	base	20　慌てる
+face	10	base	24　　目を見開き
+face	11	base	25　目を閉じ考える
+face	12	base	27　　激しい照れ２
+face	13	base	28真剣な叫び
+face	14	base	目を閉じ考える（目）笑顔１（眉?口）
+face	15	base	きょとん（目）表情（眉?口）
+face	16	base	拗ねる（目）笑顔１（眉?口）
+face	17	base	照れる（目）表情（眉?口）
+face	18	base	照れる（目）笑顔１（眉?口）
+face	19	base	笑顔1（目?口）恥ずかしい（眉）
+face	20	base	目を閉じ考える（目）拗ねる（眉?口）
+face	21	base	照れる（目）目を閉じ考える（眉）困った（口）
+face	22	base	拗ねる（目）困る（眉口）
+
+face	01h	base	表情
+face	01h	base	照れ
+face	02h	base	3  笑顔１
+face	02h	base	照れ
+face	03h	base	6　　きょとん
+face	03h	base	照れ
+face	04h	base	9　　恥ずかしい
+face	04h	base	照れ
+face	05h	base	10　照れる
+face	05h	base	照れ
+face	06h	base	１３　真剣
+face	06h	base	照れ
+face	07h	base	15　　困った
+face	07h	base	照れ
+face	08h	base	18　拗ねる
+face	08h	base	照れ
+face	09h	base	20　慌てる
+face	09h	base	照れ
+face	10h	base	24　　目を見開き
+face	10h	base	照れ
+face	11h	base	25　目を閉じ考える
+face	11h	base	照れ
+face	12h	base	27　　激しい照れ２
+face	12h	base	照れ
+face	13h	base	28真剣な叫び
+face	13h	base	照れ
+face	14h	base	目を閉じ考える（目）笑顔１（眉?口）
+face	14h	base	照れ
+face	15h	base	きょとん（目）表情（眉?口）
+face	15h	base	照れ
+face	16h	base	拗ねる（目）笑顔１（眉?口）
+face	16h	base	照れ
+face	17h	base	照れる（目）表情（眉?口）
+face	17h	base	照れ
+face	18h	base	照れる（目）笑顔１（眉?口）
+face	18h	base	照れ
+face	19h	base	笑顔1（目?口）恥ずかしい（眉）
+face	19h	base	照れ
+face	20h	base	目を閉じ考える（目）拗ねる（眉?口）
+face	20h	base	照れ
+face	21h	base	照れる（目）目を閉じ考える（眉）困った（口）
+face	21h	base	照れ
+face	22h	base	拗ねる（目）困る（眉口）
+face	22h	base	照れ
+

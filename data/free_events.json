@@ -1,0 +1,2424 @@
+{
+  "events": [
+    {
+      "id": "ev_ch01_a",
+      "chapterId": "ch01",
+      "kind": "investigate",
+      "label": "拓下梧桐叶脉",
+      "place": "西雨楼前石阶",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "把宣纸覆在落叶上，蜡笔侧锋扫过，叶脉断在第三道主脉，纸上留了一道空。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch01_rubbed_leaf"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch01_b",
+      "chapterId": "ch01",
+      "kind": "talk",
+      "label": "问门牌换过几次",
+      "place": "仰山新楼 2F 连廊",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "保洁阿姨说门牌换过三回，最早那批铜字她收在工具间最底下的抽屉里。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch01_c",
+      "chapterId": "ch01",
+      "kind": "risk",
+      "label": "越过围挡看穹顶",
+      "place": "新逸夫楼施工围挡外",
+      "cost": 3,
+      "require": {
+        "clues": 1
+      },
+      "result": "你从围挡缺口挤进去，仰头看清穹顶钢架的节点，工长在楼下喊了一声。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch01_sneaked_site"
+      ],
+      "risk": "fail_chance",
+      "failResult": "工长把你请出围挡，登记了班级，穹顶一格没看清。"
+    },
+    {
+      "id": "ev_ch02_a",
+      "chapterId": "ch02",
+      "kind": "investigate",
+      "label": "抽出旧硬盘盒",
+      "place": "剪辑台左侧",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "硬盘盒标签是手写年份，2004 到 2010，字迹被胶带粘掉了一半。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch02_hdd"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch02_b",
+      "chapterId": "ch02",
+      "kind": "talk",
+      "label": "问机房钥匙归谁",
+      "place": "报告厅 3F 工作间",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "池雨曦说钥匙在社里抽屉，登记本上谁借谁签，她自己也不例外。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch02_c",
+      "chapterId": "ch02",
+      "kind": "wait",
+      "label": "等云开拍象山",
+      "place": "报告厅 3F 落地窗",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你等到六点二十，云压在象山顶上没散，只拍到一片灰白的天。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [
+        "flag_ch02_waited_cloud"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch03_a",
+      "chapterId": "ch03",
+      "kind": "investigate",
+      "label": "数汤桶的搪瓷补丁",
+      "place": "取餐台后",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "白瓷汤桶补过四处，最旧的一块补丁边缘发黑，奶奶说比她工龄还长。",
+      "effects": {
+        "truth": 1,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch03_b",
+      "chapterId": "ch03",
+      "kind": "talk",
+      "label": "问奶奶老校区食堂",
+      "place": "学苑食堂·第四象限",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "奶奶说八十年代她就在老校区择菜，大膳厅的木梯踩过，横档磨得发亮。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch03_c",
+      "chapterId": "ch03",
+      "kind": "risk",
+      "label": "端两碗面穿过人堆",
+      "place": "学苑食堂·第四象限",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你侧身绕过三张桌子，汤面没洒，浇头盒在托盘上滑了一寸。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "fail_chance",
+      "failResult": "有人起身撞了托盘，汤泼在袖口，你回去重新排队。"
+    },
+    {
+      "id": "ev_ch04_a",
+      "chapterId": "ch04",
+      "kind": "investigate",
+      "label": "探铁柜底簧",
+      "place": "博文馆二楼东首",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 10
+        }
+      },
+      "result": "你把铁丝弯成钩，从柜底缝隙探进去，碰到一片薄簧，轻轻响了一声。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch04_found_spring"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch04_b",
+      "chapterId": "ch04",
+      "kind": "talk",
+      "label": "问管理员柜子来历",
+      "place": "博文馆二楼",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "管理员说柜子一九六三年就在这儿，钥匙丢了两把，剩一把不知开哪层。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch04_c",
+      "chapterId": "ch04",
+      "kind": "risk",
+      "label": "拆柜门木楔",
+      "place": "博文馆二楼",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "木楔拔出来半寸，柜门松了一下，锈屑落在鞋面上，锁还是没动。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch04_pulled_wedge"
+      ],
+      "risk": "fail_chance",
+      "failResult": "木楔断在锁眼里，柜门比原先更紧，你不敢再动。"
+    },
+    {
+      "id": "ev_ch05_a",
+      "chapterId": "ch05",
+      "kind": "investigate",
+      "label": "数分镜的留白格",
+      "place": "剪辑台键盘旁",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "双轨稿上留白共七格，最长一格占了整页三分之一，旁边写着一个“听”字。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch05_b",
+      "chapterId": "ch05",
+      "kind": "talk",
+      "label": "和池雨曦争开篇",
+      "place": "新逸夫楼 3F 机房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "她只回一句“空镜不是省事，是留位置”，把分镜推回你面前，没再解释。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch05_argued"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch05_c",
+      "chapterId": "ch05",
+      "kind": "wait",
+      "label": "等配音间空出来",
+      "place": "报告厅 3F 配音室门外",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你在门外站了二十分钟，里面反复录一段呼吸声，没人出来。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch06_a",
+      "chapterId": "ch06",
+      "kind": "investigate",
+      "label": "照横梁粉笔算稿",
+      "place": "阁楼立柱侧面",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "粉笔字是钟摆周期的算式，末尾一个数字被手擦花，只剩半道横。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch06_b",
+      "chapterId": "ch06",
+      "kind": "risk",
+      "label": "探身看钟腰铭文",
+      "place": "仰山楼阁楼",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 15
+        }
+      },
+      "result": "你半个身子探出护栏，看清“民国十一年铸”六字，年份被铜锈糊住。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch06_read_bell"
+      ],
+      "risk": "fail_chance",
+      "failResult": "脚下一滑，膝盖磕在梯档上，铭文一个字没看清。"
+    },
+    {
+      "id": "ev_ch06_c",
+      "chapterId": "ch06",
+      "kind": "talk",
+      "label": "问老校工打钟规矩",
+      "place": "仰山楼阁楼钟架",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "老校工说上课双锤三响、下课单锤六响，敲错了学生要抬头看钟。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch07_a",
+      "chapterId": "ch07",
+      "kind": "investigate",
+      "label": "摇铁皮听雷声",
+      "place": "1934 大礼堂侧幕",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "铁皮里装着黄豆，摇起来先闷后炸，幕后的木地板跟着震了一下。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch07_thunder"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch07_b",
+      "chapterId": "ch07",
+      "kind": "talk",
+      "label": "和景金城分台词",
+      "place": "1934 大礼堂后台",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你们把第二幕拆成两半，他念周冲，你念繁漪，煤油灯芯挑了两次。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch07_c",
+      "chapterId": "ch07",
+      "kind": "risk",
+      "label": "描县署停演手谕",
+      "place": "后台化装桌",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 10
+        }
+      },
+      "result": "你把“着即停演”四字描在草纸上，墨没干就折进袖口。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch07_copied_order"
+      ],
+      "risk": "fail_chance",
+      "failResult": "训育主任进来收走手谕，你只记住落款是十一月廿九。"
+    },
+    {
+      "id": "ev_ch08_a",
+      "chapterId": "ch08",
+      "kind": "investigate",
+      "label": "摸夹层里的布包",
+      "place": "一字楼夹层",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "夹层里塞着布包，解开是几页手抄台词，纸边被猫爪勾出毛。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch08_found_script"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch08_b",
+      "chapterId": "ch08",
+      "kind": "talk",
+      "label": "用烤角换布包",
+      "place": "一字楼石阶下",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "阿波罗叼走烤角，蹲在石阶上吃完，布包留在你脚边，没叼回去。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch08_c",
+      "chapterId": "ch08",
+      "kind": "wait",
+      "label": "蹲在廊下等猫",
+      "place": "一字楼回廊阴凉处",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你蹲了一节课，阿波罗没来，瓷碗里的水少了一半，碗沿有新的爪印。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch09_a",
+      "chapterId": "ch09",
+      "kind": "investigate",
+      "label": "对灯控推杆刻度",
+      "place": "大礼堂·后台",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "推杆刻度磨掉两格，你用铅笔在胶带上补了记号，与上一场差半指。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch09_b",
+      "chapterId": "ch09",
+      "kind": "risk",
+      "label": "合一次老闸刀",
+      "place": "大礼堂西侧配电间",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 10
+        }
+      },
+      "result": "闸刀推到底，灯亮得比大屏早半秒，你把误差记在配电间的便签上。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch09_breaker"
+      ],
+      "risk": "fail_chance",
+      "failResult": "合闸瞬间打火，总闸跳了，走位停一刻钟，林老师没说话。"
+    },
+    {
+      "id": "ev_ch09_c",
+      "chapterId": "ch09",
+      "kind": "talk",
+      "label": "问林老师暴雨预案",
+      "place": "大礼堂·后台",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "林老师说停电就开应急灯，演员不许下台，台词照念，观众不许回头。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch10_a",
+      "chapterId": "ch10",
+      "kind": "investigate",
+      "label": "读铁皮盒封条",
+      "place": "大礼堂·后台",
+      "cost": 3,
+      "require": {
+        "clues": 2,
+        "stat": {
+          "truth": 20
+        }
+      },
+      "result": "封条写着“战时绝密·卅一年”，边角有火烧过的焦痕，盒子没开过。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch10_box"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch10_b",
+      "chapterId": "ch10",
+      "kind": "talk",
+      "label": "给末排留两个空座",
+      "place": "大礼堂观众席",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你给末排贴了两个不编号的座，林老师看了一眼，说留着吧。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch10_empty_seats"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch10_c",
+      "chapterId": "ch10",
+      "kind": "wait",
+      "label": "在侧幕等开场",
+      "place": "大礼堂·侧幕",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你在侧幕听了三遍开场词，手心全是汗，幕布拉开时忘了松手。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch11_a",
+      "chapterId": "ch11",
+      "kind": "investigate",
+      "label": "看盐袋上的字",
+      "place": "西雨楼一楼门厅",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "袋身用记号笔写“西雨楼·冬”，字被盐渍咬开，底下还有一行旧年份。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch11_b",
+      "chapterId": "ch11",
+      "kind": "risk",
+      "label": "横着走下冰台阶",
+      "place": "西雨楼台阶",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你侧着脚横挪下九级台阶，鞋底没打滑，雪在脚边压出两道印。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "fail_chance",
+      "failResult": "一脚滑进冬青丛，裤腿湿了一片，早读迟到两分钟。"
+    },
+    {
+      "id": "ev_ch11_c",
+      "chapterId": "ch11",
+      "kind": "talk",
+      "label": "帮陈师傅撒盐",
+      "place": "景行路",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "陈师傅让你顺台阶边缘撒，别撒中间，中间走的人多，化了更滑。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch12_a",
+      "chapterId": "ch12",
+      "kind": "investigate",
+      "label": "翻《爱的教育》校样",
+      "place": "平屋·书案",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "校样边距写满修改，红笔把“先生”改成“老师”，改了又改回去。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch12_proof"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch12_b",
+      "chapterId": "ch12",
+      "kind": "talk",
+      "label": "陪讲解员添茶",
+      "place": "平屋·小后轩",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "讲解员用后院井水泡茶，说湖水太软泡不开，井水才有劲。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch12_c",
+      "chapterId": "ch12",
+      "kind": "wait",
+      "label": "等炭盆烧旺",
+      "place": "平屋·小后轩",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "你守着炭盆等它红透，窗外雪停了，茶凉了，讲解员没催你。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 1,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch13_a",
+      "chapterId": "ch13",
+      "kind": "investigate",
+      "label": "翻砚背看铭文",
+      "place": "晚晴山房·书案",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "砚背刻“不为自己求安乐”，刀口很浅，边缘发亮，是被人反复摸过的。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch13_b",
+      "chapterId": "ch13",
+      "kind": "talk",
+      "label": "问讲解员复原件",
+      "place": "晚晴山房·展柜",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "讲解员说原件在上海，展柜里这件是复制，标牌写了材质，字很小。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch13_c",
+      "chapterId": "ch13",
+      "kind": "wait",
+      "label": "在院里等雨停",
+      "place": "晚晴山房·院门",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "雨落在枫杨叶上，你在门廊下站了半小时，石阶的苔更绿了。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 2
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch14_a",
+      "chapterId": "ch14",
+      "kind": "investigate",
+      "label": "照藏经楼后干井",
+      "place": "泰岳寺·藏经楼后",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 20
+        }
+      },
+      "result": "井口有撬痕，井底垫着木板，板上一圈油印机的墨，已经干了。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch14_drywell"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch14_b",
+      "chapterId": "ch14",
+      "kind": "talk",
+      "label": "问沈先生先搬哪箱",
+      "place": "泰岳寺·山道",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "沈砚舟说红布课本、蓝布仪器、白布档案，白布最轻，不能少一件。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch14_asked_order"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch14_c",
+      "chapterId": "ch14",
+      "kind": "risk",
+      "label": "夜过横塘哨卡",
+      "place": "横塘·哨卡外",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 20
+        }
+      },
+      "result": "不点灯、不走大路、不回头，白布包压在胸口过了卡子。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch14_crossed"
+      ],
+      "risk": "fail_chance",
+      "failResult": "哨卡亮灯，你们退回竹林，多绕半个时辰，草鞋磨穿了。"
+    },
+    {
+      "id": "ev_ch15_a",
+      "chapterId": "ch15",
+      "kind": "investigate",
+      "label": "拆第七课首字母",
+      "place": "石库门·课桌",
+      "cost": 2,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 25
+        }
+      },
+      "result": "把第七课每段首字母连起来是 TYRE，页边小字写“五月廿一·驿亭”。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch15_tyre"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch15_b",
+      "chapterId": "ch15",
+      "kind": "talk",
+      "label": "对门环暗号",
+      "place": "上海·石库门",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "三长两短，门开一条缝，里面的人先看你的鞋，再看你的手。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch15_knock"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch15_c",
+      "chapterId": "ch15",
+      "kind": "risk",
+      "label": "抄一页课本带走",
+      "place": "上海·石库门",
+      "cost": 3,
+      "require": {
+        "clues": 1
+      },
+      "result": "你抄完第七课最后一行，纸折成四折塞进鞋垫，走路有点硌。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch15_copied"
+      ],
+      "risk": "fail_chance",
+      "failResult": "巡捕在弄口停了一下，纸没抄完就塞回桌肚，少了两行。"
+    },
+    {
+      "id": "ev_ch16_a",
+      "chapterId": "ch16",
+      "kind": "investigate",
+      "label": "数保温桶三道磕痕",
+      "place": "西雨楼值班室",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "桶身三道磕痕，陈师傅说对应三条送饭路线，最深那道是去风荷院。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch16_b",
+      "chapterId": "ch16",
+      "kind": "talk",
+      "label": "跟陈师傅查寝",
+      "place": "西雨楼 4F",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "他查窗、查热水袋，四楼十二间，窗全关了，只有一间留了条缝。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch16_c",
+      "chapterId": "ch16",
+      "kind": "risk",
+      "label": "摸黑送热水袋上四楼",
+      "place": "西雨楼 4F 走廊",
+      "cost": 3,
+      "require": {
+        "clues": 0
+      },
+      "result": "你一手扶栏杆一手提袋，四层楼走了六分钟，没开手机灯。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch16_delivered"
+      ],
+      "risk": "fail_chance",
+      "failResult": "你开了手机灯乱晃，被陈师傅喝住，热水袋没送到。"
+    },
+    {
+      "id": "ev_ch17_a",
+      "chapterId": "ch17",
+      "kind": "investigate",
+      "label": "拼三块断碑拓片",
+      "place": "仰山楼·库房",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 25
+        }
+      },
+      "result": "三块残石拼合，碑侧刻“民国卅五”，字口浅，是磨掉的，不是没刻。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch17_1946"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch17_b",
+      "chapterId": "ch17",
+      "kind": "talk",
+      "label": "问林老师为何不定级",
+      "place": "仰山楼·库房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "林老师说字口太浅，定级要担责任，标签写错十年，没人敢改。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch17_c",
+      "chapterId": "ch17",
+      "kind": "wait",
+      "label": "等拓片阴干",
+      "place": "仰山楼·库房",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "拓片在竹架上阴干，你守到闭馆，纸还是潮的，竹节印在背面。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch18_a",
+      "chapterId": "ch18",
+      "kind": "investigate",
+      "label": "掐表显影八秒",
+      "place": "暗房·显影盘",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "药液二十度，显影八秒，前三十秒每五秒摇一次，影调比上一张稳。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch18_dev"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch18_b",
+      "chapterId": "ch18",
+      "kind": "risk",
+      "label": "在白光下换片",
+      "place": "新逸夫楼 3F·暗房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你把手伸进暗袋换片，红灯一直亮着，指腹摸到片头缺口。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "fail_chance",
+      "failResult": "门缝漏进白光，整卷底片灰了一片，池雨曦没说话。"
+    },
+    {
+      "id": "ev_ch18_c",
+      "chapterId": "ch18",
+      "kind": "talk",
+      "label": "问池雨曦构图留空",
+      "place": "暗房·裁切台",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说师生站两边，中间空出庙门，人不占满，门才像个门。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch18_frame"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch19_a",
+      "chapterId": "ch19",
+      "kind": "investigate",
+      "label": "重画斜面受力图",
+      "place": "仰山新楼 3F 夜自习",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "摩擦力方向改过来，箭头压在斜面上，池雨曦用红笔在旁边打了个勾。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch19_b",
+      "chapterId": "ch19",
+      "kind": "talk",
+      "label": "讲一道斜面题",
+      "place": "仰山新楼 3F",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你讲到第三遍，同学点头，你把草稿纸推过去，让他自己再画一遍。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch19_c",
+      "chapterId": "ch19",
+      "kind": "wait",
+      "label": "熄灯后多坐十分钟",
+      "place": "仰山新楼 3F 夜自习",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "灯灭了，你在黑暗里坐了十分钟，走廊的“静”字看不见了。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 2
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch20_a",
+      "chapterId": "ch20",
+      "kind": "investigate",
+      "label": "读新展签落款",
+      "place": "校史馆·冬季展厅",
+      "cost": 1,
+      "require": {
+        "clues": 1
+      },
+      "result": "新展签改成“1946年校友会补立”，旧签没扔，压在柜子底下。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch20_newlabel"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch20_b",
+      "chapterId": "ch20",
+      "kind": "risk",
+      "label": "踩冰面试承重",
+      "place": "白马湖畔",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你在离岸三步处敲了敲冰，声音发空，冰下的水往上冒。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "fail_chance",
+      "failResult": "冰面咯吱一响，你退回岸边，鞋帮湿了半圈。"
+    },
+    {
+      "id": "ev_ch20_c",
+      "chapterId": "ch20",
+      "kind": "talk",
+      "label": "问林老师更正流程",
+      "place": "仰山楼·冬季展厅",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "林老师说改一个年份要走三道手续，档案、展签、讲解词，一样不能漏。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch20_asked_fix"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch21_a",
+      "chapterId": "ch21",
+      "kind": "investigate",
+      "label": "抄纸签上的未编目",
+      "place": "美术馆·库房",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "樟木箱四角包铜，纸签写“曲院转来·未编目”，墨是钢笔，蓝黑色。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch21_tag"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch21_b",
+      "chapterId": "ch21",
+      "kind": "talk",
+      "label": "问顾清和策展取舍",
+      "place": "美术馆·办公室",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说少一件，观众多看一件；留白不是空，是让人停下来。",
+      "effects": {
+        "truth": 1,
+        "beauty": 1,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch21_c",
+      "chapterId": "ch21",
+      "kind": "wait",
+      "label": "等水面起雾",
+      "place": "白马湖畔木栈道",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "雾没起来，太阳先出来了，栈道上的影子很短，柳芽落在栏杆上。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch22_a",
+      "chapterId": "ch22",
+      "kind": "investigate",
+      "label": "按年份排印谱残页",
+      "place": "曲院·案几",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "八方印蜕按年份排开，缺的四方留空，其中一方和“颐渊”刀口对不上。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch22_seals"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch22_b",
+      "chapterId": "ch22",
+      "kind": "risk",
+      "label": "开案几暗格",
+      "place": "曲院·案几",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 30
+        }
+      },
+      "result": "暗格滑出来，樟木箱上写“此间俱是寒之友”，灰尘在灯下悬了很久。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch22_compartment"
+      ],
+      "risk": "fail_chance",
+      "failResult": "暗格卡住，你用力推了一把，榫头裂了道细缝，管理员过来看。"
+    },
+    {
+      "id": "ev_ch22_c",
+      "chapterId": "ch22",
+      "kind": "talk",
+      "label": "问顾清和什么叫刀口",
+      "place": "曲院·石桌",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说印要有刀口，人要有棱角，边款崩一点，才是手刻的。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch23_a",
+      "chapterId": "ch23",
+      "kind": "investigate",
+      "label": "对画稿与新月的亮面",
+      "place": "白马湖畔",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "画稿的月牙亮面朝右，湖上的新月也朝右，方位对上了。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch23_b",
+      "chapterId": "ch23",
+      "kind": "talk",
+      "label": "帮夏丏尊烧水",
+      "place": "平屋·小后轩",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "他用粗瓷壶沏茶，说茶不必好器，水开了就行，壶嘴有旧锔痕。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch23_c",
+      "chapterId": "ch23",
+      "kind": "wait",
+      "label": "等晚晴山房的灯亮",
+      "place": "晚晴山房",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "灯芯短，火苗一直很小，你等到月亮偏西，窗纸上的影子没动过。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch24_a",
+      "chapterId": "ch24",
+      "kind": "investigate",
+      "label": "调第四柜灯光",
+      "place": "美术馆·第四展柜",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "1942 年那封信字迹轻，你把射灯调暗一档，笔锋才留得住。",
+      "effects": {
+        "truth": 1,
+        "beauty": 2,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch24_b",
+      "chapterId": "ch24",
+      "kind": "risk",
+      "label": "开红外扫描看改稿",
+      "place": "美术馆·主展厅",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 30
+        }
+      },
+      "result": "红外下显出第二层淡墨，被划掉的三个字是“为众生”。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch24_infrared"
+      ],
+      "risk": "fail_chance",
+      "failResult": "扫描仪报错，屏幕一片噪点，参数得重设，标本没扫完。"
+    },
+    {
+      "id": "ev_ch24_c",
+      "chapterId": "ch24",
+      "kind": "talk",
+      "label": "问匿名展签",
+      "place": "美术馆·展柜角落",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "展签背后写“泰岳归来，物归原主”，捐赠人一栏空着。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch24_anon"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch25_a",
+      "chapterId": "ch25",
+      "kind": "investigate",
+      "label": "量铁丝网的高度",
+      "place": "陈光宗老师家",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "三根铁丝截成锥形，高十二厘米，架在灯罩上，焊点有两处补过。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch25_b",
+      "chapterId": "ch25",
+      "kind": "talk",
+      "label": "听陈老师念信",
+      "place": "陈光宗老师家",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "他念得很慢，遇到人名停一下，念错了自己笑，说记性不如从前。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch25_c",
+      "chapterId": "ch25",
+      "kind": "wait",
+      "label": "等陈老师想起一首歌",
+      "place": "陈光宗老师家",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "他想了很久，只哼出半句，后半句反复三次，还是没接上。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch25_half_song"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch26_a",
+      "chapterId": "ch26",
+      "kind": "investigate",
+      "label": "翻1949年聘书",
+      "place": "机房·档案盒",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "聘书落款 1949 年八月，签名用钢笔，笔帽裂了，缠着胶布。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch26_letter"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch26_b",
+      "chapterId": "ch26",
+      "kind": "talk",
+      "label": "问汪涤家里的事",
+      "place": "机房·档案影像",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "汪涤说家里的事，外界传的未必准，能查的查，查不到就空着。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch26_wangdi"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch26_c",
+      "chapterId": "ch26",
+      "kind": "risk",
+      "label": "上墓地只拍松",
+      "place": "胡玉堂、章曼丽墓地",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 25
+        }
+      },
+      "result": "你把机器架在松树侧面，碑名始终在画框外，家属点了下头。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch26_no_stele"
+      ],
+      "risk": "fail_chance",
+      "failResult": "家属示意停下，你盖上镜头盖，一张没拍，站在坡下等。"
+    },
+    {
+      "id": "ev_ch27_a",
+      "chapterId": "ch27",
+      "kind": "investigate",
+      "label": "录无配乐的现场声",
+      "place": "墓园·松树下",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "雨打松针、脚步、远处一声鸟，你没加配乐，回放时太安静。",
+      "effects": {
+        "truth": 1,
+        "beauty": 2,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch27_ambience"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch27_b",
+      "chapterId": "ch27",
+      "kind": "talk",
+      "label": "问林老师为何不讲话",
+      "place": "象山北麓先贤墓园",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "他说今天不讲课，只献花，站一会儿，别把话说满。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch27_c",
+      "chapterId": "ch27",
+      "kind": "wait",
+      "label": "等桨声近岸",
+      "place": "白马湖畔",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "船没过来，桨声停在湖心，你把设备收了，风把雨丝吹斜。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch28_a",
+      "chapterId": "ch28",
+      "kind": "investigate",
+      "label": "拉五段素材文件夹",
+      "place": "机房·四联剪辑台",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "五段文件夹按年份命名，1924 到 2026，只有 1945 那段少了三天素材。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch28_folders"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch28_b",
+      "chapterId": "ch28",
+      "kind": "risk",
+      "label": "上天台测风",
+      "place": "新逸夫楼 3F·天台",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "风向标转得很快，你记下东南风三级，天台上比楼下凉。",
+      "effects": {
+        "truth": 1,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch28_wind"
+      ],
+      "risk": "fail_chance",
+      "failResult": "风比楼下大两级，测风仪脱手，你只在排水沟里捡回外壳。"
+    },
+    {
+      "id": "ev_ch28_c",
+      "chapterId": "ch28",
+      "kind": "talk",
+      "label": "和池雨曦定五段结构",
+      "place": "新逸夫楼 3F 机房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "她把五段时间写在白板上，1924、1929、1941、1945、2026，中间画四条线。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch28_structure"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch29_a",
+      "chapterId": "ch29",
+      "kind": "investigate",
+      "label": "量桨角与入水深度",
+      "place": "白马湖赛艇基地",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "桨叶入水三分之二，桨角四十五度，桨频三十四，船身才不左右摆。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch29_b",
+      "chapterId": "ch29",
+      "kind": "risk",
+      "label": "上浮桥跟一趟划",
+      "place": "赛艇基地水上平台",
+      "cost": 3,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 30
+        }
+      },
+      "result": "你跟完五百米，桨频稳在三十四，手心生疼，浮桥在水里一起一伏。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch29_rowed"
+      ],
+      "risk": "fail_chance",
+      "failResult": "船一晃，你踩空半边脚，鞋灌满湖水，只能坐在码头上倒水。"
+    },
+    {
+      "id": "ev_ch29_c",
+      "chapterId": "ch29",
+      "kind": "talk",
+      "label": "问老舵手怎么看浪",
+      "place": "白马湖赛艇码头",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "老舵手说浪头碎就是顶风，码头水深一米八，东风天别盯水纹盯浮标。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch29_oldhelm"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch30_a",
+      "chapterId": "ch30",
+      "kind": "investigate",
+      "label": "找桁架拉压杆比值",
+      "place": "仰山新楼物理实验室",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "拉杆细、压杆粗，比值写在草稿角上，三十五克撑十五公斤。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch30_ratio"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch30_b",
+      "chapterId": "ch30",
+      "kind": "risk",
+      "label": "再加一公斤砝码",
+      "place": "仰山新楼物理实验室",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "加到十六公斤，桥面只弯三毫米，没断，记录员把数字圈了两次。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch30_overload"
+      ],
+      "risk": "fail_chance",
+      "failResult": "木桥中段一声脆响，断成两截，胶结面整片脱开。"
+    },
+    {
+      "id": "ev_ch30_c",
+      "chapterId": "ch30",
+      "kind": "talk",
+      "label": "问对手队节点做法",
+      "place": "物理工程实验室",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "对手把节点胶成三角，你摸了摸，胶层比你们的薄，也硬。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch31_a",
+      "chapterId": "ch31",
+      "kind": "investigate",
+      "label": "数素材总条数",
+      "place": "新逸夫楼 3F 机房",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "素材条数停在一百二十，最后一条是白马湖破浪声，时长十七秒。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch31_b",
+      "chapterId": "ch31",
+      "kind": "wait",
+      "label": "守机房等渲染",
+      "place": "报告厅 3F 机房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "进度条走到百分之九十七停住，你在椅子上睡着，醒来时天亮了。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch31_c",
+      "chapterId": "ch31",
+      "kind": "talk",
+      "label": "给机器人队递水",
+      "place": "新逸夫楼实验主楼",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "机器人队的人接过水，没抬头，地上散着三颗拧滑的螺丝。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch32_a",
+      "chapterId": "ch32",
+      "kind": "investigate",
+      "label": "读开校程序单",
+      "place": "校史馆·档案",
+      "cost": 2,
+      "require": {
+        "clues": 1
+      },
+      "result": "程序单上开学是九月十日，开校典礼在十二月二日，中间隔了三个月。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch32_program"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch32_b",
+      "chapterId": "ch32",
+      "kind": "talk",
+      "label": "问为何定两个日子",
+      "place": "白马湖开校典礼草堂",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "经校长说，先把课上起来，再请客人来听，学校不是搭台子。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch32_c",
+      "chapterId": "ch32",
+      "kind": "risk",
+      "label": "上台跟着唱游子吟",
+      "place": "白马湖开校典礼草堂",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "你跟着唱完三段，调子起低半度，后排的人跟着你走了。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch32_sang"
+      ],
+      "risk": "fail_chance",
+      "failResult": "第二段词记不住，你只张嘴没出声，风琴声盖过去了。"
+    },
+    {
+      "id": "ev_ch33_a",
+      "chapterId": "ch33",
+      "kind": "investigate",
+      "label": "删到五分钟",
+      "place": "新逸夫楼 3F 机房",
+      "cost": 3,
+      "require": {
+        "clues": 2,
+        "stat": {
+          "truth": 35
+        }
+      },
+      "result": "一百二十轨删到四十七轨，五分钟，剪掉的第一段是一字楼的落叶。",
+      "effects": {
+        "truth": 2,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch33_cutfive"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch33_b",
+      "chapterId": "ch33",
+      "kind": "wait",
+      "label": "等导出跑完",
+      "place": "报告厅 3F 机房",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "进度条走了十一分钟，你去接了杯水，回来时它刚好跳到满格。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 2
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch33_c",
+      "chapterId": "ch33",
+      "kind": "talk",
+      "label": "问池雨曦留哪一帧",
+      "place": "新逸夫楼 3F 机房",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说留空庙门那一帧，人站两边，中间什么也没有，那才是片子。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch33_emptygate"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch34_a",
+      "chapterId": "ch34",
+      "kind": "investigate",
+      "label": "量幕布的三道折痕",
+      "place": "大礼堂",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "幕布三道折痕，灯一暗就看不见，你把位置记在节目单背面。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch34_b",
+      "chapterId": "ch34",
+      "kind": "risk",
+      "label": "开场前再校一次声画",
+      "place": "大礼堂·后台",
+      "cost": 2,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 30
+        }
+      },
+      "result": "你把声画对到同一帧，误差不到一帧，手心出汗，推子推得很慢。",
+      "effects": {
+        "truth": 2,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch34_sync"
+      ],
+      "risk": "fail_chance",
+      "failResult": "校准时把主声道静音了，第三分钟才补上，前排有人回头。"
+    },
+    {
+      "id": "ev_ch34_c",
+      "chapterId": "ch34",
+      "kind": "talk",
+      "label": "问老校友记得哪一段",
+      "place": "大礼堂·观众席",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "老校友说是钟声，双锤三响，他闭着眼数，数到第六下才睁眼。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch35_a",
+      "chapterId": "ch35",
+      "kind": "investigate",
+      "label": "翻终端最早一条日志",
+      "place": "机房·主机",
+      "cost": 2,
+      "require": {
+        "clues": 1,
+        "stat": {
+          "truth": 35
+        }
+      },
+      "result": "最早一条日志只有六个字：“时空微弱谐振”，时间戳是去年九月。",
+      "effects": {
+        "truth": 3,
+        "beauty": 0,
+        "bond": 0,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch35_firstlog"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch35_b",
+      "chapterId": "ch35",
+      "kind": "wait",
+      "label": "在栈桥等东风",
+      "place": "白马湖夏夜栈桥",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "风一直没转，你把外套拉链拉到底，湖面平得像一块铁。",
+      "effects": {
+        "truth": 0,
+        "beauty": 1,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch35_c",
+      "chapterId": "ch35",
+      "kind": "talk",
+      "label": "问池雨曦什么叫超自然",
+      "place": "白马湖畔木栈道",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说不是装置，是一代代人把东西留下来，留得够久，就像能说话。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch35_answer"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch36_a",
+      "chapterId": "ch36",
+      "kind": "investigate",
+      "label": "读木箱上的旧信地址",
+      "place": "大礼堂前厅",
+      "cost": 2,
+      "require": {
+        "clues": 0
+      },
+      "result": "木箱上的旧信地址写到县名就断了，邮戳是一九九八年，字迹被雨洇过。",
+      "effects": {
+        "truth": 1,
+        "beauty": 0,
+        "bond": 1,
+        "energy": 0
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch36_b",
+      "chapterId": "ch36",
+      "kind": "talk",
+      "label": "问池雨曦信里写什么",
+      "place": "报告厅楼顶露台",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "她说现在不写，留到那天当面说，说完把栏杆上的灰擦了一下。",
+      "effects": {
+        "truth": 0,
+        "beauty": 0,
+        "bond": 2,
+        "energy": 0
+      },
+      "flags": [
+        "flag_ch36_letter"
+      ],
+      "risk": "none",
+      "failResult": ""
+    },
+    {
+      "id": "ev_ch36_c",
+      "chapterId": "ch36",
+      "kind": "wait",
+      "label": "等晚霞落到象山脊",
+      "place": "报告厅楼顶露台",
+      "cost": 1,
+      "require": {
+        "clues": 0
+      },
+      "result": "云挡住晚霞，露台的灯先亮了，象山的轮廓变成一条深色的线。",
+      "effects": {
+        "truth": 0,
+        "beauty": 2,
+        "bond": 0,
+        "energy": 1
+      },
+      "flags": [],
+      "risk": "none",
+      "failResult": ""
+    }
+  ]
+}

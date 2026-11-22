@@ -1,0 +1,113 @@
+{
+  "354.tlg": "#resource#8",
+  "355.tlg": "#resource#2",
+  "356.tlg": "#resource#6",
+  "357.tlg": "#resource#3",
+  "358.tlg": "#resource#4",
+  "359.tlg": "#resource#0",
+  "360.tlg": "#resource#5",
+  "361.tlg": "#resource#1",
+  "362.tlg": "#resource#7",
+  "height": 720,
+  "layers": [{
+      "height": 352,
+      "layer_id": 362,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AI",
+      "opacity": 255,
+      "top": 176,
+      "type": 13,
+      "visible": 0,
+      "width": 305
+    },{
+      "height": 356,
+      "layer_id": 361,
+      "layer_type": 0,
+      "left": 279,
+      "name": "AH",
+      "opacity": 255,
+      "top": 171,
+      "type": 13,
+      "visible": 0,
+      "width": 303
+    },{
+      "height": 344,
+      "layer_id": 360,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AG",
+      "opacity": 255,
+      "top": 176,
+      "type": 13,
+      "visible": 0,
+      "width": 297
+    },{
+      "height": 335,
+      "layer_id": 359,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AF",
+      "opacity": 255,
+      "top": 176,
+      "type": 13,
+      "visible": 0,
+      "width": 298
+    },{
+      "height": 348,
+      "layer_id": 358,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AE",
+      "opacity": 255,
+      "top": 176,
+      "type": 13,
+      "visible": 0,
+      "width": 302
+    },{
+      "height": 356,
+      "layer_id": 357,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AD",
+      "opacity": 255,
+      "top": 172,
+      "type": 13,
+      "visible": 0,
+      "width": 305
+    },{
+      "height": 367,
+      "layer_id": 356,
+      "layer_type": 0,
+      "left": 280,
+      "name": "AC",
+      "opacity": 255,
+      "top": 161,
+      "type": 13,
+      "visible": 0,
+      "width": 301
+    },{
+      "height": 353,
+      "layer_id": 355,
+      "layer_type": 0,
+      "left": 278,
+      "name": "AB",
+      "opacity": 255,
+      "top": 176,
+      "type": 13,
+      "visible": 0,
+      "width": 311
+    },{
+      "height": 720,
+      "layer_id": 354,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AA",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 1,
+      "width": 1280
+    }],
+  "width": 1280
+}

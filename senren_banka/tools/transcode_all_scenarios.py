@@ -22,7 +22,40 @@ import glob
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(PROJECT_DIR, "app", "data")
-DECOM_DIR = "/tmp/senren_decompiled_json"
+DECOM_DIR = os.environ.get(
+    "SENREN_DECOM_DIR", "/Volumes/500GB/qoder_cache/senren_banka/scn_src"
+)
+CG_LIST_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cg_available.txt")
+
+
+def _load_available_cgs():
+    try:
+        with open(CG_LIST_FILE, "r", encoding="utf-8") as f:
+            return {line.strip() for line in f if line.strip()}
+    except OSError:
+        return set()
+
+
+AVAILABLE_CGS = _load_available_cgs()
+
+
+def normalize_cg(name):
+    """把原版事件图 id 对齐到设备上实际存在的 CG 文件名。"""
+    if not name:
+        return None
+    if name in AVAILABLE_CGS:
+        return name
+    stem = name
+    while stem and stem[-1].isalpha():
+        stem = stem[:-1]
+        if stem in AVAILABLE_CGS:
+            return stem
+    m = re.match(r"(ev\d{3})", name)
+    if m:
+        for candidate in (m.group(1), m.group(1) + "a"):
+            if candidate in AVAILABLE_CGS:
+                return candidate
+    return None
 RES_DIR = "/Volumes/500GB/千恋万花_移植资源库"
 
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -131,22 +164,55 @@ def get_voice(t):
             return v
     return None
 
-def extract_env(t, cur_bg, cur_bgm):
-    data = t[5].get('data', [])
+def extract_env(t, cur_bg, cur_bgm, cur_cg, cur_sd):
+    env = t[5] if len(t) > 5 and isinstance(t[5], dict) else {}
+    data = env.get('data', [])
     for item in data:
+        if not isinstance(item, list) or len(item) < 3:
+            continue
         if item[0] == 'stage':
             img = item[2].get('redraw', {}).get('imageFile')
             if img and img.get('file'):
-                cur_bg = img.get('file')
+                new_bg = img.get('file')
+                if new_bg != cur_bg and new_bg not in ('画面_黒', '画面_白'):
+                    cur_cg = None
+                cur_bg = new_bg
+        elif item[0] == 'ev':
+            obj = item[2] or {}
+            mode = obj.get('showmode')
+            img = (obj.get('redraw') or {}).get('imageFile') or {}
+            if mode in (1, 3) and img.get('file'):
+                cur_cg = normalize_cg(img.get('file'))
+            elif mode in (0, 2):
+                cur_cg = None
+        elif item[0] == 'sd':
+            obj = item[2] or {}
+            mode = obj.get('showmode')
+            img = (obj.get('redraw') or {}).get('imageFile') or {}
+            if mode in (1, 3) and img.get('file'):
+                cur_sd = img.get('file')
+            elif mode in (0, 2):
+                cur_sd = None
         elif item[0] == 'bgm':
             b = item[2].get('replay', {}).get('filename')
             if b:
                 cur_bgm = b.lower() if b.lower().endswith('.opus') else b.lower() + '.opus'
-    return cur_bg, cur_bgm
+    return cur_bg, cur_bgm, cur_cg, cur_sd
 
 def extract_char_info(t, default_heroine, last_char_state):
     chars = {x[0]: x for x in t[5].get('data', []) if x[1] == 'character'}
     speaker = get_speaker(t)
+    for monster in ('祟り神', '白狛'):
+        item = chars.get(monster)
+        if item and item[2].get('showmode') in (1, 3):
+            img = (item[2].get('redraw') or {}).get('imageFile') or {}
+            last_char_state = {
+                'char': monster,
+                'file': img.get('file') or (monster + '.stand'),
+                'dress': '',
+                'face': ''
+            }
+            return last_char_state, last_char_state
     candidate = None
 
     # 1. 优先当前正在说话且在场上展示的角色
@@ -213,12 +279,14 @@ def extract_char_info(t, default_heroine, last_char_state):
 
     return last_char_state, last_char_state
 
-def parse_single_scene_json(json_path, default_heroine=None, initial_bg="画面_黒", initial_bgm="bgm01.opus", start_id=0):
+def parse_single_scene_json(json_path, default_heroine=None, initial_bg="画面_黒", initial_bgm="bgm01.opus", initial_cg=None, initial_sd=None, start_id=0):
     with open(json_path, 'r', encoding='utf-8') as f:
         d = json.load(f)
 
     cur_bg = initial_bg
     cur_bgm = initial_bgm
+    cur_cg = initial_cg
+    cur_sd = initial_sd
     last_char_state = None
 
     rows = []
@@ -235,7 +303,7 @@ def parse_single_scene_json(json_path, default_heroine=None, initial_bg="画面_
             speaker = get_speaker(t)
             text = get_text(t)
             voice = get_voice(t)
-            cur_bg, cur_bgm = extract_env(t, cur_bg, cur_bgm)
+            cur_bg, cur_bgm, cur_cg, cur_sd = extract_env(t, cur_bg, cur_bgm, cur_cg, cur_sd)
             char_info, last_char_state = extract_char_info(t, default_heroine, last_char_state)
 
             sd_date = t[5].get('showdate', {}).get('date')
@@ -250,11 +318,13 @@ def parse_single_scene_json(json_path, default_heroine=None, initial_bg="画面_
                 'bg': cur_bg,
                 'bgm': cur_bgm,
                 'charInfo': char_info,
-                'chapter': current_chapter
+                'chapter': current_chapter,
+                'cg': cur_cg,
+                'sd': cur_sd
             })
             line_id += 1
 
-    return rows, cur_bg, cur_bgm, line_id, labels_map
+    return rows, cur_bg, cur_bgm, cur_cg, cur_sd, line_id, labels_map
 
 def main():
     print("=== 开始全量 92 官方剧本转码流程 ===")
@@ -334,17 +404,21 @@ def main():
         route_chapters = []
         cur_bg = "画面_黒"
         cur_bgm = "bgm01.opus"
+        cur_cg = None
+        cur_sd = None
         cur_id = 0
 
         for idx, fname in enumerate(matching_files):
             jpath = os.path.join(DECOM_DIR, fname)
             clean_stem = fname.replace('.ks.json', '')
             
-            rows, cur_bg, cur_bgm, cur_id, labels = parse_single_scene_json(
+            rows, cur_bg, cur_bgm, cur_cg, cur_sd, cur_id, labels = parse_single_scene_json(
                 jpath,
                 default_heroine=cfg["heroine"],
                 initial_bg=cur_bg,
                 initial_bgm=cur_bgm,
+                initial_cg=cur_cg,
+                initial_sd=cur_sd,
                 start_id=cur_id
             )
 
@@ -378,7 +452,9 @@ def main():
                     r['bg'],
                     r['bgm'],
                     r['charInfo'],
-                    r['chapter']
+                    r['chapter'],
+                    r['cg'],
+                    r['sd']
                 ])
 
         total_all_lines += len(route_rows)

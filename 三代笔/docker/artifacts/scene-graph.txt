@@ -1,0 +1,35 @@
+Weston scene graph at 25960.760829670:
+
+
+Layer 0 (pos 0xffffffff):
+	[no views]
+
+Layer 1 (pos 0xfffffffe):
+	[no views]
+
+Layer 2 (pos 0xe0000000):
+	[no views]
+
+Layer 3 (pos 0xb0000000):
+	[no views]
+
+Layer 4 (pos 0x80000000):
+	[no views]
+
+Layer 5 (pos 0x50000001):
+	[no views]
+
+Layer 6 (pos 0x50000000):
+	View 0 (role xdg_toplevel, PID 17, surface ID 3, top-level window 'DOOM - Youdao X6 Pro' of com.rs114514.doom, 0xdc08780):
+		position: (193, 96) -> (1153, 362)
+		[not opaque]
+		[no outputs]
+		SHM buffer
+			format: 0x1 XRGB8888
+
+Layer 7 (pos 0x30000000):
+	[no views]
+
+Layer 8 (pos 0x2):
+	[no views]
+

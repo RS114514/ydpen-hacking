@@ -1,0 +1,77 @@
+{
+  "319.tlg": "#resource#5",
+  "320.tlg": "#resource#0",
+  "321.tlg": "#resource#1",
+  "322.tlg": "#resource#2",
+  "323.tlg": "#resource#3",
+  "324.tlg": "#resource#4",
+  "height": 720,
+  "layers": [{
+      "height": 525,
+      "layer_id": 324,
+      "layer_type": 0,
+      "left": 628,
+      "name": "BC",
+      "opacity": 255,
+      "top": 76,
+      "type": 13,
+      "visible": 0,
+      "width": 317
+    },{
+      "height": 525,
+      "layer_id": 323,
+      "layer_type": 0,
+      "left": 628,
+      "name": "BB",
+      "opacity": 255,
+      "top": 76,
+      "type": 13,
+      "visible": 0,
+      "width": 317
+    },{
+      "height": 525,
+      "layer_id": 322,
+      "layer_type": 0,
+      "left": 628,
+      "name": "BA",
+      "opacity": 255,
+      "top": 76,
+      "type": 13,
+      "visible": 0,
+      "width": 317
+    },{
+      "height": 53,
+      "layer_id": 321,
+      "layer_type": 0,
+      "left": 776,
+      "name": "AC",
+      "opacity": 255,
+      "top": 234,
+      "type": 13,
+      "visible": 0,
+      "width": 24
+    },{
+      "height": 37,
+      "layer_id": 320,
+      "layer_type": 0,
+      "left": 777,
+      "name": "AB",
+      "opacity": 255,
+      "top": 246,
+      "type": 13,
+      "visible": 0,
+      "width": 11
+    },{
+      "height": 720,
+      "layer_id": 319,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AA",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 1,
+      "width": 1280
+    }],
+  "width": 1280
+}

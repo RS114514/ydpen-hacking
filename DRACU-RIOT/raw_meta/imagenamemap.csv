@@ -1,0 +1,1534 @@
+#スクリプト中画像名,実画像名,合致条件
+#記述例
+ev513ge,ev513ge,f.sel_flag==0
+ev513ge,ev513fe,f.sel_flag==1
+ev513ge,ev513ee,f.sel_flag==2
+ev513ge,ev513he,f.sel_flag==3
+
+
+ev112da,ev112da,f.sel_flag==0
+ev112db,ev112db,f.sel_flag==0
+ev112dc,ev112dc,f.sel_flag==0
+ev112dd,ev112dd,f.sel_flag==0
+ev112de,ev112de,f.sel_flag==0
+ev112df,ev112df,f.sel_flag==0
+ev112dg,ev112dg,f.sel_flag==0
+ev112da,ev112ea,f.sel_flag==1
+ev112db,ev112eb,f.sel_flag==1
+ev112dc,ev112ec,f.sel_flag==1
+ev112dd,ev112ed,f.sel_flag==1
+ev112de,ev112ee,f.sel_flag==1
+ev112df,ev112ef,f.sel_flag==1
+ev112dg,ev112eg,f.sel_flag==1
+
+ev113ca,ev113ca,f.sel_flag==0
+ev113cb,ev113cb,f.sel_flag==0
+ev113cc,ev113cc,f.sel_flag==0
+ev113cd,ev113cd,f.sel_flag==0
+ev113ce,ev113ce,f.sel_flag==0
+ev113cf,ev113cf,f.sel_flag==0
+ev113cg,ev113cg,f.sel_flag==0
+ev113ca,ev113ea,f.sel_flag==1
+ev113cb,ev113eb,f.sel_flag==1
+ev113cc,ev113ec,f.sel_flag==1
+ev113cd,ev113ed,f.sel_flag==1
+ev113ce,ev113ee,f.sel_flag==1
+ev113cf,ev113ef,f.sel_flag==1
+ev113cg,ev113eg,f.sel_flag==1
+ev113da,ev113ea,f.sel_flag==1
+ev113db,ev113eb,f.sel_flag==1
+ev113dc,ev113ec,f.sel_flag==1
+ev113dd,ev113ed,f.sel_flag==1
+ev113de,ev113ee,f.sel_flag==1
+ev113df,ev113ef,f.sel_flag==1
+ev113dg,ev113eg,f.sel_flag==1
+
+ev115da,ev115da,f.sel_flag==0
+ev115db,ev115db,f.sel_flag==0
+ev115dc,ev115dc,f.sel_flag==0
+ev115dd,ev115dd,f.sel_flag==0
+ev115de,ev115de,f.sel_flag==0
+ev115df,ev115df,f.sel_flag==0
+ev115dg,ev115dg,f.sel_flag==0
+ev115dh,ev115dh,f.sel_flag==0
+ev115da,ev115fa,f.sel_flag==1
+ev115db,ev115fb,f.sel_flag==1
+ev115dc,ev115fc,f.sel_flag==1
+ev115dd,ev115fd,f.sel_flag==1
+ev115de,ev115fe,f.sel_flag==1
+ev115df,ev115ff,f.sel_flag==1
+ev115dg,ev115fg,f.sel_flag==1
+ev115dh,ev115fh,f.sel_flag==1
+ev115ea,ev115ea,f.sel_flag==0
+ev115eb,ev115eb,f.sel_flag==0
+ev115ec,ev115ec,f.sel_flag==0
+ev115ed,ev115ed,f.sel_flag==0
+ev115ee,ev115ee,f.sel_flag==0
+ev115ef,ev115ef,f.sel_flag==0
+ev115eg,ev115eg,f.sel_flag==0
+ev115eh,ev115eh,f.sel_flag==0
+ev115ea,ev115fa,f.sel_flag==1
+ev115eb,ev115fb,f.sel_flag==1
+ev115ec,ev115fc,f.sel_flag==1
+ev115ed,ev115fd,f.sel_flag==1
+ev115ee,ev115fe,f.sel_flag==1
+ev115ef,ev115ff,f.sel_flag==1
+ev115eg,ev115fg,f.sel_flag==1
+ev115eh,ev115fh,f.sel_flag==1
+
+ev117ca,ev117ca,f.sel_flag==0
+ev117cb,ev117cb,f.sel_flag==0
+ev117cc,ev117cc,f.sel_flag==0
+ev117cd,ev117cd,f.sel_flag==0
+ev117ce,ev117ce,f.sel_flag==0
+ev117cf,ev117cf,f.sel_flag==0
+ev117cg,ev117cg,f.sel_flag==0
+ev117ch,ev117ch,f.sel_flag==0
+ev117ca,ev117fa,f.sel_flag==2
+ev117cb,ev117fb,f.sel_flag==2
+ev117cc,ev117fc,f.sel_flag==2
+ev117cd,ev117fd,f.sel_flag==2
+ev117ce,ev117fe,f.sel_flag==2
+ev117cf,ev117ff,f.sel_flag==2
+ev117cg,ev117fg,f.sel_flag==2
+ev117ch,ev117fh,f.sel_flag==2
+ev117da,ev117da,f.sel_flag==0
+ev117db,ev117db,f.sel_flag==0
+ev117dc,ev117dc,f.sel_flag==0
+ev117dd,ev117dd,f.sel_flag==0
+ev117de,ev117de,f.sel_flag==0
+ev117df,ev117df,f.sel_flag==0
+ev117dg,ev117dg,f.sel_flag==0
+ev117dh,ev117dh,f.sel_flag==0
+ev117da,ev117ga,f.sel_flag==3
+ev117db,ev117gb,f.sel_flag==3
+ev117dc,ev117gc,f.sel_flag==3
+ev117dd,ev117gd,f.sel_flag==3
+ev117de,ev117ge,f.sel_flag==3
+ev117df,ev117gf,f.sel_flag==3
+ev117dg,ev117gg,f.sel_flag==3
+ev117dh,ev117gh,f.sel_flag==3
+ev117da,ev117ja,f.sel_flag==1
+ev117db,ev117jb,f.sel_flag==1
+ev117dc,ev117jc,f.sel_flag==1
+ev117dd,ev117jd,f.sel_flag==1
+ev117de,ev117je,f.sel_flag==1
+ev117df,ev117jf,f.sel_flag==1
+ev117dg,ev117jg,f.sel_flag==1
+ev117dh,ev117jh,f.sel_flag==1
+ev117da,ev117ia,f.sel_flag==2
+ev117db,ev117ib,f.sel_flag==2
+ev117dc,ev117ic,f.sel_flag==2
+ev117dd,ev117id,f.sel_flag==2
+ev117de,ev117ie,f.sel_flag==2
+ev117df,ev117if,f.sel_flag==2
+ev117dg,ev117ig,f.sel_flag==2
+ev117dh,ev117ih,f.sel_flag==2
+ev117ea,ev117ea,f.sel_flag==0
+ev117eb,ev117eb,f.sel_flag==0
+ev117ec,ev117ec,f.sel_flag==0
+ev117ed,ev117ed,f.sel_flag==0
+ev117ee,ev117ee,f.sel_flag==0
+ev117ef,ev117ef,f.sel_flag==0
+ev117eg,ev117eg,f.sel_flag==0
+ev117eh,ev117eh,f.sel_flag==0
+ev117ea,ev117ja,f.sel_flag==1
+ev117eb,ev117jb,f.sel_flag==1
+ev117ec,ev117jc,f.sel_flag==1
+ev117ed,ev117jd,f.sel_flag==1
+ev117ee,ev117je,f.sel_flag==1
+ev117ef,ev117jf,f.sel_flag==1
+ev117eg,ev117jg,f.sel_flag==1
+ev117eh,ev117jh,f.sel_flag==1
+ev117ea,ev117ja,f.sel_flag==2
+ev117eb,ev117jb,f.sel_flag==2
+ev117ec,ev117jc,f.sel_flag==2
+ev117ed,ev117jd,f.sel_flag==2
+ev117ee,ev117je,f.sel_flag==2
+ev117ef,ev117jf,f.sel_flag==2
+ev117eg,ev117jg,f.sel_flag==2
+ev117eh,ev117jh,f.sel_flag==2
+ev117ea,ev117ga,f.sel_flag==3
+ev117eb,ev117gb,f.sel_flag==3
+ev117ec,ev117gc,f.sel_flag==3
+ev117ed,ev117gd,f.sel_flag==3
+ev117ee,ev117ge,f.sel_flag==3
+ev117ef,ev117gf,f.sel_flag==3
+ev117eg,ev117gg,f.sel_flag==3
+ev117eh,ev117gh,f.sel_flag==3
+ev117ha,ev117ca,f.sel_flag==0
+ev117hb,ev117cb,f.sel_flag==0
+ev117hc,ev117cc,f.sel_flag==0
+ev117hd,ev117cd,f.sel_flag==0
+ev117he,ev117ce,f.sel_flag==0
+ev117hf,ev117cf,f.sel_flag==0
+ev117hg,ev117cg,f.sel_flag==0
+ev117hh,ev117ch,f.sel_flag==0
+ev117ha,ev117ca,f.sel_flag==1
+ev117hb,ev117cb,f.sel_flag==1
+ev117hc,ev117cc,f.sel_flag==1
+ev117hd,ev117cd,f.sel_flag==1
+ev117he,ev117ce,f.sel_flag==1
+ev117hf,ev117cf,f.sel_flag==1
+ev117hg,ev117cg,f.sel_flag==1
+ev117hh,ev117ch,f.sel_flag==1
+ev117ha,ev117ha,f.sel_flag==2
+ev117hb,ev117hb,f.sel_flag==2
+ev117hc,ev117hc,f.sel_flag==2
+ev117hd,ev117hd,f.sel_flag==2
+ev117he,ev117he,f.sel_flag==2
+ev117hf,ev117hf,f.sel_flag==2
+ev117hg,ev117hg,f.sel_flag==2
+ev117hh,ev117hh,f.sel_flag==2
+ev117ha,ev117ha,f.sel_flag==3
+ev117hb,ev117hb,f.sel_flag==3
+ev117hc,ev117hc,f.sel_flag==3
+ev117hd,ev117hd,f.sel_flag==3
+ev117he,ev117he,f.sel_flag==3
+ev117hf,ev117hf,f.sel_flag==3
+ev117hg,ev117hg,f.sel_flag==3
+ev117hh,ev117hh,f.sel_flag==3
+
+
+ev118ea,ev118ea,f.sel_flag==0
+ev118eb,ev118eb,f.sel_flag==0
+ev118ec,ev118ec,f.sel_flag==0
+ev118ed,ev118ed,f.sel_flag==0
+ev118ee,ev118ee,f.sel_flag==0
+ev118ef,ev118ef,f.sel_flag==0
+ev118eg,ev118eg,f.sel_flag==0
+ev118eh,ev118eh,f.sel_flag==0
+ev118ei,ev118ei,f.sel_flag==0
+ev118ej,ev118ej,f.sel_flag==0
+ev118ek,ev118ek,f.sel_flag==0
+ev118el,ev118el,f.sel_flag==0
+ev118em,ev118em,f.sel_flag==0
+ev118en,ev118en,f.sel_flag==0
+ev118eo,ev118eo,f.sel_flag==0
+ev118ep,ev118ep,f.sel_flag==0
+ev118ea,ev118ga,f.sel_flag==1
+ev118eb,ev118gb,f.sel_flag==1
+ev118ec,ev118gc,f.sel_flag==1
+ev118ed,ev118gd,f.sel_flag==1
+ev118ee,ev118ge,f.sel_flag==1
+ev118ef,ev118gf,f.sel_flag==1
+ev118eg,ev118gg,f.sel_flag==1
+ev118eh,ev118gh,f.sel_flag==1
+ev118ei,ev118gi,f.sel_flag==1
+ev118ej,ev118gj,f.sel_flag==1
+ev118ek,ev118gk,f.sel_flag==1
+ev118el,ev118gl,f.sel_flag==1
+ev118em,ev118gm,f.sel_flag==1
+ev118en,ev118gn,f.sel_flag==1
+ev118eo,ev118go,f.sel_flag==1
+ev118ep,ev118gp,f.sel_flag==1
+ev118fa,ev118fa,f.sel_flag==0
+ev118fb,ev118fb,f.sel_flag==0
+ev118fc,ev118fc,f.sel_flag==0
+ev118fd,ev118fd,f.sel_flag==0
+ev118fe,ev118fe,f.sel_flag==0
+ev118ff,ev118ff,f.sel_flag==0
+ev118fg,ev118fg,f.sel_flag==0
+ev118fh,ev118fh,f.sel_flag==0
+ev118fi,ev118fi,f.sel_flag==0
+ev118fj,ev118fj,f.sel_flag==0
+ev118fk,ev118fk,f.sel_flag==0
+ev118fl,ev118fl,f.sel_flag==0
+ev118fm,ev118fm,f.sel_flag==0
+ev118fn,ev118fn,f.sel_flag==0
+ev118fo,ev118fo,f.sel_flag==0
+ev118fp,ev118fp,f.sel_flag==0
+ev118fa,ev118ga,f.sel_flag==1
+ev118fb,ev118gb,f.sel_flag==1
+ev118fc,ev118gc,f.sel_flag==1
+ev118fd,ev118gd,f.sel_flag==1
+ev118fe,ev118ge,f.sel_flag==1
+ev118ff,ev118gf,f.sel_flag==1
+ev118fg,ev118gg,f.sel_flag==1
+ev118fh,ev118gh,f.sel_flag==1
+ev118fi,ev118gi,f.sel_flag==1
+ev118fj,ev118gj,f.sel_flag==1
+ev118fk,ev118gk,f.sel_flag==1
+ev118fl,ev118gl,f.sel_flag==1
+ev118fm,ev118gm,f.sel_flag==1
+ev118fn,ev118gn,f.sel_flag==1
+ev118fo,ev118go,f.sel_flag==1
+ev118fp,ev118gp,f.sel_flag==1
+
+
+ev119ga,ev119ga,f.sel_flag==0
+ev119ga,ev119ca,f.sel_flag==1
+
+
+ev120ea,ev120ea,f.sel_flag==0
+ev120eb,ev120eb,f.sel_flag==0
+ev120ec,ev120ec,f.sel_flag==0
+ev120ed,ev120ed,f.sel_flag==0
+ev120ee,ev120ee,f.sel_flag==0
+ev120ef,ev120ef,f.sel_flag==0
+ev120eg,ev120eg,f.sel_flag==0
+ev120eh,ev120eh,f.sel_flag==0
+ev120ea,ev120ea,f.sel_flag==1
+ev120eb,ev120eb,f.sel_flag==1
+ev120ec,ev120ec,f.sel_flag==1
+ev120ed,ev120ed,f.sel_flag==1
+ev120ee,ev120ee,f.sel_flag==1
+ev120ef,ev120ef,f.sel_flag==1
+ev120eg,ev120eg,f.sel_flag==1
+ev120eh,ev120eh,f.sel_flag==1
+ev120ea,ev120ga,f.sel_flag==2
+ev120eb,ev120gb,f.sel_flag==2
+ev120ec,ev120gc,f.sel_flag==2
+ev120ed,ev120gd,f.sel_flag==2
+ev120ee,ev120ge,f.sel_flag==2
+ev120ef,ev120gf,f.sel_flag==2
+ev120eg,ev120gg,f.sel_flag==2
+ev120eh,ev120gh,f.sel_flag==2
+ev120ea,ev120ga,f.sel_flag==3
+ev120eb,ev120gb,f.sel_flag==3
+ev120ec,ev120gc,f.sel_flag==3
+ev120ed,ev120gd,f.sel_flag==3
+ev120ee,ev120ge,f.sel_flag==3
+ev120ef,ev120gf,f.sel_flag==3
+ev120eg,ev120gg,f.sel_flag==3
+ev120eh,ev120gh,f.sel_flag==3
+ev120fa,ev120fa,f.sel_flag==0
+ev120fb,ev120fb,f.sel_flag==0
+ev120fc,ev120fc,f.sel_flag==0
+ev120fd,ev120fd,f.sel_flag==0
+ev120fe,ev120fe,f.sel_flag==0
+ev120ff,ev120ff,f.sel_flag==0
+ev120fg,ev120fg,f.sel_flag==0
+ev120fh,ev120fh,f.sel_flag==0
+ev120fa,ev120ia,f.sel_flag==1
+ev120fb,ev120ib,f.sel_flag==1
+ev120fc,ev120ic,f.sel_flag==1
+ev120fd,ev120id,f.sel_flag==1
+ev120fe,ev120ie,f.sel_flag==1
+ev120ff,ev120if,f.sel_flag==1
+ev120fg,ev120ig,f.sel_flag==1
+ev120fh,ev120ih,f.sel_flag==1
+ev120fa,ev120ia,f.sel_flag==2
+ev120fb,ev120ib,f.sel_flag==2
+ev120fc,ev120ic,f.sel_flag==2
+ev120fd,ev120id,f.sel_flag==2
+ev120fe,ev120ie,f.sel_flag==2
+ev120ff,ev120if,f.sel_flag==2
+ev120fg,ev120ig,f.sel_flag==2
+ev120fh,ev120ih,f.sel_flag==2
+ev120fa,ev120ha,f.sel_flag==3
+ev120fb,ev120hb,f.sel_flag==3
+ev120fc,ev120hc,f.sel_flag==3
+ev120fd,ev120hd,f.sel_flag==3
+ev120fe,ev120he,f.sel_flag==3
+ev120ff,ev120hf,f.sel_flag==3
+ev120fg,ev120hg,f.sel_flag==3
+ev120fh,ev120hh,f.sel_flag==3
+
+
+
+
+ev213fa,ev213fa,f.sel_flag==0
+ev213fb,ev213fb,f.sel_flag==0
+ev213fc,ev213fc,f.sel_flag==0
+ev213fd,ev213fd,f.sel_flag==0
+ev213fe,ev213fe,f.sel_flag==0
+ev213ff,ev213ff,f.sel_flag==0
+ev213fg,ev213fg,f.sel_flag==0
+ev213fh,ev213fh,f.sel_flag==0
+ev213fi,ev213fi,f.sel_flag==0
+ev213fa,ev213ha,f.sel_flag==1
+ev213fb,ev213hb,f.sel_flag==1
+ev213fc,ev213hc,f.sel_flag==1
+ev213fd,ev213hd,f.sel_flag==1
+ev213fe,ev213he,f.sel_flag==1
+ev213ff,ev213hf,f.sel_flag==1
+ev213fg,ev213hg,f.sel_flag==1
+ev213fh,ev213hh,f.sel_flag==1
+ev213fi,ev213hi,f.sel_flag==1
+ev213ga,ev213ga,f.sel_flag==0
+ev213gb,ev213gb,f.sel_flag==0
+ev213gc,ev213gc,f.sel_flag==0
+ev213gd,ev213gd,f.sel_flag==0
+ev213ge,ev213ge,f.sel_flag==0
+ev213gf,ev213gf,f.sel_flag==0
+ev213gg,ev213gg,f.sel_flag==0
+ev213gh,ev213gh,f.sel_flag==0
+ev213fi,ev213gi,f.sel_flag==0
+ev213ga,ev213ia,f.sel_flag==1
+ev213gb,ev213ib,f.sel_flag==1
+ev213gc,ev213ic,f.sel_flag==1
+ev213gd,ev213id,f.sel_flag==1
+ev213ge,ev213ie,f.sel_flag==1
+ev213gf,ev213if,f.sel_flag==1
+ev213gg,ev213ig,f.sel_flag==1
+ev213gh,ev213ih,f.sel_flag==1
+ev213gi,ev213ii,f.sel_flag==1
+
+
+ev215da,ev215da,f.sel_flag==0
+ev215db,ev215db,f.sel_flag==0
+ev215dc,ev215dc,f.sel_flag==0
+ev215dd,ev215dd,f.sel_flag==0
+ev215de,ev215de,f.sel_flag==0
+ev215df,ev215df,f.sel_flag==0
+ev215dg,ev215dg,f.sel_flag==0
+ev215dh,ev215dh,f.sel_flag==0
+ev215da,ev215ga,f.sel_flag==1
+ev215db,ev215gb,f.sel_flag==1
+ev215dc,ev215gc,f.sel_flag==1
+ev215dd,ev215gd,f.sel_flag==1
+ev215de,ev215ge,f.sel_flag==1
+ev215df,ev215gf,f.sel_flag==1
+ev215dg,ev215gg,f.sel_flag==1
+ev215dh,ev215gh,f.sel_flag==1
+
+ev216fa,ev216fa,f.sel_flag==0
+ev216fb,ev216fb,f.sel_flag==0
+ev216fc,ev216fc,f.sel_flag==0
+ev216fd,ev216fd,f.sel_flag==0
+ev216fe,ev216fe,f.sel_flag==0
+ev216ff,ev216ff,f.sel_flag==0
+ev216fg,ev216fg,f.sel_flag==0
+ev216fh,ev216fh,f.sel_flag==0
+ev216fi,ev216fi,f.sel_flag==0
+ev216fa,ev216ja,f.sel_flag==2
+ev216fb,ev216jb,f.sel_flag==2
+ev216fc,ev216jc,f.sel_flag==2
+ev216fd,ev216jd,f.sel_flag==2
+ev216fe,ev216je,f.sel_flag==2
+ev216ff,ev216jf,f.sel_flag==2
+ev216fg,ev216jg,f.sel_flag==2
+ev216fh,ev216jh,f.sel_flag==2
+ev216fi,ev216ji,f.sel_flag==2
+
+ev216ka,ev216ka,f.sel_flag==0
+ev216kb,ev216kb,f.sel_flag==0
+ev216kc,ev216kc,f.sel_flag==0
+ev216kd,ev216kd,f.sel_flag==0
+ev216ke,ev216ke,f.sel_flag==0
+ev216kf,ev216kf,f.sel_flag==0
+ev216kg,ev216kg,f.sel_flag==0
+ev216kh,ev216kh,f.sel_flag==0
+ev216ki,ev216ki,f.sel_flag==0
+ev216ka,ev216ka,f.sel_flag==1
+ev216kb,ev216kb,f.sel_flag==1
+ev216kc,ev216kc,f.sel_flag==1
+ev216kd,ev216kd,f.sel_flag==1
+ev216ke,ev216ke,f.sel_flag==1
+ev216kf,ev216kf,f.sel_flag==1
+ev216kg,ev216kg,f.sel_flag==1
+ev216kh,ev216kh,f.sel_flag==1
+ev216ki,ev216ki,f.sel_flag==1
+ev216ka,ev216la,f.sel_flag==2
+ev216kb,ev216lb,f.sel_flag==2
+ev216kc,ev216lc,f.sel_flag==2
+ev216kd,ev216ld,f.sel_flag==2
+ev216ke,ev216le,f.sel_flag==2
+ev216kf,ev216lf,f.sel_flag==2
+ev216kg,ev216lg,f.sel_flag==2
+ev216kh,ev216lh,f.sel_flag==2
+ev216ki,ev216li,f.sel_flag==2
+ev216ka,ev216la,f.sel_flag==3
+ev216kb,ev216lb,f.sel_flag==3
+ev216kc,ev216lc,f.sel_flag==3
+ev216kd,ev216ld,f.sel_flag==3
+ev216ke,ev216le,f.sel_flag==3
+ev216kf,ev216lf,f.sel_flag==3
+ev216kg,ev216lg,f.sel_flag==3
+ev216kh,ev216lh,f.sel_flag==3
+ev216ki,ev216li,f.sel_flag==3
+
+ev216ma,ev216ma,f.sel_flag==0 && f.anus_flag==1
+ev216mb,ev216mb,f.sel_flag==0 && f.anus_flag==1
+ev216mc,ev216mc,f.sel_flag==0 && f.anus_flag==1
+ev216md,ev216md,f.sel_flag==0 && f.anus_flag==1
+ev216me,ev216me,f.sel_flag==0 && f.anus_flag==1
+ev216mf,ev216mf,f.sel_flag==0 && f.anus_flag==1
+ev216mg,ev216mg,f.sel_flag==0 && f.anus_flag==1
+ev216mh,ev216mh,f.sel_flag==0 && f.anus_flag==1
+ev216mi,ev216mi,f.sel_flag==0 && f.anus_flag==1
+ev216ma,ev216oa,f.sel_flag==1 && f.anus_flag==1
+ev216mb,ev216ob,f.sel_flag==1 && f.anus_flag==1
+ev216mc,ev216oc,f.sel_flag==1 && f.anus_flag==1
+ev216md,ev216od,f.sel_flag==1 && f.anus_flag==1
+ev216me,ev216oe,f.sel_flag==1 && f.anus_flag==1
+ev216mf,ev216of,f.sel_flag==1 && f.anus_flag==1
+ev216mg,ev216og,f.sel_flag==1 && f.anus_flag==1
+ev216mh,ev216oh,f.sel_flag==1 && f.anus_flag==1
+ev216mi,ev216oi,f.sel_flag==1 && f.anus_flag==1
+ev216ma,ev216na,f.sel_flag==2 && f.anus_flag==1
+ev216mb,ev216nb,f.sel_flag==2 && f.anus_flag==1
+ev216mc,ev216nc,f.sel_flag==2 && f.anus_flag==1
+ev216md,ev216nd,f.sel_flag==2 && f.anus_flag==1
+ev216me,ev216ne,f.sel_flag==2 && f.anus_flag==1
+ev216mf,ev216nf,f.sel_flag==2 && f.anus_flag==1
+ev216mg,ev216ng,f.sel_flag==2 && f.anus_flag==1
+ev216mh,ev216nh,f.sel_flag==2 && f.anus_flag==1
+ev216mi,ev216ni,f.sel_flag==2 && f.anus_flag==1
+ev216ma,ev216pa,f.sel_flag==3 && f.anus_flag==1
+ev216mb,ev216pb,f.sel_flag==3 && f.anus_flag==1
+ev216mc,ev216pc,f.sel_flag==3 && f.anus_flag==1
+ev216md,ev216pd,f.sel_flag==3 && f.anus_flag==1
+ev216me,ev216pe,f.sel_flag==3 && f.anus_flag==1
+ev216mf,ev216pf,f.sel_flag==3 && f.anus_flag==1
+ev216mg,ev216pg,f.sel_flag==3 && f.anus_flag==1
+ev216mh,ev216ph,f.sel_flag==3 && f.anus_flag==1
+ev216mi,ev216pi,f.sel_flag==3 && f.anus_flag==1
+ev216ma,ev216fa,f.sel_flag==0 && f.anus_flag==0
+ev216mb,ev216fb,f.sel_flag==0 && f.anus_flag==0
+ev216mc,ev216fc,f.sel_flag==0 && f.anus_flag==0
+ev216md,ev216fd,f.sel_flag==0 && f.anus_flag==0
+ev216me,ev216fe,f.sel_flag==0 && f.anus_flag==0
+ev216mf,ev216ff,f.sel_flag==0 && f.anus_flag==0
+ev216mg,ev216fg,f.sel_flag==0 && f.anus_flag==0
+ev216mh,ev216fh,f.sel_flag==0 && f.anus_flag==0
+ev216mi,ev216fi,f.sel_flag==0 && f.anus_flag==0
+ev216ma,ev216ja,f.sel_flag==2 && f.anus_flag==0
+ev216mb,ev216jb,f.sel_flag==2 && f.anus_flag==0
+ev216mc,ev216jc,f.sel_flag==2 && f.anus_flag==0
+ev216md,ev216jd,f.sel_flag==2 && f.anus_flag==0
+ev216me,ev216je,f.sel_flag==2 && f.anus_flag==0
+ev216mf,ev216jf,f.sel_flag==2 && f.anus_flag==0
+ev216mg,ev216jg,f.sel_flag==2 && f.anus_flag==0
+ev216mh,ev216jh,f.sel_flag==2 && f.anus_flag==0
+ev216mi,ev216ji,f.sel_flag==2 && f.anus_flag==0
+
+
+
+ev217ea,ev217ea,f.sel_flag==0
+ev217eb,ev217eb,f.sel_flag==0
+ev217ec,ev217ec,f.sel_flag==0
+ev217ed,ev217ed,f.sel_flag==0
+ev217ee,ev217ee,f.sel_flag==0
+ev217ef,ev217ef,f.sel_flag==0
+ev217eg,ev217eg,f.sel_flag==0
+ev217eh,ev217eh,f.sel_flag==0
+ev217ei,ev217ei,f.sel_flag==0
+ev217ea,ev217fa,f.sel_flag==2
+ev217eb,ev217fb,f.sel_flag==2
+ev217ec,ev217fc,f.sel_flag==2
+ev217ed,ev217fd,f.sel_flag==2
+ev217ee,ev217fe,f.sel_flag==2
+ev217ef,ev217ff,f.sel_flag==2
+ev217eg,ev217fg,f.sel_flag==2
+ev217eh,ev217fh,f.sel_flag==2
+ev217ei,ev217fi,f.sel_flag==2
+ev217ga,ev217ga,f.sel_flag==0
+ev217gb,ev217gb,f.sel_flag==0
+ev217gc,ev217gc,f.sel_flag==0
+ev217gd,ev217gd,f.sel_flag==0
+ev217ge,ev217ge,f.sel_flag==0
+ev217gf,ev217gf,f.sel_flag==0
+ev217gg,ev217gg,f.sel_flag==0
+ev217gh,ev217gh,f.sel_flag==0
+ev217gi,ev217gi,f.sel_flag==0
+ev217ga,ev217fa,f.sel_flag==2
+ev217gb,ev217fb,f.sel_flag==2
+ev217gc,ev217fc,f.sel_flag==2
+ev217gd,ev217fd,f.sel_flag==2
+ev217ge,ev217fe,f.sel_flag==2
+ev217gf,ev217ff,f.sel_flag==2
+ev217gg,ev217fg,f.sel_flag==2
+ev217gh,ev217fh,f.sel_flag==2
+ev217gi,ev217fi,f.sel_flag==2
+
+ev217ha,ev217ha,f.sel_flag==0
+ev217hb,ev217hb,f.sel_flag==0
+ev217hc,ev217hc,f.sel_flag==0
+ev217hd,ev217hd,f.sel_flag==0
+ev217he,ev217he,f.sel_flag==0
+ev217hf,ev217hf,f.sel_flag==0
+ev217hg,ev217hg,f.sel_flag==0
+ev217hh,ev217hh,f.sel_flag==0
+ev217hi,ev217hi,f.sel_flag==0
+ev217ha,ev217ia,f.sel_flag==2
+ev217hb,ev217ib,f.sel_flag==2
+ev217hc,ev217ic,f.sel_flag==2
+ev217hd,ev217id,f.sel_flag==2
+ev217he,ev217ie,f.sel_flag==2
+ev217hf,ev217if,f.sel_flag==2
+ev217hg,ev217ig,f.sel_flag==2
+ev217hh,ev217ih,f.sel_flag==2
+ev217hi,ev217ii,f.sel_flag==2
+
+ev217la,ev217la,f.sel_flag==0
+ev217lb,ev217lb,f.sel_flag==0
+ev217lc,ev217lc,f.sel_flag==0
+ev217ld,ev217ld,f.sel_flag==0
+ev217le,ev217le,f.sel_flag==0
+ev217lf,ev217lf,f.sel_flag==0
+ev217lg,ev217lg,f.sel_flag==0
+ev217lh,ev217lh,f.sel_flag==0
+ev217li,ev217li,f.sel_flag==0
+ev217la,ev217ma,f.sel_flag==2
+ev217lb,ev217mb,f.sel_flag==2
+ev217lc,ev217mc,f.sel_flag==2
+ev217ld,ev217md,f.sel_flag==2
+ev217le,ev217me,f.sel_flag==2
+ev217lf,ev217mf,f.sel_flag==2
+ev217lg,ev217mg,f.sel_flag==2
+ev217lh,ev217mh,f.sel_flag==2
+ev217li,ev217mi,f.sel_flag==2
+
+ev217ja,ev217ja,f.sel_flag==0
+ev217jb,ev217jb,f.sel_flag==0
+ev217jc,ev217jc,f.sel_flag==0
+ev217jd,ev217jd,f.sel_flag==0
+ev217je,ev217je,f.sel_flag==0
+ev217jf,ev217jf,f.sel_flag==0
+ev217jg,ev217jg,f.sel_flag==0
+ev217jh,ev217jh,f.sel_flag==0
+ev217ji,ev217ji,f.sel_flag==0
+ev217ja,ev217ka,f.sel_flag==2
+ev217jb,ev217kb,f.sel_flag==2
+ev217jc,ev217kc,f.sel_flag==2
+ev217jd,ev217kd,f.sel_flag==2
+ev217je,ev217ke,f.sel_flag==2
+ev217jf,ev217kf,f.sel_flag==2
+ev217jg,ev217kg,f.sel_flag==2
+ev217jh,ev217kh,f.sel_flag==2
+ev217ji,ev217ki,f.sel_flag==2
+
+ev217na,ev217na,f.sel_flag==0
+ev217nb,ev217nb,f.sel_flag==0
+ev217nc,ev217nc,f.sel_flag==0
+ev217nd,ev217nd,f.sel_flag==0
+ev217ne,ev217ne,f.sel_flag==0
+ev217nf,ev217nf,f.sel_flag==0
+ev217ng,ev217ng,f.sel_flag==0
+ev217nh,ev217nh,f.sel_flag==0
+ev217ni,ev217ni,f.sel_flag==0
+ev217na,ev217na,f.sel_flag==1
+ev217nb,ev217nb,f.sel_flag==1
+ev217nc,ev217nc,f.sel_flag==1
+ev217nd,ev217nd,f.sel_flag==1
+ev217ne,ev217ne,f.sel_flag==1
+ev217nf,ev217nf,f.sel_flag==1
+ev217ng,ev217ng,f.sel_flag==1
+ev217nh,ev217nh,f.sel_flag==1
+ev217ni,ev217ni,f.sel_flag==1
+ev217na,ev217oa,f.sel_flag==2
+ev217nb,ev217ob,f.sel_flag==2
+ev217nc,ev217oc,f.sel_flag==2
+ev217nd,ev217od,f.sel_flag==2
+ev217ne,ev217oe,f.sel_flag==2
+ev217nf,ev217of,f.sel_flag==2
+ev217ng,ev217og,f.sel_flag==2
+ev217nh,ev217oh,f.sel_flag==2
+ev217ni,ev217oi,f.sel_flag==2
+ev217na,ev217oa,f.sel_flag==3
+ev217nb,ev217ob,f.sel_flag==3
+ev217nc,ev217oc,f.sel_flag==3
+ev217nd,ev217od,f.sel_flag==3
+ev217ne,ev217oe,f.sel_flag==3
+ev217nf,ev217of,f.sel_flag==3
+ev217ng,ev217og,f.sel_flag==3
+ev217nh,ev217oh,f.sel_flag==3
+ev217ni,ev217oi,f.sel_flag==3
+
+ev217pa,ev217pa,f.sel_flag==0
+ev217pb,ev217pb,f.sel_flag==0
+ev217pc,ev217pc,f.sel_flag==0
+ev217pd,ev217pd,f.sel_flag==0
+ev217pe,ev217pe,f.sel_flag==0
+ev217pf,ev217pf,f.sel_flag==0
+ev217pg,ev217pg,f.sel_flag==0
+ev217ph,ev217ph,f.sel_flag==0
+ev217pi,ev217pi,f.sel_flag==0
+ev217pa,ev217pa,f.sel_flag==1
+ev217pb,ev217pb,f.sel_flag==1
+ev217pc,ev217pc,f.sel_flag==1
+ev217pd,ev217pd,f.sel_flag==1
+ev217pe,ev217pe,f.sel_flag==1
+ev217pf,ev217pf,f.sel_flag==1
+ev217pg,ev217pg,f.sel_flag==1
+ev217ph,ev217ph,f.sel_flag==1
+ev217pi,ev217pi,f.sel_flag==1
+ev217pa,ev217qa,f.sel_flag==2
+ev217pb,ev217qb,f.sel_flag==2
+ev217pc,ev217qc,f.sel_flag==2
+ev217pd,ev217qd,f.sel_flag==2
+ev217pe,ev217qe,f.sel_flag==2
+ev217pf,ev217qf,f.sel_flag==2
+ev217pg,ev217qg,f.sel_flag==2
+ev217ph,ev217qh,f.sel_flag==2
+ev217pi,ev217qi,f.sel_flag==2
+ev217pa,ev217qa,f.sel_flag==3
+ev217pb,ev217qb,f.sel_flag==3
+ev217pc,ev217qc,f.sel_flag==3
+ev217pd,ev217qd,f.sel_flag==3
+ev217pe,ev217qe,f.sel_flag==3
+ev217pf,ev217qf,f.sel_flag==3
+ev217pg,ev217qg,f.sel_flag==3
+ev217ph,ev217qh,f.sel_flag==3
+ev217pi,ev217qi,f.sel_flag==3
+
+ev217ra,ev217ra,f.sel_flag==0
+ev217rb,ev217rb,f.sel_flag==0
+ev217rc,ev217rc,f.sel_flag==0
+ev217rd,ev217rd,f.sel_flag==0
+ev217re,ev217re,f.sel_flag==0
+ev217rf,ev217rf,f.sel_flag==0
+ev217rg,ev217rg,f.sel_flag==0
+ev217rh,ev217rh,f.sel_flag==0
+ev217ri,ev217ri,f.sel_flag==0
+ev217ra,ev217ta,f.sel_flag==1
+ev217rb,ev217tb,f.sel_flag==1
+ev217rc,ev217tc,f.sel_flag==1
+ev217rd,ev217td,f.sel_flag==1
+ev217re,ev217te,f.sel_flag==1
+ev217rf,ev217tf,f.sel_flag==1
+ev217rg,ev217tg,f.sel_flag==1
+ev217rh,ev217th,f.sel_flag==1
+ev217ri,ev217ti,f.sel_flag==1
+ev217ra,ev217sa,f.sel_flag==2
+ev217rb,ev217sb,f.sel_flag==2
+ev217rc,ev217sc,f.sel_flag==2
+ev217rd,ev217sd,f.sel_flag==2
+ev217re,ev217se,f.sel_flag==2
+ev217rf,ev217sf,f.sel_flag==2
+ev217rg,ev217sg,f.sel_flag==2
+ev217rh,ev217sh,f.sel_flag==2
+ev217ri,ev217si,f.sel_flag==2
+ev217ra,ev217ua,f.sel_flag==3
+ev217rb,ev217ub,f.sel_flag==3
+ev217rc,ev217uc,f.sel_flag==3
+ev217rd,ev217ud,f.sel_flag==3
+ev217re,ev217ue,f.sel_flag==3
+ev217rf,ev217uf,f.sel_flag==3
+ev217rg,ev217ug,f.sel_flag==3
+ev217rh,ev217uh,f.sel_flag==3
+ev217ri,ev217ui,f.sel_flag==3
+
+ev217ta,ev217na,f.sel_flag==0
+ev217tb,ev217nb,f.sel_flag==0
+ev217tc,ev217nc,f.sel_flag==0
+ev217td,ev217nd,f.sel_flag==0
+ev217te,ev217ne,f.sel_flag==0
+ev217tf,ev217nf,f.sel_flag==0
+ev217tg,ev217ng,f.sel_flag==0
+ev217th,ev217nh,f.sel_flag==0
+ev217ti,ev217ni,f.sel_flag==0
+ev217ta,ev217ta,f.sel_flag==1
+ev217tb,ev217tb,f.sel_flag==1
+ev217tc,ev217tc,f.sel_flag==1
+ev217td,ev217td,f.sel_flag==1
+ev217te,ev217te,f.sel_flag==1
+ev217tf,ev217tf,f.sel_flag==1
+ev217tg,ev217tg,f.sel_flag==1
+ev217th,ev217th,f.sel_flag==1
+ev217ti,ev217ti,f.sel_flag==1
+ev217ta,ev217ta,f.sel_flag==2
+ev217tb,ev217tb,f.sel_flag==2
+ev217tc,ev217tc,f.sel_flag==2
+ev217td,ev217td,f.sel_flag==2
+ev217te,ev217te,f.sel_flag==2
+ev217tf,ev217tf,f.sel_flag==2
+ev217tg,ev217tg,f.sel_flag==2
+ev217th,ev217th,f.sel_flag==2
+ev217ti,ev217ti,f.sel_flag==2
+ev217ta,ev217ua,f.sel_flag==3
+ev217tb,ev217ub,f.sel_flag==3
+ev217tc,ev217uc,f.sel_flag==3
+ev217td,ev217ud,f.sel_flag==3
+ev217te,ev217ue,f.sel_flag==3
+ev217tf,ev217uf,f.sel_flag==3
+ev217tg,ev217ug,f.sel_flag==3
+ev217th,ev217uh,f.sel_flag==3
+ev217ti,ev217ui,f.sel_flag==3
+
+
+ev218da,ev218da,f.sel_flag==0
+ev218db,ev218db,f.sel_flag==0
+ev218dc,ev218dc,f.sel_flag==0
+ev218dd,ev218dd,f.sel_flag==0
+ev218de,ev218de,f.sel_flag==0
+ev218df,ev218df,f.sel_flag==0
+ev218dg,ev218dg,f.sel_flag==0
+ev218dh,ev218dh,f.sel_flag==0
+ev218di,ev218di,f.sel_flag==0
+ev218da,ev218ea,f.sel_flag==1
+ev218db,ev218eb,f.sel_flag==1
+ev218dc,ev218ec,f.sel_flag==1
+ev218dd,ev218ed,f.sel_flag==1
+ev218de,ev218ee,f.sel_flag==1
+ev218df,ev218ef,f.sel_flag==1
+ev218dg,ev218eg,f.sel_flag==1
+ev218dh,ev218eh,f.sel_flag==1
+ev218di,ev218ei,f.sel_flag==1
+
+
+ev219fa,ev219fa,f.sel_flag==0
+ev219fb,ev219fb,f.sel_flag==0
+ev219fc,ev219fc,f.sel_flag==0
+ev219fd,ev219fd,f.sel_flag==0
+ev219fe,ev219fe,f.sel_flag==0
+ev219ff,ev219ff,f.sel_flag==0
+ev219fg,ev219fg,f.sel_flag==0
+ev219fh,ev219fh,f.sel_flag==0
+ev219fa,ev219ga,f.sel_flag==1
+ev219fb,ev219gb,f.sel_flag==1
+ev219fc,ev219gc,f.sel_flag==1
+ev219fd,ev219gd,f.sel_flag==1
+ev219fe,ev219ge,f.sel_flag==1
+ev219ff,ev219gf,f.sel_flag==1
+ev219fg,ev219gg,f.sel_flag==1
+ev219fh,ev219gh,f.sel_flag==1
+ev219ha,ev219ha,f.sel_flag==0
+ev219hb,ev219hb,f.sel_flag==0
+ev219hc,ev219hc,f.sel_flag==0
+ev219hd,ev219hd,f.sel_flag==0
+ev219he,ev219he,f.sel_flag==0
+ev219hf,ev219hf,f.sel_flag==0
+ev219hg,ev219hg,f.sel_flag==0
+ev219hh,ev219hh,f.sel_flag==0
+ev219ha,ev219ia,f.sel_flag==1
+ev219hb,ev219ib,f.sel_flag==1
+ev219hc,ev219ic,f.sel_flag==1
+ev219hd,ev219id,f.sel_flag==1
+ev219he,ev219ie,f.sel_flag==1
+ev219hf,ev219if,f.sel_flag==1
+ev219hg,ev219ig,f.sel_flag==1
+ev219hh,ev219ih,f.sel_flag==1
+ev219ja,ev219ja,f.sel_flag==0
+ev219jb,ev219jb,f.sel_flag==0
+ev219jc,ev219jc,f.sel_flag==0
+ev219jd,ev219jd,f.sel_flag==0
+ev219je,ev219je,f.sel_flag==0
+ev219jf,ev219jf,f.sel_flag==0
+ev219jg,ev219jg,f.sel_flag==0
+ev219jh,ev219jh,f.sel_flag==0
+ev219ja,ev219ka,f.sel_flag==1
+ev219jb,ev219kb,f.sel_flag==1
+ev219jc,ev219kc,f.sel_flag==1
+ev219jd,ev219kd,f.sel_flag==1
+ev219je,ev219ke,f.sel_flag==1
+ev219jf,ev219kf,f.sel_flag==1
+ev219jg,ev219kg,f.sel_flag==1
+ev219jh,ev219kh,f.sel_flag==1
+
+
+ev220ea,ev220ea,f.sel_flag==0 && f.anus_flag==0
+ev220eb,ev220eb,f.sel_flag==0 && f.anus_flag==0
+ev220ec,ev220ec,f.sel_flag==0 && f.anus_flag==0
+ev220ed,ev220ed,f.sel_flag==0 && f.anus_flag==0
+ev220ee,ev220ee,f.sel_flag==0 && f.anus_flag==0
+ev220ef,ev220ef,f.sel_flag==0 && f.anus_flag==0
+ev220eg,ev220eg,f.sel_flag==0 && f.anus_flag==0
+ev220eh,ev220eh,f.sel_flag==0 && f.anus_flag==0
+ev220ei,ev220ei,f.sel_flag==0 && f.anus_flag==0
+ev220ej,ev220ej,f.sel_flag==0 && f.anus_flag==0
+ev220ea,ev220fa,f.sel_flag==1 && f.anus_flag==0
+ev220eb,ev220fb,f.sel_flag==1 && f.anus_flag==0
+ev220ec,ev220fc,f.sel_flag==1 && f.anus_flag==0
+ev220ed,ev220fd,f.sel_flag==1 && f.anus_flag==0
+ev220ee,ev220fe,f.sel_flag==1 && f.anus_flag==0
+ev220ef,ev220ff,f.sel_flag==1 && f.anus_flag==0
+ev220eg,ev220fg,f.sel_flag==1 && f.anus_flag==0
+ev220eh,ev220fh,f.sel_flag==1 && f.anus_flag==0
+ev220ei,ev220fi,f.sel_flag==1 && f.anus_flag==0
+ev220ej,ev220fj,f.sel_flag==1 && f.anus_flag==0
+ev220ea,ev220ia,f.sel_flag==0 && f.anus_flag==1
+ev220eb,ev220ib,f.sel_flag==0 && f.anus_flag==1
+ev220ec,ev220ic,f.sel_flag==0 && f.anus_flag==1
+ev220ed,ev220id,f.sel_flag==0 && f.anus_flag==1
+ev220ee,ev220ie,f.sel_flag==0 && f.anus_flag==1
+ev220ef,ev220if,f.sel_flag==0 && f.anus_flag==1
+ev220eg,ev220ig,f.sel_flag==0 && f.anus_flag==1
+ev220eh,ev220ih,f.sel_flag==0 && f.anus_flag==1
+ev220ei,ev220ii,f.sel_flag==0 && f.anus_flag==1
+ev220ej,ev220ij,f.sel_flag==0 && f.anus_flag==1
+ev220ea,ev220ha,f.sel_flag==1 && f.anus_flag==1
+ev220eb,ev220hb,f.sel_flag==1 && f.anus_flag==1
+ev220ec,ev220hc,f.sel_flag==1 && f.anus_flag==1
+ev220ed,ev220hd,f.sel_flag==1 && f.anus_flag==1
+ev220ee,ev220he,f.sel_flag==1 && f.anus_flag==1
+ev220ef,ev220hf,f.sel_flag==1 && f.anus_flag==1
+ev220eg,ev220hg,f.sel_flag==1 && f.anus_flag==1
+ev220eh,ev220hh,f.sel_flag==1 && f.anus_flag==1
+ev220ei,ev220hi,f.sel_flag==1 && f.anus_flag==1
+ev220ej,ev220hj,f.sel_flag==1 && f.anus_flag==1
+
+ev220ga,ev220da,f.sel_flag==0 && f.anus_flag==0
+ev220gb,ev220db,f.sel_flag==0 && f.anus_flag==0
+ev220gc,ev220dc,f.sel_flag==0 && f.anus_flag==0
+ev220gd,ev220dd,f.sel_flag==0 && f.anus_flag==0
+ev220ge,ev220de,f.sel_flag==0 && f.anus_flag==0
+ev220gf,ev220df,f.sel_flag==0 && f.anus_flag==0
+ev220gg,ev220dg,f.sel_flag==0 && f.anus_flag==0
+ev220gh,ev220dh,f.sel_flag==0 && f.anus_flag==0
+ev220gi,ev220di,f.sel_flag==0 && f.anus_flag==0
+ev220gj,ev220dj,f.sel_flag==0 && f.anus_flag==0
+ev220ga,ev220da,f.sel_flag==1 && f.anus_flag==0
+ev220gb,ev220db,f.sel_flag==1 && f.anus_flag==0
+ev220gc,ev220dc,f.sel_flag==1 && f.anus_flag==0
+ev220gd,ev220dd,f.sel_flag==1 && f.anus_flag==0
+ev220ge,ev220de,f.sel_flag==1 && f.anus_flag==0
+ev220gf,ev220df,f.sel_flag==1 && f.anus_flag==0
+ev220gg,ev220dg,f.sel_flag==1 && f.anus_flag==0
+ev220gh,ev220dh,f.sel_flag==1 && f.anus_flag==0
+ev220gi,ev220di,f.sel_flag==1 && f.anus_flag==0
+ev220gj,ev220dj,f.sel_flag==1 && f.anus_flag==0
+ev220ga,ev220ga,f.sel_flag==0 && f.anus_flag==1
+ev220gb,ev220gb,f.sel_flag==0 && f.anus_flag==1
+ev220gc,ev220gc,f.sel_flag==0 && f.anus_flag==1
+ev220gd,ev220gd,f.sel_flag==0 && f.anus_flag==1
+ev220ge,ev220ge,f.sel_flag==0 && f.anus_flag==1
+ev220gf,ev220gf,f.sel_flag==0 && f.anus_flag==1
+ev220gg,ev220gg,f.sel_flag==0 && f.anus_flag==1
+ev220gh,ev220gh,f.sel_flag==0 && f.anus_flag==1
+ev220gi,ev220gi,f.sel_flag==0 && f.anus_flag==1
+ev220gj,ev220gj,f.sel_flag==0 && f.anus_flag==1
+ev220ga,ev220ga,f.sel_flag==1 && f.anus_flag==1
+ev220gb,ev220gb,f.sel_flag==1 && f.anus_flag==1
+ev220gc,ev220gc,f.sel_flag==1 && f.anus_flag==1
+ev220gd,ev220gd,f.sel_flag==1 && f.anus_flag==1
+ev220ge,ev220ge,f.sel_flag==1 && f.anus_flag==1
+ev220gf,ev220gf,f.sel_flag==1 && f.anus_flag==1
+ev220gg,ev220gg,f.sel_flag==1 && f.anus_flag==1
+ev220gh,ev220gh,f.sel_flag==1 && f.anus_flag==1
+ev220gi,ev220gi,f.sel_flag==1 && f.anus_flag==1
+ev220gj,ev220gj,f.sel_flag==1 && f.anus_flag==1
+
+
+ev311ea,ev311ea,f.sel_flag==0
+ev311eb,ev311eb,f.sel_flag==0
+ev311ec,ev311ec,f.sel_flag==0
+ev311ed,ev311ed,f.sel_flag==0
+ev311ee,ev311ee,f.sel_flag==0
+ev311ef,ev311ef,f.sel_flag==0
+ev311eg,ev311eg,f.sel_flag==0
+ev311eh,ev311eh,f.sel_flag==0
+ev311ei,ev311ei,f.sel_flag==0
+ev311ej,ev311ej,f.sel_flag==0
+ev311ea,ev311fa,f.sel_flag==1
+ev311eb,ev311fb,f.sel_flag==1
+ev311ec,ev311fc,f.sel_flag==1
+ev311ed,ev311fd,f.sel_flag==1
+ev311ee,ev311fe,f.sel_flag==1
+ev311ef,ev311ff,f.sel_flag==1
+ev311eg,ev311fg,f.sel_flag==1
+ev311eh,ev311fh,f.sel_flag==1
+ev311ei,ev311fi,f.sel_flag==1
+ev311ej,ev311fj,f.sel_flag==1
+
+ev312ea,ev312ea,f.sel_flag==0
+ev312eb,ev312eb,f.sel_flag==0
+ev312ec,ev312ec,f.sel_flag==0
+ev312ed,ev312ed,f.sel_flag==0
+ev312ee,ev312ee,f.sel_flag==0
+ev312ef,ev312ef,f.sel_flag==0
+ev312eg,ev312eg,f.sel_flag==0
+ev312eh,ev312eh,f.sel_flag==0
+ev312ei,ev312ei,f.sel_flag==0
+ev312ea,ev312ca,f.sel_flag==1
+ev312eb,ev312cb,f.sel_flag==1
+ev312ec,ev312cc,f.sel_flag==1
+ev312ed,ev312cd,f.sel_flag==1
+ev312ee,ev312ce,f.sel_flag==1
+ev312ef,ev312cf,f.sel_flag==1
+ev312eg,ev312cg,f.sel_flag==1
+ev312eh,ev312ch,f.sel_flag==1
+ev312ei,ev312ci,f.sel_flag==1
+ev312fa,ev312fa,f.sel_flag==0
+ev312fb,ev312fb,f.sel_flag==0
+ev312fc,ev312fc,f.sel_flag==0
+ev312fd,ev312fd,f.sel_flag==0
+ev312fe,ev312fe,f.sel_flag==0
+ev312ff,ev312ff,f.sel_flag==0
+ev312fg,ev312fg,f.sel_flag==0
+ev312fh,ev312fh,f.sel_flag==0
+ev312fi,ev312fi,f.sel_flag==0
+ev312fa,ev312ca,f.sel_flag==1
+ev312fb,ev312cb,f.sel_flag==1
+ev312fc,ev312cc,f.sel_flag==1
+ev312fd,ev312cd,f.sel_flag==1
+ev312fe,ev312ce,f.sel_flag==1
+ev312ff,ev312cf,f.sel_flag==1
+ev312fg,ev312cg,f.sel_flag==1
+ev312fh,ev312ch,f.sel_flag==1
+ev312fi,ev312ci,f.sel_flag==1
+
+
+ev315fa,ev315fa,f.sel_flag==0
+ev315fb,ev315fb,f.sel_flag==0
+ev315fc,ev315fc,f.sel_flag==0
+ev315fd,ev315fd,f.sel_flag==0
+ev315fe,ev315fe,f.sel_flag==0
+ev315ff,ev315ff,f.sel_flag==0
+ev315fg,ev315fg,f.sel_flag==0
+ev315fh,ev315fh,f.sel_flag==0
+ev315fa,ev315ha,f.sel_flag==1
+ev315fb,ev315hb,f.sel_flag==1
+ev315fc,ev315hc,f.sel_flag==1
+ev315fd,ev315hd,f.sel_flag==1
+ev315fe,ev315he,f.sel_flag==1
+ev315ff,ev315hf,f.sel_flag==1
+ev315fg,ev315hg,f.sel_flag==1
+ev315fh,ev315hh,f.sel_flag==1
+ev315ga,ev315ga,f.sel_flag==0
+ev315gb,ev315gb,f.sel_flag==0
+ev315gc,ev315gc,f.sel_flag==0
+ev315gd,ev315gd,f.sel_flag==0
+ev315ge,ev315ge,f.sel_flag==0
+ev315gf,ev315gf,f.sel_flag==0
+ev315gg,ev315gg,f.sel_flag==0
+ev315gh,ev315gh,f.sel_flag==0
+ev315ga,ev315ha,f.sel_flag==1
+ev315gb,ev315hb,f.sel_flag==1
+ev315gc,ev315hc,f.sel_flag==1
+ev315gd,ev315hd,f.sel_flag==1
+ev315ge,ev315he,f.sel_flag==1
+ev315gf,ev315hf,f.sel_flag==1
+ev315gg,ev315hg,f.sel_flag==1
+ev315gh,ev315hh,f.sel_flag==1
+
+ev317ca,ev317ca,f.sel_flag==0
+ev317cb,ev317cb,f.sel_flag==0
+ev317cc,ev317cc,f.sel_flag==0
+ev317cd,ev317cd,f.sel_flag==0
+ev317ce,ev317ce,f.sel_flag==0
+ev317cf,ev317cf,f.sel_flag==0
+ev317cg,ev317cg,f.sel_flag==0
+ev317ca,ev317da,f.sel_flag==1
+ev317cb,ev317db,f.sel_flag==1
+ev317cc,ev317dc,f.sel_flag==1
+ev317cd,ev317dd,f.sel_flag==1
+ev317ce,ev317de,f.sel_flag==1
+ev317cf,ev317df,f.sel_flag==1
+ev317cg,ev317dg,f.sel_flag==1
+
+ev318da,ev318da,f.sel_flag==0
+ev318db,ev318db,f.sel_flag==0
+ev318dc,ev318dc,f.sel_flag==0
+ev318dd,ev318dd,f.sel_flag==0
+ev318de,ev318de,f.sel_flag==0
+ev318df,ev318df,f.sel_flag==0
+ev318dg,ev318dg,f.sel_flag==0
+ev318dh,ev318dh,f.sel_flag==0
+ev318di,ev318di,f.sel_flag==0
+ev318dj,ev318dj,f.sel_flag==0
+ev318dk,ev318dk,f.sel_flag==0
+ev318dl,ev318dl,f.sel_flag==0
+ev318da,ev318ea,f.sel_flag==1
+ev318db,ev318eb,f.sel_flag==1
+ev318dc,ev318ec,f.sel_flag==1
+ev318dd,ev318ed,f.sel_flag==1
+ev318de,ev318ee,f.sel_flag==1
+ev318df,ev318ef,f.sel_flag==1
+ev318dg,ev318eg,f.sel_flag==1
+ev318dh,ev318eh,f.sel_flag==1
+ev318di,ev318ei,f.sel_flag==1
+ev318dj,ev318ej,f.sel_flag==1
+ev318dk,ev318ek,f.sel_flag==1
+ev318dl,ev318el,f.sel_flag==1
+
+ev318aa,ev318aa,f.sel_flag==0
+ev318ab,ev318ab,f.sel_flag==0
+ev318ac,ev318ac,f.sel_flag==0
+ev318ad,ev318ad,f.sel_flag==0
+ev318ae,ev318ae,f.sel_flag==0
+ev318af,ev318af,f.sel_flag==0
+ev318ag,ev318ag,f.sel_flag==0
+ev318ah,ev318ah,f.sel_flag==0
+ev318ai,ev318ai,f.sel_flag==0
+ev318aj,ev318aj,f.sel_flag==0
+ev318ak,ev318ak,f.sel_flag==0
+ev318al,ev318al,f.sel_flag==0
+ev318aa,ev318ea,f.sel_flag==1
+ev318ab,ev318eb,f.sel_flag==1
+ev318ac,ev318ec,f.sel_flag==1
+ev318ad,ev318ed,f.sel_flag==1
+ev318ae,ev318ee,f.sel_flag==1
+ev318af,ev318ef,f.sel_flag==1
+ev318ag,ev318eg,f.sel_flag==1
+ev318ah,ev318eh,f.sel_flag==1
+ev318ai,ev318ei,f.sel_flag==1
+ev318aj,ev318ej,f.sel_flag==1
+ev318ak,ev318ek,f.sel_flag==1
+ev318al,ev318el,f.sel_flag==1
+
+
+ev319ea,ev319ea,f.sel_flag==0
+ev319eb,ev319eb,f.sel_flag==0
+ev319ec,ev319ec,f.sel_flag==0
+ev319ed,ev319ed,f.sel_flag==0
+ev319ee,ev319ee,f.sel_flag==0
+ev319ef,ev319ef,f.sel_flag==0
+ev319eg,ev319eg,f.sel_flag==0
+ev319eh,ev319eh,f.sel_flag==0
+ev319ei,ev319ei,f.sel_flag==0
+ev319ej,ev319ej,f.sel_flag==0
+ev319ek,ev319ek,f.sel_flag==0
+ev319el,ev319el,f.sel_flag==0
+ev319ea,ev319fa,f.sel_flag==1
+ev319eb,ev319fb,f.sel_flag==1
+ev319ec,ev319fc,f.sel_flag==1
+ev319ed,ev319fd,f.sel_flag==1
+ev319ee,ev319fe,f.sel_flag==1
+ev319ef,ev319ff,f.sel_flag==1
+ev319eg,ev319fg,f.sel_flag==1
+ev319eh,ev319fh,f.sel_flag==1
+ev319ei,ev319fi,f.sel_flag==1
+ev319ej,ev319fj,f.sel_flag==1
+ev319ek,ev319fk,f.sel_flag==1
+ev319el,ev319fl,f.sel_flag==1
+ev319ga,ev319ga,f.sel_flag==0
+ev319gb,ev319gb,f.sel_flag==0
+ev319gc,ev319gc,f.sel_flag==0
+ev319gd,ev319gd,f.sel_flag==0
+ev319ge,ev319ge,f.sel_flag==0
+ev319gf,ev319gf,f.sel_flag==0
+ev319gg,ev319gg,f.sel_flag==0
+ev319gh,ev319gh,f.sel_flag==0
+ev319gi,ev319gi,f.sel_flag==0
+ev319gj,ev319gj,f.sel_flag==0
+ev319gk,ev319gk,f.sel_flag==0
+ev319gl,ev319gl,f.sel_flag==0
+ev319ga,ev319ia,f.sel_flag==1
+ev319gb,ev319ib,f.sel_flag==1
+ev319gc,ev319ic,f.sel_flag==1
+ev319gd,ev319id,f.sel_flag==1
+ev319ge,ev319ie,f.sel_flag==1
+ev319gf,ev319if,f.sel_flag==1
+ev319gg,ev319ig,f.sel_flag==1
+ev319gh,ev319ih,f.sel_flag==1
+ev319gi,ev319ii,f.sel_flag==1
+ev319gj,ev319ij,f.sel_flag==1
+ev319gk,ev319ik,f.sel_flag==1
+ev319gl,ev319il,f.sel_flag==1
+
+
+ev413ba,ev413ba,f.sel_flag==0
+ev413bb,ev413bb,f.sel_flag==0
+ev413bc,ev413bc,f.sel_flag==0
+ev413bd,ev413bd,f.sel_flag==0
+ev413be,ev413be,f.sel_flag==0
+ev413bf,ev413bf,f.sel_flag==0
+ev413bg,ev413bg,f.sel_flag==0
+ev413bh,ev413bh,f.sel_flag==0
+ev413ba,ev413da,f.sel_flag==1
+ev413bb,ev413db,f.sel_flag==1
+ev413bc,ev413dc,f.sel_flag==1
+ev413bd,ev413dd,f.sel_flag==1
+ev413be,ev413de,f.sel_flag==1
+ev413bf,ev413df,f.sel_flag==1
+ev413bg,ev413dg,f.sel_flag==1
+ev413bh,ev413dh,f.sel_flag==1
+ev413ea,ev413ea,f.sel_flag==0
+ev413eb,ev413eb,f.sel_flag==0
+ev413ec,ev413ec,f.sel_flag==0
+ev413ed,ev413ed,f.sel_flag==0
+ev413ee,ev413ee,f.sel_flag==0
+ev413ef,ev413ef,f.sel_flag==0
+ev413eg,ev413eg,f.sel_flag==0
+ev413eh,ev413eh,f.sel_flag==0
+ev413ea,ev413da,f.sel_flag==1
+ev413eb,ev413db,f.sel_flag==1
+ev413ec,ev413dc,f.sel_flag==1
+ev413ed,ev413dd,f.sel_flag==1
+ev413ee,ev413de,f.sel_flag==1
+ev413ef,ev413df,f.sel_flag==1
+ev413eg,ev413dg,f.sel_flag==1
+ev413eh,ev413dh,f.sel_flag==1
+
+ev413ga,ev413ga,f.sel_flag==0
+ev413gb,ev413gb,f.sel_flag==0
+ev413gc,ev413gc,f.sel_flag==0
+ev413gd,ev413gd,f.sel_flag==0
+ev413ge,ev413ge,f.sel_flag==0
+ev413gf,ev413gf,f.sel_flag==0
+ev413gg,ev413gg,f.sel_flag==0
+ev413gh,ev413gh,f.sel_flag==0
+ev413ga,ev413ia,f.sel_flag==1
+ev413gb,ev413ib,f.sel_flag==1
+ev413gc,ev413ic,f.sel_flag==1
+ev413gd,ev413id,f.sel_flag==1
+ev413ge,ev413ie,f.sel_flag==1
+ev413gf,ev413if,f.sel_flag==1
+ev413gg,ev413ig,f.sel_flag==1
+ev413gh,ev413ih,f.sel_flag==1
+
+
+ev415ca,ev415ca,f.sel_flag==0
+ev415cb,ev415cb,f.sel_flag==0
+ev415cc,ev415cc,f.sel_flag==0
+ev415cd,ev415cd,f.sel_flag==0
+ev415ce,ev415ce,f.sel_flag==0
+ev415cf,ev415cf,f.sel_flag==0
+ev415cg,ev415cg,f.sel_flag==0
+ev415ch,ev415ch,f.sel_flag==0
+ev415ci,ev415ci,f.sel_flag==0
+ev415ca,ev415da,f.sel_flag==1
+ev415cb,ev415db,f.sel_flag==1
+ev415cc,ev415dc,f.sel_flag==1
+ev415cd,ev415dd,f.sel_flag==1
+ev415ce,ev415de,f.sel_flag==1
+ev415cf,ev415df,f.sel_flag==1
+ev415cg,ev415dg,f.sel_flag==1
+ev415ch,ev415dh,f.sel_flag==1
+ev415ci,ev415di,f.sel_flag==1
+
+ev417ea,ev417ea,f.sel_flag==0
+ev417eb,ev417eb,f.sel_flag==0
+ev417ec,ev417ec,f.sel_flag==0
+ev417ed,ev417ed,f.sel_flag==0
+ev417ee,ev417ee,f.sel_flag==0
+ev417ef,ev417ef,f.sel_flag==0
+ev417eg,ev417eg,f.sel_flag==0
+ev417eh,ev417eh,f.sel_flag==0
+ev417ei,ev417ei,f.sel_flag==0
+ev417ej,ev417ej,f.sel_flag==0
+ev417ek,ev417ek,f.sel_flag==0
+ev417ea,ev417ea,f.sel_flag==1
+ev417eb,ev417eb,f.sel_flag==1
+ev417ec,ev417ec,f.sel_flag==1
+ev417ed,ev417ed,f.sel_flag==1
+ev417ee,ev417ee,f.sel_flag==1
+ev417ef,ev417ef,f.sel_flag==1
+ev417eg,ev417eg,f.sel_flag==1
+ev417eh,ev417eh,f.sel_flag==1
+ev417ei,ev417ei,f.sel_flag==1
+ev417ej,ev417ej,f.sel_flag==1
+ev417ek,ev417ek,f.sel_flag==1
+ev417ea,ev417fa,f.sel_flag==2
+ev417eb,ev417fb,f.sel_flag==2
+ev417ec,ev417fc,f.sel_flag==2
+ev417ed,ev417fd,f.sel_flag==2
+ev417ee,ev417fe,f.sel_flag==2
+ev417ef,ev417ff,f.sel_flag==2
+ev417eg,ev417fg,f.sel_flag==2
+ev417eh,ev417fh,f.sel_flag==2
+ev417ei,ev417fi,f.sel_flag==2
+ev417ej,ev417fj,f.sel_flag==2
+ev417ek,ev417fk,f.sel_flag==2
+
+ev419ca,ev419ca,f.sel_flag==0
+ev419cb,ev419cb,f.sel_flag==0
+ev419cc,ev419cc,f.sel_flag==0
+ev419cd,ev419cd,f.sel_flag==0
+ev419ce,ev419ce,f.sel_flag==0
+ev419cf,ev419cf,f.sel_flag==0
+ev419cg,ev419cg,f.sel_flag==0
+ev419ch,ev419ch,f.sel_flag==0
+ev419ci,ev419ci,f.sel_flag==0
+ev419ca,ev419ea,f.sel_flag==1
+ev419cb,ev419eb,f.sel_flag==1
+ev419cc,ev419ec,f.sel_flag==1
+ev419cd,ev419ed,f.sel_flag==1
+ev419ce,ev419ee,f.sel_flag==1
+ev419cf,ev419ef,f.sel_flag==1
+ev419cg,ev419eg,f.sel_flag==1
+ev419ch,ev419eh,f.sel_flag==1
+ev419ci,ev419ei,f.sel_flag==1
+
+ev419da,ev419da,f.sel_flag==0
+ev419db,ev419db,f.sel_flag==0
+ev419dc,ev419dc,f.sel_flag==0
+ev419dd,ev419dd,f.sel_flag==0
+ev419de,ev419de,f.sel_flag==0
+ev419df,ev419df,f.sel_flag==0
+ev419dg,ev419dg,f.sel_flag==0
+ev419dh,ev419dh,f.sel_flag==0
+ev419di,ev419di,f.sel_flag==0
+ev419da,ev419fa,f.sel_flag==1
+ev419db,ev419fb,f.sel_flag==1
+ev419dc,ev419fc,f.sel_flag==1
+ev419dd,ev419fd,f.sel_flag==1
+ev419de,ev419fe,f.sel_flag==1
+ev419df,ev419ff,f.sel_flag==1
+ev419dg,ev419fg,f.sel_flag==1
+ev419dh,ev419fh,f.sel_flag==1
+ev419di,ev419fi,f.sel_flag==1
+
+
+ev420ba,ev420ba,f.sel_flag==0
+ev420bb,ev420bb,f.sel_flag==0
+ev420bc,ev420bc,f.sel_flag==0
+ev420bd,ev420bd,f.sel_flag==0
+ev420be,ev420be,f.sel_flag==0
+ev420bf,ev420bf,f.sel_flag==0
+ev420ba,ev420ea,f.sel_flag==2
+ev420bb,ev420eb,f.sel_flag==2
+ev420bc,ev420ec,f.sel_flag==2
+ev420bd,ev420ed,f.sel_flag==2
+ev420be,ev420ee,f.sel_flag==2
+ev420bf,ev420ef,f.sel_flag==2
+
+ev420ha,ev420ba,f.sel_flag==0
+ev420hb,ev420bb,f.sel_flag==0
+ev420hc,ev420bc,f.sel_flag==0
+ev420hd,ev420bd,f.sel_flag==0
+ev420he,ev420be,f.sel_flag==0
+ev420hf,ev420bf,f.sel_flag==0
+ev420ha,ev420ea,f.sel_flag==1
+ev420hb,ev420eb,f.sel_flag==1
+ev420hc,ev420ec,f.sel_flag==1
+ev420hd,ev420ed,f.sel_flag==1
+ev420he,ev420ee,f.sel_flag==1
+ev420hf,ev420ef,f.sel_flag==1
+ev420ha,ev420ha,f.sel_flag==2
+ev420hb,ev420hb,f.sel_flag==2
+ev420hc,ev420hc,f.sel_flag==2
+ev420hd,ev420hd,f.sel_flag==2
+ev420he,ev420he,f.sel_flag==2
+ev420hf,ev420hf,f.sel_flag==2
+ev420ha,ev420fa,f.sel_flag==3
+ev420hb,ev420fb,f.sel_flag==3
+ev420hc,ev420fc,f.sel_flag==3
+ev420hd,ev420fd,f.sel_flag==3
+ev420he,ev420fe,f.sel_flag==3
+ev420hf,ev420ff,f.sel_flag==3
+
+
+ev420ga,ev420ga,f.sel_flag==0
+ev420gb,ev420gb,f.sel_flag==0
+ev420gc,ev420gc,f.sel_flag==0
+ev420gd,ev420gd,f.sel_flag==0
+ev420ge,ev420ge,f.sel_flag==0
+ev420gf,ev420gf,f.sel_flag==0
+ev420ga,ev420ea,f.sel_flag==2
+ev420gb,ev420eb,f.sel_flag==2
+ev420gc,ev420ec,f.sel_flag==2
+ev420gd,ev420ed,f.sel_flag==2
+ev420ge,ev420ee,f.sel_flag==2
+ev420gf,ev420ef,f.sel_flag==2
+
+ev420ia,ev420aa,f.sel_flag==0
+ev420ib,ev420ab,f.sel_flag==0
+ev420ic,ev420ac,f.sel_flag==0
+ev420id,ev420ad,f.sel_flag==0
+ev420ie,ev420ae,f.sel_flag==0
+ev420if,ev420af,f.sel_flag==0
+ev420ia,ev420aa,f.sel_flag==1
+ev420ib,ev420ab,f.sel_flag==1
+ev420ic,ev420ac,f.sel_flag==1
+ev420id,ev420ad,f.sel_flag==1
+ev420ie,ev420ae,f.sel_flag==1
+ev420if,ev420af,f.sel_flag==1
+ev420ia,ev420ia,f.sel_flag==2
+ev420ib,ev420ib,f.sel_flag==2
+ev420ic,ev420ic,f.sel_flag==2
+ev420id,ev420id,f.sel_flag==2
+ev420ie,ev420ie,f.sel_flag==2
+ev420if,ev420if,f.sel_flag==2
+ev420ia,ev420ia,f.sel_flag==3
+ev420ib,ev420ib,f.sel_flag==3
+ev420ic,ev420ic,f.sel_flag==3
+ev420id,ev420id,f.sel_flag==3
+ev420ie,ev420ie,f.sel_flag==3
+ev420if,ev420if,f.sel_flag==3
+
+ev420ca,ev420ca,f.sel_flag==0
+ev420cb,ev420cb,f.sel_flag==0
+ev420cc,ev420cc,f.sel_flag==0
+ev420cd,ev420cd,f.sel_flag==0
+ev420ce,ev420ce,f.sel_flag==0
+ev420cf,ev420cf,f.sel_flag==0
+ev420ca,ev420ea,f.sel_flag==1
+ev420cb,ev420eb,f.sel_flag==1
+ev420cc,ev420ec,f.sel_flag==1
+ev420cd,ev420ed,f.sel_flag==1
+ev420ce,ev420ee,f.sel_flag==1
+ev420cf,ev420ef,f.sel_flag==1
+ev420ca,ev420ha,f.sel_flag==2
+ev420cb,ev420hb,f.sel_flag==2
+ev420cc,ev420hc,f.sel_flag==2
+ev420cd,ev420hd,f.sel_flag==2
+ev420ce,ev420he,f.sel_flag==2
+ev420cf,ev420hf,f.sel_flag==2
+ev420ca,ev420fa,f.sel_flag==3
+ev420cb,ev420fb,f.sel_flag==3
+ev420cc,ev420fc,f.sel_flag==3
+ev420cd,ev420fd,f.sel_flag==3
+ev420ce,ev420fe,f.sel_flag==3
+ev420cf,ev420ff,f.sel_flag==3
+
+ev420fa,ev420ga,f.sel_flag==0
+ev420fb,ev420gb,f.sel_flag==0
+ev420fc,ev420gc,f.sel_flag==0
+ev420fd,ev420gd,f.sel_flag==0
+ev420fe,ev420ge,f.sel_flag==0
+ev420ff,ev420gf,f.sel_flag==0
+ev420fa,ev420fa,f.sel_flag==1
+ev420fb,ev420fb,f.sel_flag==1
+ev420fc,ev420fc,f.sel_flag==1
+ev420fd,ev420fd,f.sel_flag==1
+ev420fe,ev420fe,f.sel_flag==1
+ev420ff,ev420ff,f.sel_flag==1
+ev420fa,ev420ja,f.sel_flag==2
+ev420fb,ev420jb,f.sel_flag==2
+ev420fc,ev420jc,f.sel_flag==2
+ev420fd,ev420jd,f.sel_flag==2
+ev420fe,ev420je,f.sel_flag==2
+ev420ff,ev420jf,f.sel_flag==2
+ev420fa,ev420fa,f.sel_flag==3
+ev420fb,ev420fb,f.sel_flag==3
+ev420fc,ev420fc,f.sel_flag==3
+ev420fd,ev420fd,f.sel_flag==3
+ev420fe,ev420fe,f.sel_flag==3
+ev420ff,ev420ff,f.sel_flag==3
+
+
+ev421fa,ev421fa,f.sel_flag==0
+ev421fb,ev421fb,f.sel_flag==0
+ev421fc,ev421fc,f.sel_flag==0
+ev421fd,ev421fd,f.sel_flag==0
+ev421fe,ev421fe,f.sel_flag==0
+ev421ff,ev421ff,f.sel_flag==0
+ev421fg,ev421fg,f.sel_flag==0
+ev421fh,ev421fh,f.sel_flag==0
+ev421fi,ev421fi,f.sel_flag==0
+ev421fj,ev421fj,f.sel_flag==0
+ev421fa,ev421ea,f.sel_flag==1
+ev421fb,ev421eb,f.sel_flag==1
+ev421fc,ev421ec,f.sel_flag==1
+ev421fd,ev421ed,f.sel_flag==1
+ev421fe,ev421ee,f.sel_flag==1
+ev421ff,ev421ef,f.sel_flag==1
+ev421fg,ev421eg,f.sel_flag==1
+ev421fh,ev421eh,f.sel_flag==1
+ev421fi,ev421ei,f.sel_flag==1
+ev421fj,ev421ej,f.sel_flag==1
+ev421ga,ev421ea,f.sel_flag==1
+ev421gb,ev421eb,f.sel_flag==1
+ev421gc,ev421ec,f.sel_flag==1
+ev421gd,ev421ed,f.sel_flag==1
+ev421ge,ev421ee,f.sel_flag==1
+ev421gf,ev421ef,f.sel_flag==1
+ev421gg,ev421eg,f.sel_flag==1
+ev421gh,ev421eh,f.sel_flag==1
+ev421gi,ev421ei,f.sel_flag==1
+ev421gj,ev421ej,f.sel_flag==1
+
+
+ev505da,ev505da,f.sel_flag==0
+ev505db,ev505db,f.sel_flag==0
+ev505dc,ev505dc,f.sel_flag==0
+ev505dd,ev505dd,f.sel_flag==0
+ev505de,ev505de,f.sel_flag==0
+ev505df,ev505df,f.sel_flag==0
+ev505dg,ev505dg,f.sel_flag==0
+ev505dh,ev505dh,f.sel_flag==0
+ev505di,ev505di,f.sel_flag==0
+ev505dj,ev505dj,f.sel_flag==0
+ev505dk,ev505dk,f.sel_flag==0
+ev505da,ev505fa,f.sel_flag==1
+ev505db,ev505fb,f.sel_flag==1
+ev505dc,ev505fc,f.sel_flag==1
+ev505dd,ev505fd,f.sel_flag==1
+ev505de,ev505fe,f.sel_flag==1
+ev505df,ev505ff,f.sel_flag==1
+ev505dg,ev505fg,f.sel_flag==1
+ev505dh,ev505fh,f.sel_flag==1
+ev505di,ev505fi,f.sel_flag==1
+ev505dj,ev505fj,f.sel_flag==1
+ev505kj,ev505fj,f.sel_flag==1
+
+
+ev507ca,ev507ca,f.sel_flag==0
+ev507cb,ev507cb,f.sel_flag==0
+ev507cc,ev507cc,f.sel_flag==0
+ev507cd,ev507cd,f.sel_flag==0
+ev507ce,ev507ce,f.sel_flag==0
+ev507cf,ev507cf,f.sel_flag==0
+ev507cg,ev507cg,f.sel_flag==0
+ev507ch,ev507ch,f.sel_flag==0
+ev507ci,ev507ci,f.sel_flag==0
+ev507cj,ev507cj,f.sel_flag==0
+ev507ca,ev507da,f.sel_flag==1
+ev507cb,ev507db,f.sel_flag==1
+ev507cc,ev507dc,f.sel_flag==1
+ev507cd,ev507dd,f.sel_flag==1
+ev507ce,ev507de,f.sel_flag==1
+ev507cf,ev507df,f.sel_flag==1
+ev507cg,ev507dg,f.sel_flag==1
+ev507ch,ev507dh,f.sel_flag==1
+ev507ci,ev507di,f.sel_flag==1
+ev507cj,ev507dj,f.sel_flag==1
+
+
+ev509ea,ev509ea,f.sel_flag==0
+ev509eb,ev509eb,f.sel_flag==0
+ev509ec,ev509ec,f.sel_flag==0
+ev509ed,ev509ed,f.sel_flag==0
+ev509ee,ev509ee,f.sel_flag==0
+ev509ea,ev509ba,f.sel_flag==1
+ev509eb,ev509bb,f.sel_flag==1
+ev509ec,ev509bc,f.sel_flag==1
+ev509ed,ev509bd,f.sel_flag==1
+ev509ee,ev509be,f.sel_flag==1
+ev509ca,ev509ca,f.sel_flag==0
+ev509cb,ev509cb,f.sel_flag==0
+ev509cc,ev509cc,f.sel_flag==0
+ev509cd,ev509cd,f.sel_flag==0
+ev509ce,ev509ce,f.sel_flag==0
+ev509ca,ev509ba,f.sel_flag==1
+ev509cb,ev509bb,f.sel_flag==1
+ev509cc,ev509bc,f.sel_flag==1
+ev509cd,ev509bd,f.sel_flag==1
+ev509ce,ev509be,f.sel_flag==1
+
+ev509ha,ev509ha,f.eye_flag==0 && f.sel_flag==0
+ev509ha,ev509ga,f.eye_flag==0 && f.sel_flag==1
+ev509ha,ev509ce,f.eye_flag==1 && f.sel_flag==0
+ev509ha,ev509de,f.eye_flag==1 && f.sel_flag==1
+
+
+ev510aa,ev510aa,f.eye_flag==0
+ev510ab,ev510ab,f.eye_flag==0
+ev510ac,ev510ac,f.eye_flag==0
+ev510ad,ev510ad,f.eye_flag==0
+ev510ae,ev510ae,f.eye_flag==0
+ev510af,ev510af,f.eye_flag==0
+ev510ag,ev510ag,f.eye_flag==0
+ev510aa,ev510ea,f.eye_flag==1
+ev510ab,ev510eb,f.eye_flag==1
+ev510ac,ev510ec,f.eye_flag==1
+ev510ad,ev510ed,f.eye_flag==1
+ev510ae,ev510ee,f.eye_flag==1
+ev510af,ev510ef,f.eye_flag==1
+ev510ag,ev510eg,f.eye_flag==1
+ev510ba,ev510ba,f.eye_flag==0
+ev510bb,ev510bb,f.eye_flag==0
+ev510bc,ev510bc,f.eye_flag==0
+ev510bd,ev510bd,f.eye_flag==0
+ev510be,ev510be,f.eye_flag==0
+ev510bf,ev510bf,f.eye_flag==0
+ev510bg,ev510bg,f.eye_flag==0
+ev510ba,ev510fa,f.eye_flag==1
+ev510bb,ev510fb,f.eye_flag==1
+ev510bc,ev510fc,f.eye_flag==1
+ev510bd,ev510fd,f.eye_flag==1
+ev510be,ev510fe,f.eye_flag==1
+ev510bf,ev510ff,f.eye_flag==1
+ev510bg,ev510fg,f.eye_flag==1
+ev510ca,ev510ca,f.eye_flag==0 && f.sel_flag==0
+ev510cb,ev510cb,f.eye_flag==0 && f.sel_flag==0
+ev510cc,ev510cc,f.eye_flag==0 && f.sel_flag==0
+ev510cd,ev510cd,f.eye_flag==0 && f.sel_flag==0
+ev510ce,ev510ce,f.eye_flag==0 && f.sel_flag==0
+ev510cf,ev510cf,f.eye_flag==0 && f.sel_flag==0
+ev510cg,ev510cg,f.eye_flag==0 && f.sel_flag==0
+ev510ca,ev510ga,f.eye_flag==1 && f.sel_flag==0
+ev510cb,ev510gb,f.eye_flag==1 && f.sel_flag==0
+ev510cc,ev510gc,f.eye_flag==1 && f.sel_flag==0
+ev510cd,ev510gd,f.eye_flag==1 && f.sel_flag==0
+ev510ce,ev510ge,f.eye_flag==1 && f.sel_flag==0
+ev510cf,ev510gf,f.eye_flag==1 && f.sel_flag==0
+ev510cg,ev510gg,f.eye_flag==1 && f.sel_flag==0
+ev510ca,ev510da,f.eye_flag==0 && f.sel_flag==1
+ev510cb,ev510db,f.eye_flag==0 && f.sel_flag==1
+ev510cc,ev510dc,f.eye_flag==0 && f.sel_flag==1
+ev510cd,ev510dd,f.eye_flag==0 && f.sel_flag==1
+ev510ce,ev510de,f.eye_flag==0 && f.sel_flag==1
+ev510cf,ev510df,f.eye_flag==0 && f.sel_flag==1
+ev510cg,ev510dg,f.eye_flag==0 && f.sel_flag==1
+ev510ca,ev510ha,f.eye_flag==1 && f.sel_flag==1
+ev510cb,ev510hb,f.eye_flag==1 && f.sel_flag==1
+ev510cc,ev510hc,f.eye_flag==1 && f.sel_flag==1
+ev510cd,ev510hd,f.eye_flag==1 && f.sel_flag==1
+ev510ce,ev510he,f.eye_flag==1 && f.sel_flag==1
+ev510cf,ev510hf,f.eye_flag==1 && f.sel_flag==1
+ev510cg,ev510hg,f.eye_flag==1 && f.sel_flag==1

@@ -113,23 +113,34 @@ export function renderMiner(vm, h) {
     }
   }));
 
-  // 矿石分布
+  // 老矿工主角 (顶部拉绳老矿工)
+  elements.push(h('image', {
+    staticStyle: {
+      position: 'absolute', left: (m.originX - 16) + 'px', top: '0px',
+      width: '32px', height: '24px'
+    },
+    attrs: { src: 'assets/miner_char.png' }
+  }));
+
+  // 矿石分布 (16-bit 像素金块、钻石与岩石)
   for (var i = 0; i < m.items.length; i++) {
     var it = m.items[i];
     var ix = it.caught ? (m.originX + Math.sin((m.angle * Math.PI) / 180) * m.hookLen) : it.x;
     var iy = it.caught ? (m.originY + Math.cos((m.angle * Math.PI) / 180) * m.hookLen) : it.y;
 
-    elements.push(h('div', {
+    var asset = 'assets/miner_gold_s.png';
+    if (it.type === 'diamond') asset = 'assets/miner_diamond.png';
+    else if (it.type === 'rock') asset = 'assets/miner_rock.png';
+    else if (it.r > 18) asset = 'assets/miner_gold_l.png';
+    else if (it.r > 14) asset = 'assets/miner_gold_m.png';
+
+    elements.push(h('image', {
       staticStyle: {
         position: 'absolute', left: Math.floor(ix - it.r) + 'px', top: Math.floor(iy - it.r) + 'px',
-        width: (it.r * 2) + 'px', height: (it.r * 2) + 'px',
-        backgroundColor: it.color, borderRadius: it.r + 'px',
-        borderWidth: '1.5px', borderColor: '#ffffff',
-        justifyContent: 'center', alignItems: 'center'
-      }
-    }, [
-      h('text', { staticStyle: { fontSize: (it.r < 15 ? '10px' : '12px'), color: '#090d16', fontWeight: 'bold' } }, it.label)
-    ]));
+        width: (it.r * 2) + 'px', height: (it.r * 2) + 'px'
+      },
+      attrs: { src: asset }
+    }));
   }
 
   // 飞爪与绳索
@@ -137,13 +148,13 @@ export function renderMiner(vm, h) {
   var hx = m.originX + Math.sin(rad) * m.hookLen;
   var hy = m.originY + Math.cos(rad) * m.hookLen;
 
-  // 爪头
-  elements.push(h('div', {
+  // 像素钢爪爪头
+  elements.push(h('image', {
     staticStyle: {
-      position: 'absolute', left: Math.floor(hx - 6) + 'px', top: Math.floor(hy - 6) + 'px',
-      width: '12px', height: '12px', backgroundColor: '#f97316', borderRadius: '6px',
-      borderWidth: '2px', borderColor: '#ffffff'
-    }
+      position: 'absolute', left: Math.floor(hx - 12) + 'px', top: Math.floor(hy - 8) + 'px',
+      width: '24px', height: '24px'
+    },
+    attrs: { src: 'assets/miner_claw.png' }
   }));
 
   return h('div', {

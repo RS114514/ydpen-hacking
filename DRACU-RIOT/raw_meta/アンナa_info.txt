@@ -1,0 +1,50 @@
+dress	私服	diff	1	ベース
+dress	私服	diff	1	髪かぶせ
+
+face	01	base	表情
+face	02	base	2　　笑顔2
+face	03	base	3　　満足気な笑み
+face	04	base	4　　含み笑い
+face	05	base	5　　ため息を吐くような
+face	06	base	6　　きょとん
+face	07	base	7　　驚き
+face	08	base	8　　感嘆
+face	09	base	9　　寂しい
+face	10	base	10　　考える
+face	11	base	11　　真剣
+face	12	base	12　　叫ぶ
+face	13	base	13　　困った
+face	14	base	満足気な笑み（目）真剣（眉口）
+face	15	base	満足気な笑み（目）真剣（眉）驚く口
+
+
+face	01h	base	表情
+face	01h	base	照れ
+face	02h	base	2　　笑顔2
+face	02h	base	照れ
+face	03h	base	3　　満足気な笑み
+face	03h	base	照れ
+face	04h	base	4　　含み笑い
+face	04h	base	照れ
+face	05h	base	5　　ため息を吐くような
+face	05h	base	照れ
+face	06h	base	6　　きょとん
+face	06h	base	照れ
+face	07h	base	7　　驚き
+face	07h	base	照れ
+face	08h	base	8　　感嘆
+face	08h	base	照れ
+face	09h	base	9　　寂しい
+face	09h	base	照れ
+face	10h	base	10　　考える
+face	10h	base	照れ
+face	11h	base	11　　真剣
+face	11h	base	照れ
+face	12h	base	12　　叫ぶ
+face	12h	base	照れ
+face	13h	base	13　　困った
+face	13h	base	照れ
+face	14h	base	満足気な笑み（目）真剣（眉口）
+face	14h	base	照れ
+face	15h	base	満足気な笑み（目）真剣（眉）驚く口
+face	15h	base	照れ

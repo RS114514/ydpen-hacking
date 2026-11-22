@@ -1,0 +1,14 @@
+[
+%[
+ filename:'エリナa',
+ xoffset:0,
+ yoffset:150,
+ leveloffset:[[0,0],[0,0],[0,0],[0,0],[0,0]],
+],
+%[
+ filename:'エリナb',
+ xoffset:35,
+ yoffset:150,
+ leveloffset:[[0,0],[0,0],[0,0],[0,0],[0,0]],
+],
+]

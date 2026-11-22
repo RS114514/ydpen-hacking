@@ -1,0 +1,162 @@
+{
+  "gameId": "huiguang_rixin",
+  "schema": "chunhui-avg-v1",
+  "generated": "2026-11-01",
+  "target": "YDPX6-2 800x220",
+  "viewSpec": {
+    "maxLinesPerScreen": 4,
+    "maxCharsPerLine": 100,
+    "choicesPerBranch": "2-3",
+    "maxChoiceChars": 16
+  },
+  "volumes": {
+    "vol1_autumn": {
+      "file": "data/script_vol1_autumn.json",
+      "title": "第一卷 · 金秋篇《白马秋风：未刊手稿与大礼堂惊雷》",
+      "chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10"
+      ],
+      "cases": [
+        "case01",
+        "case02",
+        "case03",
+        "case04",
+        "case05",
+        "case06"
+      ],
+      "chapterCount": 10,
+      "caseCount": 6,
+      "lineCount": 40,
+      "choiceCount": 2,
+      "hasScenes": false,
+      "hasDeduction": false,
+      "choiceNodeCount": 0,
+      "choiceOptionCount": 2,
+      "sceneCount": 0,
+      "caseStageCount": 0
+    },
+    "vol2_winter": {
+      "file": "data/script_vol2_winter.json",
+      "title": "凛冬篇《平屋风雪：烽火西迁与泰岳钟声》",
+      "chapters": [
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14",
+        "ch15",
+        "ch16",
+        "ch17",
+        "ch18",
+        "ch19",
+        "ch20"
+      ],
+      "cases": [
+        "case07",
+        "case08",
+        "case09",
+        "case10",
+        "case11",
+        "case12"
+      ],
+      "chapterCount": 10,
+      "caseCount": 6,
+      "lineCount": 283,
+      "choiceCount": 81,
+      "hasScenes": true,
+      "hasDeduction": true,
+      "choiceNodeCount": 27,
+      "choiceOptionCount": 81,
+      "sceneCount": 62,
+      "caseStageCount": 0
+    },
+    "vol3_spring": {
+      "file": "data/script_vol3_spring.json",
+      "title": "第三卷 · 鸣春篇《曲院风荷：名师雅集与寒之友》",
+      "chapters": [
+        "ch21",
+        "ch22",
+        "ch23",
+        "ch24",
+        "ch25",
+        "ch26",
+        "ch27",
+        "ch28"
+      ],
+      "cases": [
+        "case13",
+        "case14",
+        "case15",
+        "case16",
+        "case17",
+        "case18"
+      ],
+      "chapterCount": 8,
+      "caseCount": 6,
+      "lineCount": 215,
+      "choiceCount": 54,
+      "hasScenes": true,
+      "hasDeduction": true,
+      "choiceNodeCount": 18,
+      "choiceOptionCount": 54,
+      "sceneCount": 45,
+      "caseStageCount": 0
+    },
+    "vol4_summer": {
+      "file": "data/script_vol4_summer.json",
+      "title": "第四卷 · 盛夏篇《晖光日新：白马扬帆与时代交响》",
+      "chapters": [
+        "ch29",
+        "ch30",
+        "ch31",
+        "ch32",
+        "ch33",
+        "ch34",
+        "ch35",
+        "ch36"
+      ],
+      "cases": [
+        "case19",
+        "case20",
+        "case21",
+        "case22",
+        "case23",
+        "case24"
+      ],
+      "chapterCount": 8,
+      "caseCount": 6,
+      "lineCount": 28,
+      "choiceCount": 0,
+      "hasScenes": false,
+      "hasDeduction": false,
+      "choiceNodeCount": 0,
+      "choiceOptionCount": 0,
+      "sceneCount": 0,
+      "caseStageCount": 0
+    }
+  },
+  "engineWiring": {
+    "expectedPages": [
+      "pages/game/game.js",
+      "pages/caseboard/caseboard.js"
+    ],
+    "currentState": "game.js 仍为硬编码演示文本；app/data 为空；build.py 仅打包 assets，不打包 data",
+    "required": [
+      "启动时加载 data/script_vol*.json",
+      "renderGame 读取 currentChapter.lines[currentLineIndex]",
+      "choiceNodes/choices 绑定触控分支",
+      "caseboard 读取 cases[].evidence/deduction",
+      "build.py 将 data/ 同步进包内"
+    ],
+    "critical": "game.js 的 loadCurrentChapterData 只打印日志；renderGame 使用硬编码文本/属性；app/data 为空；build.py 不复制 data。",
+    "vol1_vol4_risk": "第一卷 40 行/10 章、第四卷同量级，远低于第二/三卷；若目标 20 小时，需同步扩写。"
+  }
+}

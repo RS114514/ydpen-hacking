@@ -1,5 +1,14 @@
 # 《千恋＊万花》词典笔移植项目 —— Agent 接力开发指南 (AGENTS.md)
 
+> **当前状态覆盖说明（2026-10-26 01:30）**
+> - 可玩范围为六条本篇个人线 + 共通线 + 6 部后日谈：主线 9155、芳乃 9790、茉子 9109、丛雨 10990、蕾娜 9438、小春 5277、芦花 1967 句（合计 55726 句）。
+> - 剧情选择支、流程图响应式切换、鉴赏暂停、BGM 设置持久化、自动播放、选择/旗标存读档已实现。
+> - 最新离线回归：全部 `tools/test_*.mjs` 与 `tools/test_*.py` 通过（流程图 11/11）。
+> - `AGENTS.md` 下文及 `AI记录` 中“立绘差分 100% 命中”的说法不准确：路径字符串可生成不等于文件存在；需按实际资源继续做存在性回退。
+> - **音频已改为原生软件 PCM 混音**：固件缺少 `audiomixer`/`adder`，`native/gal_gs.c` 现使用每声部 `decodebin -> appsink` + C 线程混音 + 单 `appsrc -> alsasink` 输出。新库已编译安装，真机 BGM 管线验证为声卡 `RUNNING`、仅一个 PCM 句柄、无 bus error；语音解码/混音已用真实文件冒烟验证。实际听感（语音与 BGM 同时外放）仍待用户清醒后确认。
+> - **流程图个人线跳转已修复**：`fcNodeTarget(node)` 按 route→scenario、CHAPTER→行号映射；レナ CHAPTER 3-6 不再误跳共通线 8212。芳乃 3-8、レナ 3-6 已在真机显示“第 0 句”。
+> - 设备端语音共 5595（剧本 5589 + 卡片播报 6），最新审计全部匹配；报告在外置盘。
+
 本文件为后续接棒的 AI Agent（Codex / DeepSeek / Antigravity 等）提供完整的上下文、已交付成果、当前任务、后续任务与测试命令指南。
 
 ---
@@ -30,9 +39,9 @@
 
 ## 一、你在做的工作（当前正在处理的问题）
 
-1. **解决角色台词无语音发声问题**：
-   - **根本原因**：词典笔系统 `/etc/asound.conf` 未启用 ALSA dmix 混音器。标题界面和主线剧情播放 BGM 时，BGM GStreamer 管道独占了硬件声卡 `/dev/snd/pcmC1D0p`。当台词触发 `G.playVoice()` 时，GStreamer 内部报错 `Device 'default' is busy. Could not open audio device for playback`，导致所有语音无法发声。
-   - **解决方案**：在 `app/pages/game/game.js` 的 `applyCurrentLine` 和 `replayVoice` 中实现了语音避让机制（Voice Ducking）。当台词有语音时，先调用 `G.stopBgm()` 释放声卡句柄，再启动语音播放；同时启动 `startVoiceWatcher()`，通过 `G.status()` 监听语音播放结束（EOS）后自动恢复播放章节 BGM。
+1. **音频管线（主体已完成，待听感确认）**：
+   - **根本原因**：固件 `/usr/lib/gstreamer-1.0/` 没有 `audiomixer`，也没有 `adder`，旧原生库无法建立混音图；同时内核缺少 ALSA dmix 所需 timer，BGM/语音各自 `alsasink` 会争抢 `/dev/snd/pcmC1D0p`。
+   - **解决方案**：`native/gal_gs.c` 改为每个声部独立 `filesrc ! decodebin ! audioconvert ! audioresample ! capsfilter ! appsink`，由 C mixer 线程每 20ms 取 S16LE/48k/2ch PCM 做软件混音，再经唯一 `appsrc ! queue ! audioconvert ! audioresample ! alsasink` 输出。BGM ducking、循环、空闲释放与 `status()` 契约都在原生层实现。JS 仍保留 `stopBgm()/playVoice()` 序列，原生 `stopBgm()` 用 150ms 宽限窗口取消停止并压低 BGM，因此 BGM 不会回到开头。
 2. **解决游玩界面画质发糊问题**：
    - **根本原因**：此前设备端背景和立绘文件多为 390×220 的低分辨率缩略图，在 960×266 物理屏及舞台特写放大（1.5x/2.0x/2.5x）下拉伸产生双线性插值模糊。
    - **解决方案**：
@@ -68,18 +77,19 @@
 
 ## 三、你接下来要做的工作（接棒 Agent 的待办任务）
 
-1. **联合构建与全流程回归打包**：
-   - 运行 `python3 build.py --install`，将包含最新避让逻辑的 `game.js`、更新后的 `title.js`、`afterstory.js`、`flowchart.js` 统一编译打包并安装至词典笔。
-2. **真机验证语音避让与恢复效果**：
-   - 点击主菜单“继续游戏”（或读取第 52 句芦花存档），确认角色台词 `rok001_005.ogg` 能否正常清脆发声；
-   - 确认语音播放期间 BGM 是否正常避让，语音播完后 BGM 是否自动恢复播放；
-   - 点击界面右侧“重播语音”，验证重播流程是否发声正常。
+1. **音频听感回归（用户清醒后）**：
+   - 启动应用或读取第 60 句芦花存档，确认 BGM 与语音能同时发声；语音期间 BGM 压低到 45%，语音结束 BGM 从原位置继续，不回到开头；
+   - 若首字被吞或起播延迟，调整 `GAL_BLOCK_FRAMES`、`GAL_BGM_DUCK_FACTOR` 或 `queue max-size-time`；
+   - 真机检查 `/tmp/gal_gs_mixer.log`、`/proc/asound/card1/pcm0p/sub0/status` 与 `/proc/$(pidof miniapp)/fd`（应只有一个 `/dev/snd/pcmC1D0p` 句柄）。
+2. **六条个人线完整回归**：
+   - 从流程图进入芳乃/茉子/丛雨/蕾娜/サブ各章节，验证 `fcNodeTarget` 跳转、选项、存档与通关 `clearedRoutes`；
+   - 重点回归小春/芦花 2727/3177 分流、509 分支与 EPILOGUE 映射。
 3. **真机截屏验证高清画质与放大效果**：
    - 截屏检查左侧舞台区（390×220）下的 960×540 高清背景与 780×440 高清立绘，确认边缘平滑锐利；
    - 点击左侧舞台进入放大看图特写模式，缩放至 1.5x / 2.0x，截屏验证放大后画面依然清晰无锯齿。
-4. **验证流程图与后日谈真机跳转**：
-   - 从主菜单进入“流程图”，点击任意章节节点，验证调用 `jumpFromFlowchart(targetLine)` 是否能无缝载入主线对应台词游玩；
-   - 从主菜单进入“后日谈”，选择一位女主角进入物语，验证后日谈剧本推进、表情变换、读档与退出返回后日谈界面的完整链路。
+4. **验证后日谈与外部试玩复测**：
+   - 从主菜单进入“后日谈”，选择一位女主角进入物语，验证后日谈剧本推进、表情变换、读档与退出返回后日谈界面的完整链路；
+   - 外部试玩 Agent 复测 P0 音频与 P1 个人线跳转，并确认没有新的界面回归。
 
 ---
 
@@ -91,7 +101,22 @@
 export PATH="/opt/homebrew/bin:$PATH"
 python3 build.py --install
 ```
+> 无线 ADB（设备序列号为 `192.168.31.30:5555`）时使用：
+> ```bash
+> PEN_SERIAL=192.168.31.30:5555 python3 build.py --install
+> ```
 > 注：该命令会自动校验 CSS 尺寸（严格 <= 800x220）、通过词典笔上的 `jsfmc` 将 JS 源码编译为 QuickJS 字节码 `.js.bin`，组装 `.amr` 并通过 ADB 安装启动应用。
+
+### 1b. 原生音频库交叉编译
+```bash
+ZIG=/Volumes/500GB/qoder_cache/senren_banka/zig_toolchain/ziglang/zig
+LIBS=/Volumes/500GB/qoder_cache/senren_banka/native_libs
+$ZIG cc -target aarch64-linux-gnu.2.29 -O2 -g0 -fPIC -shared -fvisibility=hidden -Wl,-s \
+  -I /Volumes/500GB/Ydpen/ydpen-toolkit/assets/quickjs \
+  -o libs/libjsapi_gal.so native/gal_gs.c \
+  $LIBS/libgstapp-1.0.so.0 $LIBS/libgstreamer-1.0.so.0 $LIBS/libgobject-2.0.so.0 -lpthread
+```
+> 产物应包含 `DT_NEEDED libgstapp-1.0.so.0` 且导出 `custom_init_jsapis`；设备上使用 `appsrc/appsink`，不再依赖 `audiomixer`/`adder`。
 
 ### 2. 真机截图与查看
 词典笔截屏必须使用 `miniapp_cli capture`（严禁使用 screencap，screencap 在 Wayland 下只有黑屏）：

@@ -1,6 +1,8 @@
 // pages/flowchart/flowchart.js —— 由真实拓扑数据驱动的章节局部流程图
 import { S, log } from '../../common.js';
 import { flowchart_data } from '../../data/flowchart_data.js';
+import { choices_all } from '../../data/choices_all.js';
+import { chapter_all } from '../../data/chapter_all.js';
 
 var FC_VIEW_WIDTH = 688;
 var FC_VIEW_HEIGHT = 128;
@@ -20,6 +22,95 @@ var FC_EMA = {
   'サブ': ['09', '01', '15']
 };
 
+// 个人线路线 → 剧本 key。サブ线在运行时会按 storage 前缀细分到小春/芦花。
+export var FC_ROUTE_SCENARIO = {
+  '芳乃': 'route_yoshino',
+  '茉子': 'route_mako',
+  'ムラサメ': 'route_murasame',
+  'レナ': 'route_rena',
+  'サブ': 'route_koharu'
+};
+
+// 各个人线 CHAPTER 在剧本数组中的 0 基起始行；由剧本第 8 列逐行统计得到。
+// EPILOGUE 在剧本数据中写作 SEC-xxx，这里映射到对应 SEC 的首行。
+export var FC_CHAPTER_START = {
+  route_yoshino: {
+    'CHAPTER 3-8': 0, 'CHAPTER 4-1': 286, 'CHAPTER 4-2': 908, 'CHAPTER 4-3': 1710,
+    'CHAPTER 5-1': 2371, 'CHAPTER 5-2': 3034, 'CHAPTER 5-3': 3358, 'CHAPTER 5-4': 4155,
+    'CHAPTER 5-5': 4712, 'CHAPTER 6-1': 5471, 'CHAPTER 6-2': 5696, 'CHAPTER 7-1': 6835,
+    'CHAPTER 7-2': 7354, 'CHAPTER 7-3': 8089, 'EPILOGUE': 8971
+  },
+  route_mako: {
+    'CHAPTER 3-8': 0, 'CHAPTER 4-1': 211, 'CHAPTER 4-2': 848, 'CHAPTER 4-3': 1016,
+    'CHAPTER 5-1': 1858, 'CHAPTER 5-2': 2338, 'CHAPTER 5-3': 2932, 'CHAPTER 6-1': 4052,
+    'CHAPTER 6-2': 4385, 'CHAPTER 6-3': 4682, 'CHAPTER 6-4': 4704, 'CHAPTER 6-5': 4907,
+    'CHAPTER 7-1': 5751, 'CHAPTER 7-2': 6709, 'EPILOGUE': 7703
+  },
+  route_murasame: {
+    'CHAPTER 4-1': 0, 'CHAPTER 4-2': 626, 'CHAPTER 4-3': 1037, 'CHAPTER 4-4': 1379,
+    'CHAPTER 5-1': 1929, 'CHAPTER 5-2': 2267, 'CHAPTER 5-3': 2564, 'CHAPTER 5-4': 3170,
+    'CHAPTER 6-1': 4418, 'CHAPTER 6-2': 4834, 'CHAPTER 6-3': 5019, 'CHAPTER 6-4': 5272,
+    'CHAPTER 7-1': 6152, 'CHAPTER 7-2': 6724, 'CHAPTER 7-3': 6966, 'CHAPTER 8-1': 7409,
+    'CHAPTER 8-2': 8011, 'CHAPTER 8-3': 8583, 'CHAPTER 8-4': 9091, 'CHAPTER 8-5': 9198,
+    'CHAPTER 9-1': 9863, 'CHAPTER 9-2': 10059, 'EPILOGUE': 10121
+  },
+  route_rena: {
+    'CHAPTER 3-6': 0, 'CHAPTER 4-1': 715, 'CHAPTER 4-2': 1096, 'CHAPTER 5-1': 1729,
+    'CHAPTER 5-2': 2547, 'CHAPTER 5-3': 3227, 'CHAPTER 5-4': 3860, 'CHAPTER 6-1': 4472,
+    'CHAPTER 6-2': 4928, 'CHAPTER 7-1': 5754, 'CHAPTER 7-2': 6858, 'CHAPTER 7-3': 7344,
+    'CHAPTER 8-1': 7640, 'CHAPTER 8-2': 8215, 'EPILOGUE': 8841
+  },
+  // サブ线 4-1 ~ 7-1 使用合并剧本 scn_koharu；8-1 起按角色分到 koharu / roka。
+  route_koharu: {
+    'CHAPTER 4-1': 0, 'CHAPTER 4-2': 372, 'CHAPTER 4-3': 759, 'CHAPTER 4-4': 1210,
+    'CHAPTER 4-5': 1420, 'CHAPTER 5-1': 1696, 'CHAPTER 5-2': 1968, 'CHAPTER 6-1': 2272,
+    'CHAPTER 6-2': 2559, 'CHAPTER 6-3': 2597, 'CHAPTER 6-4': 2754, 'CHAPTER 6-5': 3115,
+    'CHAPTER 7-1': 3133, 'CHAPTER 8-1': 3339, 'CHAPTER 8-2': 3459, 'CHAPTER 8-3': 4271,
+    'CHAPTER 8-4': 4349, 'EPILOGUE': 4835
+  },
+  route_roka: {
+    'CHAPTER 8-1': 0, 'CHAPTER 8-2': 981, 'EPILOGUE': 1489
+  }
+};
+
+// 分支节点无法只靠 CHAPTER 首行表达，单独指定目标与后续分流上下文。
+var FC_SPECIAL_TARGETS = {
+  's507*sub_part_7_sel': {
+    scenario: 'route_koharu', line: 2727,
+    clearChoice: 's507*sub_part_7_sel', clearFlags: true
+  },
+  's507*507_01A': {
+    scenario: 'route_koharu', line: 2727,
+    flags: { koh: 1, rok: 0 }, selections: { 's507*sub_part_7_sel': 1 },
+    skipAfterLine: 2736, skipToLine: 2754
+  },
+  's507*507_01B': {
+    scenario: 'route_koharu', line: 2737,
+    flags: { koh: 0, rok: 1 }, selections: { 's507*sub_part_7_sel': 2 },
+    skipAfterLine: 2753, skipToLine: 2925
+  },
+  's508a*sub_part_8a': {
+    scenario: 'route_koharu', line: 2754,
+    flags: { koh: 1, rok: 0 }, selections: { 's507*sub_part_7_sel': 1 }
+  },
+  's508b*sub_part_8b': {
+    scenario: 'route_koharu', line: 2925,
+    flags: { koh: 0, rok: 1 }, selections: { 's507*sub_part_7_sel': 2 }
+  },
+  's508b*chapter65rok': {
+    scenario: 'route_koharu', line: 3115,
+    flags: { koh: 0, rok: 1 }, selections: { 's507*sub_part_7_sel': 2 }
+  },
+  's509*509_koh': {
+    scenario: 'route_koharu', line: 3178,
+    flags: { koh: 1, rok: 0 }, skipAfterLine: 3251, skipToLine: 3339
+  },
+  's509*509_rok': {
+    scenario: 'route_koharu', line: 3252,
+    flags: { koh: 0, rok: 1 }, skipAfterLine: 3338, skipScenario: 'route_roka'
+  }
+};
+
 for (var fc_i = 0; fc_i < flowchart_data.nodes.length; fc_i++) {
   FC_NODE_MAP[flowchart_data.nodes[fc_i].id] = flowchart_data.nodes[fc_i];
 }
@@ -27,8 +118,196 @@ for (var fc_j = 0; fc_j < flowchart_data.choices.length; fc_j++) {
   FC_CHOICE_MAP[flowchart_data.choices[fc_j].id] = flowchart_data.choices[fc_j];
 }
 
+var FC_SCENARIO_ROUTE = {
+  main: '共通',
+  route_yoshino: '芳乃',
+  route_mako: '茉子',
+  route_murasame: 'ムラサメ',
+  route_rena: 'レナ',
+  route_koharu: 'サブ',
+  route_roka: 'サブ'
+};
+
+function fcChapterForLine(scenario, line) {
+  if (scenario === 'main') {
+    var row = chapter_all[line];
+    return (row && row[7]) || 'CHAPTER 1-1';
+  }
+  var table = FC_CHAPTER_START[scenario] || {};
+  var keys = Object.keys(table);
+  var best = '';
+  var bestStart = -1;
+  for (var i = 0; i < keys.length; i++) {
+    var start = table[keys[i]];
+    if (typeof start === 'number' && start <= line && start > bestStart) {
+      best = keys[i];
+      bestStart = start;
+    }
+  }
+  return best || 'CHAPTER ?';
+}
+
+function fcRawNext(node) {
+  var next = flowchart_data.chain[node.id];
+  if (next === undefined) next = node.next;
+  if (!next) return [];
+  return Array.isArray(next) ? next : [next];
+}
+
+// 流程图只保留「出现选项 / 路线分歧」的节点，以及选项直接通往的分支点。
+// 原版章节节点（CHAPTER 2-2、2-3 这类纯剧情段）不再进入画布。
+var FC_DISPLAY_NODES = [];
+var FC_DISPLAY_MAP = {};
+function addFcDisplayNode(node) {
+  if (!node || FC_DISPLAY_MAP[node.id]) return;
+  FC_DISPLAY_MAP[node.id] = true;
+  FC_DISPLAY_NODES.push(node);
+}
+
+for (var fcDispI = 0; fcDispI < flowchart_data.nodes.length; fcDispI++) {
+  var fcDispNode = flowchart_data.nodes[fcDispI];
+  if (fcDispNode.type === 'select' || fcDispNode.type === 'branch' || fcDispNode.type === 'warp') {
+    addFcDisplayNode(fcDispNode);
+    if (fcDispNode.type === 'select') {
+      var fcDispNext = fcRawNext(fcDispNode);
+      for (var fcDispJ = 0; fcDispJ < fcDispNext.length; fcDispJ++) {
+        var fcOptionNode = FC_NODE_MAP[fcDispNext[fcDispJ]];
+        if (fcOptionNode && fcOptionNode.type === 'section') addFcDisplayNode(fcOptionNode);
+      }
+    }
+  }
+}
+
+for (var fcChoiceI = 0; fcChoiceI < choices_all.length; fcChoiceI++) {
+  var fcChoice = choices_all[fcChoiceI];
+  var fcChoiceRoute = FC_SCENARIO_ROUTE[fcChoice.scenario];
+  if (!fcChoiceRoute) continue;
+  if (FC_DISPLAY_MAP[fcChoice.id]) {
+    if (!FC_CHOICE_MAP[fcChoice.id]) {
+      var fcExistingOpts = [];
+      for (var fcExistI = 0; fcExistI < fcChoice.options.length; fcExistI++) {
+        var fcExistOption = fcChoice.options[fcExistI];
+        fcExistingOpts.push({
+          index: fcExistOption.index,
+          text: fcExistOption.text,
+          targetNode: fcExistOption.targetNode || null
+        });
+      }
+      FC_CHOICE_MAP[fcChoice.id] = { id: fcChoice.id, options: fcExistingOpts };
+    }
+    continue;
+  }
+  var fcChoiceChapter = fcChapterForLine(fcChoice.scenario, fcChoice.line);
+  var fcOptIds = [];
+  var fcOptChoices = [];
+  for (var fcOptI = 0; fcOptI < fcChoice.options.length; fcOptI++) {
+    var fcOption = fcChoice.options[fcOptI];
+    var fcOptId = 'opt_' + fcChoice.id + '_' + fcOption.index;
+    if (!FC_DISPLAY_MAP[fcOptId]) {
+      addFcDisplayNode({
+        id: fcOptId,
+        type: 'section',
+        route: fcChoiceRoute,
+        scenario: fcChoice.scenario,
+        chapter: fcChoiceChapter,
+        title: fcOption.text || ('分支 ' + fcOption.index),
+        storage: null,
+        target: null,
+        targetLine: fcOption.targetLine,
+        exact: true,
+        next: null
+      });
+    }
+    fcOptIds.push(fcOptId);
+    fcOptChoices.push({ index: fcOption.index, text: fcOption.text, targetNode: fcOptId });
+  }
+  if (!FC_DISPLAY_MAP[fcChoice.id]) {
+    addFcDisplayNode({
+      id: fcChoice.id,
+      type: 'select',
+      route: fcChoiceRoute,
+      scenario: fcChoice.scenario,
+      chapter: fcChoiceChapter,
+      title: fcChoice.prompt || ('选项 #' + fcChoice.line),
+      storage: null,
+      target: null,
+      targetLine: fcChoice.line,
+      exact: true,
+      next: fcOptIds
+    });
+  }
+  if (!FC_CHOICE_MAP[fcChoice.id]) {
+    FC_CHOICE_MAP[fcChoice.id] = { id: fcChoice.id, options: fcOptChoices };
+  }
+}
+
+function fcChapterSortKey(chapter) {
+  if (chapter === 'EPILOGUE') return [999, 999];
+  var m = /^CHAPTER (\d+)-(\d+)$/.exec(chapter || '');
+  return m ? [Number(m[1]), Number(m[2])] : [1000, 1000];
+}
+
+function fcTypeSortOrder(type) {
+  if (type === 'select') return 0;
+  if (type === 'branch' || type === 'warp') return 1;
+  return 2;
+}
+
+FC_DISPLAY_NODES.sort(function (a, b) {
+  var ra = FC_ROUTES.indexOf(a.route);
+  var rb = FC_ROUTES.indexOf(b.route);
+  if (ra !== rb) return ra - rb;
+  var ka = fcChapterSortKey(a.chapter);
+  var kb = fcChapterSortKey(b.chapter);
+  if (ka[0] !== kb[0]) return ka[0] - kb[0];
+  if (ka[1] !== kb[1]) return ka[1] - kb[1];
+  var la = typeof a.targetLine === 'number' ? a.targetLine : 0;
+  var lb = typeof b.targetLine === 'number' ? b.targetLine : 0;
+  if (la !== lb) return la - lb;
+  return fcTypeSortOrder(a.type) - fcTypeSortOrder(b.type);
+});
+
 function fcValidLine(line) {
   return typeof line === 'number' && isFinite(line) && line >= 0 && Math.floor(line) === line;
+}
+
+function fcNodeScenario(node) {
+  if (!node) return null;
+  if (node.scenario) return node.scenario;
+  if (node.route === '共通') return 'main';
+  if (node.route === 'サブ') {
+    var storage = node.storage || '';
+    if (/^(521|522|523)/.test(storage)) return 'route_roka';
+    return 'route_koharu';
+  }
+  return FC_ROUTE_SCENARIO[node.route] || null;
+}
+
+// 返回 { scenario, line, flags?, selections?, clearChoice?, clearFlags?, skip... } 或 null。
+// 共通线沿用官方节点里已有的精确 targetLine；个人线由 CHAPTER 起始表与分支节点特例推导。
+export function fcNodeTarget(node) {
+  if (!node) return null;
+
+  if (node.route === '共通') {
+    return fcValidLine(node.targetLine) ? { scenario: 'main', line: node.targetLine } : null;
+  }
+
+  var special = FC_SPECIAL_TARGETS[node.id];
+  if (special) return Object.assign({}, special);
+
+  var scenario = fcNodeScenario(node);
+  if (!scenario) return null;
+
+  if (node.exact && fcValidLine(node.targetLine)) {
+    return { scenario: scenario, line: node.targetLine };
+  }
+
+  var table = FC_CHAPTER_START[scenario] || {};
+  var line = (typeof node.chapter === 'string' && node.chapter)
+    ? table[node.chapter]
+    : 0;
+  if (!fcValidLine(line)) return null;
+  return { scenario: scenario, line: line };
 }
 
 function fcClamp(value, min, max) {
@@ -36,17 +315,14 @@ function fcClamp(value, min, max) {
 }
 
 function fcNextList(node) {
-  var next = flowchart_data.chain[node.id];
-  if (next === undefined) next = node.next;
-  if (!next) return [];
-  return Array.isArray(next) ? next : [next];
+  return fcRawNext(node);
 }
 
 function fcChapters(route) {
   var chapters = [];
   var seen = {};
-  for (var i = 0; i < flowchart_data.nodes.length; i++) {
-    var node = flowchart_data.nodes[i];
+  for (var i = 0; i < FC_DISPLAY_NODES.length; i++) {
+    var node = FC_DISPLAY_NODES[i];
     if (node.route === route && node.chapter && !seen[node.chapter]) {
       seen[node.chapter] = true;
       chapters.push(node.chapter);
@@ -185,8 +461,8 @@ export var flowchartMethods = {
     fcEnsure(this);
     var chapter = fcChapters(this.flowRoute)[this.flowChapterIndex];
     var nodes = [];
-    for (var i = 0; i < flowchart_data.nodes.length; i++) {
-      var node = flowchart_data.nodes[i];
+    for (var i = 0; i < FC_DISPLAY_NODES.length; i++) {
+      var node = FC_DISPLAY_NODES[i];
       if (node.route === this.flowRoute && node.chapter === chapter) nodes.push(node);
     }
     return nodes;
@@ -222,11 +498,40 @@ export var flowchartMethods = {
   activateFcNode: function (node) {
     if (!node || this._fcMoved) return;
     this.flowSelectedNodeId = node.id;
-    if (fcValidLine(node.targetLine)) {
-      this.jumpFromFlowchart(node.targetLine);
+
+    var target = fcNodeTarget(node);
+    if (!target) {
+      this.flowNotice = '章节详情 · ' + node.title + ' · 无有效行号，不可跳转';
       return;
     }
-    this.flowNotice = '章节详情 · ' + node.title + ' · 无有效行号，不可跳转';
+
+    var flags = Object.assign({}, this.choiceFlags || {});
+    var selections = Object.assign({}, this.choiceSelections || {});
+    var isKoharu = target.scenario === 'route_koharu';
+
+    // 跳入小春/芦花合并剧本时，除非节点显式指定分支，否则清掉旧分流状态，
+    // 避免上一次游玩残留的 koh/rok 旗标把本次跳转带到另一条支线。
+    if (target.clearFlags || (isKoharu && !target.flags)) {
+      delete flags.koh;
+      delete flags.rok;
+    }
+    if (target.clearChoice) delete selections[target.clearChoice];
+    if (isKoharu && !target.selections && target.line <= 2727) {
+      delete selections['s507*sub_part_7_sel'];
+    }
+    if (target.flags) Object.assign(flags, target.flags);
+    if (target.selections) Object.assign(selections, target.selections);
+    this.choiceFlags = flags;
+    this.choiceSelections = selections;
+
+    this.jumpFromFlowchart(target.scenario, target.line);
+
+    // initGame 会重置跳过上下文，因此分流信息必须在跳转之后写入。
+    if (typeof target.skipAfterLine === 'number') {
+      this._routeSkipAfterLine = target.skipAfterLine;
+      this._routeSkipToLine = typeof target.skipToLine === 'number' ? target.skipToLine : null;
+      this._routeSkipScenario = target.skipScenario || null;
+    }
   },
   onFcTouchStart: function (e) {
     if (e && e.changedTouches && e.changedTouches[0]) {
@@ -262,13 +567,19 @@ export var flowchartMethods = {
     this.flowPanX = 0;
     this.flowPanY = 0;
   },
-  jumpFromFlowchart: function (line) {
+  jumpFromFlowchart: function (scenario, line) {
+    // 兼容旧调用 jumpFromFlowchart(line)：单数字参数视为共通线行号。
+    if (typeof scenario === 'number') {
+      line = scenario;
+      scenario = 'main';
+    }
+    if (typeof scenario !== 'string' || !scenario) scenario = 'main';
     if (this._fcMoved || !fcValidLine(line)) return;
-    log('jump from flowchart to line ' + line);
-    this.currentScenario = 'main';
+    log('jump from flowchart to ' + scenario + ' line ' + line);
+    this.currentScenario = scenario;
     this.currentScenarioData = null;
     this.view = 'game';
-    if (typeof this.initGame === 'function') this.initGame('main', line);
+    if (typeof this.initGame === 'function') this.initGame(scenario, line);
   },
   returnToTitleFromFc: function () {
     this.view = 'title';
@@ -309,7 +620,8 @@ function fcRenderNode(vm, h, placed) {
   var node = placed.node;
   var selected = vm.flowSelectedNodeId === node.id;
   var style = 'fc-node fc-node-' + node.type + (selected ? ' fc-node-selected' : '');
-  var line = fcValidLine(node.targetLine) ? ('第 ' + node.targetLine + ' 句') : '仅详情 · 禁跳';
+  var target = fcNodeTarget(node);
+  var line = target ? ('第 ' + target.line + ' 句') : '仅详情 · 禁跳';
   return h('div', {
     staticStyle: S(style, { left: placed.x + 'px', top: placed.y + 'px' }),
     on: { click: function () { vm.activateFcNode(node); } }

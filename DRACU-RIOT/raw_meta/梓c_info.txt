@@ -1,0 +1,8 @@
+dress	巫女服	diff	4	巫女服
+dress	制服	diff	4	制服
+dress	私服	diff	4	私服
+
+face	09	base	叫ぶ2
+
+face	09h	base	叫ぶ2
+face	09h	base	照れ

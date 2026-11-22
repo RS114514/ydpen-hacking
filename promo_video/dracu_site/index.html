@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>《DRACU-RIOT!》词典笔完整移植版 · 杂志风格宣传片</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#f4f5f9;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#1b162e}
+#stage{position:absolute;inset:0;overflow:hidden;perspective:2400px}
+
+/* 全新明亮现代杂志风背景 + 精密坐标网格 */
+#bg{position:absolute;inset:0;background:linear-gradient(135deg,#fafbfe 0%,#eef1f8 55%,#f9eef3 100%)}
+#grid{position:absolute;inset:-60px;background-image:
+  linear-gradient(rgba(27,22,46,.045) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(27,22,46,.045) 1px,transparent 1px);
+  background-size:64px 64px;will-change:transform}
+
+/* 几何斜切色块与动态水印 */
+.geo-slash{position:absolute;width:1200px;height:1600px;background:linear-gradient(160deg,rgba(255,102,45,.11),rgba(219,43,107,.08));transform-origin:center;will-change:transform}
+.geo-ring{position:absolute;border-radius:50%;border:2px solid rgba(255,102,45,.22);will-change:transform}
+.watermark{position:absolute;font-size:190px;font-weight:900;letter-spacing:14px;color:rgba(27,22,46,.038);white-space:nowrap;user-select:none;will-change:transform}
+
+/* 顶部与底部杂志装饰边栏 */
+.mag-top{position:absolute;left:72px;right:72px;top:36px;height:36px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid rgba(27,22,46,.14);font-size:20px;font-weight:700;letter-spacing:4px;color:#5a5270;z-index:20}
+.mag-top b{color:#ff5b24}
+.mag-bot{position:absolute;left:72px;right:72px;bottom:34px;height:32px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid rgba(27,22,46,.12);font-size:18px;font-weight:600;letter-spacing:3px;color:#6f6785;z-index:20}
+
+.scene{position:absolute;inset:0;opacity:0;will-change:transform,opacity}
+
+/* 深空曜石黑词典笔机身（在亮白杂志背景上极具质感） */
+.pen{position:absolute;left:50%;top:50%;width:1680px;height:500px;margin:-250px 0 0 -840px;border-radius:250px;
+ background:linear-gradient(180deg,#2c2a38 0%,#1c1a26 52%,#110f18 100%);
+ box-shadow:0 48px 96px rgba(27,22,46,.28),0 14px 30px rgba(27,22,46,.18),inset 0 3px 6px rgba(255,255,255,.25),inset 0 -6px 12px rgba(0,0,0,.6)}
+.pen .screen{position:absolute;left:180px;top:47px;width:1320px;height:366px;border-radius:24px;overflow:hidden;background:#000;
+ box-shadow:0 0 0 8px #0c0b10,0 0 0 11px #443f58}
+.pen .screen img,.pen .screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:auto}
+.pen .glare{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,0) 35%);pointer-events:none;z-index:4}
+.pen .tip{position:absolute;right:-40px;top:170px;width:120px;height:160px;border-radius:0 80px 80px 0;background:linear-gradient(180deg,#ff6c2f,#d92b6b)}
+.pen .btn{position:absolute;left:90px;top:220px;width:28px;height:60px;border-radius:14px;background:#4e4a61;box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
+
+/* 现代卡片 */
+.shot{position:absolute;border-radius:16px;overflow:hidden;background:#fff;padding:6px;
+ box-shadow:0 24px 60px rgba(27,22,46,.16),0 4px 14px rgba(27,22,46,.08);border:1px solid rgba(27,22,46,.08)}
+.shot img{width:100%;height:100%;display:block;object-fit:cover;border-radius:11px}
+.shot-label{position:absolute;left:18px;bottom:18px;padding:7px 20px;border-radius:8px;font-size:23px;font-weight:800;background:#1b162e;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.22)}
+.shot-label em{font-style:normal;color:#ff723b;margin-right:8px}
+
+.h1{position:absolute;left:0;right:0;text-align:center;font-weight:900;letter-spacing:4px;color:#1b162e}
+.accent{color:#e63b60}
+.orange{color:#ff5b24}
+.pill{position:absolute;padding:14px 34px;border-radius:12px;font-size:32px;font-weight:800;background:#fff;color:#1b162e;
+ border-left:8px solid #ff5b24;box-shadow:0 14px 36px rgba(27,22,46,.11)}
+.cap{position:absolute;left:0;right:0;bottom:92px;text-align:center;font-size:38px;font-weight:800;letter-spacing:2px;color:#272042}
+.cap span{background:rgba(255,255,255,.88);padding:10px 30px;border-radius:12px;box-shadow:0 8px 24px rgba(27,22,46,.08)}
+.char{display:inline-block;will-change:transform,opacity}
+.card{position:absolute;width:840px;height:164px;border-radius:18px;padding:34px 32px;background:#fff;border:2px solid rgba(27,22,46,.1);
+ border-top:6px solid #e63b60;box-shadow:0 24px 60px rgba(27,22,46,.14)}
+.card b{display:block;font-size:30px;font-family:Menlo,monospace;color:#1b162e;text-align:center}
+.card span{display:block;font-size:25px;color:#625a78;margin-top:14px;font-weight:700;text-align:center}
+
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50}
+#bar{position:absolute;left:0;top:0;height:6px;background:linear-gradient(90deg,#ff5b24,#e63b60);z-index:60}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div id="grid"></div>
+  <div class="geo-slash" id="slash1" style="left:-360px;top:-300px;transform:rotate(24deg)"></div>
+  <div class="geo-slash" id="slash2" style="right:-420px;bottom:-380px;transform:rotate(24deg)"></div>
+  <div class="geo-ring" id="ring1" style="left:1180px;top:-180px;width:920px;height:920px"></div>
+  <div class="geo-ring" id="ring2" style="left:-240px;top:460px;width:760px;height:760px;border-color:rgba(230,59,96,.18)"></div>
+  <div class="watermark" id="wm" style="left:80px;top:380px">AQUA EDEN</div>
+
+  <div class="mag-top">
+    <span><b>DRACU-RIOT!</b> // YDPEN EDITION</span>
+    <span>960 × 266 ULTRA-WIDE PORT</span>
+  </div>
+  <div class="mag-bot">
+    <span>ENGINE: RIBBON ENGINE</span>
+    <span>ORIGINAL: YUZUSOFT</span>
+  </div>
+
+  <!-- S1: 0s - 4.2s 开场 -->
+  <div class="scene" id="s1">
+    <div class="h1" id="t1" style="top:375px;font-size:106px"></div>
+    <div class="h1" id="t1b" style="top:545px;font-size:40px;font-weight:700;letter-spacing:8px;color:#5a5270">有道词典笔 X6 Pro · <span class="orange">960 × 266</span> 超宽屏完整移植</div>
+  </div>
+
+  <!-- S2: 4.2s - 9.5s 词典笔桌面切入标题 -->
+  <div class="scene" id="s2">
+    <div class="pen" id="pen2">
+      <div class="btn"></div><div class="tip"></div>
+      <div class="screen">
+        <img id="p2a" src="a/desktop.png">
+        <img id="p2b" src="a/01_title.png">
+        <div class="glare"></div>
+      </div>
+    </div>
+    <div class="cap" id="c2"><span>原本是一支查单词的笔 —— 如今开启水上都市之夜</span></div>
+  </div>
+
+  <!-- S3: 9.5s - 14.8s 标题与核心规模 -->
+  <div class="scene" id="s3">
+    <div class="h1" id="t3" style="top:105px;font-size:88px">《<span class="orange">DRACU-RIOT!</span>》</div>
+    <div class="h1" id="t3b" style="top:220px;font-size:36px;font-weight:700;color:#5f5778;letter-spacing:6px">柚子社经典作品 · 词典笔真机全剧情移植</div>
+    <div class="shot" id="sh3" style="left:240px;top:315px;width:1440px;height:405px"><img src="a/01_title.png"></div>
+    <div class="pill" id="g3a" style="left:240px;top:790px">共通线 9019 句</div>
+    <div class="pill" id="g3b" style="left:655px;top:790px;border-left-color:#e63b60">5 大女主个人线 + 后日谈</div>
+    <div class="pill" id="g3c" style="left:1185px;top:790px">全角色语音 + 37 首 BGM</div>
+  </div>
+
+  <!-- S4: 14.8s - 24.5s 真机实操录屏 -->
+  <div class="scene" id="s4">
+    <div class="h1" id="t4" style="top:108px;font-size:48px;letter-spacing:6px">真机实机操作录屏 · <span class="accent">LIVE DEMO</span></div>
+    <div class="pen" id="pen4" style="top:52%">
+      <div class="btn"></div><div class="tip"></div>
+      <div class="screen">
+        <video id="vidPlay" src="a/dracu_gameplay.mp4" muted playsinline preload="auto"></video>
+        <div class="glare"></div>
+      </div>
+    </div>
+    <div class="cap" id="c4"><span>点击推进台词 · 角色立绘实时渲染 · 舞台特写自由缩放</span></div>
+  </div>
+
+  <!-- S5: 24.5s - 30.8s 四大女主全立绘展示 -->
+  <div class="scene" id="s5">
+    <div class="h1" id="t5" style="top:102px;font-size:58px">四大女主角 · 实机立绘与对话</div>
+    <div class="shot" id="sh5a" style="left:90px;top:210px;width:850px;height:240px"><img src="a/05_miu.png"><div class="shot-label"><em>01</em>矢来 美羽</div></div>
+    <div class="shot" id="sh5b" style="left:980px;top:210px;width:850px;height:240px"><img src="a/06_azusa.png"><div class="shot-label"><em>02</em>布良 梓</div></div>
+    <div class="shot" id="sh5c" style="left:90px;top:510px;width:850px;height:240px"><img src="a/07_rio.png"><div class="shot-label"><em>03</em>稻丛 莉音</div></div>
+    <div class="shot" id="sh5d" style="left:980px;top:510px;width:850px;height:240px"><img src="a/08_elina.png"><div class="shot-label"><em>04</em>艾莉娜</div></div>
+    <div class="cap" id="c5" style="bottom:108px"><span>全差分高清适配 960 × 266 超宽视口</span></div>
+  </div>
+
+  <!-- S6: 30.8s - 36.8s 系统功能矩阵 -->
+  <div class="scene" id="s6">
+    <div class="h1" id="t6" style="top:102px;font-size:58px">完整系统功能 · 丝滑便携体验</div>
+    <div class="shot" id="sh6a" style="left:90px;top:210px;width:850px;height:240px"><img src="a/02_flowchart.png"><div class="shot-label"><em>SYS</em>剧情流程图直跳</div></div>
+    <div class="shot" id="sh6b" style="left:980px;top:210px;width:850px;height:240px"><img src="a/10_choice.png"><div class="shot-label"><em>SYS</em>分支选择支面板</div></div>
+    <div class="shot" id="sh6c" style="left:90px;top:510px;width:850px;height:240px"><img src="a/12_saveload.png"><div class="shot-label"><em>SYS</em>30 槽位本地存档</div></div>
+    <div class="shot" id="sh6d" style="left:980px;top:510px;width:850px;height:240px"><img src="a/04_musicbox_play.png"><div class="shot-label"><em>SYS</em>37 首原声音乐盒</div></div>
+    <div class="cap" id="c6" style="bottom:108px"><span>支持背景音乐 / 角色语音独立音量与混音</span></div>
+  </div>
+
+  <!-- S7: 36.8s - 40.5s 特写与 Q 版 CG -->
+  <div class="scene" id="s7">
+    <div class="h1" id="t7" style="top:102px;font-size:56px">舞台 <span class="orange">2.5×</span> 特写与 Q 版 CG 鉴赏</div>
+    <div class="shot" id="sh7a" style="left:80px;top:205px;width:860px;height:244px"><img src="a/11_closeup_azusa.png"></div>
+    <div class="shot" id="sh7b" style="left:980px;top:205px;width:860px;height:244px"><img src="a/11_closeup_elina.png"></div>
+    <div class="shot" id="sh7c" style="left:360px;top:490px;width:1200px;height:338px"><img src="a/13_sd_cg.png"></div>
+    <div class="cap" id="c7" style="bottom:92px"><span>随时推近欣赏细节 · 内置 Q 版 SD 鉴赏画廊</span></div>
+  </div>
+
+  <!-- S8: 40.5s - 44.0s 收尾 -->
+  <div class="scene" id="s8">
+    <div class="h1" id="t8" style="top:190px;font-size:90px">《<span class="orange">DRACU-RIOT!</span>》</div>
+    <div class="h1" id="t8b" style="top:325px;font-size:42px;font-weight:700;color:#5a5270;letter-spacing:6px">完全开源 · 基于 RibbonEngine 超宽屏引擎打造</div>
+    <div class="card" id="r1" style="left:90px;top:450px;border-top-color:#ff5b24"><b>github.com/RS114514/dracu-riot-ydpen-port</b><span>《DRACU-RIOT!》词典笔移植版</span></div>
+    <div class="card" id="r2" style="left:990px;top:450px"><b>github.com/RS114514/RibbonEngine</b><span>超宽屏嵌入式 Galgame 引擎</span></div>
+    <div class="h1" id="t8c" style="top:680px;font-size:34px;color:#1b162e;letter-spacing:4px;font-weight:800">词典笔移植作者 · <span class="accent">RS_TV</span></div>
+    <div class="h1" id="t8d" style="top:745px;font-size:28px;color:#7a7191;letter-spacing:3px;font-weight:600">仓库不含任何游戏本体素材 · 请支持正版 Yuzusoft</div>
+  </div>
+
+  <div id="flash"></div>
+  <div id="bar"></div>
+</div>
+
+<script>
+const DURATION = 44;
+const $ = id => document.getElementById(id);
+const clamp = (v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const p = (t,a,b)=>clamp((t-a)/(b-a));
+const eo = x=>1-Math.pow(1-x,3);
+const eio = x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back = x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+function vis(t,a,b,fi=.45,fo=.45){return Math.min(p(t,a,a+fi),1-p(t,b-fo,b))}
+function set(el,o,tf){el.style.opacity=o;if(tf!==undefined)el.style.transform=tf}
+
+function splitChars(el,text){el.innerHTML=[...text].map(c=>`<span class="char">${c}</span>`).join('');return [...el.children]}
+const t1chars = splitChars($('t1'),'把《DRACU-RIOT!》装进词典笔');
+
+function renderScene(t){
+  $('grid').style.transform=`translate(${-(t*16)%64}px,${-(t*12)%64}px)`;
+  $('slash1').style.transform=`rotate(24deg) translate(${Math.sin(t*.25)*60}px,${Math.cos(t*.2)*40}px)`;
+  $('slash2').style.transform=`rotate(24deg) translate(${Math.cos(t*.22)*-60}px,${Math.sin(t*.28)*-40}px)`;
+  $('ring1').style.transform=`scale(${1+Math.sin(t*.4)*.06}) rotate(${t*6}deg)`;
+  $('ring2').style.transform=`scale(${1+Math.cos(t*.35)*.06}) rotate(${-t*5}deg)`;
+  $('wm').style.transform=`translateX(${-t*28}px)`;
+  $('bar').style.width=(t/DURATION*100)+'%';
+
+  // S1: 0 - 4.2s
+  let v=vis(t,0,4.2,.3,.5);set($('s1'),v);
+  t1chars.forEach((c,i)=>{const k=eo(p(t,.1+i*.055,.65+i*.055));set(c,k,`translateY(${(1-k)*55}px) scale(${lerp(.7,1,k)})`)});
+  set($('t1b'),eo(p(t,1.1,2.0)),`translateY(${(1-eo(p(t,1.1,2.0)))*28}px)`);
+
+  // S2: 4.2 - 9.5s 笔旋转入场，桌面划切至标题
+  v=vis(t,4.2,9.5,.4,.5);set($('s2'),v);
+  const k2=eo(p(t,4.2,5.6));
+  set($('pen2'),1,`scale(${lerp(.74,.96,k2)}) rotateX(${lerp(24,0,k2)}deg) rotateY(${lerp(-14,3,k2)}deg)`);
+  const sw=eio(p(t,6.4,7.4));
+  $('p2a').style.clipPath=`inset(0 ${sw*100}% 0 0)`;
+  $('p2b').style.clipPath=`inset(0 0 0 ${(1-sw)*100}%)`;
+  $('flash').style.opacity=Math.max(0,1-Math.abs(t-6.9)*5.2)*.55;
+  set($('c2'),eo(p(t,4.8,5.7)));
+
+  // S3: 9.5 - 14.8s 标题与特性标签
+  v=vis(t,9.5,14.8,.45,.45);set($('s3'),v);
+  set($('t3'),eo(p(t,9.5,10.2)),`translateY(${(1-eo(p(t,9.5,10.2)))*40}px)`);
+  set($('t3b'),eo(p(t,9.9,10.6)));
+  const k3=eo(p(t,10.1,11.0));
+  set($('sh3'),k3,`scale(${lerp(.9,1.03,p(t,10.1,14.8))})`);
+  set($('g3a'),back(p(t,10.8,11.4)),`scale(${lerp(.7,1,back(p(t,10.8,11.4)))})`);
+  set($('g3b'),back(p(t,11.1,11.7)),`scale(${lerp(.7,1,back(p(t,11.1,11.7)))})`);
+  set($('g3c'),back(p(t,11.4,12.0)),`scale(${lerp(.7,1,back(p(t,11.4,12.0)))})`);
+
+  // S4: 14.8 - 24.5s 真机录屏
+  v=vis(t,14.8,24.5,.4,.45);set($('s4'),v);
+  set($('t4'),eo(p(t,14.8,15.5)));
+  const k4=eo(p(t,14.8,15.8));
+  set($('pen4'),1,`scale(${lerp(.84,1.04,k4)}) rotateY(${Math.sin((t-14.8)*.45)*2.5}deg)`);
+  set($('c4'),eo(p(t,15.3,16.1)));
+
+  // S5: 24.5 - 30.8s 四大女主展示
+  v=vis(t,24.5,30.8,.45,.45);set($('s5'),v);
+  set($('t5'),eo(p(t,24.5,25.2)));
+  ['sh5a','sh5b','sh5c','sh5d'].forEach((id,idx)=>{
+    const st=24.9+idx*.28;
+    const k=eo(p(t,st,st+.65));
+    set($(id),k,`translateY(${(1-k)*36}px) scale(${lerp(.92,1,k)})`);
+  });
+  set($('c5'),eo(p(t,26.0,26.8)));
+
+  // S6: 30.8 - 36.8s 系统功能矩阵
+  v=vis(t,30.8,36.8,.45,.45);set($('s6'),v);
+  set($('t6'),eo(p(t,30.8,31.5)));
+  ['sh6a','sh6b','sh6c','sh6d'].forEach((id,idx)=>{
+    const st=31.1+idx*.25;
+    const k=eo(p(t,st,st+.6));
+    set($(id),k,`scale(${lerp(.88,1,k)})`);
+  });
+  set($('c6'),eo(p(t,32.2,33.0)));
+
+  // S7: 36.8 - 40.5s 特写与 Q 版 CG
+  v=vis(t,36.8,40.5,.4,.45);set($('s7'),v);
+  set($('t7'),eo(p(t,36.8,37.4)));
+  const k7a=eo(p(t,37.0,37.7)),k7b=eo(p(t,37.2,37.9)),k7c=eo(p(t,37.4,38.2));
+  set($('sh7a'),k7a,`translateX(${(1-k7a)*-60}px)`);
+  set($('sh7b'),k7b,`translateX(${(1-k7b)*60}px)`);
+  set($('sh7c'),k7c,`translateY(${(1-k7c)*45}px) scale(${lerp(.94,1,k7c)})`);
+  set($('c7'),eo(p(t,37.8,38.4)));
+
+  // S8: 40.5 - 44.0s 收尾
+  v=vis(t,40.5,44.05,.45,.4);set($('s8'),v);
+  const k8=eo(p(t,40.5,41.3));
+  set($('t8'),k8,`translateY(${(1-k8)*40}px) scale(${lerp(.92,1,k8)})`);
+  set($('t8b'),eo(p(t,41.0,41.7)));
+  set($('r1'),eo(p(t,41.3,42.0)),`translateY(${(1-eo(p(t,41.3,42.0)))*30}px)`);
+  set($('r2'),eo(p(t,41.5,42.2)),`translateY(${(1-eo(p(t,41.5,42.2)))*30}px)`);
+  set($('t8c'),eo(p(t,41.8,42.5)));
+  set($('t8d'),eo(p(t,42.0,42.7)));
+}
+
+const vidPlay=$('vidPlay');
+function seekTo(v,t){
+  return new Promise(res=>{
+    if(Math.abs(v.currentTime-t)<0.005&&v.readyState>=2){res();return;}
+    let done=false;
+    const fin=()=>{if(done)return;done=true;v.removeEventListener('seeked',fin);res();};
+    v.addEventListener('seeked',fin);
+    v.currentTime=t;
+    setTimeout(fin,400);
+  });
+}
+async function renderFrame(t){
+  renderScene(t);
+  if(t>=14.6&&t<=24.8){
+    await seekTo(vidPlay,clamp(t-14.8,0,9.3));
+    await new Promise(r=>requestAnimationFrame(()=>r()));
+  }
+}
+window.render=renderFrame;
+window.DURATION=DURATION;
+if(!location.search.includes('render')){
+  const st=performance.now();
+  (function loop(){renderFrame(((performance.now()-st)/1000)%DURATION);requestAnimationFrame(loop);})();
+}
+</script>
+</body>
+</html>

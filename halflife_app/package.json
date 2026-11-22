@@ -1,0 +1,13 @@
+{
+  "name": "half-life",
+  "appName": "半条命",
+  "appid": "8002026110400001",
+  "version": "1.0.0",
+  "icon": "app_icon.png",
+  "description": "Half-Life 1 Native Port for Youdao Dictionary Pen",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "single-js-bundle": false
+}

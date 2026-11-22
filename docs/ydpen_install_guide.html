@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>有道词典笔 · 游戏安装图文教程</title>
+<style>
+  :root{
+    --bg:#f5f6f8;
+    --card:#ffffff;
+    --ink:#191c22;
+    --muted:#5d6472;
+    --line:#e4e7ee;
+    --accent:#2563eb;
+    --accent-soft:#eef4ff;
+    --ok:#0d7a4f;
+    --ok-soft:#e9f7f0;
+    --warn:#a35a06;
+    --warn-soft:#fdf4e7;
+    --danger:#b3261e;
+    --danger-soft:#fdecea;
+    --code:#f0f2f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#14161a; --card:#1c1f25; --ink:#e9ecf1; --muted:#a2a9b6; --line:#2c313a;
+      --accent:#6ea8ff; --accent-soft:#1e2a3d; --ok:#5fd3a3; --ok-soft:#16281f;
+      --warn:#e5b071; --warn-soft:#2a2318; --danger:#f08a84; --danger-soft:#2c1a19;
+      --code:#242830;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    font-size:16px; line-height:1.78; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:40px 22px 72px}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+  a:hover{border-bottom-color:var(--accent)}
+  h1,h2,h3{line-height:1.35; letter-spacing:.2px}
+  h1{font-size:34px; margin:14px 0 12px}
+  h2{font-size:23px; margin:0 0 14px}
+  h3{font-size:17px; margin:22px 0 8px}
+  p{margin:10px 0}
+  code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace; font-size:.92em}
+  code{background:var(--code); padding:1px 6px; border-radius:5px; border:1px solid var(--line)}
+  pre{background:var(--code); border:1px solid var(--line); border-radius:10px; padding:13px 16px; overflow-x:auto; font-size:14px; line-height:1.75; margin:12px 0;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+  pre code{background:none; border:none; padding:0}
+  kbd{background:var(--card); border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:1px 7px}
+
+  .hero{margin-bottom:26px}
+  .kicker{font-size:13px; letter-spacing:.18em; color:var(--muted); text-transform:uppercase}
+  .lede{font-size:17px; color:var(--muted); margin-top:6px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+  .chip{font-size:13px; color:var(--muted); background:var(--card); border:1px solid var(--line); border-radius:999px; padding:5px 12px}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:26px 28px; margin:20px 0}
+  .card.tight{padding:20px 22px}
+
+  .quick{border-left:3px solid var(--accent)}
+  .quick ol{margin:10px 0 0; padding-left:22px}
+  .quick ol li{margin:5px 0}
+
+  nav.toc{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin:18px 0 6px}
+  nav.toc a{display:block; padding:9px 12px; background:var(--card); border:1px solid var(--line); border-radius:10px; color:var(--ink); font-size:14.5px; border-bottom-width:1px}
+  nav.toc a span{color:var(--muted); font-size:12.5px; margin-right:8px}
+
+  ol.steps{list-style:none; counter-reset:step; margin:0; padding:0}
+  ol.steps>li{counter-increment:step; position:relative; padding:0 0 6px 56px; margin:0 0 22px}
+  ol.steps>li::before{
+    content:counter(step); position:absolute; left:0; top:-2px; width:38px; height:38px; border-radius:50%;
+    background:var(--accent-soft); color:var(--accent); font-weight:700; font-size:17px;
+    display:flex; align-items:center; justify-content:center; border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  ol.steps>li h3{margin:4px 0 6px; font-size:18px}
+
+  .note,.ok,.warn{border-radius:12px; padding:13px 16px; margin:14px 0; font-size:15px}
+  .note{background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 22%, transparent)}
+  .ok{background:var(--ok-soft); border:1px solid color-mix(in srgb, var(--ok) 22%, transparent)}
+  .warn{background:var(--warn-soft); border:1px solid color-mix(in srgb, var(--warn) 26%, transparent)}
+  .danger{background:var(--danger-soft); border:1px solid color-mix(in srgb, var(--danger) 26%, transparent); border-radius:12px; padding:13px 16px; margin:14px 0; font-size:15px}
+  .tag{display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.06em; margin-right:8px}
+  .note .tag{color:var(--accent)} .ok .tag{color:var(--ok)} .warn .tag{color:var(--warn)} .danger .tag{color:var(--danger)}
+
+  .tbl{overflow-x:auto; margin:14px 0}
+  table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:520px}
+  th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-size:13px; color:var(--muted); font-weight:600; background:color-mix(in srgb, var(--code) 60%, transparent)}
+  tbody tr:last-child td{border-bottom:none}
+
+  details{border:1px solid var(--line); border-radius:12px; padding:0 16px; margin:10px 0; background:var(--card)}
+  details[open]{padding-bottom:12px}
+  summary{cursor:pointer; padding:13px 0; font-weight:600; list-style:none; display:flex; gap:10px; align-items:baseline}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"?"; color:var(--accent); font-weight:700; flex:0 0 auto}
+  details p,details ol,details ul{font-size:15px; color:var(--ink)}
+  details .fix{color:var(--muted)}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media (max-width:720px){ .grid2{grid-template-columns:1fr} h1{font-size:27px} .card{padding:20px} }
+
+  footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13.5px}
+  footer strong{color:var(--ink)}
+
+  @media print{
+    body{background:#fff}
+    nav.toc,.quick{display:none}
+    .card{border:none; padding:0; margin:12px 0; break-inside:avoid}
+    ol.steps>li{break-inside:avoid}
+    details{display:block}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">YDPEN GAME INSTALLER · 图文教程</div>
+  <h1>把游戏装进词典笔，只需要插一根线</h1>
+  <p class="lede">适用于本目录下的全部安装包：千恋＊万花、魔女的夜宴、DRACU-RIOT!、半条命 1、植物大战僵尸、DOOM。全程不需要写代码，也不需要安装 Python 或 ADB —— 这些都打包在里面了。</p>
+  <div class="chips">
+    <span class="chip">验证机型：有道词典笔 X6 Pro（YDPX6-2 · PenOS 4.3.5）</span>
+    <span class="chip">电脑：Windows / macOS / Linux</span>
+    <span class="chip">更新：2026-11-22</span>
+  </div>
+</header>
+
+<section class="card quick">
+  <h2 style="font-size:18px;margin:0">六步速通</h2>
+  <ol>
+    <li>先去解锁词典笔的 ADB 调试权限（没解锁，后面一步都走不通）。</li>
+    <li>下载游戏压缩包，<b>完整解压</b>到电脑硬盘上（不要留在压缩软件窗口里）。</li>
+    <li>用数据线把词典笔连电脑，笔屏幕点“允许 USB 调试”。</li>
+    <li>进解压出来的文件夹，双击对应的一键安装脚本，等它自己跑完。</li>
+    <li>看到“安装全部完成”就可以拔线。</li>
+    <li>回到词典笔桌面，点新出现的游戏图标开始玩。</li>
+  </ol>
+</section>
+
+<nav class="toc">
+  <a href="#prep"><span>01</span>先确认笔能装</a>
+  <a href="#download"><span>02</span>下载哪个文件</a>
+  <a href="#extract"><span>03</span>解压（最容易错）</a>
+  <a href="#entry"><span>04</span>认准双击哪个</a>
+  <a href="#connect"><span>05</span>连接词典笔</a>
+  <a href="#run"><span>06</span>运行安装</a>
+  <a href="#after"><span>07</span>装完之后</a>
+  <a href="#faq"><span>08</span>按现象查故障</a>
+  <a href="#help"><span>09</span>求助带什么</a>
+  <a href="#safety"><span>10</span>它做了什么</a>
+  <a href="#other"><span>11</span>其他型号与移植</a>
+</nav>
+
+<section class="card" id="prep">
+  <h2>01 · “解锁”到底是什么</h2>
+  <p>这一步最容易被误解。词典笔不像手机，打开“开发者选项 → USB 调试”就能用；它有两道门，缺一道都装不进去。</p>
+
+  <h3>第一道门：笔上的 ADB 开关</h3>
+  <p>进入词典笔 <b>设置 → 法律监管</b>，对着那段文本<b>连点 10~15 下</b>，直到提示“ADB 调试已打开”，等 5 秒再插线。<b>重启后就复位了</b>，下次要重做。别反复插拔 —— 那会让 USB 设备在“出现 / 消失”之间跳，<code>adb devices</code> 只会显示空或者 <code>offline</code>。</p>
+
+  <h3>第二道门：adbd 的登录口令</h3>
+  <p>系统里的 adbd 由 <code>/usr/bin/adbd_auth.sh</code> 把关，存的是厂商随机生成的口令哈希。没打过补丁的笔，你连上去执行任何命令，只会得到一句：</p>
+  <pre>login with "adb shell auth" to continue.</pre>
+  <p>而原始口令是随机的，没有公开值。所以“插上线直接装”在一台没折腾过的笔上，必然失败。</p>
+
+  <h3>“解锁”实际做的是什么</h3>
+  <p>不是勾一个开关，而是<b>让笔自己刷一个改过的固件镜像</b>：把 adbd 的登录口令替换成已知口令，其余内容做等长替换、镜像大小不变。刷完重启，口令固定为 <code>ydpen2026</code>。</p>
+  <div class="note">
+    <span class="tag">原理</span>
+    这条链路成立靠三个同时满足的条件：OTA 接口走明文 HTTP、固件镜像不签名（只校验 MD5/SHA）、校验值与升级策略都在可伪造的响应里。仓库 <code>reference/04-ota-firmware.md</code> 有完整说明与回滚方式。
+  </div>
+  <div class="note">
+    <span class="tag">完整步骤</span>
+    解锁的脚本、命令与排错都在仓库里，不在本教程复述：<br>
+    <a href="https://github.com/gwjcfls/ydpen-toolkit" target="_blank" rel="noopener">github.com/gwjcfls/ydpen-toolkit</a>
+    （看 README 与 <code>reference/01-access-and-adb.md</code>、<code>reference/04-ota-firmware.md</code>）
+  </div>
+
+  <h3>解锁之后怎么用</h3>
+  <p>开机、插线，在电脑上依次执行：</p>
+  <pre>adb devices
+adb shell auth        # 输入口令 ydpen2026，看到 success
+adb shell id          # 输出 uid=0(root) 就通了</pre>
+  <p>关键细节：<b>重启后认证状态会丢</b>（<code>/tmp/.adb_auth_verified</code> 随重启消失），每个新会话都要重新 <code>auth</code> 一次。装游戏的脚本已经内置自动认证，你不用手动敲。</p>
+  <div class="ok">
+    <span class="tag">你只需要做到</span>
+    确认自己能在命令行里 <code>adb shell auth</code> 成功、<code>adb shell id</code> 显示 root。剩下的交给安装脚本。
+  </div>
+
+  <h3>机型范围</h3>
+  <div class="warn">
+    <span class="tag">机型范围</span>
+    本目录的安装包与这份教程，<b>只在 X6 Pro（YDPX6-2，PenOS 4.3.5）上做过真机验证</b>。<br>
+    上面那套解锁工具链同时覆盖 X6 Pro 与 X7 Pro（YDPX7-1，产品 ID、OTA 路径不同）；其余型号没有验证过，但系统同源、做法相通，可以看第 11 节自己动手移植。
+  </div>
+  <div class="danger">
+    <span class="tag">风险</span>
+    解锁要动固件。请完整看完仓库里的步骤再动手，并保留原版镜像备份；刷坏需要能救。这一步不在本教程的责任范围内。
+  </div>
+</section>
+
+<section class="card" id="download">
+  <h2>02 · 下载哪个文件</h2>
+  <p>同一个游戏可能同时有 <code>.7z</code>（加密，防网盘和谐）和 <code>.zip</code>（不加密）。<b>两个内容一样，下哪个都行</b>；目录里只有哪个就下哪个。</p>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>游戏</th><th>文件名</th><th>大小</th><th>解压密码</th><th>笔上占用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>千恋＊万花</td><td><code>Senren_Banka_Ydpen_Setup_v1.0.0.7z</code></td><td>约 2.1 GB</td><td><code>rstv</code></td><td>约 2.5 GB</td></tr>
+        <tr><td>魔女的夜宴</td><td><code>Sanoba_Witch_Ydpen_Setup_v1.0.0.7z</code></td><td>约 1.6 GB</td><td><code>rstv</code></td><td>约 1.8 GB</td></tr>
+        <tr><td>DRACU-RIOT!</td><td><code>Dracu_Riot_Ydpen_Setup_v1.0.0.7z</code></td><td>见目录</td><td><code>rstv</code></td><td>见包内说明</td></tr>
+        <tr><td>半条命 1</td><td><code>HalfLife_Ydpen_Universal_v1.0.0.zip</code></td><td>约 305 MB</td><td>不需要</td><td>约 385 MB</td></tr>
+        <tr><td>植物大战僵尸</td><td><code>PvZ_Ydpen_Universal_v1.0.0.zip</code></td><td>约 175 MB</td><td>不需要</td><td>约 160 MB</td></tr>
+        <tr><td>DOOM</td><td><code>DOOM_Ydpen_Universal_v1.0.0.zip</code></td><td>约 111 MB</td><td>不需要</td><td>约 15 MB</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <span class="tag">空间</span>
+    安装前请确认词典笔内部存储（<code>/userdisk</code>）够用：大体积 Galgame 建议预留 <b>3 GB</b> 以上，其余游戏按上表“笔上占用”再留 100 MB 余量。
+  </div>
+</section>
+
+<section class="card" id="extract">
+  <h2>03 · 解压（最容易出错的一步）</h2>
+  <p>绝大多数“双击没反应 / 一闪就没了”的报错，都出在这一步。</p>
+  <div class="danger">
+    <span class="tag">必须做</span>
+    把压缩包<b>完整解压</b>到电脑硬盘的普通文件夹里（比如桌面、D 盘），然后再进去双击安装脚本。<br>
+    <b>不要</b>在压缩软件的浏览窗口里直接双击脚本运行 —— 那时文件还在压缩包内部，内置环境解不出来，必然失败。
+  </div>
+  <h3>Windows</h3>
+  <ul>
+    <li><code>.zip</code>：右键 → <kbd>全部解压缩</kbd> 即可。</li>
+    <li><code>.7z</code>：装个 <a href="https://www.7-zip.org" target="_blank" rel="noopener">7-Zip</a>（免费）或 Bandizip / WinRAR，右键 → <kbd>7-Zip</kbd> → <kbd>提取到当前文件夹</kbd>。</li>
+    <li>弹出密码框时输入 <code>rstv</code>（全部小写，没有空格）。</li>
+  </ul>
+  <h3>macOS</h3>
+  <ul>
+    <li><code>.zip</code>：双击即可解压。</li>
+    <li><code>.7z</code>：用 <a href="https://www.keka.io" target="_blank" rel="noopener">Keka</a>（免费）拖进去，输入密码 <code>rstv</code>。</li>
+  </ul>
+  <h3>两个小陷阱</h3>
+  <ul>
+    <li>如果文件名末尾多了一段 <code>.bak</code>（例如 <code>xxx.7z.bak</code>），那是发布时为了躲网盘审查加的，改名把 <code>.bak</code> 删掉再解压。</li>
+    <li>解压路径别太深、别带奇怪符号。像 <code>D:\games\笔\doom</code> 这种短路径最稳。</li>
+  </ul>
+</section>
+
+<section class="card" id="entry">
+  <h2>04 · 认准双击哪个文件</h2>
+  <p>解压出来的文件夹里有一堆文件，<b>你只需要认名字里带“一键安装”的那一个</b>。其余都是给脚本用的，不要动。</p>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th>你的电脑</th><th>通用包（半条命 / 植物大战僵尸 / DOOM）</th><th>Galgame 包（千恋 / 魔女 / DRACU）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows</td>
+          <td><code>一键安装半条命.bat</code><br><code>一键安装植物大战僵尸.bat</code><br><code>一键安装DOOM.bat</code></td>
+          <td><code>一键安装游戏与全部素材.bat</code></td>
+        </tr>
+        <tr>
+          <td>macOS</td>
+          <td><code>一键安装半条命_macOS.command</code><br><code>一键安装植物大战僵尸_macOS.command</code><br><code>一键安装DOOM_macOS.command</code></td>
+          <td><code>一键安装游戏与全部素材.command</code><br><span class="fix">若包里没有 .command，就用终端执行 <code>bash 一键安装游戏与全部素材.sh</code></span></td>
+        </tr>
+        <tr>
+          <td>Linux</td>
+          <td><code>一键安装XXX_Linux.sh</code><br><span class="fix">终端执行 <code>bash 一键安装XXX_Linux.sh</code></span></td>
+          <td><code>一键安装游戏与全部素材.sh</code><br><span class="fix">终端执行 <code>bash 一键安装游戏与全部素材.sh</code></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <span class="tag">先检测再安装</span>
+    每个包里还有“检测设备连接”类脚本（Windows 叫 <code>检测设备连接_Windows.bat</code> 或 <code>检测词典笔连接.bat</code>）。<b>第一次装建议先跑它</b>：它只读不写，能立刻告出是驱动问题、授权问题还是线的问题。
+  </div>
+  <p class="fix">英文备用名：<code>install_windows.bat</code>、<code>install_macos.command</code>、<code>install_linux.sh</code>，功能与上面完全一致。</p>
+</section>
+
+<section class="card" id="connect">
+  <h2>05 · 连接词典笔</h2>
+  <ol>
+    <li>用<b>支持数据传输</b>的 Type-C 线把笔直连电脑 USB 口。很多便宜充电线只能供电、不传数据，这是“一直找不到设备”的头号原因。</li>
+    <li>在笔上打开 ADB 开关：<b>设置 → 法律监管 → 连点 10~15 下</b>，看到“ADB 调试已打开”后等 5 秒，再插线。</li>
+    <li>插上后<b>别反复插拔</b>，给系统几秒枚举设备。直插主板 USB 口，别经过扩展坞。</li>
+    <li>装之前先跑一次检测脚本（第 04 节），它会自己判断设备在不在、认证过不过。</li>
+  </ol>
+  <div class="note">
+    <span class="tag">没有授权弹窗</span>
+    这台笔没有手机那种“是否允许 USB 调试”的弹窗，认证靠 <code>adb shell auth</code> 口令，安装脚本会自动完成。所以看到别人教程里写“点一律允许”，在这里不适用。
+  </div>
+  <div class="warn">
+    <span class="tag">Windows 首次连接</span>
+    如果设备管理器里出现带黄色感叹号的设备，需要安装通用 ADB 驱动，或者让 Windows 更新自动装一次驱动，然后再插拔一次。
+  </div>
+</section>
+
+<section class="card" id="run">
+  <h2>06 · 运行安装</h2>
+  <p>双击第 04 节表格里对应的那个文件，会弹出一个黑色命令行窗口。接下来你要做的只有一件事：<b>等它跑完，中途别关窗口</b>。</p>
+  <h3>正常会看到什么</h3>
+  <ol>
+    <li>先打印一段标题，说明本包版本与内容。</li>
+    <li>自动查找设备，找到后先做一次认证，再显示设备号；找不到会提示检查线/ADB 开关，并最多等 150 秒，超时自己退出，不会一直挂着。</li>
+    <li>逐个推送文件，每推一个会显示大小和速度。</li>
+    <li>最后出现类似“安装全部完成”的提示，窗口停在那里等你按任意键。</li>
+  </ol>
+  <div class="ok">
+    <span class="tag">成功标志</span>
+    看到“安装全部完成 / 全部就绪”这一行，并且没有红色报错，就算装好了。可以关窗口、拔线。
+  </div>
+  <div class="note">
+    <span class="tag">日志</span>
+    安装过程的每一行都会写进安装包目录下的 <code>install.log</code>。装完先别删这个文件夹，出问题时它就是唯一的证据。
+  </div>
+  <p class="fix">全自动、不问问题：给脚本加参数 <code>--yes</code> 即可（例如 <code>一键安装DOOM.bat --yes</code>），适合一次装多台设备。</p>
+</section>
+
+<section class="card" id="after">
+  <h2>07 · 装完之后</h2>
+  <ol>
+    <li>拔掉数据线，回到词典笔桌面，翻一下应该能看到新装的游戏图标。</li>
+    <li>点击图标进入游戏。<b>第一次启动会慢几秒</b>，属于正常现象。</li>
+    <li>存档在笔的 <code>/userdisk/</code> 对应游戏目录里，重装不会清掉；安装器还会在升级前把旧存档备份到电脑上的 <code>backup/</code> 文件夹。</li>
+    <li>不想玩了：删掉笔上对应的游戏目录即可，不影响系统；桌面图标可在应用管理里移除。</li>
+  </ol>
+  <div class="note">
+    <span class="tag">触控</span>
+    笔上没有实体摇杆，游戏都做了屏幕触控层：左侧负责移动/转身，右侧负责开火、使用、切武器，返回键通常对应游戏内的菜单。
+  </div>
+</section>
+
+<section class="card" id="faq">
+  <h2>08 · 按现象查故障</h2>
+  <p>先在后面对应你看到的现象，按里面的顺序排查。九成问题都在前三项。</p>
+
+  <details>
+    <summary>双击后黑窗口一闪就没了</summary>
+    <p class="fix">最常见，通常是两种原因：</p>
+    <ol>
+      <li><b>在压缩包里直接双击的。</b>把压缩包完整解压到硬盘，再进文件夹运行。</li>
+      <li><b>杀毒软件把内置的 python.exe 删了。</b>检查解压目录里 <code>tools\python\python.exe</code>（通用包是 <code>tools\win64\python\python.exe</code>）还在不在；不在就把该目录加入杀毒白名单后重新解压。</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>一直提示“未检测到设备”</summary>
+    <ol>
+      <li>换一根确认能传数据的 Type-C 线（这条占一半以上）。</li>
+      <li>笔屏幕点亮，确认 USB 调试是开着的，并点了“允许”。</li>
+      <li>换电脑上的另一个 USB 口，别经过扩展坞。</li>
+      <li>Windows：设备管理器看有没有未知设备，装通用 ADB 驱动。</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>adb devices 显示 offline</summary>
+    <p class="fix">这是这台笔最常见的状态，基本不是线的问题，而是 ADB 开关没复位。按顺序做：<b>拔线 → 在笔上重开 ADB 开关（设置 → 法律监管连点 10~15 下）→ 等 5 秒 → 插线 → 放着别动</b>。反复快速插拔只会让它一直在“出现/消失”之间跳。</p>
+  </details>
+
+  <details>
+    <summary>窗口里出现 login with "adb shell auth"</summary>
+    <p class="fix">这是“连上了但没通过认证”。两种情况：</p>
+    <ol>
+      <li>重启过笔 —— 认证状态随重启失效，重新 <code>adb shell auth</code> 即可；安装脚本会自动做这一步，重跑一次安装器也行。</li>
+      <li>这台笔还没打过固件补丁 —— 原厂口令是随机的，只能先按第 01 节把补丁流程走完。</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>解压报错 / 密码不对 / 文件损坏</summary>
+    <ol>
+      <li>密码是 <code>rstv</code>，全小写、无空格。</li>
+      <li>大文件下载中断很常见。对比一下文件大小是否与第 02 节表格一致，不一致就重新下载。</li>
+      <li><code>.7z</code> 请用 7-Zip / Keka / Bandizip，别用系统自带的老解压器。</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>装完了，桌面却没有图标</summary>
+    <p class="fix">说明文件推进去了，但小程序没装上。重新运行一次安装脚本（可重复安装，不会丢存档）；如果还是不行，把 <code>install.log</code> 发给作者，里面会有 miniapp 的安装回执。</p>
+  </details>
+
+  <details>
+    <summary>图标在，但点开闪退 / 黑屏</summary>
+    <ol>
+      <li>确认装的是 6 代 aarch64 机型；安装脚本会检查架构，装错会直接报错。</li>
+      <li>先重启一次词典笔，再点图标 —— 上一次异常退出可能残留进程。</li>
+      <li>把 <code>install.log</code> 和游戏目录下的 <code>game.log</code> 一起发出来。</li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Windows 提示“已保护你的电脑”</summary>
+    <p class="fix">这是 SmartScreen 对未知发布者的拦截，不是病毒。点“更多信息” → “仍要运行”。安装脚本只往词典笔写文件，不改你的电脑系统。</p>
+  </details>
+
+  <details>
+    <summary>macOS 提示“无法验证开发者”</summary>
+    <p class="fix">右键点击 <code>.command</code> 文件 → 选“打开” → 再点“打开”。只需做一次。若仍不行，在终端里执行 <code>chmod +x 一键安装XXX_macOS.command</code> 后再双击。</p>
+  </details>
+
+  <details>
+    <summary>Linux 提示 Permission denied</summary>
+    <p class="fix">用 <code>bash 一键安装XXX_Linux.sh</code> 运行，不要直接 <code>./</code> 执行；脚本会自己处理内置运行环境的权限。</p>
+  </details>
+
+  <details>
+    <summary>提示空间不足</summary>
+    <p class="fix">清理笔上 <code>/userdisk</code> 里的其他游戏或录音文件。大体积 Galgame 需要 3 GB 以上余量，装到一半空间不够会中断，重装前务必先腾出空间。</p>
+  </details>
+</section>
+
+<section class="card" id="help">
+  <h2>09 · 真的搞不定时，带上这三样</h2>
+  <p>描述“装不上”帮助有限，直接给证据最快：</p>
+  <ol>
+    <li>安装包目录下的 <code>install.log</code>（整个文件）。</li>
+    <li>报错那一刻的窗口截图，或笔屏幕的照片。</li>
+    <li>你的电脑系统（Windows 10 / macOS 14 等）和词典笔型号。</li>
+  </ol>
+  <div class="note">
+    <span class="tag">说明</span>
+    这些安装包是个人移植作品，作者手上设备有限，<b>无法在每一台电脑、每一版固件上逐一验证</b>。遇到装不上的情况，把日志发出来通常能定位得很快 —— 大部分是线、驱动、授权这一类环境问题，不是包本身坏了。
+  </div>
+</section>
+
+<section class="card" id="safety">
+  <h2>10 · 安装脚本到底做了什么</h2>
+  <p>如果你在意它会不会动系统，这一节可以让你放心：</p>
+  <div class="grid2">
+    <div>
+      <h3>它会做的</h3>
+      <ul>
+        <li>自动用口令完成一次 <code>adb shell auth</code> 认证（只是登录，不改口令、不改固件）</li>
+        <li>在笔的 <code>/userdisk/</code> 下建一个游戏目录并写入文件</li>
+        <li>安装一个桌面小程序（图标）</li>
+        <li>把旧存档和设置备份到你电脑的 <code>backup/</code> 目录</li>
+        <li>必要时在游戏目录内放一份自带运行库</li>
+      </ul>
+    </div>
+    <div>
+      <h3>它不会做的</h3>
+      <ul>
+        <li>不改系统分区、不刷机、不需要 root</li>
+        <li>不删你的存档和录音</li>
+        <li>不联网、不上传任何数据</li>
+        <li>不在你电脑上装驱动或后台常驻程序</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn">
+    <span class="tag">边界</span>
+    教程只覆盖“安装与排错”。设备解锁、固件升级、硬件维修不在范围内，请按官方或对应仓库的说明操作。
+  </div>
+</section>
+
+<section class="card" id="other">
+  <h2>11 · 其他型号能用吗？以及怎么自己移植</h2>
+  <p>先说结论：<b>没有验证过</b>。但也不用悲观 —— 有道词典笔各代用的其实是同一套系统底座，装游戏的骨架是相通的，差的是参数，不是原理。</p>
+
+  <h3>为什么说“系统类似”</h3>
+  <p>从 X6 Pro 到后续机型，跑的都是同一套 <b>Linux</b> 底座：Rockchip RK3562 平台 + 有道自己的 PenOS，图形走 Wayland + EGL，音频走 ALSA；小程序是自研的 Falcon / QuickJS 框架（<code>.amr</code> 包），不是安卓 APK。ADB 在这套系统里只是一条调试传输通道 —— adbd 被移植了上来，所以能用 <code>adb push</code>、<code>adb shell</code>，但别拿安卓手机的思路套它：这里没有 surfaceflinger、没有 APK 安装，也没有“开发者选项”。</p>
+  <p>正因为底座是同一套，<code>miniapp_cli</code>、<code>/userdisk</code>、Wayland 合成器、ADB 鉴权这些关键环节在各代之间是通的。所以一个能跑通的安装包，换到别的型号上通常不是“推倒重来”，而是“改几个参数”。</p>
+
+  <h3>通常会不一样的，就这四处</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>差异点</th><th>具体表现</th><th>要改什么</th></tr></thead>
+      <tbody>
+        <tr><td>屏幕尺寸</td><td>X6 Pro 的面板是 960×480，游戏画面按 960×266 居中，上方留给状态栏</td><td>分辨率常量、画面居中偏移、状态栏留白</td></tr>
+        <tr><td>触控坐标</td><td>不同面板的报点范围不一样，同一套按键布局会错位</td><td>按键布局配置（<code>touch.cfg</code> 一类）、坐标换算</td></tr>
+        <tr><td>系统库版本</td><td>图形与音频栈（libwayland、libasound、libmali）的版本可能不同，直接跑会提示缺 .so</td><td>替换或补上对应版本的运行库</td></tr>
+        <tr><td>设备标识</td><td>产品 ID、OTA 路径、小程序 appid 因型号而异</td><td>安装与打包参数，appid 不能和已有应用撞车</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>用 AI 移植，是现在最省力的路子</h3>
+  <p>这套东西的门槛不在“写代码”，在“知道该改哪一个数”。而这正好是 AI 最擅长的活：</p>
+  <ol>
+    <li><b>把资料交出去。</b>让 AI 读 <a href="https://github.com/gwjcfls/ydpen-toolkit" target="_blank" rel="noopener">ydpen-toolkit</a> 这个仓库，里面已经有 ADB 接入、小程序打包、触控换算、固件结构的分主题笔记。</li>
+    <li><b>把机器信息说清楚。</b>型号、屏幕分辨率、PenOS 版本、<code>uname -m</code> 的输出，一并给它。</li>
+    <li><b>让它做“对照改”。</b>拿现有安装包当模板，让它按你的机型改分辨率、触控布局、启动脚本路径、appid。</li>
+    <li><b>先验最小闭环。</b>先跑检测脚本确认 ADB 通，再拿体积最小的包（DOOM 约 15 MB）试装，链路通了再上大包。</li>
+  </ol>
+  <div class="ok">
+    <span class="tag">好消息</span>
+    这类安装是<b>用户态安装</b>：不刷机、不改系统分区、不动引导。最坏的结果是装不上或点开闪退，把游戏目录删掉就恢复原样，试错成本很低。
+  </div>
+  <div class="danger">
+    <span class="tag">但是</span>
+    解锁 ADB、改固件、换分区这些属于系统级操作，风险另算。如果你手上只有一台设备、又是日常在用的，别拿它当试验田；先在旧机器或二手设备上折腾。
+  </div>
+</section>
+
+<footer>
+  <p><strong>移植适配制作：Bilibili @RS_TV</strong></p>
+  <p>本教程随安装包一同更新，最近更新 2026-11-22。如果目录里新增了游戏而这里还没写，以包内 <code>使用说明.txt</code> 为准。</p>
+  <p>同目录另有《解压与网盘防和谐指南.txt》，讲的是解压密码、网盘发布与防封技巧，遇到解压问题时可以对照看。</p>
+</footer>
+
+</div>
+</body>
+</html>

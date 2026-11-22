@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "appid": "8002026110400001",
+  "files": {
+    "engine.tar": "c79df6e9257f52d90c92c8bd7f536b0b4a9640c9d079d14ae59f87af5126d289",
+    "valve.tar": "498f25e9db19237d9c3a698b8759f531b39cf82b2475ce8862933309f365db81",
+    "half-life-1.0.0.amr": "f95e349f2248bb4c0f39bca533e1c88f76797d03db96f393dce56d8b0f1ec895",
+    "defaults/config.cfg": "a138df8a5c15056f6e56bb69cccf971a2b8b9469733fddffcc40be21f709db0b"
+  }
+}

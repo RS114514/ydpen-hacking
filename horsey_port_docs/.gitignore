@@ -1,0 +1,10 @@
+# third-party gameplay media for private frame study only - never commit
+*.mp4
+*.m4s
+*.webm
+*.flv
+videos/
+frames/
+*.jpg
+*.png
+!images/.gitkeep

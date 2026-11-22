@@ -1,0 +1,11 @@
+dress	Ë½·þ	diff	1	¿Õ
+
+face	01	base	¥Ù©`¥¹
+face	02	base	ÕÕ¤ì
+face	03	base	Ï²
+face	04	base	Å­
+face	05	base	°§
+face	06	base	˜S
+face	07	base	º¹
+face	08	base	›æ
+face	09	base	Å­2

@@ -1,0 +1,77 @@
+{
+  "712.tlg": "#resource#5",
+  "713.tlg": "#resource#1",
+  "714.tlg": "#resource#0",
+  "715.tlg": "#resource#2",
+  "716.tlg": "#resource#4",
+  "717.tlg": "#resource#3",
+  "height": 720,
+  "layers": [{
+      "height": 163,
+      "layer_id": 717,
+      "layer_type": 0,
+      "left": 544,
+      "name": "AF",
+      "opacity": 255,
+      "top": 85,
+      "type": 13,
+      "visible": 1,
+      "width": 183
+    },{
+      "height": 217,
+      "layer_id": 716,
+      "layer_type": 0,
+      "left": 458,
+      "name": "AE",
+      "opacity": 255,
+      "top": 55,
+      "type": 13,
+      "visible": 1,
+      "width": 318
+    },{
+      "height": 148,
+      "layer_id": 715,
+      "layer_type": 0,
+      "left": 544,
+      "name": "AD",
+      "opacity": 255,
+      "top": 82,
+      "type": 13,
+      "visible": 1,
+      "width": 183
+    },{
+      "height": 161,
+      "layer_id": 714,
+      "layer_type": 0,
+      "left": 544,
+      "name": "AC",
+      "opacity": 255,
+      "top": 87,
+      "type": 13,
+      "visible": 1,
+      "width": 183
+    },{
+      "height": 162,
+      "layer_id": 713,
+      "layer_type": 0,
+      "left": 544,
+      "name": "AB",
+      "opacity": 255,
+      "top": 86,
+      "type": 13,
+      "visible": 1,
+      "width": 183
+    },{
+      "height": 720,
+      "layer_id": 712,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AA",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 1,
+      "width": 1280
+    }],
+  "width": 1280
+}

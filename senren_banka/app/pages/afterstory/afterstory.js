@@ -82,6 +82,11 @@ export var afterstoryMethods = {
     if (!this.selectedAfterHeroine) {
       this.selectedAfterHeroine = 'yoshino';
     }
+    // 词典笔无 ALSA dmix：释放标题 BGM 独占的声卡，播报语音才能打开设备
+    var G = getGal();
+    if (G && typeof G.stopBgm === 'function') {
+      G.stopBgm();
+    }
   },
   onAsTouchStart: function (e) {
     if (e && e.changedTouches && e.changedTouches[0]) {
@@ -121,6 +126,10 @@ export var afterstoryMethods = {
     log('play heroine voice: ' + voiceFile);
     var G = getGal();
     if (G && voiceFile) {
+      // 先停 BGM 释放独占声卡，再切换播报语音，避免 Device busy 无声
+      if (typeof G.stopBgm === 'function') {
+        G.stopBgm();
+      }
       G.stopVoice();
       G.playVoice('/userdisk/SenrenBanka/voice/' + voiceFile, 1.0);
     }

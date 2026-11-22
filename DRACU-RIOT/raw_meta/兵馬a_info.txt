@@ -1,0 +1,51 @@
+dress	制服	diff	1	コート
+dress	私服	diff	1	スーツ
+
+face	01	base	ベース表情
+face	02	base	2　　ムッツリ
+face	03	base	3　　目とじでむっつり
+face	04	base	4  脱むっつり
+face	05	base	5  呆れ
+face	06	base	6  真剣
+face	07	base	7　　叫ぶ
+face	08	base	8　　感嘆
+face	09	base	9　　困ったムッツリ
+face	10	base	10　　考えるムッツリ
+face	11	base	11　舌打ちするような
+face	12	base	12　　きょとん
+face	13	base	13　　納得
+face	14	base	14　　驚き
+face	15	base	11　舌打ちするような2
+
+
+face	01h	base	ベース表情
+face	01h	base	照れ
+face	02h	base	2　　ムッツリ
+face	02h	base	照れ
+face	03h	base	3　　目とじでむっつり
+face	03h	base	照れ
+face	04h	base	4  脱むっつり
+face	04h	base	照れ
+face	05h	base	5  呆れ
+face	05h	base	照れ
+face	06h	base	6  真剣
+face	06h	base	照れ
+face	07h	base	7　　叫ぶ
+face	07h	base	照れ
+face	08h	base	8　　感嘆
+face	08h	base	照れ
+face	09h	base	9　　困ったムッツリ
+face	09h	base	照れ
+face	10h	base	10　　考えるムッツリ
+face	10h	base	照れ
+face	11h	base	11　舌打ちするような
+face	11h	base	照れ
+face	12h	base	12　　きょとん
+face	12h	base	照れ
+face	13h	base	13　　納得
+face	13h	base	照れ
+face	14h	base	14　　驚き
+face	14h	base	照れ
+face	15h	base	11　舌打ちするような2
+face	15h	base	照れ
+

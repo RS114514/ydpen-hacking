@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>DOOM 词典笔移植 · 宣传片</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#070405;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden;perspective:2200px}
+#bg{position:absolute;inset:-10%;background:radial-gradient(ellipse at 50% 42%,#3a0f06 0%,#16070a 45%,#070405 100%)}
+#grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,70,20,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,70,20,.06) 1px,transparent 1px);background-size:120px 120px;opacity:.55}
+#glow{position:absolute;width:1500px;height:1500px;border-radius:50%;filter:blur(130px);opacity:.55;background:radial-gradient(circle,#ff3b00 0%,rgba(255,59,0,0) 65%)}
+#scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0px,rgba(0,0,0,.16) 1px,transparent 1px,transparent 3px);opacity:.3;pointer-events:none}
+#vig{position:absolute;inset:0;box-shadow:inset 0 0 220px rgba(0,0,0,.85);pointer-events:none}
+.ember{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffd08a,#ff4a1c);will-change:transform}
+.scene{position:absolute;inset:0;opacity:0;will-change:transform,opacity}
+
+/* 词典笔机身 */
+.pen{position:absolute;left:50%;top:50%;width:1680px;height:500px;margin:-250px 0 0 -840px;border-radius:250px;
+ background:linear-gradient(180deg,#2b2e36 0%,#17191f 48%,#0a0b0e 100%);
+ box-shadow:0 60px 120px rgba(0,0,0,.78),inset 0 4px 6px rgba(255,255,255,.14),inset 0 -8px 14px rgba(0,0,0,.75),0 0 0 2px rgba(255,80,20,.2),0 0 100px rgba(255,50,0,.2)}
+.pen .screen{position:absolute;left:180px;top:47px;width:1320px;height:366px;border-radius:22px;overflow:hidden;background:#000;
+ box-shadow:0 0 0 10px #0b0c0f,0 0 0 12px #3a3d46,0 0 44px rgba(255,70,20,.28)}
+.pen .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pen .glare{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,0) 35%);pointer-events:none}
+.pen .tip{position:absolute;right:-40px;top:170px;width:120px;height:160px;border-radius:0 80px 80px 0;background:linear-gradient(180deg,#2b2b30,#0d0d10)}
+.pen .btn{position:absolute;left:90px;top:220px;width:28px;height:60px;border-radius:14px;background:#3a3d46;box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
+.pen .led{position:absolute;left:96px;top:186px;width:16px;height:16px;border-radius:50%;background:#ff4a1c;box-shadow:0 0 18px #ff4a1c,0 0 44px rgba(255,74,28,.65)}
+.pen .strip{position:absolute;left:170px;right:170px;bottom:8px;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,#ff4a1c 25%,#ffb347 50%,#ff4a1c 75%,transparent);opacity:.55}
+
+.shot{position:absolute;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.72),0 0 0 2px rgba(255,90,30,.35)}
+.shot img{width:100%;height:100%;display:block;object-fit:cover}
+.h1{position:absolute;left:0;right:0;text-align:center;font-weight:800;letter-spacing:6px;text-shadow:0 6px 30px rgba(255,60,0,.55)}
+.impact{font-family:Impact,"Arial Black","PingFang SC",sans-serif;letter-spacing:2px}
+.tag{position:absolute;padding:14px 34px;border-radius:40px;font-size:32px;font-weight:700;background:rgba(22,11,8,.66);border:2px solid rgba(255,120,60,.55);backdrop-filter:blur(8px);box-shadow:0 0 26px rgba(255,60,0,.18);white-space:nowrap}
+.cap{position:absolute;left:0;right:0;bottom:70px;text-align:center;font-size:38px;font-weight:600;letter-spacing:3px;text-shadow:0 4px 18px #000}
+.char{display:inline-block;will-change:transform,opacity}
+.card{position:absolute;width:820px;height:150px;border-radius:22px;padding:26px 38px;background:linear-gradient(135deg,rgba(255,90,30,.15),rgba(255,255,255,.03));border:2px solid rgba(255,120,60,.45);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.card b{display:block;font-size:40px;font-family:Menlo,monospace;color:#ffcf9a}
+.card span{font-size:25px;color:#cbb6a8}
+.spec{position:absolute;font-size:36px;font-weight:600;white-space:nowrap}
+.spec i{font-style:normal;color:#ff8a4c;font-family:Menlo,monospace;margin-right:18px}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#redflash{position:absolute;inset:0;background:radial-gradient(circle at 50% 55%,rgba(255,80,20,.6),rgba(255,0,0,0) 62%);opacity:0;pointer-events:none}
+#bar{position:absolute;left:0;top:0;height:6px;background:linear-gradient(90deg,#ff3b00,#ffb347)}
+.ripple{position:absolute;border:3px solid rgba(255,190,90,.95);border-radius:50%;opacity:0;box-shadow:0 0 22px rgba(255,120,40,.7);pointer-events:none}
+.hud{position:absolute;font-family:Menlo,monospace;font-size:24px;font-weight:700;color:#ffcf9a;background:rgba(15,8,6,.74);border:1px solid rgba(255,120,60,.5);border-radius:10px;padding:8px 18px;letter-spacing:2px;box-shadow:0 0 20px rgba(255,60,0,.25)}
+.muzzle{position:absolute;background:radial-gradient(circle,rgba(255,255,220,.95),rgba(255,160,40,.55) 35%,rgba(255,60,0,0) 70%);opacity:0;pointer-events:none;mix-blend-mode:screen}
+.zone{position:absolute;inset:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,80,20,.25),transparent 27%,transparent 73%,rgba(255,80,20,.25))}
+
+/* 触控映射示意 */
+.pad{position:absolute;display:grid;grid-template-columns:repeat(3,150px);grid-auto-rows:128px;gap:18px;will-change:transform,opacity}
+.key{display:flex;align-items:center;justify-content:center;text-align:center;border-radius:14px;font-size:25px;font-weight:800;line-height:1.15;color:#d6fbff;background:linear-gradient(180deg,#123640,#0a1a20);border:3px solid #2fd4e8;box-shadow:inset 0 0 20px rgba(47,212,232,.28),0 0 20px rgba(47,212,232,.16);will-change:transform,filter}
+.key.speed{border-color:#2f8fe8;color:#d7e8ff;background:linear-gradient(180deg,#122c44,#091624)}
+.key.weapon{border-color:#d6a12a;color:#ffe9b8;background:linear-gradient(180deg,#3a2a0c,#191204)}
+.key.menu,.key.ok{border-color:#9aa3ad;color:#e8edf2;background:linear-gradient(180deg,#2b3038,#12151a)}
+.key.use{border-color:#22b06a;color:#c9ffe2;background:linear-gradient(180deg,#0e3324,#061810)}
+.key.fire{border-color:#ff4a1c;color:#ffd9c8;background:linear-gradient(180deg,#3d120a,#1a0704)}
+.centerpad{position:absolute;left:690px;top:392px;width:540px;height:300px;border-radius:18px;border:2px solid rgba(255,120,60,.5);background:linear-gradient(90deg,rgba(47,212,232,.16) 0 22%,rgba(0,0,0,0) 22% 78%,rgba(255,74,28,.16) 78% 100%),linear-gradient(180deg,rgba(45,14,9,.95),rgba(10,5,4,.95));box-shadow:0 30px 70px rgba(0,0,0,.65),inset 0 0 60px rgba(255,60,0,.12);overflow:hidden;display:flex;align-items:center;justify-content:center;will-change:transform,opacity}
+.centerpad:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,90,30,.07) 0 1px,transparent 1px 6px);pointer-events:none}
+.centerpad .label{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-family:Menlo,monospace;font-size:23px;letter-spacing:3px;color:#ffb37a;opacity:.92}
+.centerpad .cross{position:absolute;left:50%;top:50%;width:60px;height:60px;margin:-30px 0 0 -30px;border:2px solid rgba(255,150,80,.8);border-radius:50%;box-shadow:0 0 22px rgba(255,90,20,.6)}
+.centerpad .cross:before,.centerpad .cross:after{content:"";position:absolute;background:rgba(255,150,80,.9)}
+.centerpad .cross:before{left:50%;top:-16px;width:2px;height:92px;margin-left:-1px}
+.centerpad .cross:after{top:50%;left:-16px;height:2px;width:92px;margin-top:-1px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div id="grid"></div>
+  <div id="glow"></div>
+  <div id="embers"></div>
+  <div id="scan"></div>
+  <div id="vig"></div>
+
+  <!-- S1 开场 -->
+  <div class="scene" id="s1">
+    <div class="h1 impact" id="t1" style="top:360px;font-size:128px;color:#fff"></div>
+    <div class="h1" id="t1b" style="top:545px;font-size:44px;font-weight:500;letter-spacing:14px;color:#ffc9a6">有道词典笔 X6 Pro · 960 × 266 超宽屏</div>
+    <div id="doomBadge" style="position:absolute;left:50%;top:655px;transform:translateX(-50%);opacity:0;padding:10px 54px;border-radius:14px;background:linear-gradient(135deg,#ff2a00,#a30000);box-shadow:0 0 60px rgba(255,40,0,.75);border:2px solid rgba(255,200,150,.4)"><span class="impact" style="font-size:104px;letter-spacing:6px;text-shadow:0 0 30px rgba(0,0,0,.35)">RUNS DOOM!</span></div>
+  </div>
+
+  <!-- S2 词典笔桌面 -> DOOM -->
+  <div class="scene" id="s2">
+    <div class="pen" id="pen2">
+      <div class="led"></div><div class="btn"></div><div class="tip"></div><div class="strip"></div>
+      <div class="screen">
+        <img id="p2a" src="a/desktop.png">
+        <div id="p2b" style="position:absolute;inset:0;transform:translateX(100%);background:#000">
+          <video id="vidWipe" src="a/wipe.mp4" muted preload="auto" playsinline style="width:100%;height:100%;object-fit:cover"></video>
+        </div>
+        <div class="glare"></div>
+      </div>
+    </div>
+    <div class="cap" id="c2">这原本是一支查单词的笔</div>
+  </div>
+
+  <!-- S3 E1M1 主视觉 -->
+  <div class="scene" id="s3">
+    <div class="h1 impact" id="t3" style="top:78px;font-size:104px">E1M1</div>
+    <div class="h1" id="t3b" style="top:208px;font-size:36px;font-weight:500;color:#ffc9a6;letter-spacing:8px">KNEE-DEEP IN THE DEAD · 地狱从这一关开始</div>
+    <div class="shot" id="sh3" style="left:240px;top:320px;width:1440px;height:399px"><img src="a/03_pool_view.png"></div>
+    <div class="tag" id="g3a" style="left:240px;top:792px">960 × 266 原生渲染</div>
+    <div class="tag" id="g3b" style="left:706px;top:792px">60 FPS Wayland 客户端</div>
+    <div class="tag" id="g3c" style="left:1210px;top:792px">触控 + 虚拟按键</div>
+  </div>
+
+  <!-- S4 实机操作 -->
+  <div class="scene" id="s4">
+    <div class="pen" id="pen4">
+      <div class="led"></div><div class="btn"></div><div class="tip"></div><div class="strip"></div>
+      <div class="screen">
+        <div id="p4v" style="position:absolute;inset:0;opacity:0">
+          <video id="vidPlay" src="a/gameplay_real.mp4" muted preload="auto" playsinline style="width:100%;height:100%;object-fit:cover"></video>
+        </div>
+        <div class="glare"></div>
+      </div>
+    </div>
+    <div class="hud" id="h4a" style="left:140px;top:186px">LIVE · REAL DEVICE</div>
+    <div class="hud" id="h4b" style="left:140px;top:252px">60 FPS · EVDEV TOUCH</div>
+    <div class="cap" id="c4">迈步、转身、开火，全靠两侧虚拟按键</div>
+  </div>
+
+  <!-- S5 触控映射 -->
+  <div class="scene" id="s5">
+    <div class="h1 impact" id="t5" style="top:64px;font-size:84px">TOUCH MAPPING</div>
+    <div class="h1" id="t5b" style="top:180px;font-size:32px;font-weight:500;color:#ffc9a6;letter-spacing:8px">左六键移动 · 右四键战斗</div>
+    <div class="pad" id="padL" style="left:120px;top:330px">
+      <div class="key" id="k_tl">TURN<br>L</div>
+      <div class="key" id="k_fwd">FWD</div>
+      <div class="key" id="k_tr">TURN<br>R</div>
+      <div class="key" id="k_sl">STRAFE<br>L</div>
+      <div class="key" id="k_back">BACK</div>
+      <div class="key" id="k_sr">STRAFE<br>R</div>
+    </div>
+    <div class="centerpad" id="c5pad">
+      <div class="cross"></div>
+      <div class="ripple" id="rp5a" style="left:22%;top:50%;width:130px;height:130px"></div>
+      <div class="ripple" id="rp5b" style="left:78%;top:50%;width:130px;height:130px"></div>
+      <div class="label">960 × 266 · TOUCH LAYER</div>
+    </div>
+    <div class="pad" id="padR" style="right:120px;top:330px">
+      <div class="key speed" id="k_speed">SPEED</div>
+      <div class="key weapon" id="k_weapon">WEAPON</div>
+      <div class="key menu" id="k_menu">MENU</div>
+      <div class="key ok" id="k_ok">OK</div>
+      <div class="key use" id="k_use">USE</div>
+      <div class="key fire" id="k_fire">FIRE</div>
+    </div>
+    <div class="tag" id="g5a" style="left:120px;top:760px">六键移动 · TURN / FWD / BACK / STRAFE</div>
+    <div class="tag" id="g5b" style="right:120px;top:760px">四键战斗 · FIRE / USE / SPEED / WEAPON</div>
+    <div class="cap" id="c5">指尖触控即操作，毫秒级响应</div>
+  </div>
+
+  <!-- S6 战斗拼贴 -->
+  <div class="scene" id="s6">
+    <div class="h1 impact" id="t6" style="top:72px;font-size:96px">HELL WALK</div>
+    <div class="h1" id="t6b" style="top:196px;font-size:32px;font-weight:500;color:#ffc9a6;letter-spacing:10px">走廊推进 · 转角遭遇</div>
+    <div class="shot" id="sh6a" style="left:160px;top:270px;width:640px;height:400px"><img src="a/s6_a.png"></div>
+    <div class="shot" id="sh6b" style="left:1080px;top:500px;width:640px;height:400px"><img src="a/s6_b.png"></div>
+    <div class="tag" id="g6a" style="left:850px;top:330px">弹药持续消耗 · 血条实时反馈</div>
+    <div class="tag" id="g6b" style="left:170px;top:730px">转角遭遇 · 走位拉扯</div>
+    <div class="cap" id="c6">恶魔、弹药与血条，一个都不少</div>
+  </div>
+
+  <!-- S7 原生菜单 -->
+  <div class="scene" id="s7">
+    <div class="h1" id="t7" style="top:76px;font-size:92px">原生菜单</div>
+    <div class="h1 impact" id="t7b" style="top:208px;font-size:34px;font-weight:500;color:#ffc9a6;letter-spacing:8px">NEW GAME / LOAD / SAVE / OPTIONS</div>
+    <div class="shot" id="sh7" style="left:360px;top:280px;width:1200px;height:333px"><img src="a/08_skull_menu.png"></div>
+    <div class="tag" id="g7a" style="left:360px;top:676px">自动存档 slot 7</div>
+    <div class="tag" id="g7b" style="left:750px;top:676px">退出即存</div>
+    <div class="tag" id="g7c" style="left:1130px;top:676px">图标冷启动续关</div>
+    <div class="cap" id="c7">不妥协的原生体验</div>
+  </div>
+
+  <!-- S8 技术栈 -->
+  <div class="scene" id="s8">
+    <div class="h1 impact" id="t8" style="top:84px;font-size:86px">UNDER THE HOOD</div>
+    <div class="h1" id="t8b" style="top:222px;font-size:34px;font-weight:500;color:#ffc9a6;letter-spacing:8px">doomgeneric · 原生 Wayland 客户端</div>
+    <div class="spec" id="k1" style="left:200px;top:372px"><i>SoC</i>Rockchip RK3562 · 4×A53</div>
+    <div class="spec" id="k2" style="left:200px;top:462px"><i>Display</i>Weston Wayland · 960 × 266</div>
+    <div class="spec" id="k3" style="left:200px;top:552px"><i>Input</i>Linux evdev · 单点触控映射</div>
+    <div class="spec" id="k4" style="left:200px;top:642px"><i>Audio</i>ALSA PCM · 48 kHz 立体声</div>
+    <div class="spec" id="k5" style="left:200px;top:732px"><i>Build</i>Zig · aarch64-linux-gnu</div>
+    <div class="shot" id="sh8" style="left:1080px;top:340px;width:720px;height:450px"><img src="a/s8_core.png"></div>
+    <div class="tag" id="g8" style="left:1080px;top:820px">真机帧实拍 · E1M1 走廊</div>
+    <div class="cap" id="c8">零中间层，直接画进 Wayland</div>
+  </div>
+
+  <!-- S9 开源 -->
+  <div class="scene" id="s9">
+    <div class="h1" id="t9" style="top:76px;font-size:86px">全部开源</div>
+    <div class="card" id="r1" style="left:120px;top:232px"><b>ydpen-hacking</b><span>有道词典笔逆向与搞机工具链</span></div>
+    <div class="card" id="r2" style="left:980px;top:232px"><b>doomgeneric</b><span>上游 DOOM 引擎 · 跨平台移植基座</span></div>
+    <div class="card" id="r3" style="left:120px;top:432px"><b>id-Software/DOOM</b><span>DOOM shareware 原始发布</span></div>
+    <div class="card" id="r4" style="left:980px;top:432px"><b>@RS_TV</b><span>BILIBILI 频道 · 移植进度与实机演示</span></div>
+    <div class="h1 impact" id="t9b" style="top:662px;font-size:44px;color:#ffcf9a;letter-spacing:2px">github.com/RS114514/ydpen-hacking</div>
+    <div class="h1" id="t9c" style="top:752px;font-size:27px;color:#bba8b4;letter-spacing:2px">仓库不含任何商业游戏素材 · 请支持正版 id Software</div>
+  </div>
+
+  <!-- S10 结尾 -->
+  <div class="scene" id="s10">
+    <div class="h1 impact" id="t10" style="top:250px;font-size:78px;color:#ff6a33">DOOM ON YOUDAO</div>
+    <div class="h1" id="t10b" style="top:440px;font-size:84px">作者 · RS_TV</div>
+    <div class="h1" id="t10c" style="top:590px;font-size:42px;font-weight:500;color:#ffc9a6;letter-spacing:10px">下一部移植正在路上……</div>
+    <div class="h1" id="t10d" style="top:700px;font-size:26px;color:#bba8b4;letter-spacing:2px">感谢观看 · 请支持正版 id Software</div>
+  </div>
+
+  <div id="flash"></div>
+  <div id="redflash"></div>
+  <div id="bar"></div>
+</div>
+
+<script>
+const DURATION = 60;
+const $ = id => document.getElementById(id);
+const clamp = (v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const p = (t,a,b)=>clamp((t-a)/(b-a));
+const eo = x=>1-Math.pow(1-x,3);
+const eio = x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back = x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+function vis(t,a,b,fi=.5,fo=.5){return Math.min(p(t,a,a+fi),1-p(t,b-fo,b))}
+function set(el,o,tf){el.style.opacity=o;if(tf!==undefined)el.style.transform=tf}
+function ripple(el,t,t0,dur=.75){const k=p(t,t0,t0+dur);
+  el.style.opacity=(k>0&&k<1)?(1-k)*.9:0;
+  el.style.transform=`translate(-50%,-50%) scale(${lerp(.25,1.9,eo(k))})`}
+function pressKey(id,on){const el=$(id);
+  el.style.transform=on?'scale(.9)':'scale(1)';
+  el.style.filter=on?'brightness(1.7) saturate(1.25)':''}
+
+function splitChars(el,text){el.innerHTML=[...text].map(c=>`<span class="char">${c===' '?'&nbsp;':c}</span>`).join('');return [...el.children]}
+const t1chars = splitChars($('t1'),'把 DOOM 装进词典笔');
+
+// 火星粒子
+const embers=[];let seed=17;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<64;i++){
+  const d=document.createElement('div');d.className='ember';
+  const sz=2+rnd()*7;d.style.width=d.style.height=sz+'px';d.style.opacity=.25+rnd()*.55;
+  $('embers').appendChild(d);
+  embers.push({el:d,x:rnd()*2100-90,sp:30+rnd()*85,ph:rnd()*30,sw:20+rnd()*80,sc:.5+rnd()*.8});
+}
+
+function renderScene(t){
+  // 背景
+  $('glow').style.transform=`translate(${300+Math.sin(t*.28)*380}px,${-160+Math.cos(t*.22)*200}px)`;
+  $('glow').style.opacity=.45+Math.sin(t*1.6)*.06;
+  $('grid').style.transform=`translateY(${(t*10)%120}px)`;
+  embers.forEach(q=>{const y=1240-((t+q.ph)*q.sp)%1420;const x=q.x+Math.sin((t+q.ph)*.8)*q.sw;
+    q.el.style.transform=`translate(${x}px,${y}px) scale(${q.sc})`});
+  $('bar').style.width=(t/DURATION*100)+'%';
+
+  // 转场闪白
+  const flashes=[5.5,11,17.5,25,32,38.5,45,52,57.5];let f=0;
+  flashes.forEach(x=>{f=Math.max(f,1-Math.abs(t-x)/.22)});
+  $('flash').style.opacity=clamp(f)*.7;
+  // 音乐重拍红闪
+  $('redflash').style.opacity=clamp(1-Math.abs(t-3.5)/.32)*.85;
+
+  // S1 0-5.5 标题 + 砸入
+  let v=vis(t,0,5.5,.3,.4);set($('s1'),v);
+  t1chars.forEach((c,i)=>{const a=.3+i*.055;const k=back(p(t,a,a+.55));
+    c.style.opacity=p(t,a,a+.28);
+    c.style.transform=`translateY(${(1-k)*150}px) rotateX(${(1-k)*92}deg) scale(${lerp(1.55,1,k)})`});
+  const k1b=eo(p(t,1.9,2.8));set($('t1b'),k1b,`translateY(${(1-k1b)*40}px)`);
+  const kd=back(p(t,3.36,3.76));const bd=$('doomBadge');
+  bd.style.opacity=p(t,3.36,3.5);
+  bd.style.transform=`translateX(-50%) scale(${lerp(2.5,1,kd)}) rotate(${(1-kd)*-7}deg)`;
+
+  // S2 5.5-11 机身入场 + 桌面滑到游戏
+  v=vis(t,5.5,11,.4,.4);set($('s2'),v);
+  const k2=eo(p(t,5.5,6.9));
+  $('pen2').style.transform=`translateY(${(1-k2)*320}px) rotateX(${(1-k2)*55}deg) rotateZ(${(1-k2)*-8}deg) scale(${lerp(.62,.95,k2)+p(t,6.9,11)*.05})`;
+  const k2s=eio(p(t,7.7,8.5));
+  $('p2a').style.transform=`translateX(${-k2s*100}%)`;
+  $('p2b').style.transform=`translateX(${(1-k2s)*100}%)`;
+  $('c2').textContent=t<8?'这原本是一支查单词的笔':'现在，它加载起了 DOOM';
+  const kc2 = t<8 ? p(t,6.2,6.8) : p(t,8.2,8.7);
+  set($('c2'),kc2);
+
+  // S3 11-17.5 E1M1 主视觉
+  v=vis(t,11,17.5,.3,.5);set($('s3'),v);
+  const k3=eo(p(t,11,12));set($('t3'),k3,`translateY(${(1-k3)*-70}px) scale(${lerp(1.35,1,k3)})`);
+  set($('t3b'),eo(p(t,11.5,12.3)));
+  const k3s=eo(p(t,11.2,12.6));
+  $('sh3').style.opacity=k3s;
+  $('sh3').style.transform=`perspective(1600px) rotateY(${(1-k3s)*-35}deg) translateZ(${(1-k3s)*-400}px) scale(${1+p(t,12.6,17.5)*.04})`;
+  ['g3a','g3b','g3c'].forEach((id,i)=>{const a=12.9+i*.22;const k=back(p(t,a,a+.55));
+    set($(id),p(t,a,a+.3),`translateY(${(1-k)*60}px) scale(${lerp(.6,1,k)})`)});
+
+  // S4 17.5-25 实机操作（真实游玩视频）
+  v=vis(t,17.5,25,.4,.45);set($('s4'),v);
+  const k4=eo(p(t,17.5,18.5));
+  $('pen4').style.transform=`scale(${lerp(1.14,.98,k4)+p(t,18.5,25)*.04}) rotateY(${Math.sin(t*.5)*1.6}deg)`;
+  $('p4v').style.opacity = t>=18.4 ? 1 : 0;
+  const kh=eo(p(t,18.5,19.0));
+  set($('h4a'),kh,`translateX(${(1-kh)*60}px)`);
+  set($('h4b'),kh,`translateX(${(1-kh)*90}px)`);
+  $('c4').textContent=t<21.6?'迈步、转身、开火，全靠两侧虚拟按键':'后座力与枪口火光实时反馈';
+  const kc4 = t<21.6 ? p(t,18.4,19.0) : p(t,21.9,22.5);
+  set($('c4'),kc4);
+
+  // S5 25-32 触控映射（纯 UI 示意）
+  v=vis(t,25,32,.35,.45);set($('s5'),v);
+  const kL=eo(p(t,25.1,26.1)),kR=eo(p(t,25.3,26.3)),kC=eo(p(t,25.6,26.6));
+  $('padL').style.opacity=kL;$('padL').style.transform=`translateX(${(1-kL)*-260}px)`;
+  $('padR').style.opacity=kR;$('padR').style.transform=`translateX(${(1-kR)*260}px)`;
+  $('c5pad').style.opacity=kC;$('c5pad').style.transform=`scale(${lerp(.82,1,kC)})`;
+  set($('t5'),eo(p(t,25.2,26)),`scale(${lerp(1.3,1,eo(p(t,25.2,26)))})`);
+  set($('t5b'),eo(p(t,25.7,26.4)));
+  pressKey('k_fwd',t>=26.3&&t<26.85);
+  pressKey('k_fire',t>=27.4&&t<27.95);
+  pressKey('k_use',t>=28.5&&t<29.05);
+  pressKey('k_tl',t>=29.5&&t<30.05);
+  pressKey('k_tr',t>=30.4&&t<30.95);
+  ['g5a','g5b'].forEach((id,i)=>{const a=26.2+i*.25;const k=back(p(t,a,a+.55));
+    set($(id),p(t,a,a+.3),`translateY(${(1-k)*60}px) scale(${lerp(.6,1,k)})`)});
+  set($('c5'),eo(p(t,26.8,27.5)));
+  ripple($('rp5a'),t,26.3,1.0);ripple($('rp5b'),t,27.4,1.0);
+
+  // S6 32-38.5 战斗拼贴
+  v=vis(t,32,38.5,.35,.45);set($('s6'),v);
+  set($('t6'),eo(p(t,32.1,33)),`translateY(${(1-eo(p(t,32.1,33)))*-50}px)`);
+  set($('t6b'),eo(p(t,32.6,33.3)));
+  const kA=eo(p(t,32.3,33.5)),kB=eo(p(t,33.1,34.3));
+  $('sh6a').style.opacity=kA;
+  $('sh6a').style.transform=`translateX(${(1-kA)*-620}px) rotate(${(1-kA)*-10}deg) scale(${1+p(t,34.3,38.5)*.03})`;
+  $('sh6b').style.opacity=kB;
+  $('sh6b').style.transform=`translateX(${(1-kB)*620}px) rotate(${(1-kB)*10}deg) scale(${1+p(t,34.3,38.5)*.03})`;
+  ['g6a','g6b'].forEach((id,i)=>{const a=34.3+i*.3;const k=back(p(t,a,a+.55));
+    set($(id),p(t,a,a+.3),`scale(${lerp(.5,1,k)})`)});
+  set($('c6'),eo(p(t,34.8,35.5)));
+
+  // S7 38.5-45 原生菜单
+  v=vis(t,38.5,45,.35,.45);set($('s7'),v);
+  const k7=eo(p(t,38.5,39.4));set($('t7'),k7,`scale(${lerp(1.4,1,k7)})`);
+  set($('t7b'),eo(p(t,39.1,39.8)));
+  const k7s=eo(p(t,38.9,40.3));
+  $('sh7').style.opacity=k7s;
+  $('sh7').style.transform=`perspective(1500px) rotateX(${(1-k7s)*-28}deg) translateY(${(1-k7s)*140}px) scale(${1+p(t,40.3,45)*.03})`;
+  ['g7a','g7b','g7c'].forEach((id,i)=>{const a=40.5+i*.22;const k=back(p(t,a,a+.55));
+    set($(id),p(t,a,a+.3),`translateY(${(1-k)*50}px) scale(${lerp(.6,1,k)})`)});
+  set($('c7'),eo(p(t,41.2,41.9)));
+
+  // S8 45-52 技术栈
+  v=vis(t,45,52,.35,.45);set($('s8'),v);
+  const k8=eo(p(t,45.1,46));set($('t8'),k8,`scale(${lerp(1.4,1,k8)})`);
+  $('t8').style.filter=`blur(${(1-k8)*18}px)`;
+  set($('t8b'),eo(p(t,45.7,46.4)));
+  ['k1','k2','k3','k4','k5'].forEach((id,i)=>{const k=eo(p(t,46.2+i*.28,46.9+i*.28));
+    set($(id),k,`translateX(${(1-k)*-180}px)`)});
+  const k8s=eo(p(t,46.4,47.6));
+  $('sh8').style.opacity=k8s;
+  $('sh8').style.transform=`perspective(1400px) rotateY(${(1-k8s)*25}deg) translateX(${(1-k8s)*300}px) rotateZ(${-1.5+Math.sin(t*.5)*.6}deg)`;
+  set($('g8'),eo(p(t,47.2,47.9)));
+  set($('c8'),eo(p(t,47.6,48.3)));
+
+  // S9 52-57.5 开源
+  v=vis(t,52,57.5,.3,.4);set($('s9'),v);
+  set($('t9'),eo(p(t,52.1,52.8)));
+  ['r1','r2','r3','r4'].forEach((id,i)=>{const a=52.6+i*.18;const k=back(p(t,a,a+.6));
+    set($(id),p(t,a,a+.3),`perspective(1200px) rotateX(${(1-k)*-70}deg) translateY(${(1-k)*70}px)`)});
+  set($('t9b'),eo(p(t,53.8,54.4)));
+  set($('t9c'),eo(p(t,54.2,54.8)));
+
+  // S10 57.5-60 结尾
+  v=vis(t,57.5,60.05,.4,.5);set($('s10'),v);
+  const k10=eo(p(t,57.5,58.4));
+  set($('t10'),p(t,57.5,58.1),`translateY(${(1-k10)*60}px) scale(${lerp(.92,1,k10)})`);
+  set($('t10b'),eo(p(t,58.0,58.7)));
+  set($('t10c'),eo(p(t,58.4,59.1)));
+  set($('t10d'),eo(p(t,58.8,59.4)));
+}
+
+const vidWipe=$('vidWipe'),vidPlay=$('vidPlay');
+function seekTo(v,t){
+  return new Promise(res=>{
+    if(Math.abs(v.currentTime-t)<0.004&&v.readyState>=2){res();return;}
+    let done=false;
+    const fin=()=>{if(done)return;done=true;v.removeEventListener('seeked',fin);res();};
+    v.addEventListener('seeked',fin);
+    v.currentTime=t;
+    setTimeout(fin,500);
+  });
+}
+async function renderFrame(t){
+  renderScene(t);
+  const jobs=[];
+  if(t>=7.7)jobs.push(seekTo(vidWipe,Math.min(0.98,t-7.7)));
+  if(t>=18.4)jobs.push(seekTo(vidPlay,Math.min(7.1,t-18.4+0.15)));
+  if(jobs.length){await Promise.all(jobs);await new Promise(r=>requestAnimationFrame(()=>r()));}
+}
+window.render=renderFrame;window.DURATION=DURATION;
+if(!location.search.includes('render')){const st=performance.now();(function loop(){renderFrame(((performance.now()-st)/1000)%DURATION);requestAnimationFrame(loop)})()}
+else renderFrame(0);
+</script>
+</body>
+</html>

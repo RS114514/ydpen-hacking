@@ -1,0 +1,39 @@
+
+dress	私服	diff	1	ベース
+dress	白衣	diff	1	白衣
+
+face	01	base	目開け口閉じ
+face	02	base	笑顔目とじ口開け
+face	03	base	落ち着いた笑
+face	04	base	優しい笑み
+face	05	base	苦笑い
+face	06	base	きょとん
+face	07	base	困った顔
+face	08	base	驚き
+face	09	base	真剣な顔
+face	10	base	怒っている
+face	11	base	怒っている口開け
+
+
+face	01h	base	目開け口閉じ
+face	01h	base	照れ
+face	02h	base	笑顔目とじ口開け
+face	02h	base	照れ
+face	03h	base	落ち着いた笑
+face	03h	base	照れ
+face	04h	base	優しい笑み
+face	04h	base	照れ
+face	05h	base	苦笑い
+face	05h	base	照れ
+face	06h	base	きょとん
+face	06h	base	照れ
+face	07h	base	困った顔
+face	07h	base	照れ
+face	08h	base	驚き
+face	08h	base	照れ
+face	09h	base	真剣な顔
+face	09h	base	照れ
+face	10h	base	怒っている
+face	10h	base	照れ
+face	11h	base	怒っている口開け
+face	11h	base	照れ

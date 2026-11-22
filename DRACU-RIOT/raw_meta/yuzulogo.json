@@ -1,0 +1,1819 @@
+{
+  "id": "motion",
+  "label": "ロゴ表示",
+  "object": {
+    "LOGO": {
+      "motion": {
+        "yuzulogo": {
+          "lastTime": 241,
+          "layer": [{
+              "children": [{
+                  "children": [{
+                      "children": [],
+                      "coordinate": 0,
+                      "frameList": [{
+                          "time": 0,
+                          "type": 0
+                        },{
+                          "content": {
+                            "bm": 0,
+                            "coord": [-74.0,-98.0,0.0],
+                            "mask": 131075,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 72,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.0884927,0.4412791,1],
+                              "y": [0,0.5587209,0.9115073,1]
+                            },
+                            "angle": 20,
+                            "bm": 0,
+                            "ccc": {
+                              "c": [1,1],
+                              "x": [0,0.0884927,0.4412791,1],
+                              "y": [0,0.5587209,0.9115073,1]
+                            },
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 137235,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 89.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": -40,
+                            "bm": 0,
+                            "ccc": {
+                              "c": [1,1],
+                              "x": [0,0.5587209,0.9115073,1],
+                              "y": [0,0.0884927,0.4412791,1]
+                            },
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 137235,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 93.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": 30,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 99.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": -20,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 106.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.0884927,0.4412791,1],
+                              "y": [0,0.5587209,0.9115073,1]
+                            },
+                            "bm": 0,
+                            "ccc": {
+                              "c": [1,1],
+                              "x": [0,0.0884927,0.4412791,1],
+                              "y": [0,0.5587209,0.9115073,1]
+                            },
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 137219,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 114.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": -20,
+                            "bm": 0,
+                            "ccc": {
+                              "c": [1,1],
+                              "x": [0,0.5587209,0.9115073,1],
+                              "y": [0,0.0884927,0.4412791,1]
+                            },
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 137235,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 118.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": 15,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 124.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": -10,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 131.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.7901507,0.209849328,1],
+                              "y": [0,0.125147566,0.8748524,1]
+                            },
+                            "angle": 5,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 141.0,
+                          "type": 3
+                        },{
+                          "content": {
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 131075,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 154.0,
+                          "type": 2
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.1854102,0.8145898,1],
+                              "y": [0,0.5706339,0.429366082,1]
+                            },
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135171,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 190,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.5706339,0.429366082,1],
+                              "y": [0,0.1854102,0.8145898,1]
+                            },
+                            "angle": 10,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 194,
+                          "type": 3
+                        },{
+                          "content": {
+                            "acc": {
+                              "c": [1,1],
+                              "x": [0,0.5706339,0.429366082,1],
+                              "y": [0,0.1854102,0.8145898,1]
+                            },
+                            "angle": -5,
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 135187,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 200,
+                          "type": 3
+                        },{
+                          "content": {
+                            "bm": 0,
+                            "coord": [-74.0,-98,0.0],
+                            "mask": 131075,
+                            "ox": 61,
+                            "oy": 14,
+                            "src": "src/yuzu/yuzu_ha"
+                          },
+                          "time": 204,
+                          "type": 2
+                        },{
+                          "time": 215.0,
+                          "type": 0
+                        },{
+                          "time": 241,
+                          "type": 0
+                        }],
+                      "groundCorrection": 0,
+                      "inheritMask": 2044,
+                      "joinTarget": 1,
+                      "label": "yuzu_ha",
+                      "objMeshTransform": 0,
+                      "objTriPriority": 2,
+                      "transformOrder": [0,3,2,1],
+                      "type": 0
+                    }],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [125.0,-72.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/yuzu_mi"
+                      },
+                      "time": 72.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [125.0,-8.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/yuzu_mi"
+                      },
+                      "time": 87.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [125.0,-40.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/yuzu_mi"
+                      },
+                      "time": 99.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [125.0,-8.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/yuzu_mi"
+                      },
+                      "time": 112.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "yuzu_mi",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 72.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 112.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 132097,
+                    "opa": 0,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/yuzu_logo"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 132097,
+                    "opa": 0,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/moji_white"
+                  },
+                  "time": 127,
+                  "type": 3
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/moji_white"
+                  },
+                  "time": 152,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "white",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 132097,
+                    "opa": 0,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/yuzu_logo"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/yuzu_logo"
+                  },
+                  "time": 215.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 132097,
+                    "opa": 0,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/yuzu/yuzu_logo"
+                  },
+                  "time": 240.0,
+                  "type": 2
+                },{
+                  "time": 241.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "logo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [59.0,-2.0,0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/software"
+                      },
+                      "time": 87.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [59.0,-50.0,0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/software"
+                      },
+                      "time": 102.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [59.0,-18.0,0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/software"
+                      },
+                      "time": 127.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "software",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.3564026,0.643597364,1],
+                      "y": [0,0.1815962,0.8184038,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 87.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 127.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [-179.0,-23.0,0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_y"
+                      },
+                      "time": 0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [-179.0,65.0,0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_y"
+                      },
+                      "time": 15,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [-179.0,1.0,0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_y"
+                      },
+                      "time": 40,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_y",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 20,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 40,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [-117.0,31.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u1"
+                      },
+                      "time": 9.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [-117.0,119.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u1"
+                      },
+                      "time": 24.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [-117.0,55.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u1"
+                      },
+                      "time": 49.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_u1",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 9.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 29.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 49.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [-59.0,28.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_z"
+                      },
+                      "time": 18.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [-59.0,116.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_z"
+                      },
+                      "time": 33.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [-59.0,52.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_z"
+                      },
+                      "time": 58.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_z",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 18.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 38.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 58.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [8.0,46.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u2"
+                      },
+                      "time": 27.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [8.0,134.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u2"
+                      },
+                      "time": 42.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [8.0,70.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_u2"
+                      },
+                      "time": 67.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_u2",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 27.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 47.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 67.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [45.0,47.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_s"
+                      },
+                      "time": 36.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [45.0,135.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_s"
+                      },
+                      "time": 51.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [45.0,71.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_s"
+                      },
+                      "time": 76.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_s",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 36.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 56.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 76.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [103.0,38.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_o"
+                      },
+                      "time": 45.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [103.0,126.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_o"
+                      },
+                      "time": 60.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [103.0,62.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_o"
+                      },
+                      "time": 85.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_o",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 45.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 65.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 85.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [159.0,25.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_f"
+                      },
+                      "time": 54.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [159.0,113.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_f"
+                      },
+                      "time": 69.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [159.0,49.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_f"
+                      },
+                      "time": 94.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_f",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 54.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 74.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 94.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [194.0,30.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_t"
+                      },
+                      "time": 63.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.5587209,0.9115073,1],
+                          "y": [0,0.0884927,0.4412791,1]
+                        },
+                        "coord": [194.0,118.0,0.0],
+                        "mask": 133123,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_t"
+                      },
+                      "time": 78.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [194.0,54.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/yuzu/moji_t"
+                      },
+                      "time": 103.0,
+                      "type": 2
+                    },{
+                      "time": 215.0,
+                      "type": 0
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "moji_t",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "coord": [32.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 63.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "ccc": {
+                      "c": [1,1],
+                      "x": [0,0.5587209,0.9115073,1],
+                      "y": [0,0.0884927,0.4412791,1]
+                    },
+                    "coord": [-16.0,0.0,0],
+                    "mask": 2051,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 83.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "mask": 1,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "layout"
+                  },
+                  "time": 103.0,
+                  "type": 2
+                },{
+                  "time": 215.0,
+                  "type": 0
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "slide",
+              "transformOrder": [0,3,2,1],
+              "type": 2
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 241,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        }
+      },
+      "type": 0
+    }
+  },
+  "screenSize": {
+    "height": 480,
+    "originX": 0,
+    "originY": 0,
+    "width": 640
+  },
+  "source": {
+    "yuzu": {
+      "icon": {
+        "moji_f": {
+          "clip": {
+            "bottom": 1.0,
+            "left": 0.03125,
+            "right": 1.0,
+            "top": 0.0
+          },
+          "compress": "RL",
+          "height": 88,
+          "originX": 30,
+          "originY": 44,
+          "pixel": "#resource#3",
+          "width": 62
+        },
+        "moji_o": {
+          "clip": {
+            "bottom": 1.0,
+            "left": 0.0,
+            "right": 0.9285714,
+            "top": 0.0178571437
+          },
+          "compress": "RL",
+          "height": 55,
+          "originX": 28,
+          "originY": 27,
+          "pixel": "#resource#2",
+          "width": 52
+        },
+        "moji_s": {
+          "clip": {
+            "bottom": 0.977941155,
+            "left": 0.05,
+            "right": 0.9625,
+            "top": 0.0220588241
+          },
+          "compress": "RL",
+          "height": 130,
+          "originX": 36,
+          "originY": 65,
+          "pixel": "#resource#7",
+          "width": 73
+        },
+        "moji_t": {
+          "clip": {
+            "bottom": 0.971153855,
+            "left": 0.0454545468,
+            "right": 0.977272749,
+            "top": 0.028846154
+          },
+          "compress": "RL",
+          "height": 98,
+          "originX": 40,
+          "originY": 49,
+          "pixel": "#resource#5",
+          "width": 82
+        },
+        "moji_u1": {
+          "clip": {
+            "bottom": 1.0,
+            "left": 0.0178571437,
+            "right": 0.982142866,
+            "top": 0.0178571437
+          },
+          "compress": "RL",
+          "height": 55,
+          "originX": 27,
+          "originY": 27,
+          "pixel": "#resource#0",
+          "width": 54
+        },
+        "moji_u2": {
+          "clip": {
+            "bottom": 0.9791667,
+            "left": 0.0,
+            "right": 1.0,
+            "top": 0.020833334
+          },
+          "compress": "RL",
+          "height": 46,
+          "originX": 32,
+          "originY": 23,
+          "pixel": "#resource#1",
+          "width": 64
+        },
+        "moji_white": {
+          "clip": {
+            "bottom": 0.996428549,
+            "left": 0.00208333344,
+            "right": 1.0,
+            "top": 0.08928572
+          },
+          "compress": "RL",
+          "height": 254,
+          "originX": 239,
+          "originY": 115,
+          "pixel": "#resource#10",
+          "width": 479
+        },
+        "moji_y": {
+          "clip": {
+            "bottom": 0.982758641,
+            "left": 0.0333333351,
+            "right": 0.9916667,
+            "top": 0.0129310349
+          },
+          "compress": "RL",
+          "height": 225,
+          "originX": 56,
+          "originY": 113,
+          "pixel": "#resource#9",
+          "width": 115
+        },
+        "moji_z": {
+          "clip": {
+            "bottom": 0.9583333,
+            "left": 0.0454545468,
+            "right": 0.977272749,
+            "top": 0.03125
+          },
+          "compress": "RL",
+          "height": 89,
+          "originX": 40,
+          "originY": 45,
+          "pixel": "#resource#6",
+          "width": 82
+        },
+        "software": {
+          "clip": {
+            "bottom": 0.90625,
+            "left": 0.008928572,
+            "right": 0.9910714,
+            "top": 0.09375
+          },
+          "compress": "RL",
+          "height": 26,
+          "originX": 165,
+          "originY": 13,
+          "pixel": "#resource#8",
+          "width": 330
+        },
+        "yuzu_ha": {
+          "clip": {
+            "bottom": 0.975,
+            "left": 0.0234375,
+            "right": 0.9921875,
+            "top": 0.05
+          },
+          "compress": "RL",
+          "height": 37,
+          "originX": 61,
+          "originY": 18,
+          "pixel": "#resource#4",
+          "width": 124
+        },
+        "yuzu_logo": {
+          "clip": {
+            "bottom": 0.996428549,
+            "left": 0.00208333344,
+            "right": 1.0,
+            "top": 0.007142857
+          },
+          "compress": "RL",
+          "height": 277,
+          "originX": 239,
+          "originY": 138,
+          "pixel": "#resource#12",
+          "width": 479
+        },
+        "yuzu_mi": {
+          "clip": {
+            "bottom": 0.987068951,
+            "left": 0.0133928573,
+            "right": 0.986607134,
+            "top": 0.01724138
+          },
+          "compress": "RL",
+          "height": 225,
+          "originX": 109,
+          "originY": 112,
+          "pixel": "#resource#11",
+          "width": 218
+        }
+      },
+      "type": 1
+    }
+  },
+  "spec": "krkr",
+  "stereovisionProfile": {
+    "dist_e2d": 972.0,
+    "dist_eye": 65.0,
+    "eye_angle_ltd": 1.0,
+    "f_level": 700,
+    "fov": 0.6,
+    "len_disp": 324.0
+  },
+  "version": 2.8
+}

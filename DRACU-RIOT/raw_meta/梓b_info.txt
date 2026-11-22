@@ -1,0 +1,108 @@
+dress	裸	diff	3	裸
+dress	裸パジャマ	diff	3	裸2
+dress	巫女服	diff	3	巫女服
+dress	制服	diff	3	制服
+dress	水着	diff	3	水着
+dress	私服	diff	3	私服
+dress	パジャマ	diff	3	パジャマ
+dress	メガネ	diff	3	私服
+dress	メガネ	diff	3	眼鏡
+
+face	01	base	表情
+face	02	base	笑顔2
+face	03	base	ジト目
+face	04	base	焦る
+face	05	base	照れる
+face	06	base	真剣
+face	07	base	困る
+face	08	base	17怒り
+
+face	10	base	上目遣い
+face	11	base	説教ヅラ
+face	12	base	年上ぶる
+face	13	base	上目使い（目） 年上ぶる（眉、口）
+face	14	base	年上ぶる（目）困る（眉。口）
+face	15	base	ジト目（目） 年上ぶる（眉、口）
+face	16	base	ジト目（目）焦る（眉、口）
+face	17	base	照れる（目）表情（目以外）
+face	18	base	笑顔２（目以外）年上ぶる（目）
+face	19	base	照れる（目）困る（眉）
+face	20	base	年上ぶる（目）焦る（口）叫ぶ（眉）
+face	21	base	年上ブル（目）ジト目（眉、口）
+face	22	base	年上（目）表情（口）照れる（眉）
+face	23	base	表情（目口）照れる（眉）
+face	24	base	表情（目眉）困る（口）
+face	25	base	表情（目眉）笑顔２口
+face	26	base	怒り目口表情眉
+face	27	base	困る（目）照れる（眉）怒り（口）
+
+
+face	01r	base	表情r
+face	06r	base	真剣r
+face	07r	base	困るr
+face	14r	base	年上ぶる（目）困る（眉。口）r
+face	22r	base	年上（目）表情（口）照れる（眉） r
+face	23r	base	表情（目口）照れる（眉）r
+face	25r	base	表情（目眉）笑顔２口r
+
+
+face	01h	base	表情
+face	01h	base	照れ
+face	02h	base	笑顔2
+face	02h	base	照れ
+face	03h	base	ジト目
+face	03h	base	照れ
+face	04h	base	焦る
+face	04h	base	照れ
+face	05h	base	照れる
+face	05h	base	照れ
+face	06h	base	真剣
+face	06h	base	照れ
+face	07h	base	困る
+face	07h	base	照れ
+face	08h	base	17怒り
+face	08h	base	照れ
+
+face	10h	base	上目遣い
+face	10h	base	照れ
+face	11h	base	説教ヅラ
+face	11h	base	照れ
+face	12h	base	年上ぶる
+face	12h	base	照れ
+face	13h	base	上目使い（目） 年上ぶる（眉、口）
+face	13h	base	照れ
+face	14h	base	年上ぶる（目）困る（眉。口）
+face	14h	base	照れ
+face	15h	base	ジト目（目） 年上ぶる（眉、口）
+face	15h	base	照れ
+face	16h	base	ジト目（目）焦る（眉、口）
+face	16h	base	照れ
+face	17h	base	照れる（目）表情（目以外）
+face	17h	base	照れ
+face	18h	base	笑顔２（目以外）年上ぶる（目）
+face	18h	base	照れ
+face	19h	base	照れる（目）困る（眉）
+face	19h	base	照れ
+face	20h	base	年上ぶる（目）焦る（口）叫ぶ（眉）
+face	20h	base	照れ
+face	21h	base	年上ブル（目）ジト目（眉、口）
+face	21h	base	照れ
+face	22h	base	年上（目）表情（口）照れる（眉）
+face	22h	base	照れ
+face	23h	base	表情（目口）照れる（眉）
+face	23h	base	照れ
+face	24h	base	表情（目眉）困る（口）
+face	24h	base	照れ
+face	25h	base	表情（目眉）笑顔２口
+face	25h	base	照れ
+face	26h	base	怒り目口表情眉
+face	26h	base	照れ
+face	27h	base	困る（目）照れる（眉）怒り（口）
+face	27h	base	照れ
+
+face	07n	base	困るn
+face	14n	base	年上ぶる（目）困る（眉。口）n
+face	19n	base	照れる（目）困る（眉）n
+
+face	14t	base	年上ぶる（目）困る（眉。口）nn
+face	27t	base	困る（目）照れる（眉）怒り（口） nn

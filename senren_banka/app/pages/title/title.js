@@ -2,9 +2,12 @@
 import { S, getGal, log, getChapterByLine } from '../../common.js';
 import { readAllSaves, readSettings, writeSettings } from '../../storage.js';
 
-// 标题页读档/新游戏的安全场景解析：仅允许 main 与 after_* 剧本
+// 标题页读档/新游戏的安全场景解析：允许 main、after_* 后日谈与 route_* 个人线
 function safeScenario(value) {
-  if (typeof value === 'string' && (value === 'main' || /^after_[A-Za-z0-9_]+$/.test(value))) {
+  if (typeof value === 'string' &&
+      (value === 'main' ||
+       /^after_[A-Za-z0-9_]+$/.test(value) ||
+       /^route_[A-Za-z0-9_]+$/.test(value))) {
     return value;
   }
   return 'main';
@@ -13,6 +16,14 @@ function safeScenario(value) {
 function safeLine(value) {
   if (typeof value !== 'number' || !isFinite(value) || value < 0) return 0;
   return Math.floor(value);
+}
+
+function applySavedChoiceState(vm, data) {
+  var extra = data && data.extra ? data.extra : {};
+  vm.choiceSelections = extra.choices || {};
+  vm.choiceFlags = extra.flags || {};
+  vm.activeChoice = null;
+  vm.choiceNotice = '';
 }
 
 export var titleMethods = {
@@ -40,6 +51,10 @@ export var titleMethods = {
     // 新游戏必须显式回到 main 剧本，清除日后谈等残留场景状态
     this.currentScenario = 'main';
     this.currentLine = 0;
+    this.choiceSelections = {};
+    this.choiceFlags = {};
+    this.activeChoice = null;
+    this.choiceNotice = '';
     this.view = 'game';
     if (typeof this.initGame === 'function') {
       this.initGame('main', 0);
@@ -54,6 +69,7 @@ export var titleMethods = {
     var line = data ? safeLine(data.line) : 0;
     this.currentScenario = scenario;
     this.currentLine = line;
+    applySavedChoiceState(this, data);
     this.view = 'game';
     if (typeof this.initGame === 'function') {
       this.initGame(scenario, line);
@@ -178,6 +194,7 @@ export var titleMethods = {
       var line = safeLine(data.line);
       this.currentScenario = scenario;
       this.currentLine = line;
+      applySavedChoiceState(this, data);
       this.titleModalType = '';
       this.titleConfirmModal = null;
       this.view = 'game';

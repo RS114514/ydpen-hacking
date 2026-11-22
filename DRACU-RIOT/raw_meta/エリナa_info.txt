@@ -1,0 +1,106 @@
+dress	パジャマ	diff	1	パジャマ
+dress	パジャマ	diff	2	パジャマ腕差分
+dress	バニー	diff	1	バニー
+dress	バニー	diff	2	バニー腕差分
+dress	私服	diff	1	私服
+dress	私服	diff	2	私服腕差分
+dress	水着	diff	1	水着
+dress	水着	diff	2	水着腕差分
+dress	制服	diff	1	制服
+dress	制服	diff	2	制服腕差分
+dress	裸	diff	1	裸
+dress	裸	diff	2	裸腕差分
+
+face	01	base	表情
+face	02	base	4　　笑顔2
+face	03	base	6　　きょとん
+face	04	base	7　　驚き
+face	05	base	10　　照れる
+face	06	base	11　寂しい
+face	07	base	13　　真剣
+face	08	base	14　　考える
+face	09	base	16　　怒り
+face	10	base	19　　上目遣い
+face	11	base	20　　真剣な叫び
+face	12	base	22　　納得顔
+face	13	base	25　　舌なめずり
+face	14	base	27　　訝しむ
+face	15	base	29　　大泣き
+face	16	base	照れる（眉）笑顔2（目）表情（口）
+face	17	base	照れる（眉）表情（目?口）
+face	18	base	納得顔（目）寂しい（眉?口）
+face	19	base	納得顔（目）真剣（眉?口）
+face	20	base	舌なめずり（目）寂しい（眉?口）
+face	21	base	舌なめずり（目）照れる（眉?口）
+face	22	base	舌なめずり（目）納得顔（眉?口）
+face	23	base	表情（目）笑顔2（眉?口）
+face	24	base	笑顔2（目）表情（眉?口）
+face	25	base	表情（左目?眉?口）笑顔2（右目）
+
+face	18r	base	納得顔（目）寂しい（眉?口）r
+face	20r	base	舌なめずり（目）寂しい（眉?口）r
+face	21r	base	舌なめずり（目）照れる（眉?口）r
+
+face	01h	base	表情
+face	01h	base	頬
+face	02h	base	4　　笑顔2
+face	02h	base	頬
+face	03h	base	6　　きょとん
+face	03h	base	頬
+face	04h	base	7　　驚き
+face	04h	base	頬
+face	05h	base	10　　照れる
+face	05h	base	頬
+face	06h	base	11　寂しい
+face	06h	base	頬
+face	07h	base	13　　真剣
+face	07h	base	頬
+face	08h	base	14　　考える
+face	08h	base	頬
+face	09h	base	16　　怒り
+face	09h	base	頬
+face	10h	base	19　　上目遣い
+face	10h	base	頬
+face	11h	base	20　　真剣な叫び
+face	11h	base	頬
+face	12h	base	22　　納得顔
+face	12h	base	頬
+face	13h	base	25　　舌なめずり
+face	13h	base	頬
+face	14h	base	27　　訝しむ
+face	14h	base	頬
+face	15h	base	29　　大泣き
+face	15h	base	頬
+face	16h	base	照れる（眉）笑顔2（目）表情（口）
+face	16h	base	頬
+face	17h	base	照れる（眉）表情（目?口）
+face	17h	base	頬
+face	18h	base	納得顔（目）寂しい（眉?口）
+face	18h	base	頬
+face	19h	base	納得顔（目）真剣（眉?口）
+face	19h	base	頬
+face	20h	base	舌なめずり（目）寂しい（眉?口）
+face	20h	base	頬
+face	21h	base	舌なめずり（目）照れる（眉?口）
+face	21h	base	頬
+face	22h	base	舌なめずり（目）納得顔（眉?口）
+face	22h	base	頬
+face	23h	base	表情（目）笑顔2（眉?口）
+face	23h	base	頬
+face	24h	base	笑顔2（目）表情（眉?口）
+face	24h	base	頬
+face	25h	base	表情（左目?眉?口）笑顔2（右目）
+face	25h	base	頬
+
+
+face	06n	base	11　寂しいn
+face	15n	base	29　　大泣きn
+face	16n	base	照れる（眉）笑顔2（目）表情（口）n
+face	18n	base	納得顔（目）寂しい（眉?口）n
+face	20n	base	舌なめずり（目）寂しい（眉?口）n
+face	21n	base	舌なめずり（目）照れる（眉?口）n
+
+
+face	15t	base	29　　大泣きt
+face	18t	base	納得顔（目）寂しい（眉?口）t
+face	20t	base	舌なめずり（目）寂しい（眉?口）t

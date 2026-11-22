@@ -1,0 +1,8 @@
+._*
+.DS_Store
+assets/
+third_party/
+build/
+dist/
+__pycache__/
+*.pyc

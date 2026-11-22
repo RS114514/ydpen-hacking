@@ -1,15 +1,15 @@
 // game_watermelon.js —— 合成大西瓜
 export var FRUITS = [
-  { name: '葡萄', size: 20, color: '#a855f7', border: '#c084fc', score: 2 },
-  { name: '樱桃', size: 24, color: '#ef4444', border: '#f87171', score: 4 },
-  { name: '橘子', size: 28, color: '#f97316', border: '#fb923c', score: 8 },
-  { name: '柠檬', size: 32, color: '#eab308', border: '#fde047', score: 16 },
-  { name: '猕猴桃', size: 36, color: '#84cc16', border: '#a3e635', score: 32 },
-  { name: '番茄', size: 42, color: '#dc2626', border: '#ef4444', score: 64 },
-  { name: '桃子', size: 48, color: '#f43f5e', border: '#fb7185', score: 128 },
-  { name: '菠萝', size: 54, color: '#d97706', border: '#f59e0b', score: 256 },
-  { name: '椰子', size: 60, color: '#78350f', border: '#92400e', score: 512 },
-  { name: '西瓜', size: 66, color: '#16a34a', border: '#4ade80', score: 1024 }
+  { name: '葡萄', size: 20, asset: 'assets/fruit_1_grape.png', score: 2 },
+  { name: '樱桃', size: 24, asset: 'assets/fruit_2_cherry.png', score: 4 },
+  { name: '橘子', size: 28, asset: 'assets/fruit_3_orange.png', score: 8 },
+  { name: '柠檬', size: 32, asset: 'assets/fruit_4_lemon.png', score: 16 },
+  { name: '猕猴桃', size: 36, asset: 'assets/fruit_5_kiwi.png', score: 32 },
+  { name: '番茄', size: 42, asset: 'assets/fruit_6_tomato.png', score: 64 },
+  { name: '桃子', size: 48, asset: 'assets/fruit_7_peach.png', score: 128 },
+  { name: '菠萝', size: 54, asset: 'assets/fruit_8_pineapple.png', score: 256 },
+  { name: '椰子', size: 60, asset: 'assets/fruit_9_coconut.png', score: 512 },
+  { name: '西瓜', size: 66, asset: 'assets/fruit_10_watermelon.png', score: 1024 }
 ];
 
 export function initWatermelon(vm) {
@@ -125,24 +125,14 @@ export function renderWatermelon(vm, h) {
     var f = m.fruits[i];
     var meta = FRUITS[f.level];
     (function(fruit, itemMeta) {
-      elements.push(h('div', {
+      elements.push(h('image', {
         staticStyle: {
           position: 'absolute',
           left: Math.floor(fruit.x) + 'px', top: Math.floor(fruit.y) + 'px',
-          width: itemMeta.size + 'px', height: itemMeta.size + 'px',
-          backgroundColor: itemMeta.color,
-          borderRadius: Math.floor(itemMeta.size / 2) + 'px',
-          borderWidth: '1.5px', borderColor: itemMeta.border,
-          justifyContent: 'center', alignItems: 'center'
-        }
-      }, [
-        h('text', {
-          staticStyle: {
-            fontSize: (itemMeta.size < 28 ? '9px' : '11px'),
-            color: '#ffffff', fontWeight: 'bold'
-          }
-        }, itemMeta.name)
-      ]));
+          width: itemMeta.size + 'px', height: itemMeta.size + 'px'
+        },
+        attrs: { src: itemMeta.asset }
+      }));
     })(f, meta);
   }
 
@@ -192,15 +182,13 @@ export function renderWatermelon(vm, h) {
       // 下一个待落水果预览
       h('div', { staticStyle: { flexDirection: 'row', alignItems: 'center', marginTop: '10px' } }, [
         h('text', { staticStyle: { fontSize: '12px', color: '#cbd5e1', marginRight: '10px' } }, '即将下落:'),
-        h('div', {
+        h('image', {
           staticStyle: {
-            paddingHorizontal: '12px', height: '28px', backgroundColor: nextMeta.color,
-            borderRadius: '14px', borderWidth: '1.5px', borderColor: nextMeta.border,
-            justifyContent: 'center', alignItems: 'center'
-          }
-        }, [
-          h('text', { staticStyle: { fontSize: '12px', color: '#ffffff', fontWeight: 'bold' } }, nextMeta.name)
-        ])
+            width: '28px', height: '28px', marginRight: '6px'
+          },
+          attrs: { src: nextMeta.asset }
+        }),
+        h('text', { staticStyle: { fontSize: '12px', color: '#ffffff', fontWeight: 'bold' } }, nextMeta.name)
       ]),
 
       // 投掷按钮组 (左中右三列精准投放)

@@ -1,0 +1,48 @@
+{
+  "appName": "终端",
+  "version": "9.3.6",
+  "appid": "8001999000000001",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "cert": {
+    "app.js.bin": {
+      "size": 1531,
+      "md5": "14ebae5273065e97d0daeb77147fc687"
+    },
+    "BasePage.js.bin": {
+      "size": 3248,
+      "md5": "9fe4be4241451668c2f412e6872b7fd6"
+    },
+    "Component.js.bin": {
+      "size": 21974,
+      "md5": "9ca345ca978681403845ceabbcc41cd9"
+    },
+    "index.js.bin": {
+      "size": 1205,
+      "md5": "ed9b14a9b68408d3227fac7c9a5390a3"
+    },
+    "shell.js.bin": {
+      "size": 1205,
+      "md5": "fc4c184d9d2575f1bcf7d809fcd19d3a"
+    },
+    "pages/index/index.js.bin": {
+      "size": 1205,
+      "md5": "ed9b14a9b68408d3227fac7c9a5390a3"
+    },
+    "pages/index/shell.js.bin": {
+      "size": 1205,
+      "md5": "fc4c184d9d2575f1bcf7d809fcd19d3a"
+    },
+    "libs/arm64/libjsapi_term.so": {
+      "size": 400392,
+      "md5": "e1fb90fb91e4d74c8384815cd238b96f"
+    },
+    "libs/arm64-orange/libjsapi_term.so": {
+      "size": 400392,
+      "md5": "e1fb90fb91e4d74c8384815cd238b96f"
+    }
+  }
+}

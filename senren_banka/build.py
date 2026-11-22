@@ -27,7 +27,24 @@ if "/opt/homebrew/bin" not in os.environ.get("PATH", ""):
 MODULES = [
     ("common.js", ["Common.js"]),
     ("storage.js", ["Storage.js"]),
-    ("data/chapter001.js", ["Chapter001.js"]),
+    ("data/chapter_all.js", ["ChapterAll.js"]),
+    ("data/flowchart_data.js", ["FlowchartData.js"]),
+    ("data/choices_all.js", ["ChoicesAll.js"]),
+    ("data/fx_events.js", ["FxEvents.js"]),
+    ("data/gallery_cgs.js", ["GalleryCgs.js"]),
+    ("data/gallery_scenes.js", ["GalleryScenes.js"]),
+    ("data/after_yoshino.js", ["AfterYoshino.js"]),
+    ("data/after_mako.js", ["AfterMako.js"]),
+    ("data/after_murasame.js", ["AfterMurasame.js"]),
+    ("data/after_rena.js", ["AfterRena.js"]),
+    ("data/after_koharu.js", ["AfterKoharu.js"]),
+    ("data/after_roka.js", ["AfterRoka.js"]),
+    ("data/scn_yoshino.js", ["ScnYoshino.js"]),
+    ("data/scn_mako.js", ["ScnMako.js"]),
+    ("data/scn_murasame.js", ["ScnMurasame.js"]),
+    ("data/scn_rena.js", ["ScnRena.js"]),
+    ("data/scn_koharu.js", ["ScnKoharu.js"]),
+    ("data/scn_roka.js", ["ScnRoka.js"]),
     ("pages/title/title.js", ["TitleView.js"]),
     ("pages/game/game.js", ["GameView.js"]),
     ("pages/gallery/gallery.js", ["GalleryView.js"]),
@@ -44,8 +61,31 @@ IMPORT_MAP = {
     "./common.js": "./Common.js",
     "../../storage.js": "./Storage.js",
     "./storage.js": "./Storage.js",
-    "../../data/chapter001.js": "./Chapter001.js",
-    "./data/chapter001.js": "./Chapter001.js",
+    "../../data/chapter_all.js": "./ChapterAll.js",
+    "./data/chapter_all.js": "./ChapterAll.js",
+    "../../data/chapter001.js": "./ChapterAll.js",
+    "./data/chapter001.js": "./ChapterAll.js",
+    "../../data/flowchart_data.js": "./FlowchartData.js",
+    "../../data/choices_all.js": "./ChoicesAll.js",
+    "./data/choices_all.js": "./ChoicesAll.js",
+    "../../data/fx_events.js": "./FxEvents.js",
+    "./data/fx_events.js": "./FxEvents.js",
+    "../../data/gallery_cgs.js": "./GalleryCgs.js",
+    "./data/gallery_cgs.js": "./GalleryCgs.js",
+    "../../data/gallery_scenes.js": "./GalleryScenes.js",
+    "./data/gallery_scenes.js": "./GalleryScenes.js",
+    "../../data/after_yoshino.js": "./AfterYoshino.js",
+    "../../data/after_mako.js": "./AfterMako.js",
+    "../../data/after_murasame.js": "./AfterMurasame.js",
+    "../../data/after_rena.js": "./AfterRena.js",
+    "../../data/after_koharu.js": "./AfterKoharu.js",
+    "../../data/after_roka.js": "./AfterRoka.js",
+    "../../data/scn_yoshino.js": "./ScnYoshino.js",
+    "../../data/scn_mako.js": "./ScnMako.js",
+    "../../data/scn_murasame.js": "./ScnMurasame.js",
+    "../../data/scn_rena.js": "./ScnRena.js",
+    "../../data/scn_koharu.js": "./ScnKoharu.js",
+    "../../data/scn_roka.js": "./ScnRoka.js",
     "./pages/title/title.js": "./TitleView.js",
     "./pages/game/game.js": "./GameView.js",
     "./pages/gallery/gallery.js": "./GalleryView.js",
@@ -69,9 +109,10 @@ def px(v):
 
 
 def css_to_obj(path):
-    txt = re.sub(r"/\*.*?\*/", "", open(path, encoding="utf-8").read(), flags=re.S)
+    with open(path, encoding="utf-8") as f:
+        txt = re.sub(r"/\*.*?\*/", "", f.read(), flags=re.S)
     rules = {}
-    for sel, body in re.findall(r"\.([A-Za-z0-9_-]+)\s*\{([^}]*)\}", txt):
+    for sel_group, body in re.findall(r"([^{}]+)\{([^}]*)\}", txt):
         obj = {}
         for decl in body.split(";"):
             if ":" not in decl:
@@ -80,7 +121,13 @@ def css_to_obj(path):
             k = re.sub(r"-([a-z])", lambda m: m.group(1).upper(), k.strip())
             v = v.strip().replace(", ", ",")
             obj[k] = int(v) if re.fullmatch(r"\d+", v) else v
-        rules[sel] = obj
+        # 解析逗号分隔的选择器组：".a, .b { }" 中每个 class 各得一份样式；
+        # 复合/后代选择器 ".a.b" / ".a .b" 落到最末 class（修饰态），运行时由 S() 按 class 顺序叠加。
+        for sel in sel_group.split(","):
+            parts = sel.split()
+            if not parts or any(not re.fullmatch(r"(?:\.[A-Za-z0-9_-]+)+", p) for p in parts):
+                continue  # 跳过伪类、标签、@ 规则等，避免样式被误套用
+            rules[re.findall(r"\.([A-Za-z0-9_-]+)", parts[-1])[-1]] = obj
     return rules
 
 
@@ -114,7 +161,8 @@ def build_styles(out_dir):
         print("[x] CSS 尺寸越界:\n" + "\n".join(errs))
         sys.exit(1)
     src = "// 由 build.py 从 CSS 生成，勿手改\nvar ST = %s;\nexport default ST;\n" % json.dumps(styles, ensure_ascii=False, indent=1)
-    open(os.path.join(out_dir, "Styles.js"), "w", encoding="utf-8", newline="\n").write(src)
+    with open(os.path.join(out_dir, "Styles.js"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(src)
     print("[1/4] CSS 校验通过，%d 个样式类 -> Styles.js" % len(styles))
 
 
@@ -122,6 +170,16 @@ def flatten(src):
     for a, b in IMPORT_MAP.items():
         src = src.replace("'%s'" % a, "'%s'" % b).replace('"%s"' % a, '"%s"' % b)
     return src.replace("\r\n", "\n")
+
+
+def write_stage(stage):
+    build_styles(stage)
+    for srcrel, names in MODULES:
+        s = flatten(open(os.path.join(APP_DIR, srcrel), encoding="utf-8").read())
+        for n in names:
+            with open(os.path.join(stage, n), "w", encoding="utf-8", newline="\n") as f:
+                f.write(s)
+    print("[stage] %d 个扁平化模块 -> %s" % (sum(len(n) for _, n in MODULES) + 1, stage))
 
 
 def compile_all(stage, bins):
@@ -155,12 +213,17 @@ def compile_all(stage, bins):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--install", action="store_true")
+    ap.add_argument("--stage-only", action="store_true")
     a = ap.parse_args()
     b = os.path.join(HERE, "build")
     stage, bins = os.path.join(b, "stage"), os.path.join(b, "bins")
     for d in (stage, bins):
         shutil.rmtree(d, ignore_errors=True)
         os.makedirs(d, exist_ok=True)
+
+    if a.stage_only:
+        write_stage(stage)
+        return
 
     build_styles(stage)
     compile_all(stage, bins)

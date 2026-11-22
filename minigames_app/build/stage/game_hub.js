@@ -42,16 +42,17 @@ export function renderHub(vm, h) {
           }
         }
       }, [
-        // 游戏专属徽标 Badge (替代 Emoji，避免生字缺字)
-        h('div', {
+        // 游戏专属 16-bit 像素徽标 Badge
+        h('image', {
           staticStyle: {
-            width: '36px', height: '36px', borderRadius: '8px',
-            backgroundColor: item.bg, borderWidth: '1.5px', borderColor: item.color,
-            justifyContent: 'center', alignItems: 'center', marginRight: '10px'
+            width: '38px', height: '38px', borderRadius: '8px',
+            borderWidth: '1.5px', borderColor: item.color,
+            marginRight: '10px'
+          },
+          attrs: {
+            src: 'assets/badge_' + item.id + '.png'
           }
-        }, [
-          h('text', { staticStyle: { fontSize: '16px', color: item.color, fontWeight: 'bold' } }, item.tag)
-        ]),
+        }),
         // 标题与副标题
         h('div', { staticStyle: { flex: 1, flexDirection: 'column' } }, [
           h('text', { staticStyle: { fontSize: '13px', color: '#f8fafc', fontWeight: 'bold' } }, item.title),

@@ -11,6 +11,15 @@ var SHAPES = [
 
 var COLORS = ['#38bdf8', '#facc15', '#a855f7', '#fb923c', '#3b82f6', '#4ade80', '#ef4444'];
 var COLOR_BORDERS = ['#0284c7', '#ca8a04', '#7e22ce', '#c2410c', '#1d4ed8', '#15803d', '#b91c1c'];
+var TETRIS_ASSETS = [
+  'assets/tetris_cyan.png',
+  'assets/tetris_yellow.png',
+  'assets/tetris_purple.png',
+  'assets/tetris_orange.png',
+  'assets/tetris_blue.png',
+  'assets/tetris_green.png',
+  'assets/tetris_red.png'
+];
 
 export function initTetris(vm) {
   if (vm.g_tetris_timer) {
@@ -203,29 +212,40 @@ export function renderTetris(vm, h) {
     var colsEl = [];
     for (var c = 0; c < 10; c++) {
       var val = renderGrid[r][c];
-      var color = val > 0 ? (COLORS[val - 1] || '#38bdf8') : '#0f172a';
-      var border = val > 0 ? (COLOR_BORDERS[val - 1] || '#0284c7') : '#1e293b';
-      colsEl.push(h('div', {
-        staticStyle: {
-          width: '11px', height: '11px', margin: '0.5px',
-          backgroundColor: color, borderWidth: '1px', borderColor: border, borderRadius: '2px'
-        }
-      }));
+      if (val > 0) {
+        colsEl.push(h('image', {
+          staticStyle: { width: '11px', height: '11px', margin: '0.5px' },
+          attrs: { src: TETRIS_ASSETS[val - 1] }
+        }));
+      } else {
+        colsEl.push(h('div', {
+          staticStyle: {
+            width: '11px', height: '11px', margin: '0.5px',
+            backgroundColor: '#0f172a', borderWidth: '1px', borderColor: '#1e293b', borderRadius: '2px'
+          }
+        }));
+      }
     }
     rowsEl.push(h('div', { staticStyle: { flexDirection: 'row' } }, colsEl));
   }
 
-  // 下一个方块预览
+  // 下一个方块预览 (16-bit 像素晶体预览)
   var nextShape = SHAPES[t.nextShapeIdx] || [];
   var nextRowsEl = [];
   for (var r = 0; r < 3; r++) {
     var nextColsEl = [];
     for (var c = 0; c < 4; c++) {
       var active = (nextShape[r] && nextShape[r][c]);
-      var ncolor = active ? (COLORS[t.nextShapeIdx] || '#38bdf8') : 'transparent';
-      nextColsEl.push(h('div', {
-        staticStyle: { width: '8px', height: '8px', margin: '1px', backgroundColor: ncolor, borderRadius: '1px' }
-      }));
+      if (active) {
+        nextColsEl.push(h('image', {
+          staticStyle: { width: '10px', height: '10px', margin: '1px' },
+          attrs: { src: TETRIS_ASSETS[t.nextShapeIdx] }
+        }));
+      } else {
+        nextColsEl.push(h('div', {
+          staticStyle: { width: '10px', height: '10px', margin: '1px', backgroundColor: 'transparent' }
+        }));
+      }
     }
     nextRowsEl.push(h('div', { staticStyle: { flexDirection: 'row' } }, nextColsEl));
   }

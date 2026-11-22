@@ -1,0 +1,210 @@
+/* pages/game/game.css —— 文字冒险游戏主界面样式 (800x220) */
+
+.game-container {
+  width: 800px;
+  height: 220px;
+  background-color: #1a1817;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  width: 800px;
+  height: 24px;
+  background-color: #262320;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.hud-loc {
+  font-size: 12px;
+  color: #e5b842;
+  font-weight: bold;
+}
+
+.hud-stats {
+  font-size: 11px;
+  color: #9e978c;
+}
+
+.hud-btns {
+  display: flex;
+  flex-direction: row;
+}
+
+.hud-btn {
+  font-size: 12px;
+  color: #4d888c;
+  margin-left: 8px;
+}
+
+.game-body {
+  width: 800px;
+  height: 196px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 左栏：场景卡与地标 (220px) */
+.col-left {
+  width: 220px;
+  height: 196px;
+  background-color: #211e1b;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.scene-card-img {
+  width: 208px;
+  height: 140px;
+  border-radius: 4px;
+}
+
+.scene-info {
+  width: 208px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.scene-name {
+  font-size: 13px;
+  color: #e8e2d8;
+  font-weight: bold;
+}
+
+.scene-exits {
+  font-size: 10px;
+  color: #9e978c;
+  margin-top: 2px;
+}
+
+/* 中栏：大版面文字流 (410px) */
+.col-center {
+  width: 410px;
+  height: 196px;
+  background-color: #1a1817;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-left-width: 1px;
+  border-left-color: #332e29;
+  border-right-width: 1px;
+  border-right-color: #332e29;
+}
+
+.speaker-badge {
+  width: 100px;
+  height: 20px;
+  background-color: #332e29;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.speaker-text {
+  font-size: 12px;
+  color: #c23e34;
+  font-weight: bold;
+}
+
+.dialogue-box {
+  width: 386px;
+  height: 136px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogue-text {
+  font-size: 16px;
+  line-height: 24px;
+  color: #e8e2d8;
+}
+
+.dialogue-footer {
+  width: 386px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.dialogue-tip {
+  font-size: 10px;
+  color: #9e978c;
+}
+
+/* 右栏：文字冒险指令盘 (170px) */
+.col-right {
+  width: 170px;
+  height: 196px;
+  background-color: #211e1b;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  justify-content: space-between;
+}
+
+.act-btn {
+  width: 158px;
+  background-color: #332e29;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.act-next {
+  height: 52px;
+  border-left-width: 4px;
+  border-left-color: #4d888c;
+}
+
+.act-text-main {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e8e2d8;
+}
+
+.act-grid {
+  width: 158px;
+  height: 76px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.grid-btn {
+  width: 76px;
+  height: 35px;
+  background-color: #2b2723;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-text {
+  font-size: 13px;
+  color: #e8e2d8;
+}
+
+.act-map {
+  height: 42px;
+  border-left-width: 4px;
+  border-left-color: #e5b842;
+}
+
+.act-text-sub {
+  font-size: 13px;
+  color: #e5b842;
+}

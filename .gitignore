@@ -26,3 +26,34 @@ analyze_*.py
 check_op_table.py
 precise_disasm.py
 senren-banka-ydpen-port/
+
+# 私人照片（绝不入库，公开仓库）
+data/photo_inbox/
+
+# 可重新下载的依赖与分发资源
+node_modules/
+halflife_app/dist_assets/
+halflife_app/test_artifacts/
+promo_video/recordings/
+promo_video/shots/
+dracu_test_results/
+dracu_test_run2/
+dracu_probe/
+
+# 超大安装包（超过 GitHub 100MB 单文件限制）
+*.zip
+
+# 已独立托管的移植仓库（各自去 GitHub 拉取）
+dracu-riot-ydpen-port/
+gwjcfls-ydpen-toolkit/
+horsey_port/
+
+# 游戏资源包（超过 100MB，编译者自行下载）
+*.xp3
+*.tar
+*.tar.gz
+dracu_riot_full_installer/assets/
+DRACU-RIOT/data.xp3
+halflife_app/valve_assets.tar
+halflife_universal_installer/payload/
+halflife_windows_installer/payload/

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+  body {
+    width: 1080px;
+    height: 1920px;
+    background: radial-gradient(circle at 50% 12%, #221226 0%, #0d0815 45%, #050308 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 75px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .glow-top {
+    position: absolute;
+    top: -120px;
+    left: 80px;
+    width: 900px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 64, 129, 0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .glow-bottom {
+    position: absolute;
+    bottom: -100px;
+    right: 0px;
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 198, 255, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header { position: relative; z-index: 2; }
+  .badge-bar { display: flex; gap: 14px; margin-bottom: 24px; }
+  .badge {
+    background: rgba(255, 64, 129, 0.22);
+    border: 1px solid rgba(255, 64, 129, 0.65);
+    color: #ff6da0;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 8px 24px;
+    border-radius: 30px;
+    letter-spacing: 1px;
+  }
+  .badge.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+  }
+  .main-title {
+    font-size: 66px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  }
+  .main-title .highlight {
+    background: linear-gradient(135deg, #ff79b0 0%, #ffd54f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub-title {
+    font-size: 28px;
+    color: #b8b0c2;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .image-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 600px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255,64,129,0.25);
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .image-tag {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 10px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffd54f;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .feat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    padding: 22px 26px;
+    backdrop-filter: blur(12px);
+  }
+  .feat-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  .feat-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .feat-desc {
+    font-size: 19px;
+    color: #9f96a8;
+    line-height: 1.35;
+  }
+  .footer {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 28px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(16px);
+  }
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bili-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bili-logo {
+    background: #fb7299;
+    color: #fff;
+    font-weight: 900;
+    font-size: 20px;
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+  .bili-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .bv-tag {
+    font-size: 22px;
+    font-family: Menlo, Monaco, monospace;
+    color: #ffd54f;
+    font-weight: 700;
+  }
+  .footer-tip {
+    font-size: 19px;
+    color: #a59caa;
+  }
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .qr-box {
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+  .qr-box img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .qr-tip {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffd54f;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-top"></div>
+  <div class="glow-bottom"></div>
+
+  <div class="header">
+    <div class="badge-bar">
+      <div class="badge">实机上手体验篇</div>
+      <div class="badge secondary">UP主: RS_TV</div>
+      <div class="badge secondary">时长: 09:47 完整实录</div>
+    </div>
+    <div class="main-title">
+      “只要有屏幕<br><span class="highlight">就能推 Gal！</span>”
+    </div>
+    <div class="sub-title">
+      在高中教室里，我把《千恋＊万花》移植进了有道词典笔！
+    </div>
+  </div>
+
+  <div class="image-card">
+    <img src="file:///Users/fuzihao/biliup/covers/pen_gal/cover_01.jpg">
+    <div class="image-tag">📷 教室真机双指操作实拍</div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feat-item">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">物理6倍速狂飙</div>
+      <div class="feat-desc">双手并用极速快进，秒跳 9155 句文本</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🙈</div>
+      <div class="feat-title">求生欲鉴赏现场</div>
+      <div class="feat-desc">某些特写环节物理遮挡露个头，刺激拉满</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🔔</div>
+      <div class="feat-title">下课铃一响保命</div>
+      <div class="feat-desc">老师宣布下课，光速熄屏塞进笔袋</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">📺</div>
+      <div class="feat-title">隐藏功能彩蛋</div>
+      <div class="feat-desc">不仅能推Gal，居然还能看英配小猪佩奇</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <div class="bili-brand">
+        <div class="bili-logo">bilibili</div>
+        <div class="bili-text">哔哩哔哩 现已发布</div>
+      </div>
+      <div class="bv-tag">BV1rnxy6oEMx</div>
+      <div class="footer-tip">长按识别二维码 · 即可观看完整实操视频</div>
+    </div>
+    <div class="footer-right">
+      <div class="qr-box">
+        <img src="file:///Volumes/500GB/Ydpen/promo_video/output/qr_bv1.png">
+      </div>
+      <div class="qr-tip">扫码直接看视频</div>
+    </div>
+  </div>
+</body>
+</html>

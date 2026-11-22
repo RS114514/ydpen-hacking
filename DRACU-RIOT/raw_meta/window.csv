@@ -1,0 +1,6 @@
+type,base,base,48,528,1184,160
+file,base,window@base%base;click;nosave,1067,104,50,50,click,nosave
+file,base,window@base%base;name;nosave,269,11,769,30,name,nosave
+file,base,window@base%base;text;nosave,276,40,769,101,text,nosave
+file,base,window@base%base;nosave,0,0,1184,160,nosave
+file,base,window@base%base,0,0,1184,160,

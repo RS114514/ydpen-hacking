@@ -1,0 +1,19 @@
+=== doom_ydpen（笔上的真实程序）关键输出 ===
+[doom] doomgeneric Youdao X6 Pro Wayland port
+[doom] initializing Youdao X6 Pro Wayland port
+[wl] toplevel configure 0x0 states:
+[wl] surface configured serial=1
+[wl] layout=window output=960x480 visible_y=107
+[doom] DG_Init done: layout=window output=960x480 ui_y=107 touch_fd=-1 audio=1
+
+=== 合成器场景图（节选） ===
+Layer 0 (pos 0xffffffff):
+	[no views]
+	[no views]
+	[no views]
+	[no views]
+	[no views]
+	[no views]
+	View 0 (role xdg_toplevel, PID 17, surface ID 3, top-level window 'DOOM - Youdao X6 Pro' of com.rs114514.doom, 0xdc08780):
+	[no views]
+	[no views]

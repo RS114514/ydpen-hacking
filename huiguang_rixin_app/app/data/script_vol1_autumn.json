@@ -1,0 +1,233 @@
+{
+  "volume": "vol1_autumn",
+  "title": "第一卷 · 金秋篇《白马秋风：未刊手稿与大礼堂惊雷》",
+  "time_span": "2026-09-01 至 2026-12-02",
+  "chapters": [
+    {
+      "id": "ch01",
+      "title": "梧桐雨下的新门牌",
+      "date": "2026-09-01",
+      "timeSlot": "清晨早读",
+      "location": "仰山新楼 2F",
+      "bg": "yangshan_new_morning",
+      "bgm": "bgm_piano_autumn",
+      "lines": [
+        { "speaker": "", "text": "九月的晨风穿过景行路两旁的百年梧桐，落叶在湿润的石板路上打着细碎的旋。" },
+        { "speaker": "我", "text": "高二的第一天。从今天起，日常上课的教室正式从高一的望湖楼搬到了中南部的仰山新楼。" },
+        { "speaker": "池雨曦", "text": "早啊。新教室窗外正对着新逸夫楼的施工围挡，听说配套报告厅这周就要全部竣工交付了。" },
+        { "speaker": "我", "text": "林老师前天在群里发过通知，新媒体社这学期的大本营直接设在报告厅三楼。" },
+        { "speaker": "池雨曦", "text": "总算不用挤在信息中心那个连采光都没有的地下平房了。不过，今年校庆微电影的任务也压下来了。" }
+      ]
+    },
+    {
+      "id": "ch02",
+      "title": "新逸夫楼的玻璃穹顶",
+      "date": "2026-09-08",
+      "timeSlot": "课后社团",
+      "location": "新逸夫楼配套报告厅 3F",
+      "bg": "yifu_hall_3f",
+      "bgm": "bgm_daily_bright",
+      "lines": [
+        { "speaker": "", "text": "新建竣工的逸夫楼建筑群在阳光下泛着沉稳的灰白与红砖色泽。北侧两栋四层实验主楼巍然而立，南侧则是配有绛红拱廊的三层报告厅。" },
+        { "speaker": "我", "text": "推开报告厅三楼南侧的双开木门，眼前是一间足有八十平米的全新剪辑机房。" },
+        { "speaker": "池雨曦", "text": "四联剪辑工作台、落地观景窗，还有独立配音间。站在这儿，正好看得见整个运动场和后面的象山。" },
+        { "speaker": "我", "text": "林老师留了话，桌上那个标着‘视野春晖’的旧移动硬盘，是历年学长学姐留下的全部成片档案。" }
+      ]
+    },
+    {
+      "id": "ch03",
+      "title": "第四象限的晨光",
+      "date": "2026-09-18",
+      "timeSlot": "午间就餐",
+      "location": "学苑食堂 (第四象限)",
+      "bg": "canteen_quadrant4",
+      "bgm": "bgm_warm_canteen",
+      "lines": [
+        { "speaker": "", "text": "学苑食堂最右侧的面点窗口前排着长队。春晖学子习惯将这片区域称作‘第四象限’。" },
+        { "speaker": "白发老奶奶", "text": "来，两碗咸菜肉丝面。冬菜浇头给你们另外拿小圆盒装好了，趁热吃，汤底是今早现熬的鸡汤骨架。" },
+        { "speaker": "我", "text": "谢谢奶奶！对了奶奶，听说您在老校区的时候就在后勤食堂工作了？" },
+        { "speaker": "白发老奶奶", "text": "那可有些年头了。老图书馆二楼东首那排铁柜里，还收着六十年代老先生们手抄的读本稿件呢，平时可没人翻。" }
+      ]
+    },
+    {
+      "id": "ch04",
+      "title": "博文馆的旧铁柜",
+      "date": "2026-10-12",
+      "timeSlot": "傍晚探寻",
+      "location": "老校区博文馆二楼",
+      "bg": "bowenguan_dusty",
+      "bgm": "bgm_mystery_bell",
+      "lines": [
+        { "speaker": "", "text": "推开白马湖图书馆（博文馆）二楼的雕花木窗，夕阳把老书架的影子拉得很长。" },
+        { "speaker": "池雨曦", "text": "你看这个抽屉没有锁。里面全是民国时期的《春晖读本》校订散页。" },
+        { "speaker": "我", "text": "中间夹着一本线装册子，封皮写着‘第101期未刊稿’。最后一页还夹着一片压平的干枯金桂叶。" },
+        { "speaker": "系统提示", "text": "【春戊掌上终端轻微振颤】：检测到时空微弱谐振（1924 - 1934 - 2026）。" },
+        { "speaker": "池雨曦", "text": "书签背面有行小楷：‘光阴者，百代之过客；唯白马湖畔之晖光，与日月日新。’" }
+      ]
+    },
+    {
+      "id": "ch05",
+      "title": "分镜稿上的留白",
+      "date": "2026-10-24",
+      "timeSlot": "晚修前夕",
+      "location": "新逸夫楼配套报告厅 3F 机房",
+      "bg": "yifu_hall_dusk",
+      "bgm": "bgm_thoughtful",
+      "choices": [
+        {
+          "id": "opt_empty_shot",
+          "text": "采纳空镜方案，保留画外音留白",
+          "target": "line_empty_shot_agree",
+          "effect": { "bond_yuxi": 15, "beauty": 10 }
+        },
+        {
+          "id": "opt_force_face",
+          "text": "坚持要求搭档对镜出镜口播",
+          "target": "line_force_face_refuse",
+          "effect": { "bond_yuxi": -15, "truth": 5 }
+        }
+      ],
+      "lines": [
+        { "speaker": "池雨曦", "text": "分镜草稿我看完了。开篇校史这三分钟，我不赞成让我站在红廊前念解说词。太浮于表面了。" },
+        { "speaker": "我", "text": "那你的设想是？" },
+        { "speaker": "池雨曦", "text": "用白马湖的晨雾、一字楼掉落的金桂，配安静的画外音。画面空一点，观众才能听得进文字里的分量。" }
+      ]
+    },
+    {
+      "id": "ch06",
+      "title": "阁楼铜钟的音阶",
+      "date": "2026-11-04",
+      "timeSlot": "下午课间",
+      "location": "仰山楼（校史馆）小阁楼",
+      "bg": "yangshan_attic_bell",
+      "bgm": "bgm_bell_echo",
+      "puzzle": {
+        "id": "puzzle_bell",
+        "type": "rhythm_tap",
+        "solution": [ "double", "double", "double" ],
+        "hint": "上课双锤三响，步步走到，方能心静。"
+      },
+      "lines": [
+        { "speaker": "", "text": "仰山楼北首木梯顶端，悬挂着一口饱经风霜的生铁老铜钟。" },
+        { "speaker": "我", "text": "黄颂翔回忆录里写过，数学名师陈宗秀先生当年对打钟极严苛：上课必双锤三响，下课方单锤六响。" },
+        { "speaker": "", "text": "手指握紧钟锤，深吸一口气，对准生铁钟沿连击两下——噹噹！" }
+      ]
+    },
+    {
+      "id": "ch07",
+      "title": "【历史大副本 · 1934】大礼堂的风雷",
+      "date": "1934-10-28",
+      "timeSlot": "历史穿越",
+      "location": "民国大礼堂 (思饥轩)",
+      "bg": "grand_auditorium_1934",
+      "bgm": "bgm_thunderstorm_rehearsal",
+      "lines": [
+        { "speaker": "", "text": "【时空置换判定】：视角切换为 1934 年春晖高二学生胡玉堂（后任春晖校长）。" },
+        { "speaker": "景金城", "text": "玉堂！文学季刊第三期借到了，上面全文刊载了曹禺先生的《雷雨》！" },
+        { "speaker": "胡玉堂", "text": "把煤油灯挑亮点，趁今晚熄灯前，把第二幕周冲和繁漪的台词全部分工手抄下来。" },
+        { "speaker": "陈维辉", "text": "教务处要是知道我们高二学生带头排这种新剧，万一给处分怎么办？" },
+        { "speaker": "胡玉堂", "text": "怕什么！经校长教过我们‘与时俱进’。大礼堂建起来，就是为了让真理和热血发声的！" }
+      ]
+    },
+    {
+      "id": "ch08",
+      "title": "校猫阿波罗的密道",
+      "date": "2026-11-15",
+      "timeSlot": "放学黄昏",
+      "location": "一字楼绛红长廊",
+      "bg": "yizilou_autumn_cat",
+      "bgm": "bgm_apollo_playful",
+      "lines": [
+        { "speaker": "", "text": "大橘猫‘阿波罗’嘴里叼着个布包，敏捷地跳上一字楼木廊的横梁。" },
+        { "speaker": "我", "text": "赶紧从口袋里拿出一只欣欣二楼买的热烤角，掰开一角伸过去。" },
+        { "speaker": "阿波罗", "text": "喵呜——（蹭了蹭手指，扔下布包，大口嚼起烤角）" },
+        { "speaker": "我", "text": "解开油布包，里面竟然是一张泛黄油印的 1934 年大礼堂首演分镜头手绘示意图！" }
+      ]
+    },
+    {
+      "id": "ch09",
+      "title": "骤雨前的合练",
+      "date": "2026-11-28",
+      "timeSlot": "深夜加班",
+      "location": "大礼堂舞台与后台",
+      "bg": "auditorium_stage_lights",
+      "bgm": "bgm_suspense_rehearsal",
+      "lines": [
+        { "speaker": "", "text": "大礼堂的聚光灯投射在舞台中央，沐春剧社的两位同学正全情投入对戏。" },
+        { "speaker": "池雨曦", "text": "音频控制台已经接到新逸夫楼转播主链路，大礼堂的雷声混响没有一点延迟。" },
+        { "speaker": "林老师", "text": "外面又下起初冬暴雨了。孩子们，抓紧最后两遍走位，十二月二日全校师生都在台下看着你们。" }
+      ]
+    },
+    {
+      "id": "ch10",
+      "title": "12 月 2 日的大幕",
+      "date": "2026-12-02",
+      "timeSlot": "校庆首演夜",
+      "location": "春晖大礼堂",
+      "bg": "auditorium_curtain_up",
+      "bgm": "bgm_grand_opening",
+      "lines": [
+        { "speaker": "", "text": "歇山顶木梁下座无虚席。大幕缓缓拉开，大屏幕上首先打出新媒体社制作的片头：一字楼红廊在秋雨中静默，落叶无声。" },
+        { "speaker": "广播画外音(池雨曦)", "text": "‘九十年前的今天，同样有一群高二学子，在这个舞台上唤醒了惊雷。今天，白马湖畔的晖光依旧日新。’" },
+        { "speaker": "", "text": "全场掌声如雷霆炸响！掌上终端亮起金光：【第一卷 · 金秋篇 达成圆满】。" },
+        { "speaker": "系统提示", "text": "深冬降临，白马湖落雪。第二卷【凛冬篇 · 平屋风雪与抗战西迁】正式开启。" }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "case01",
+      "title": "钟楼的哑锤",
+      "volume": "vol1",
+      "unlockedChapter": "ch06",
+      "summary": "调查仰山楼老铜钟为何换成生铁锤，还原陈宗秀先生一笔画圆与步步走到的实干风骨。",
+      "clues": ["clue_bell_strike", "clue_chalk_circle"],
+      "reward": { "truth": 20, "item": "生铁钟锤残片" }
+    },
+    {
+      "id": "case02",
+      "title": "1934 偷渡的剧本",
+      "volume": "vol1",
+      "unlockedChapter": "ch07",
+      "summary": "破译博文馆借阅卡涂黑的第三个签名，确认当年高二学生胡玉堂、景金城、陈维辉共同首演《雷雨》历史档案。",
+      "clues": ["clue_borrow_card", "clue_handwritten_script"],
+      "reward": { "beauty": 20, "item": "1934首演油印戏单" }
+    },
+    {
+      "id": "case03",
+      "title": "欣欣餐厅的老金锅",
+      "volume": "vol1",
+      "unlockedChapter": "ch01",
+      "summary": "寻访第一代铁板饭师傅的选材笔记，揭开恢复高考初期后勤保障的师生情谊。",
+      "clues": ["clue_gold_pot_receipt", "clue_chef_interview"],
+      "reward": { "body": 15, "item": "特制黄油香精配方" }
+    },
+    {
+      "id": "case04",
+      "title": "消失的樟木箱",
+      "volume": "vol1",
+      "unlockedChapter": "ch04",
+      "summary": "博文馆地下防潮室刻有‘白马湖春社 1923’的木箱密码锁推理解密。",
+      "clues": ["clue_copper_key", "clue_reader_mark"],
+      "reward": { "truth": 15, "item": "春社初创通信录" }
+    },
+    {
+      "id": "case05",
+      "title": "梧桐大道的第一株树",
+      "volume": "vol1",
+      "unlockedChapter": "ch01",
+      "summary": "比对经亨颐与朱自清亲手测绘的景行路绿化苗木图纸。",
+      "clues": ["clue_tree_map_1923", "clue_botany_log"],
+      "reward": { "beauty": 15, "item": "老梧桐叶拓片" }
+    },
+    {
+      "id": "case06",
+      "title": "风荷院的门锁",
+      "volume": "vol1",
+      "unlockedChapter": "ch08",
+      "summary": "九十年代风荷院宿舍落成时第一批住寝女生的手写寄语暗格调查。",
+      "clues": ["clue_dorm_lock", "clue_letter_1996"],
+      "reward": { "bond_yuxi": 20, "item": "风荷银徽章" }
+    }
+  ]
+}

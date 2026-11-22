@@ -1,0 +1,53 @@
+{
+  "260.tlg": "#resource#3",
+  "261.tlg": "#resource#0",
+  "263.tlg": "#resource#2",
+  "264.tlg": "#resource#1",
+  "height": 720,
+  "layers": [{
+      "height": 240,
+      "layer_id": 264,
+      "layer_type": 0,
+      "left": 219,
+      "name": "AD",
+      "opacity": 255,
+      "top": 101,
+      "type": 13,
+      "visible": 1,
+      "width": 235
+    },{
+      "height": 254,
+      "layer_id": 263,
+      "layer_type": 0,
+      "left": 219,
+      "name": "AC",
+      "opacity": 255,
+      "top": 101,
+      "type": 13,
+      "visible": 0,
+      "width": 276
+    },{
+      "height": 240,
+      "layer_id": 261,
+      "layer_type": 0,
+      "left": 219,
+      "name": "AB",
+      "opacity": 255,
+      "top": 101,
+      "type": 13,
+      "visible": 0,
+      "width": 235
+    },{
+      "height": 720,
+      "layer_id": 260,
+      "layer_type": 0,
+      "left": 0,
+      "name": "AA",
+      "opacity": 255,
+      "top": 0,
+      "type": 13,
+      "visible": 0,
+      "width": 1280
+    }],
+  "width": 1280
+}

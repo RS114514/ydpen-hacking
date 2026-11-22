@@ -101,30 +101,16 @@ export function renderJump(vm, h) {
     }));
   }
 
-  // 渲染跳跃小棋子
-  elements.push(h('div', {
+  // 渲染 16-bit 像素跳跃小棋子
+  elements.push(h('image', {
     staticStyle: {
       position: 'absolute',
-      left: Math.floor(j.playerX - 9) + 'px',
-      top: Math.floor(j.playerY - 26) + 'px',
-      width: '18px', height: '28px'
-    }
-  }, [
-    // 头部圆球
-    h('div', {
-      staticStyle: {
-        width: '12px', height: '12px', borderRadius: '6px', backgroundColor: '#38bdf8',
-        borderWidth: '1.5px', borderColor: '#ffffff', position: 'absolute', left: '3px', top: '0px'
-      }
-    }),
-    // 棋子身躯
-    h('div', {
-      staticStyle: {
-        width: '16px', height: '16px', borderRadius: '4px', backgroundColor: '#0284c7',
-        borderWidth: '1.5px', borderColor: '#ffffff', position: 'absolute', left: '1px', top: '11px'
-      }
-    })
-  ]));
+      left: Math.floor(j.playerX - 10) + 'px',
+      top: Math.floor(j.playerY - 30) + 'px',
+      width: '20px', height: '30px'
+    },
+    attrs: { src: 'assets/jump_pawn.png' }
+  }));
 
   if (j.state === 'dead') {
     elements.push(h('div', {

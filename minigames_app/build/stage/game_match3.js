@@ -1,10 +1,10 @@
 // game_match3.js —— 趣味消消乐 (6x6 网格宝石三消)
 export var GEMS = [
-  { symbol: '★', name: '红宝', bg: '#ef4444', border: '#f87171' },
-  { symbol: '◆', name: '蓝钻', bg: '#2563eb', border: '#60a5fa' },
-  { symbol: '▲', name: '绿翡', bg: '#16a34a', border: '#4ade80' },
-  { symbol: '●', name: '金玉', bg: '#d97706', border: '#fde047' },
-  { symbol: '■', name: '紫晶', bg: '#7c3aed', border: '#c084fc' }
+  { name: '红宝', asset: 'assets/gem_ruby.png' },
+  { name: '蓝钻', asset: 'assets/gem_sapphire.png' },
+  { name: '绿翡', asset: 'assets/gem_emerald.png' },
+  { name: '黄玉', asset: 'assets/gem_topaz.png' },
+  { name: '紫晶', asset: 'assets/gem_amethyst.png' }
 ];
 
 export function initMatch3(vm) {
@@ -128,21 +128,25 @@ export function renderMatch3(vm, h) {
     var cols = [];
     for (var c = 0; c < 6; c++) {
       var gemVal = m.grid[r][c];
-      var gem = GEMS[gemVal] || { symbol: '★', bg: '#475569', border: '#94a3b8' };
+      var gem = GEMS[gemVal] || { asset: 'assets/gem_ruby.png' };
       var isSel = (m.selected && m.selected.r === r && m.selected.c === c);
 
       (function(row, col, item, selected) {
         cols.push(h('div', {
           staticStyle: {
             width: '27px', height: '27px', margin: '1px',
-            backgroundColor: item.bg, borderRadius: '6px',
-            borderWidth: selected ? '2.5px' : '1px',
-            borderColor: selected ? '#fde047' : item.border,
+            backgroundColor: selected ? 'rgba(250, 204, 21, 0.3)' : 'transparent',
+            borderRadius: '6px',
+            borderWidth: selected ? '2px' : '0px',
+            borderColor: '#facc15',
             justifyContent: 'center', alignItems: 'center'
           },
           on: { click: function() { handleMatch3Click(vm, row, col); } }
         }, [
-          h('text', { staticStyle: { fontSize: '13px', color: '#ffffff', fontWeight: 'bold' } }, item.symbol)
+          h('image', {
+            staticStyle: { width: '25px', height: '25px' },
+            attrs: { src: item.asset }
+          })
         ]));
       })(r, c, gem, isSel);
     }

@@ -1,0 +1,58 @@
+dress	制服	diff	1	制服
+dress	ウェイトレス	diff	1	ウェイトレス
+dress	私服	diff	1	私服
+dress	水着	diff	1	水着
+
+face	01	base	ベース表情
+face	02	base	2　笑顔2
+face	03	base	3　　満面の笑み
+face	04	base	4　大人しめの笑み
+face	05	base	5　　ジト目
+face	06	base	6　　きょとん
+face	07	base	7　　驚き
+face	08	base	8　　慌てる
+face	09	base	9　恥ずかしい_照れる
+face	10	base	10　　頑張ります！
+face	11	base	11　　寂しい
+face	12	base	12　　しょんぼり
+face	13	base	13　　真剣
+face	14	base	14　　叫ぶ
+face	15	base	15　　困った
+face	16	base	笑顔2（目、口）困った（眉）
+face	17	base	13　　真剣 のコピー
+
+
+face	01h	base	ベース表情
+face	01h	base	照れ
+face	02h	base	2　笑顔2
+face	02h	base	照れ
+face	03h	base	3　　満面の笑み
+face	03h	base	照れ
+face	04h	base	4　大人しめの笑み
+face	04h	base	照れ
+face	05h	base	5　　ジト目
+face	05h	base	照れ
+face	06h	base	6　　きょとん
+face	06h	base	照れ
+face	07h	base	7　　驚き
+face	07h	base	照れ
+face	08h	base	8　　慌てる
+face	08h	base	照れ
+face	09h	base	9　恥ずかしい_照れる
+face	09h	base	照れ
+face	10h	base	10　　頑張ります！
+face	10h	base	照れ
+face	11h	base	11　　寂しい
+face	11h	base	照れ
+face	12h	base	12　　しょんぼり
+face	12h	base	照れ
+face	13h	base	13　　真剣
+face	13h	base	照れ
+face	14h	base	14　　叫ぶ
+face	14h	base	照れ
+face	15h	base	15　　困った
+face	15h	base	照れ
+face	16h	base	笑顔2（目、口）困った（眉）
+face	16h	base	照れ
+face	17h	base	13　　真剣 のコピー
+face	17h	base	照れ

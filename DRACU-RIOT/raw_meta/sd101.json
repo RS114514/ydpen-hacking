@@ -1,0 +1,3227 @@
+{
+  "id": "motion",
+  "label": "SD101",
+  "object": {
+    "SD101": {
+      "motion": {
+        "SD101A": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情0"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101B": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情1"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101C": {
+          "lastTime": 1.0,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情0"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [7.0,77.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー吸う差分"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "coord": [-219.0,-62.0,0.0],
+                    "mask": 524291,
+                    "motion": {
+                      "mask": 0,
+                      "timeOffset": 0
+                    },
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "motion/SD101/emo_chuu"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "chuu",
+              "motionIndependentLayerInherit": 0,
+              "transformOrder": [0,3,2,1],
+              "type": 3
+            }],
+          "loopTime": 0,
+          "parameterize": null,
+          "priority": [{
+              "content": [5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1.0,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101D": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情6"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [7.0,77.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー吸う差分"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101E": {
+          "lastTime": 241,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [-289.0,-37.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/sd101/bg_cut_abリンゴバナナ"
+                      },
+                      "time": 60,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [-273.0,-37.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/sd101/bg_cut_abリンゴバナナ"
+                      },
+                      "time": 120,
+                      "type": 2
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "ab",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                },{
+                  "children": [],
+                  "coordinate": 0,
+                  "frameList": [{
+                      "time": 0,
+                      "type": 0
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "ccc": {
+                          "c": [1,1],
+                          "x": [0,0.0884927,0.4412791,1],
+                          "y": [0,0.5587209,0.9115073,1]
+                        },
+                        "coord": [302.0,-59.0,0.0],
+                        "mask": 134147,
+                        "opa": 0,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                      },
+                      "time": 180.0,
+                      "type": 3
+                    },{
+                      "content": {
+                        "bm": 0,
+                        "coord": [286.0,-59.0,0.0],
+                        "mask": 131075,
+                        "ox": 0,
+                        "oy": 0,
+                        "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                      },
+                      "time": 240.0,
+                      "type": 2
+                    },{
+                      "time": 241,
+                      "type": 0
+                    }],
+                  "groundCorrection": 0,
+                  "inheritMask": 2044,
+                  "joinTarget": 1,
+                  "label": "abo",
+                  "objMeshTransform": 0,
+                  "objTriPriority": 2,
+                  "transformOrder": [0,3,2,1],
+                  "type": 0
+                }],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "mask": 97,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "clip",
+                    "zx": 23.421875,
+                    "zy": 14.0546875
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 4195948,
+              "joinTarget": 1,
+              "label": "mask",
+              "transformOrder": [0,3,2,1],
+              "type": 7
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情1"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 241.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [7,6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 241,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101F": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情6"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [7.0,77.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー吸う差分"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "coord": [-219.0,-62.0,0.0],
+                    "mask": 524291,
+                    "motion": {
+                      "mask": 0,
+                      "timeOffset": 0
+                    },
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "motion/SD101/emo_chuu"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "chuu",
+              "motionIndependentLayerInherit": 0,
+              "transformOrder": [0,3,2,1],
+              "type": 3
+            }],
+          "loopTime": 0,
+          "parameterize": null,
+          "priority": [{
+              "content": [7,6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101G": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情1"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101H": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情2"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101I": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情3"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101J": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情4"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101K": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情5"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型o"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [7.0,77.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー吸う差分赤面"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "coord": [-219.0,-62.0,0.0],
+                    "mask": 524291,
+                    "motion": {
+                      "mask": 0,
+                      "timeOffset": 0
+                    },
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "motion/SD101/emo_chuu"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "chuu",
+              "motionIndependentLayerInherit": 0,
+              "transformOrder": [0,3,2,1],
+              "type": 3
+            }],
+          "loopTime": 0,
+          "parameterize": null,
+          "priority": [{
+              "content": [7,6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101L": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情4"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型o"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101M": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情5"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1.0,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": -1,
+          "parameterize": null,
+          "priority": [{
+              "content": [6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "SD101N": {
+          "lastTime": 1,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "bg",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-273.0,-37.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_abリンゴバナナ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "ab",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [286.0,-59.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/bg_cut_aboトマトオレンジ"
+                  },
+                  "time": 0.0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "abo",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/モト_体"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "miu",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [6.0,3.0,0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/表情6赤"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "kao",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-33.0,149.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/血液型a"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "blood",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [-13.0,89.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー基本"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "bm": 0,
+                    "coord": [7.0,77.0,0.0],
+                    "mask": 131075,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ストロー吸う差分赤面"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "straw",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            },{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "content": {
+                    "coord": [-219.0,-62.0,0.0],
+                    "mask": 524291,
+                    "motion": {
+                      "mask": 0,
+                      "timeOffset": 0
+                    },
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "motion/SD101/emo_chuu"
+                  },
+                  "time": 0,
+                  "type": 2
+                },{
+                  "time": 1,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "chuu",
+              "motionIndependentLayerInherit": 0,
+              "transformOrder": [0,3,2,1],
+              "type": 3
+            }],
+          "loopTime": 0,
+          "parameterize": null,
+          "priority": [{
+              "content": [8,7,6,5,4,3,2,1,0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 1,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        },
+        "emo_chuu": {
+          "lastTime": 240,
+          "layer": [{
+              "children": [],
+              "coordinate": 0,
+              "frameList": [{
+                  "time": 0,
+                  "type": 0
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131169,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう",
+                    "zx": 1,
+                    "zy": 0.7
+                  },
+                  "time": 20.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131169,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう",
+                    "zx": 1,
+                    "zy": 0.9
+                  },
+                  "time": 26.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131169,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう",
+                    "zx": 1,
+                    "zy": 0.8
+                  },
+                  "time": 29.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう"
+                  },
+                  "time": 36.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131169,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう",
+                    "zx": 1,
+                    "zy": 0.9
+                  },
+                  "time": 39.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 139361,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう",
+                    "zcc": {
+                      "c": [1,1],
+                      "x": [0,0.0884927,0.4412791,1],
+                      "y": [0,0.5587209,0.9115073,1]
+                    },
+                    "zx": 1,
+                    "zy": 0.9
+                  },
+                  "time": 51.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう"
+                  },
+                  "time": 111.0,
+                  "type": 2
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 131073,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう"
+                  },
+                  "time": 141.0,
+                  "type": 3
+                },{
+                  "content": {
+                    "bm": 0,
+                    "mask": 132097,
+                    "opa": 0,
+                    "ox": 0,
+                    "oy": 0,
+                    "src": "src/sd101/ちゅううう"
+                  },
+                  "time": 201.0,
+                  "type": 3
+                },{
+                  "time": 202.0,
+                  "type": 0
+                },{
+                  "time": 240,
+                  "type": 0
+                }],
+              "groundCorrection": 0,
+              "inheritMask": 2044,
+              "joinTarget": 1,
+              "label": "レイヤ1",
+              "objMeshTransform": 0,
+              "objTriPriority": 2,
+              "transformOrder": [0,3,2,1],
+              "type": 0
+            }],
+          "loopTime": 0,
+          "parameterize": null,
+          "priority": [{
+              "content": [0],
+              "time": 0,
+              "type": 1
+            },{
+              "content": null,
+              "time": 240,
+              "type": 1
+            }],
+          "referenceModelFileList": [],
+          "referenceProjectFileList": [],
+          "tag": [],
+          "type": 0,
+          "variable": []
+        }
+      },
+      "type": 0
+    }
+  },
+  "screenSize": {
+    "height": 720,
+    "originX": 0,
+    "originY": 0,
+    "width": 1280
+  },
+  "source": {
+    "sd101": {
+      "icon": {
+        "bg": {
+          "clip": {
+            "bottom": 0.9934211,
+            "left": 0.00132978719,
+            "right": 0.9986702,
+            "top": 0.00657894742
+          },
+          "compress": "RL",
+          "height": 450,
+          "originX": 375,
+          "originY": 225,
+          "pixel": "#resource#17",
+          "width": 750
+        },
+        "bg_cut_aboトマトオレンジ": {
+          "clip": {
+            "bottom": 0.9910714,
+            "left": 0.0108695654,
+            "right": 0.9836956,
+            "top": 0.005952381
+          },
+          "compress": "RL",
+          "height": 331,
+          "originX": 90,
+          "originY": 166,
+          "pixel": "#resource#14",
+          "width": 179
+        },
+        "bg_cut_abリンゴバナナ": {
+          "clip": {
+            "bottom": 1.0,
+            "left": 0.009615385,
+            "right": 0.990384638,
+            "top": 0.0
+          },
+          "compress": "RL",
+          "height": 376,
+          "originX": 102,
+          "originY": 188,
+          "pixel": "#resource#15",
+          "width": 204
+        },
+        "ちゅううう": {
+          "clip": {
+            "bottom": 0.995833337,
+            "left": 0.0,
+            "right": 1.0,
+            "top": 0.0
+          },
+          "compress": "RL",
+          "height": 239,
+          "originX": 28,
+          "originY": 120,
+          "pixel": "#resource#6",
+          "width": 56
+        },
+        "ストロー吸う差分": {
+          "clip": {
+            "bottom": 0.982142866,
+            "left": 0.027777778,
+            "right": 0.9722222,
+            "top": 0.0178571437
+          },
+          "compress": "RL",
+          "height": 54,
+          "originX": 34,
+          "originY": 27,
+          "pixel": "#resource#3",
+          "width": 68
+        },
+        "ストロー吸う差分赤面": {
+          "clip": {
+            "bottom": 0.982142866,
+            "left": 0.027777778,
+            "right": 0.9722222,
+            "top": 0.0178571437
+          },
+          "compress": "RL",
+          "height": 54,
+          "originX": 34,
+          "originY": 27,
+          "pixel": "#resource#4",
+          "width": 68
+        },
+        "ストロー基本": {
+          "clip": {
+            "bottom": 0.9,
+            "left": 0.125,
+            "right": 0.8333333,
+            "top": 0.075
+          },
+          "compress": "RL",
+          "height": 33,
+          "originX": 9,
+          "originY": 17,
+          "pixel": "#resource#1",
+          "width": 17
+        },
+        "モト_体": {
+          "clip": {
+            "bottom": 0.9934211,
+            "left": 0.00132978719,
+            "right": 0.9601064,
+            "top": 0.00657894742
+          },
+          "compress": "RL",
+          "height": 450,
+          "originX": 375,
+          "originY": 225,
+          "pixel": "#resource#16",
+          "width": 721
+        },
+        "血液型a": {
+          "clip": {
+            "bottom": 0.875,
+            "left": 0.09375,
+            "right": 0.90625,
+            "top": 0.09375
+          },
+          "compress": "RL",
+          "height": 25,
+          "originX": 13,
+          "originY": 13,
+          "pixel": "#resource#2",
+          "width": 26
+        },
+        "血液型o": {
+          "clip": {
+            "bottom": 0.78125,
+            "left": 0.28125,
+            "right": 0.875,
+            "top": 0.125
+          },
+          "compress": "RL",
+          "height": 21,
+          "originX": 7,
+          "originY": 12,
+          "pixel": "#resource#0",
+          "width": 19
+        },
+        "表情0": {
+          "clip": {
+            "bottom": 0.9285714,
+            "left": 0.0370370373,
+            "right": 0.9537037,
+            "top": 0.0357142873
+          },
+          "compress": "RL",
+          "height": 150,
+          "originX": 100,
+          "originY": 78,
+          "pixel": "#resource#10",
+          "width": 198
+        },
+        "表情1": {
+          "clip": {
+            "bottom": 0.9345238,
+            "left": 0.0231481474,
+            "right": 0.9444444,
+            "top": 0.04761905
+          },
+          "compress": "RL",
+          "height": 149,
+          "originX": 103,
+          "originY": 76,
+          "pixel": "#resource#9",
+          "width": 199
+        },
+        "表情2": {
+          "clip": {
+            "bottom": 0.922619045,
+            "left": 0.0370370373,
+            "right": 0.9351852,
+            "top": 0.1845238
+          },
+          "compress": "RL",
+          "height": 124,
+          "originX": 100,
+          "originY": 53,
+          "pixel": "#resource#5",
+          "width": 194
+        },
+        "表情3": {
+          "clip": {
+            "bottom": 0.875,
+            "left": 0.0462962948,
+            "right": 0.9583333,
+            "top": 0.142857149
+          },
+          "compress": "RL",
+          "height": 123,
+          "originX": 98,
+          "originY": 60,
+          "pixel": "#resource#8",
+          "width": 197
+        },
+        "表情4": {
+          "clip": {
+            "bottom": 0.964285731,
+            "left": 0.0,
+            "right": 0.9953704,
+            "top": 0.113095239
+          },
+          "compress": "RL",
+          "height": 143,
+          "originX": 108,
+          "originY": 65,
+          "pixel": "#resource#12",
+          "width": 215
+        },
+        "表情5": {
+          "clip": {
+            "bottom": 0.964285731,
+            "left": 0.0,
+            "right": 0.9953704,
+            "top": 0.0357142873
+          },
+          "compress": "RL",
+          "height": 156,
+          "originX": 108,
+          "originY": 78,
+          "pixel": "#resource#13",
+          "width": 215
+        },
+        "表情6": {
+          "clip": {
+            "bottom": 0.9285714,
+            "left": 0.027777778,
+            "right": 0.962963,
+            "top": 0.1845238
+          },
+          "compress": "RL",
+          "height": 125,
+          "originX": 102,
+          "originY": 53,
+          "pixel": "#resource#7",
+          "width": 202
+        },
+        "表情6赤": {
+          "clip": {
+            "bottom": 0.964285731,
+            "left": 0.0,
+            "right": 0.9953704,
+            "top": 0.1845238
+          },
+          "compress": "RL",
+          "height": 131,
+          "originX": 108,
+          "originY": 53,
+          "pixel": "#resource#11",
+          "width": 215
+        }
+      },
+      "type": 1
+    }
+  },
+  "spec": "krkr",
+  "stereovisionProfile": {
+    "dist_e2d": 972.0,
+    "dist_eye": 65.0,
+    "eye_angle_ltd": 1.0,
+    "f_level": 700,
+    "fov": 0.6,
+    "len_disp": 324.0
+  },
+  "version": 2.8
+}

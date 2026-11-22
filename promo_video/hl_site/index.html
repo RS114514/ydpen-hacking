@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>《半条命 Half-Life》词典笔 3D 原生移植 · 黑山基地演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#0d0e11;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#ff9900}
+#stage{position:absolute;inset:0;overflow:hidden;perspective:2400px}
+
+/* 黑山基地实验室金属底纹 + 扫描线 */
+#lab-bg{position:absolute;inset:-80px;
+  background:radial-gradient(ellipse at 35% 30%,#242830 0%,#121418 55%,#07080a 100%);
+  will-change:transform}
+#tech-grid{position:absolute;inset:-80px;
+  background-image:linear-gradient(rgba(255,153,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,153,0,.05) 1px,transparent 1px);
+  background-size:80px 80px;will-change:transform}
+#scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 2px,transparent 2px 4px);pointer-events:none;z-index:12}
+
+/* 工业黄黑警示条 */
+.hazard{position:absolute;left:0;right:0;height:18px;
+  background:repeating-linear-gradient(-45deg,#ff8c00 0 22px,#141518 22px 44px);opacity:.88;z-index:15}
+.hazard.top{top:0}
+.hazard.bot{bottom:0}
+
+/* 背景巨大 Lambda 标志 */
+#lambda-bg{position:absolute;right:80px;top:140px;font-size:640px;font-weight:900;color:rgba(255,140,0,.045);line-height:1;user-select:none;will-change:transform}
+
+/* 连续电影运镜容器 */
+#cam{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+
+/* 1:1 有道词典笔 X6 Pro 真机造型 */
+.x6pro{position:absolute;left:50%;top:50%;width:1660px;height:380px;margin:-190px 0 0 -830px;
+  border-radius:46px;
+  background:linear-gradient(180deg,#1a1d28 0%,#0b0d14 45%,#06070c 100%);
+  box-shadow:
+    0 52px 110px rgba(0,0,0,.78),
+    0 14px 30px rgba(0,0,0,.55),
+    0 0 0 6px #2a3452,
+    0 0 0 9px #14192b,
+    inset 0 3px 6px rgba(255,255,255,.22)}
+.x6pro .red-btn{position:absolute;left:220px;top:-11px;width:54px;height:10px;border-radius:5px 5px 0 0;background:linear-gradient(90deg,#e03131,#ff4d4d);box-shadow:0 -2px 8px rgba(255,60,60,.45)}
+.x6pro .vol-btn{position:absolute;left:310px;top:-9px;width:110px;height:8px;border-radius:4px 4px 0 0;background:#3a435e}
+.x6pro .screen{position:absolute;left:64px;top:36px;width:1112px;height:308px;border-radius:20px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 4px #000,inset 0 0 0 1px rgba(255,153,0,.2)}
+.x6pro .screen img,.x6pro .screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:opacity,transform}
+.x6pro .glare{position:absolute;inset:0;background:linear-gradient(112deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.03) 34%,rgba(255,255,255,0) 42%);pointer-events:none;z-index:10}
+.x6pro .grip-logo{position:absolute;right:210px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:700;letter-spacing:6px;color:rgba(255,255,255,.16)}
+.x6pro .scanner{position:absolute;right:0;top:16px;bottom:16px;width:138px;border-radius:16px 40px 40px 16px;
+  background:linear-gradient(90deg,#12151f 0%,#2b3245 22%,rgba(235,244,255,.92) 34%,rgba(255,255,255,.98) 72%,rgba(210,224,245,.92) 100%);
+  box-shadow:inset 4px 0 12px rgba(0,0,0,.65),0 0 24px rgba(220,240,255,.32)}
+.x6pro .scanner::before{content:"AI Scanner";position:absolute;left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:13px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.45);white-space:nowrap}
+.x6pro .scanner::after{content:"";position:absolute;right:24px;top:50%;width:18px;height:180px;margin-top:-90px;border-radius:9px;background:rgba(190,210,235,.4);border:1px solid rgba(130,155,185,.4)}
+
+/* HEV 防护服 HUD 标题与遥测牌 */
+.hev-header{position:absolute;left:72px;top:54px;display:flex;align-items:center;gap:22px;opacity:0;z-index:20}
+.hev-badge{width:68px;height:68px;border-radius:12px;border:3px solid #ff9900;background:rgba(255,140,0,.14);
+  display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;color:#ff9900;text-shadow:0 0 16px rgba(255,140,0,.6)}
+.hev-title h1{font-size:44px;font-weight:900;color:#fff;letter-spacing:3px}
+.hev-title p{font-size:22px;font-family:Menlo,monospace;color:#ff9900;letter-spacing:3px;margin-top:4px}
+
+.hev-telemetry{position:absolute;right:72px;top:56px;padding:14px 26px;border-radius:10px;border-left:5px solid #ff9900;
+  background:rgba(16,18,24,.82);font-family:Menlo,monospace;font-size:22px;color:#ffd080;line-height:1.5;opacity:0;z-index:20}
+
+.hud-bot{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);padding:12px 36px;border-radius:8px;
+  background:rgba(14,16,22,.88);border:2px solid rgba(255,153,0,.65);font-size:30px;font-weight:700;color:#fff;
+  letter-spacing:2px;white-space:nowrap;opacity:0;z-index:20}
+.hud-bot b{color:#ff9900}
+
+/* 结尾 */
+#outro{position:absolute;inset:0;background:radial-gradient(circle,rgba(24,26,32,.9) 0%,rgba(8,9,12,.97) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;z-index:30}
+.out-hev{padding:48px 72px;border-radius:16px;border:3px solid #ff9900;background:rgba(18,20,26,.92);
+  box-shadow:0 0 80px rgba(255,140,0,.22);text-align:center}
+.out-hev h2{font-size:66px;font-weight:900;color:#fff;letter-spacing:4px}
+.out-hev h2 span{color:#ff9900}
+.out-hev .sub{font-size:30px;font-family:Menlo,monospace;color:#ffd080;margin-top:14px}
+.out-hev .repo{margin-top:30px;padding:16px 34px;border-radius:10px;background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.45);font-family:Menlo,monospace;font-size:30px;color:#fff}
+.out-hev .foot{margin-top:22px;font-size:24px;color:#9aa0ad}
+
+#bar{position:absolute;left:0;top:18px;height:4px;background:#ff9900;z-index:60}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="lab-bg"></div>
+  <div id="tech-grid"></div>
+  <div id="lambda-bg">λ</div>
+  <div id="scanlines"></div>
+  <div class="hazard top"></div>
+  <div class="hazard bot"></div>
+
+  <div class="hev-header" id="hev-hdr">
+    <div class="hev-badge">λ</div>
+    <div class="hev-title">
+      <h1>《半条命 Half-Life》词典笔原生 3D 移植</h1>
+      <p>BLACK MESA RESEARCH FACILITY // XASH3D FWGS ARM64</p>
+    </div>
+  </div>
+
+  <div class="hev-telemetry" id="hev-tel">
+    <div>RENDERER: OpenGL ES 2.0 (libmali)</div>
+    <div>DISPLAY : 960 × 266 · UP TO 73 FPS</div>
+  </div>
+
+  <div id="cam">
+    <div class="x6pro" id="pen">
+      <div class="red-btn"></div>
+      <div class="vol-btn"></div>
+      <div class="grip-logo">youdao</div>
+      <div class="scanner"></div>
+      <div class="screen">
+        <img id="h1" src="a/01_tram_hud.png">
+        <img id="h2" src="a/02_tram_tunnel.png">
+        <img id="h3" src="a/03_canyon.png">
+        <img id="h4" src="a/04_blastdoor.png">
+        <video id="vid" src="a/hl_gameplay.mp4" muted playsinline preload="auto"></video>
+        <div class="glare"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hud-bot" id="hb1"><b>黑山基地单轨列车</b> · 原生 OpenGL ES 2.0 硬件加速直出</div>
+  <div class="hud-bot" id="hb2"><b>实机 3D 穿梭演示</b> · 虚拟摇杆 + 陀螺仪/触控视角 + 手电筒照明</div>
+
+  <div id="outro">
+    <div class="out-hev">
+      <h2><span>λ</span> HALF-LIFE × 有道词典笔</h2>
+      <div class="sub">Xash3D FWGS (linux-arm64) · libwl_center 全屏适配</div>
+      <div class="repo">作者：RS_TV · 工具链仓库：github.com/RS114514/ydpen-hacking</div>
+      <div class="foot">实机纯真机录制 · 请支持正版 Valve Half-Life</div>
+    </div>
+  </div>
+
+  <div id="bar"></div>
+</div>
+
+<script>
+const DURATION = 22.5;
+const $ = id => document.getElementById(id);
+const clamp = (v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const p = (t,a,b)=>clamp((t-a)/(b-a));
+const eo = x=>1-Math.pow(1-x,3);
+const eio = x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const lerp=(a,b,x)=>a+(b-a)*x;
+function vis(t,a,b,fi=.4,fo=.4){return Math.min(p(t,a,a+fi),1-p(t,b-fo,b))}
+
+function renderScene(t){
+  $('tech-grid').style.transform=`translate(${-(t*14)%80}px,${-(t*10)%80}px)`;
+  $('lambda-bg').style.transform=`translateY(${Math.sin(t*.4)*20}px) scale(${1+Math.sin(t*.3)*.03})`;
+  $('bar').style.width=(t/DURATION*100)+'%';
+
+  // 连续电影级运镜（从3D侧视到中央屏幕特写推焦再到拉远全景）
+  let camX=0, camY=0, camS=1, rx=0, ry=0, rz=0;
+  if(t < 3.6){
+    const k=eio(p(t,0,3.6));
+    camS=lerp(.84,1.06,k); camX=lerp(140,80,k); camY=lerp(45,25,k);
+    rx=lerp(20,5,k); ry=lerp(20,4,k);
+  }else if(t < 9.0){
+    const k=eio(p(t,3.6,9.0));
+    camS=lerp(1.06,1.28,k); camX=lerp(80,210,k); camY=lerp(25,10,k);
+    rx=lerp(5,0,k); ry=lerp(4,-2,k);
+  }else if(t < 16.5){
+    const k=eio(p(t,9.0,12.5));
+    camS=lerp(1.28,1.38,k); camX=lerp(210,235,k); camY=10;
+    ry=Math.sin((t-9.0)*.6)*2.5;
+  }else{
+    const k=eio(p(t,16.5,19.0));
+    camS=lerp(1.38,.96,k); camX=lerp(235,0,k); camY=lerp(10,18,k);
+    rx=lerp(0,6,k);
+  }
+  $('cam').style.transform=`translate3d(${camX}px,${camY}px,0) scale(${camS}) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+
+  // 画面无缝交替与 7.5s 30fps 实机 3D 穿梭视频
+  $('h1').style.opacity = vis(t, 0, 3.4, .3, .45);
+  $('h2').style.opacity = vis(t, 3.0, 5.8, .45, .45);
+  $('h3').style.opacity = vis(t, 5.4, 7.8, .45, .45);
+  $('h4').style.opacity = vis(t, 7.4, 9.5, .4, .45);
+  $('vid').style.opacity = vis(t, 9.1, 18.8, .45, .6);
+
+  $('hev-hdr').style.opacity = vis(t, .2, 18.5, .4, .5);
+  $('hev-tel').style.opacity = vis(t, .8, 18.5, .4, .5);
+  $('hb1').style.opacity = vis(t, .6, 8.8, .4, .4);
+  $('hb2').style.opacity = vis(t, 9.0, 18.2, .4, .45);
+
+  $('outro').style.opacity = p(t, 18.6, 19.4);
+}
+
+const vid=$('vid');
+function seekTo(v,t){
+  return new Promise(res=>{
+    if(Math.abs(v.currentTime-t)<0.005&&v.readyState>=2){res();return;}
+    let done=false;
+    const fin=()=>{if(done)return;done=true;v.removeEventListener('seeked',fin);res();};
+    v.addEventListener('seeked',fin);
+    v.currentTime=t;
+    setTimeout(fin,400);
+  });
+}
+async function renderFrame(t){
+  renderScene(t);
+  if(t>=8.9 && t<=19.0){
+    await seekTo(vid, clamp(t-9.1, 0, 7.4));
+    await new Promise(r=>requestAnimationFrame(()=>r()));
+  }
+}
+window.render=renderFrame;
+window.DURATION=DURATION;
+if(!location.search.includes('render')){
+  const st=performance.now();
+  (function loop(){renderFrame(((performance.now()-st)/1000)%DURATION);requestAnimationFrame(loop);})();
+}
+</script>
+</body>
+</html>
